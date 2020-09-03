@@ -1,0 +1,7 @@
+set autoindent
+set tabsize 4
+set smooth
+set nowrap
+set softwrap
+set linenumbers
+#set nohelp
