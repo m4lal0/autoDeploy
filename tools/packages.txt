@@ -4,6 +4,7 @@ python3-ldap3
 python3-yaml
 python3-impacket
 php-curl
+libssl-dev
 snmp
 xclip
 rlwrap
@@ -20,4 +21,10 @@ zsh
 neofetch
 exiftool
 hexedit
+alien
+traceroute
+telnet
+tree
+sshfs
+curlftpfs
 seclists

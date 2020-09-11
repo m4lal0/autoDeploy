@@ -6,4 +6,12 @@ https://github.com/itm4n/PrivescCheck
 https://github.com/mzet-/linux-exploit-suggester
 https://github.com/InfosecMatter/default-http-login-hunter
 https://github.com/paranoidninja/CarbonCopy
+https://github.com/S3cur3Th1sSh1t/WinPwn
+https://github.com/adrecon/ADRecon
+https://github.com/vivami/SauronEye
+https://github.com/TheRook/subbrute
+https://github.com/aboul3la/Sublist3r
+https://github.com/samratashok/nishang
+https://github.com/bitsadmin/wesng
+https://github.com/AonCyberLabs/Windows-Exploit-Suggester
 https://github.com/maurosoria/dirsearch

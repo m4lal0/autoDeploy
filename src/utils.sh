@@ -31,6 +31,13 @@ function installApps(){
 	check "Al descargar Google Chrome"
 	dpkg -i /tmp/chrome.deb > /dev/null 2>&1
 	check "Al instalar Google Chrome"
+	info "Instalando ZenMap"
+	wget https://nmap.org/dist/zenmap-7.80-1.noarch.rpm -O /tmp/zenmap-7.80-1.noarch.rpm > /dev/null 2>&1
+	check "Al descargar ZenMap"
+	alien zenmap-7.80-1.noarch.rpm
+	check "Al tranformar archivo de ZenMap"
+	dpkg -i /tmp/zenmap_7.80-2_all.deb > /dev/null 2>&1
+	check "Al instalar ZenMap"
 
 	info "Instalando Gotop"
 	git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
@@ -40,13 +47,13 @@ function installApps(){
 	mv gotop /bin > /dev/null 2>&1
 	check "Al mover el binario de gotop a /bin"
 
-	## Instalación de paquetes con pip3
+	## Instalación de paquetes con pip & pip3
 	for ap in $(cat $PIP_TOOLS_LIST); do
-		info "Instalando $ap"
-		pip3 install $ap > /dev/null 2>&1
-		check "Instalando $ap (root)"
-		sudo -u $USERNAME pip3 install $ap > /dev/null 2>&1
-		check "Instalando $ap ($USERNAME)"
+		info "Instalando $(echo $ap | cut -d ':' -f2)"
+		$(echo $ap | cut -d ':' -f1) install $(echo $ap | cut -d ':' -f2) > /dev/null 2>&1
+		check "Instalando $(echo $ap | cut -d ':' -f2) (root)"
+		sudo -u $USERNAME $(echo $ap | cut -d ':' -f1) install $(echo $ap | cut -d ':' -f2) > /dev/null 2>&1
+		check "Instalando $(echo $ap | cut -d ':' -f2) ($USERNAME)"
 	done
 }
 
@@ -68,6 +75,7 @@ function gitTools(){
     check "Descomprimir archivo rockyou en /usr/share/wordlist/"
     cd > /dev/null 2>&1
 
+## Git clone con instalación aparte
 	## Wpseku
 	cd $GIT_TOOLS_PATH > /dev/null 2>&1
 	info "Descargando wpseku"
@@ -82,7 +90,22 @@ function gitTools(){
 	cd sherlock > /dev/null 2>&1
 	python3 -m pip install -r requirements.txt  > /dev/null 2>&1
 	check "Agregando la aplicación sherlock-project"
-	
+	## Impacket Python
+	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	info "Descargando Impacket Python"
+	git clone https://github.com/SecureAuthCorp/impacket > /dev/null 2>&1
+	cd impacket > /dev/null 2>&1
+	python3 setup.py install > /dev/null 2>&1
+	check "Agregando Impacket Python"
+	## CrackMapExec
+	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	info "Descargando CrackMapExec"
+	git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec > /dev/null 2>&1
+	cd CrackMapExec > /dev/null 2>&1
+	python3 setup.py install > /dev/null 2>&1
+	check "Agregando CrackMapExec"
+
+## Descarga usando wget
 	## psPY
 	cd $GIT_TOOLS_PATH > /dev/null 2>&1
 	info "Descargando pspy"
@@ -106,7 +129,7 @@ function gitTools(){
 	tar -xzf unix-privesc-check-1.4.tar.gz; rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación unix-privesc-check"
 
-	## Descarga de otras herramientas de GitHub sin instalación
+## Descarga de otras herramientas de GitHub sin instalación
 	for url in $(cat $GIT_TOOLS_LIST); do
 		name=$(echo $url | tr '/' ' ' | cut -d ' ' -f5)
 		cd $GIT_TOOLS_PATH > /dev/null 2>&1
