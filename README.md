@@ -24,7 +24,7 @@ Al inicio solicitará unos datos para el proceso de instalación, el resto de la
 ## Utilidades
 
 <p align="center">
-<img src="https://github.com/m4lal0/autoDeploy/blob/master/images/preview.png"
+<img src="https://github.com/m4lal0/autoDeploy/blob/master/images/preview.PNG"
 	alt="autoDeploy"
 	width="1000"
 	style="float: left; margin-right: 10px;" />
