@@ -27,4 +27,13 @@ telnet
 tree
 sshfs
 curlftpfs
+htop
+bashtop
+ranger
+ghex
+scrot
+sl
+figlet
+cmatrix
+rofi
 seclists
