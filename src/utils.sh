@@ -34,7 +34,7 @@ function installApps(){
 	info "Instalando ZenMap"
 	wget https://nmap.org/dist/zenmap-7.80-1.noarch.rpm -O /tmp/zenmap-7.80-1.noarch.rpm > /dev/null 2>&1
 	check "Al descargar ZenMap"
-	alien zenmap-7.80-1.noarch.rpm
+	alien /tmp/zenmap-7.80-1.noarch.rpm
 	check "Al tranformar archivo de ZenMap"
 	dpkg -i /tmp/zenmap_7.80-2_all.deb > /dev/null 2>&1
 	check "Al instalar ZenMap"
@@ -62,11 +62,10 @@ function gitTools(){
 	section "COMENZANDO INSTALACIÓN DE APLICACIONES DE TERCEROS"
 	checkInternet
 	info "Descargando netcat 64bits"
-	wget https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip -O /tmp/netca.zip > /dev/null 2>&1
+	wget https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip -O /tmp/netcat.zip > /dev/null 2>&1
 	check "Al descargar netcat"
 	unzip /tmp/netcat.zip > /dev/null 2>&1
-	cp netcat-1.11/nc64.exe /usr/share/windows-binaries/nc64.exe > /dev/null 2>&1
-	rm -rf netcat-1.11/ > /dev/null 2>&1
+	cp /tmp/netcat-1.11/nc64.exe /usr/share/windows-binaries/nc64.exe > /dev/null 2>&1
 	check "Al copiar netcat en /usr/share/windows-binaries/"
 	## Descomprimir wordlist rockyou
     info "Descomprimiendo wordlist rockyou"
