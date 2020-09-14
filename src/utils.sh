@@ -11,6 +11,7 @@ function installPackages(){
 	if [ $? -ne 0 ]; then
 		apt install -y $PACKAGES_LIST > /dev/null 2>&1
 	fi
+	apt --fix-broken install -y > /dev/null 2>&1
 	check "Instalando paquetes adicionales"
 	## Actualizar paquetes
 	info "Actualizando paquetes"
@@ -34,7 +35,7 @@ function installApps(){
 	info "Instalando ZenMap"
 	wget https://nmap.org/dist/zenmap-7.80-1.noarch.rpm -O /tmp/zenmap-7.80-1.noarch.rpm > /dev/null 2>&1
 	check "Al descargar ZenMap"
-	alien /tmp/zenmap-7.80-1.noarch.rpm
+	cd /tmp/ ; alien /tmp/zenmap-7.80-1.noarch.rpm > /dev/null 2>&1
 	check "Al tranformar archivo de ZenMap"
 	dpkg -i /tmp/zenmap_7.80-2_all.deb > /dev/null 2>&1
 	check "Al instalar ZenMap"
@@ -64,8 +65,9 @@ function gitTools(){
 	info "Descargando netcat 64bits"
 	wget https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip -O /tmp/netcat.zip > /dev/null 2>&1
 	check "Al descargar netcat"
-	unzip /tmp/netcat.zip > /dev/null 2>&1
-	cp /tmp/netcat-1.11/nc64.exe /usr/share/windows-binaries/nc64.exe > /dev/null 2>&1
+	cd /tmp/ ; unzip /tmp/netcat.zip > /dev/null 2>&1
+	check "Al descomprimir netcat"
+	sudo cp /tmp/netcat-1.11/nc64.exe /usr/share/windows-binaries/nc64.exe > /dev/null 2>&1
 	check "Al copiar netcat en /usr/share/windows-binaries/"
 	## Descomprimir wordlist rockyou
     info "Descomprimiendo wordlist rockyou"
@@ -138,4 +140,8 @@ function gitTools(){
 	done
 	ln -s $GIT_TOOLS_PATH/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
 	check "Redireccionando el archivo dirsearch a /bin"
+
+	info "Actualizacion de updatedb"
+	sudo updatedb > /dev/null 2>&1
+	check "Ejecutando updatedb"
 }
