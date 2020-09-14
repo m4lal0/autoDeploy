@@ -14,4 +14,10 @@ https://github.com/aboul3la/Sublist3r
 https://github.com/samratashok/nishang
 https://github.com/bitsadmin/wesng
 https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+https://github.com/s0md3v/Decodify
+https://github.com/Dhayalanb/windows-php-reverse-shell
+https://github.com/WhiteWinterWolf/wwwolf-php-webshell
+https://github.com/Tuhinshubhra/CMSeeK
+https://github.com/thewhiteh4t/pwnedOrNot.git
+https://github.com/Mebus/cupp
 https://github.com/maurosoria/dirsearch
