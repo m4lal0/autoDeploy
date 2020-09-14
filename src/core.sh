@@ -15,7 +15,7 @@ GIT_TOOLS_LIST="$TOOLS_PATH/github.txt"
 PIP_TOOLS_LIST="$TOOLS_PATH/pip.txt"
 PACKAGES_LIST=$(cat $TOOLS_PATH/packages.txt | tr '\r\n' ' ')
 
-### Llamado del Banner
+clear
 banner
 
 ### Opciones

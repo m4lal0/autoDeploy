@@ -53,12 +53,12 @@ function yes_or_no(){
 }
 
 function error(){
-	echo -e "${redColour}[X] Error - $1${endColour}"
+	echo -e "${turquoiseColour}[${redColour}✘${turquoiseColour}] ${redColour}Error - $1${endColour}"
 	echo -e "[$(date +%T)] $1" 2>/dev/null >> $SCRIPT_PATH/error.log
 }
 
 function good(){
-	echo -e "${greenColour}[V] Correct - $1${endColour}"
+	echo -e "${turquoiseColour}[${greenColour}✔${turquoiseColour}] ${greenColour}Exitoso - $1${endColour}"
 }
 
 function check(){
@@ -78,7 +78,7 @@ function checkInternet(){
 	info "Comprobando resolución DNS"
 	host www.google.com > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
-		error "Fallo en la resolución DNS - no se pudo resolver www.google.com"
+		error "En la resolución DNS - no se pudo resolver www.google.com"
 		exit 1
 	fi
 }
@@ -86,7 +86,7 @@ function checkInternet(){
 function validations(){
 ### Validación de ejecución con root
 	if [ ! -d "files/" ]; then
-		echo -e "\n[!] Ejecuta este script desde la carpeta de AutoDeploy para evitar errores\n"
+		echo -e "\n${redColour}[!] Ejecuta este script desde la carpeta de autoDeploy para evitar errores${endColour}\n"
 		exit 1
 	fi
 	rm -f $SCRIPT_PATH/error.log 2>/dev/null
