@@ -187,7 +187,7 @@ if [ -x /usr/bin/dircolors ]; then
     zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 fi
 
-# some more ls aliases
+# some more aliases
 alias ll='lsd -lh --group-dirs=first'
 alias la='lsd -a --group-dirs=first'
 alias l='lsd --group-dirs=first'
@@ -229,6 +229,27 @@ function man() {
     LESS_TERMCAP_ue=$'\e[0m' \
     LESS_TERMCAP_us=$'\e[01;32m' \
     man "$@"
+}
+
+# fzf improvement
+function fzf-lovely(){
+	if [ "$1" = "h" ]; then
+		fzf -m --reverse --preview-window down:20 --preview '[[ $(file --mime {}) =~ binary ]] &&
+			echo {} is a binary file ||
+			(bat --style=numbers --color=always {} ||
+			highlight -O ansi -l {} ||
+			coderay {} ||
+			rougify {} ||
+			cat {}) 2> /dev/null | head -500'
+	else
+		fzf -m --preview '[[ $(file --mime {}) =~ binary ]] &&
+			echo {} is a binary file ||
+			(bat --style=numbers --color=always {} ||
+			highlight -O ansi -l {} ||
+			coderay {} ||
+			rougify {} ||
+			cat {}) 2> /dev/null | head -500'
+	fi
 }
 
 # Fix the Java problem
