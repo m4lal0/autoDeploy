@@ -36,4 +36,7 @@ sl
 figlet
 cmatrix
 rofi
+dconf-cli
+i3lock-fancy
+imagemagick
 seclists
