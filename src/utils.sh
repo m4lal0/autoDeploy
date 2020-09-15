@@ -41,20 +41,20 @@ function installApps(){
 	check "Al instalar ZenMap"
 
 	info "Instalando Gotop"
-	git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
+	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
 	check "Clonando el repositorio de Gotop"
 	/tmp/gotop/scripts/download.sh > /dev/null 2>&1
 	check "En la instalación de Gotop"
-	mv gotop /bin > /dev/null 2>&1
-	check "Al mover el binario de gotop a /bin"
+	mv gotop /usr/local/bin 2>/dev/null
+	check "Al mover el binario de gotop a /usr/local/bin"
 
 	## Instalación de paquetes con pip & pip3
 	for ap in $(cat $PIP_TOOLS_LIST); do
-		info "Instalando $(echo $ap | cut -d ':' -f2)"
-		$(echo $ap | cut -d ':' -f1) install $(echo $ap | cut -d ':' -f2) > /dev/null 2>&1
-		check "Instalando $(echo $ap | cut -d ':' -f2) (root)"
-		sudo -u $USERNAME $(echo $ap | cut -d ':' -f1) install $(echo $ap | cut -d ':' -f2) > /dev/null 2>&1
-		check "Instalando $(echo $ap | cut -d ':' -f2) ($USERNAME)"
+		info "Instalando $(echo $ap | cut -d ':' -f 2)"
+		$(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) > /dev/null 2>&1
+		check "Instalando $(echo $ap | cut -d ':' -f 2) (root)"
+		sudo -u $USERNAME $(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) > /dev/null 2>&1
+		check "Instalando $(echo $ap | cut -d ':' -f 2) ($USERNAME)"
 	done
 }
 
