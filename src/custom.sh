@@ -74,4 +74,33 @@ function customTerminal(){
 	ln -sf $HOME_PATH/.tmux.conf.local /root/.tmux.conf.local
 	check "Agregando el .tmux.conf.local en root"
 
+	info "Instalando FZF"
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1
+	check "Clonando el repositorio de FZF (root)"
+	echo -e "y\y\y" | ~/.fzf/install > /dev/null 2>&1
+	check "Al instalar FZF (root)"
+	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME_PATH/.fzf > /dev/null 2>&1
+	check "Clonando el repositorio de FZF ($USERNAME)"
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.fzf 2>/dev/null
+	sudo -u $USERNAME $HOME_PATH/.fzf/install < <(echo -e "y\y\y") > /dev/null 2>&1
+	check "Al instalar FZF ($USERNAME)"
+
+	info "Configurando mate terminal"
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/copy-selection 'true' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-darkness '0.87130434782608701' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-color '#FFFFFFFFDDDD' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/bold-color '#000000000000' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/foreground-color '#000000000000' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/use-system-font 'false' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/font "'Hack Nerd Font Mono 11'" > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-type "'transparent'" > /dev/null 2>&1
+	check  "Al configurar mate terminal"
+
+	info "Configurando escritorio"
+	cp $FILES_PATH/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
+	check  "Al configurar fondo"
+	cp $FILES_PATH/xfce4-keyboard-shortcuts.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml 2>/dev/null
+	check  "Al configurar atajos de teclado"
 }
