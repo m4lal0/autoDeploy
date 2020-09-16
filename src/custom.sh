@@ -3,7 +3,7 @@
 
 ### Personalización de la terminal
 function customTerminal(){
-	section "COMENZANDO PERSONALIZACIÓN DE LA TERMINAL"
+	section "COMENZANDO PERSONALIZACIÓN DEL SISTEMA"
 	checkInternet
 	info "Actualizando repositorios"
 	apt update > /dev/null 2>&1
@@ -103,4 +103,31 @@ function customTerminal(){
 	cp $FILES_PATH/xfce4-keyboard-shortcuts.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml 2>/dev/null
 	check  "Al configurar atajos de teclado"
+	cp $FILES_PATH/xfce4-panel.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml 2>/dev/null
+	check  "Al configurar barra de tarea"
+	cp $FILES_PATH/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
+	check  "Al configurar paneles de trabajo"
+	cp $FILES_PATH/scripts/ethstatus.sh $HOME_PATH/.config/ethstatus.sh > /dev/null 2>&1
+	chmod 774 $HOME_PATH/.config/ethstatus.sh 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/ethstatus.sh 2>/dev/null
+	check  "Al copiar script eth"
+	cp $FILES_PATH/genmon-4.rc $HOME_PATH/.config/xfce4/panel/genmon-4.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-4.rc 2>/dev/null
+	check  "Al configurar info red (eth0) en barra de tarea"
+	cp $FILES_PATH/scripts/vpnstatus.sh $HOME_PATH/.config/vpnstatus.sh > /dev/null 2>&1
+	chmod 774 $HOME_PATH/.config/vpnstatus.sh 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/vpnstatus.sh 2>/dev/null
+	check  "Al copiar script vpn"
+	cp $FILES_PATH/genmon-5.rc $HOME_PATH/.config/xfce4/panel/genmon-5.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-5.rc 2>/dev/null
+	check  "Al configurar info red (tun0) en barra de tarea"
+	cp $FILES_PATH/scripts/wifistatus.sh $HOME_PATH/.config/wifistatus.sh > /dev/null 2>&1
+	chmod 774 $HOME_PATH/.config/wifistatus.sh 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/wifistatus.sh 2>/dev/null
+	check  "Al copiar script wifi"
+	cp $FILES_PATH/genmon-24.rc $HOME_PATH/.config/xfce4/panel/genmon-24.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-24.rc 2>/dev/null
+	check  "Al configurar info red (wlan0) en barra de tarea"
 }
