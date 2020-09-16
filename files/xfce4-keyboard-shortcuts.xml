@@ -33,12 +33,14 @@
       <property name="override" type="bool" value="true"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;Print" type="string" value="xfce4-screenshooter --window --clipboard"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="string" value="/usr/bin/i3lock-fancy"/>
-      <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="string" value="/usr/bin/mate-terminal.wrapper"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="string" value="/usr/bin/mate-terminal"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;c" type="string" value="/usr/bin/thunar"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;g" type="string" value="/usr/bin/google-chrome-stable"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;f" type="string" value="/usr/bin/firefox"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;b" type="string" value="/usr/bin/burpsuite"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;r" type="string" value="/usr/bin/rofi -show run"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;o" type="string" value="/usr/bin/mate-terminal -e &quot;gotop&quot;"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;n" type="string" value="/usr/bin/mousepad"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
