@@ -40,4 +40,5 @@ dconf-cli
 i3lock-fancy
 imagemagick
 html2text
+ffuf
 seclists
