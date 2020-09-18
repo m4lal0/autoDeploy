@@ -1,5 +1,5 @@
 # autoDeploy
-<p align="center" style="color: #4169e1">
+<p align="center" style="color:#4169e1">
 ━━━━━━━━━━┏┓━━━━━┏━━━┓━━━━━━━━┏┓━━━━━━━━━━
 ━━━━━━━━━┏┛┗┓━━━━┗┓┏┓┃━━━━━━━━┃┃━━━━━━━━━━
 ┏━━┓━┏┓┏┓┗┓┏┛┏━━┓━┃┃┃┃┏━━┓┏━━┓┃┃━┏━━┓┏┓━┏┓
@@ -36,13 +36,15 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
     + Google Chrome
     + Gotop
     + upDog
+    + impacket
     + entre otras...
 - zsh + powerlevel10k
     + lsd
     + bat
+    + fzf
 - Oh my Tmux!
 - Algunas funciones creadas para el zshrc
-    + Colorido para man
+    + Colorido para manuales
     + Borrado de archivo anti-Forense
     + entre otras...
 - Instalación de otros paquetes
@@ -50,19 +52,22 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
     + xclip
     + steghide
     + fcrackzip
+    + rofi
+    + ffuf
+    + golang
     + entre otras...
 - Actualización de Wordlists
     + /usr/share/wordlist
     + /usr/share/seclists
 - Herramientas desde github (/opt):
-    + dirsearch
-    + powerSploit
+    + Dirsearch
+    + PowerSploit
     + pspy
-    + wpseku
-    + linEnum
-    + airgeddon
+    + Wpseku
+    + LinEnum
+    + Airgeddon
     + CrackMapExec
-    + ffuf
+    + GTFOBLookup
     + entre otras...
 
 > Con el tiempo iré actualizando el repositorio...
