@@ -77,38 +77,51 @@ function gitTools(){
     cd > /dev/null 2>&1
 
 ## Git clone con instalación aparte
-	## Wpseku
+	info "Creando directorios de aplicativos"
 	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	mkdir {Evasion,PrivEsc-Lin,PrivEsc-Win,OSINT,Utilities,Web,Wifi} 2>&1
+	cd Web ; mkdir Wordpress 2>&1
+	check "Al crear directorios"
+	## Wpseku
+	cd $GIT_TOOLS_PATH/Web/Wordpress > /dev/null 2>&1
 	info "Descargando wpseku"
 	git clone --depth 1 https://github.com/m4ll0k/WPSeku.git wpseku > /dev/null 2>&1
 	cd wpseku > /dev/null 2>&1
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	check "Agregando la aplicación wpseku"
 	## Sherlock-Project
-	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	cd $GIT_TOOLS_PATH/OSINT > /dev/null 2>&1
 	info "Descargando sherlock-project"
 	git clone --depth 1 https://github.com/sherlock-project/sherlock.git > /dev/null 2>&1
 	cd sherlock > /dev/null 2>&1
 	python3 -m pip install -r requirements.txt  > /dev/null 2>&1
 	check "Agregando la aplicación sherlock-project"
 	## Impacket Python
-	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
 	info "Descargando Impacket Python"
 	git clone https://github.com/SecureAuthCorp/impacket > /dev/null 2>&1
 	cd impacket > /dev/null 2>&1
 	python3 setup.py install > /dev/null 2>&1
 	check "Agregando Impacket Python"
 	## CrackMapExec
-	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
 	info "Descargando CrackMapExec"
 	git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec > /dev/null 2>&1
 	cd CrackMapExec > /dev/null 2>&1
 	python3 setup.py install > /dev/null 2>&1
 	check "Agregando CrackMapExec"
+	## GTFOBLookup
+	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
+	info "Descargando GTFOBLookup"
+	git clone --depth 1 https://github.com/nccgroup/GTFOBLookup > /dev/null 2>&1
+	cd GTFOBLookup > /dev/null 2>&1
+	pip3 install -r requirements.txt > /dev/null 2>&1
+	python3 gtfoblookup.py update > /dev/null 2>&1
+	check "Agregando GTFOBLookup"
 
 ## Descarga usando wget
 	## psPY
-	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	cd $GIT_TOOLS_PATH/PrivEsc-Lin > /dev/null 2>&1
 	info "Descargando pspy"
 	mkdir pspy > /dev/null 2>&1
 	cd pspy > /dev/null 2>&1
@@ -117,28 +130,30 @@ function gitTools(){
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 > /dev/null 2>&1
 	check "Agregando la aplicación pspy64"
 	## ffuf - Fuzz Faster U Fool
-	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	cd $GIT_TOOLS_PATH/Web > /dev/null 2>&1
 	info "Descargando ffuf"
 	mkdir ffuf; cd ffuf > /dev/null 2>&1
 	wget https://github.com/ffuf/ffuf/releases/download/v1.1.0/ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
 	tar -xzf ffuf_1.1.0_linux_amd64.tar.gz; rm ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación ffuf"
 	## Unix-Privesc-Check-PentestMonkey
-	cd $GIT_TOOLS_PATH > /dev/null 2>&1
+	cd $GIT_TOOLS_PATH/PrivEsc-Lin > /dev/null 2>&1
 	info "Descargando unix-privesc-check"
 	wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	tar -xzf unix-privesc-check-1.4.tar.gz; rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación unix-privesc-check"
 
 ## Descarga de otras herramientas de GitHub sin instalación
-	for url in $(cat $GIT_TOOLS_LIST); do
+	for gitap in $(cat $GIT_TOOLS_LIST); do
+		url=$(echo $gitap | cut -d '|' -f2)
+		dir=$(echo $gitap | cut -d '|' -f1)
 		name=$(echo $url | tr '/' ' ' | cut -d ' ' -f5)
-		cd $GIT_TOOLS_PATH > /dev/null 2>&1
+		cd $GIT_TOOLS_PATH/$dir > /dev/null 2>&1
 		info "Descargando $name"
 		git clone --depth 1 $url > /dev/null 2>&1
 		check "Agregando la aplicación $name"
 	done
-	ln -s $GIT_TOOLS_PATH/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
+	ln -s $GIT_TOOLS_PATH/Web/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
 	check "Redireccionando el archivo dirsearch a /bin"
 
 	info "Actualizacion de updatedb"
