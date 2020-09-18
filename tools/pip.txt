@@ -2,7 +2,7 @@ pip3:updog
 pip3:pwn
 pip3:stegcracker
 pip3:one-lin3r
-pip:html2text
+pip:impacket
 pip3:argparse
 pip:xlrd
 pip3:twint
