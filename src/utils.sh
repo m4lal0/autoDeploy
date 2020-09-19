@@ -75,6 +75,15 @@ function gitTools(){
     gunzip rockyou.txt.gz > /dev/null 2>&1
     check "Descomprimir archivo rockyou en /usr/share/wordlist/"
     cd > /dev/null 2>&1
+	## SubFinder
+	info "Instalando subFinder"
+	cd /tmp/ > /dev/null 2>&1
+	subfinder_url=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
+	subfinder_file=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$subfinder_url" > /dev/null 2>&1
+	tar -xzvf /tmp/$subfinder_file > /dev/null 2>&1
+	mv /tmp/subfinder /usr/local/bin/ > /dev/null 2>&1
+	check "Agregando la aplicación subFinder"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
@@ -118,6 +127,13 @@ function gitTools(){
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	python3 gtfoblookup.py update > /dev/null 2>&1
 	check "Agregando GTFOBLookup"
+	## SocialFish
+	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
+	info "Descargando SocialFish"
+	git clone --depth 1 https://github.com/UndeadSec/SocialFish > /dev/null 2>&1
+	cd SocialFish > /dev/null 2>&1
+	python3 -m pip install -r requirements.txt > /dev/null 2>&1
+	check "Agregando SocialFish"
 
 ## Descarga usando wget
 	## psPY
