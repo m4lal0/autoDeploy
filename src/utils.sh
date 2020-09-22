@@ -71,13 +71,13 @@ function gitTools(){
 	check "Al copiar netcat en /usr/share/windows-binaries/"
 	## Descomprimir wordlist rockyou
     info "Descomprimiendo wordlist rockyou"
-    cd /usr/share/wordlists > /dev/null 2>&1
+    cd /usr/share/wordlists 2>/dev/null
     gunzip rockyou.txt.gz > /dev/null 2>&1
     check "Descomprimir archivo rockyou en /usr/share/wordlist/"
-    cd > /dev/null 2>&1
+    cd 2>/dev/null
 	## SubFinder
 	info "Instalando subFinder"
-	cd /tmp/ > /dev/null 2>&1
+	cd /tmp/ 2>/dev/null
 	subfinder_url=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
 	subfinder_file=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
 	wget "https://github.com$subfinder_url" > /dev/null 2>&1
@@ -86,88 +86,86 @@ function gitTools(){
 	check "Agregando la aplicación subFinder"
 	## Hakrawler
 	info "Instalando Hakrawler"
-	cd /tmp/ > /dev/null 2>&1
+	cd /tmp/ 2>/dev/null
 	go get github.com/hakluke/hakrawler > /dev/null 2>&1
 	mv ~/go/bin/hakrawler /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación Hakrawler"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
-	cd $GIT_TOOLS_PATH > /dev/null 2>&1
-	mkdir {Evasion,PrivEsc-Lin,PrivEsc-Win,OSINT,Utilities,Web,Wifi} 2>&1
-	cd Web ; mkdir Wordpress 2>&1
+	mkdir {$EVASION_PATH,$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
 	check "Al crear directorios"
 	## Wpseku
-	cd $GIT_TOOLS_PATH/Web/Wordpress > /dev/null 2>&1
+	cd $WORDPRESS_PATH 2>/dev/null
 	info "Descargando wpseku"
 	git clone --depth 1 https://github.com/m4ll0k/WPSeku.git wpseku > /dev/null 2>&1
-	cd wpseku > /dev/null 2>&1
+	cd wpseku 2>/dev/null
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	check "Agregando la aplicación wpseku"
 	## Sherlock-Project
-	cd $GIT_TOOLS_PATH/OSINT > /dev/null 2>&1
+	cd $OSINT_PATH 2>/dev/null
 	info "Descargando sherlock-project"
 	git clone --depth 1 https://github.com/sherlock-project/sherlock.git > /dev/null 2>&1
-	cd sherlock > /dev/null 2>&1
+	cd sherlock 2>/dev/null
 	python3 -m pip install -r requirements.txt  > /dev/null 2>&1
 	check "Agregando la aplicación sherlock-project"
 	## Impacket Python
-	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
+	cd $UTILITIES_PATH 2>/dev/null
 	info "Descargando Impacket Python"
 	git clone https://github.com/SecureAuthCorp/impacket > /dev/null 2>&1
-	cd impacket > /dev/null 2>&1
+	cd impacket 2>/dev/null
 	python3 setup.py install > /dev/null 2>&1
 	check "Agregando Impacket Python"
 	## CrackMapExec
-	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
+	cd $UTILITIES_PATH 2>/dev/null
 	info "Descargando CrackMapExec"
 	git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec > /dev/null 2>&1
-	cd CrackMapExec > /dev/null 2>&1
+	cd CrackMapExec 2>/dev/null
 	python3 setup.py install > /dev/null 2>&1
 	check "Agregando CrackMapExec"
 	## GTFOBLookup
-	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
+	cd $UTILITIES_PATH 2>/dev/null
 	info "Descargando GTFOBLookup"
 	git clone --depth 1 https://github.com/nccgroup/GTFOBLookup > /dev/null 2>&1
-	cd GTFOBLookup > /dev/null 2>&1
+	cd GTFOBLookup 2>/dev/null
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	python3 gtfoblookup.py update > /dev/null 2>&1
 	check "Agregando GTFOBLookup"
 	## SocialFish
-	cd $GIT_TOOLS_PATH/Utilities > /dev/null 2>&1
+	cd $UTILITIES_PATH 2>/dev/null
 	info "Descargando SocialFish"
 	git clone --depth 1 https://github.com/UndeadSec/SocialFish > /dev/null 2>&1
-	cd SocialFish > /dev/null 2>&1
+	cd SocialFish 2>/dev/null
 	python3 -m pip install -r requirements.txt > /dev/null 2>&1
 	check "Agregando SocialFish"
 	## CRLFuzz
-	cd /tmp/ > /dev/null 2>&1
+	cd /tmp/ 2>/dev/null
 	info "Descargando CRLFuzz"
 	git clone https://github.com/dwisiswant0/crlfuzz > /dev/null 2>&1
-	cd /tmp/crlfuzz/cmd/crlfuzz > /dev/null 2>&1
+	cd /tmp/crlfuzz/cmd/crlfuzz 2>/dev/null
 	go build . > /dev/null 2>&1
 	mv crlfuzz /usr/local/bin > /dev/null 2>&1
 	check "Agregando CRLFuzz"
 
 ## Descarga usando wget
 	## psPY
-	cd $GIT_TOOLS_PATH/PrivEsc-Lin > /dev/null 2>&1
+	cd $PRIVESCLIN_PATH 2>/dev/null
 	info "Descargando pspy"
 	mkdir pspy > /dev/null 2>&1
-	cd pspy > /dev/null 2>&1
+	cd pspy 2>/dev/null
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32 > /dev/null 2>&1
 	check "Agregando la aplicación pspy32"
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 > /dev/null 2>&1
 	check "Agregando la aplicación pspy64"
 	## ffuf - Fuzz Faster U Fool
-	cd $GIT_TOOLS_PATH/Web > /dev/null 2>&1
+	cd $WEB_PATH 2>/dev/null
 	info "Descargando ffuf"
-	mkdir ffuf; cd ffuf > /dev/null 2>&1
+	mkdir ffuf; cd ffuf 2>/dev/null
 	wget https://github.com/ffuf/ffuf/releases/download/v1.1.0/ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
 	tar -xzf ffuf_1.1.0_linux_amd64.tar.gz && rm ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación ffuf"
 	## Unix-Privesc-Check-PentestMonkey
-	cd $GIT_TOOLS_PATH/PrivEsc-Lin > /dev/null 2>&1
+	cd $PRIVESCLIN_PATH 2>/dev/null
 	info "Descargando unix-privesc-check"
 	wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	tar -xzf unix-privesc-check-1.4.tar.gz && rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
@@ -178,12 +176,12 @@ function gitTools(){
 		url=$(echo $gitap | cut -d '|' -f2)
 		dir=$(echo $gitap | cut -d '|' -f1)
 		name=$(echo $url | tr '/' ' ' | cut -d ' ' -f5)
-		cd $GIT_TOOLS_PATH/$dir > /dev/null 2>&1
+		cd $GIT_TOOLS_PATH/$dir 2>/dev/null
 		info "Descargando $name"
 		git clone --depth 1 $url > /dev/null 2>&1
 		check "Agregando la aplicación $name"
 	done
-	ln -s $GIT_TOOLS_PATH/Web/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
+	ln -s $WEB_PATH/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
 	check "Redireccionando el archivo dirsearch a /bin"
 
 	info "Actualizacion de updatedb"
