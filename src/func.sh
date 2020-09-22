@@ -81,6 +81,18 @@ function section(){
 	echo -e "\n${turquoiseColour}[${blueColour}+${turquoiseColour}] ${blueColour}$1${endColour}"
 }
 
+### Eliminando directorios de los aplicativos descargados de Github
+function deleteApp(){
+	info "Eliminando directorios de aplicativos"
+	if [[ ! -d $EVASION_PATH || ! -d $PRIVESCLIN_PATH || ! -d $PRIVESCWIN_PATH || ! -d $OSINT_PATH || ! -d $UTILITIES_PATH || ! -d $WEB_PATH || ! -d $WIFI_PATH ]]; then
+		error "No se encuentran los directorios de los aplicativos"
+	else
+		rm -rf {$EVASION_PATH,$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH} 2>&1
+		check "Eliminado directorios"
+	fi
+	tput cnorm; exit 0
+}
+
 ### Revisando conexión a Internet
 function checkInternet(){
 	info "Comprobando resolución DNS"
