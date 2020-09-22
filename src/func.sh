@@ -11,6 +11,14 @@ turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
 endColour="\033[0m\e[0m"
 
+trap ctrl_c INT
+
+function ctrl_c(){
+    echo -e "\n\n${turquoiseColour}[${yellowColour}!${turquoiseColour}] ${redColour}Saliendo de la aplicación...${endColour}"
+    tput cnorm
+    exit 1
+}
+
 ### Banner
 function banner(){
     echo -e "${yellowColour}"
@@ -85,8 +93,8 @@ function checkInternet(){
 
 function validations(){
 ### Validación de ejecución con root
-	if [ ! -d "files/" ]; then
-		echo -e "\n${redColour}[!] Ejecuta este script desde la carpeta de autoDeploy para evitar errores${endColour}\n"
+	if [[ ! -d tools || ! -d files ]]; then
+		echo -e "\n${turquoiseColour}[${redColour}!${turquoiseColour}] ${redColour}Ejecuta este script desde la carpeta de autoDeploy para evitar errores${endColour}\n"
 		exit 1
 	fi
 	rm -f $SCRIPT_PATH/error.log 2>/dev/null
