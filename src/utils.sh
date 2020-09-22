@@ -84,6 +84,12 @@ function gitTools(){
 	tar -xzvf /tmp/$subfinder_file > /dev/null 2>&1
 	mv /tmp/subfinder /usr/local/bin/ > /dev/null 2>&1
 	check "Agregando la aplicación subFinder"
+	## Hakrawler
+	info "Instalando Hakrawler"
+	cd /tmp/ > /dev/null 2>&1
+	go get github.com/hakluke/hakrawler > /dev/null 2>&1
+	mv ~/go/bin/hakrawler /usr/local/bin > /dev/null 2>&1
+	check "Agregando la aplicación Hakrawler"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
@@ -134,6 +140,14 @@ function gitTools(){
 	cd SocialFish > /dev/null 2>&1
 	python3 -m pip install -r requirements.txt > /dev/null 2>&1
 	check "Agregando SocialFish"
+	## CRLFuzz
+	cd /tmp/ > /dev/null 2>&1
+	info "Descargando CRLFuzz"
+	git clone https://github.com/dwisiswant0/crlfuzz > /dev/null 2>&1
+	cd /tmp/crlfuzz/cmd/crlfuzz > /dev/null 2>&1
+	go build . > /dev/null 2>&1
+	mv crlfuzz /usr/local/bin > /dev/null 2>&1
+	check "Agregando CRLFuzz"
 
 ## Descarga usando wget
 	## psPY
@@ -150,13 +164,13 @@ function gitTools(){
 	info "Descargando ffuf"
 	mkdir ffuf; cd ffuf > /dev/null 2>&1
 	wget https://github.com/ffuf/ffuf/releases/download/v1.1.0/ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
-	tar -xzf ffuf_1.1.0_linux_amd64.tar.gz; rm ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
+	tar -xzf ffuf_1.1.0_linux_amd64.tar.gz && rm ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación ffuf"
 	## Unix-Privesc-Check-PentestMonkey
 	cd $GIT_TOOLS_PATH/PrivEsc-Lin > /dev/null 2>&1
 	info "Descargando unix-privesc-check"
 	wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
-	tar -xzf unix-privesc-check-1.4.tar.gz; rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
+	tar -xzf unix-privesc-check-1.4.tar.gz && rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación unix-privesc-check"
 
 ## Descarga de otras herramientas de GitHub sin instalación
