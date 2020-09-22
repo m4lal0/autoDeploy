@@ -39,6 +39,16 @@
       </property>
       <property name="mode" type="uint" value="0"/>
       <property name="autohide-behavior" type="uint" value="0"/>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.000000"/>
+        <value type="double" value="0.000000"/>
+        <value type="double" value="0.000000"/>
+        <value type="double" value="0.064189"/>
+      </property>
+      <property name="enter-opacity" type="uint" value="100"/>
+      <property name="leave-opacity" type="uint" value="100"/>
+      <property name="disable-struts" type="bool" value="false"/>
     </property>
   </property>
   <property name="plugins" type="empty">
@@ -52,6 +62,8 @@
     </property>
     <property name="plugin-10" type="string" value="pager">
       <property name="rows" type="uint" value="1"/>
+      <property name="miniature-view" type="bool" value="true"/>
+      <property name="workspace-scrolling" type="bool" value="false"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
