@@ -75,15 +75,6 @@ function gitTools(){
     gunzip rockyou.txt.gz > /dev/null 2>&1
     check "Descomprimir archivo rockyou en /usr/share/wordlist/"
     cd 2>/dev/null
-	## SubFinder
-	info "Instalando subFinder"
-	cd /tmp/ 2>/dev/null
-	subfinder_url=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
-	subfinder_file=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$subfinder_url" > /dev/null 2>&1
-	tar -xzvf /tmp/$subfinder_file > /dev/null 2>&1
-	mv /tmp/subfinder /usr/local/bin/ > /dev/null 2>&1
-	check "Agregando la aplicación subFinder"
 	## Hakrawler
 	info "Instalando Hakrawler"
 	cd /tmp/ 2>/dev/null
@@ -141,11 +132,18 @@ function gitTools(){
 	## CRLFuzz
 	cd /tmp/ 2>/dev/null
 	info "Descargando CRLFuzz"
-	git clone https://github.com/dwisiswant0/crlfuzz > /dev/null 2>&1
+	git clone --depth 1 https://github.com/dwisiswant0/crlfuzz > /dev/null 2>&1
 	cd /tmp/crlfuzz/cmd/crlfuzz 2>/dev/null
 	go build . > /dev/null 2>&1
 	mv crlfuzz /usr/local/bin > /dev/null 2>&1
 	check "Agregando CRLFuzz"
+	## brutemap
+	info "Descargando brutemap"
+	cd $WEB_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/brutemap-dev/brutemap > /dev/null 2>&1
+	cd brutemap 2>/dev/null
+	pip install -r requirements.txt > /dev/null 2>&1
+	check "Agregando brutemap"
 
 ## Descarga usando wget
 	## psPY
@@ -170,6 +168,24 @@ function gitTools(){
 	wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	tar -xzf unix-privesc-check-1.4.tar.gz && rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación unix-privesc-check"
+	## SubFinder
+	info "Instalando subFinder"
+	cd /tmp/ 2>/dev/null
+	subfinder_url=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
+	subfinder_file=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$subfinder_url" > /dev/null 2>&1
+	tar -xzvf /tmp/$subfinder_file > /dev/null 2>&1
+	mv /tmp/subfinder /usr/local/bin/ > /dev/null 2>&1
+	check "Agregando la aplicación subFinder"
+	## httpx
+	info "Instalando httpx"
+	cd /tmp/ 2>/dev/null
+	httpx_url=$(curl --silent 'https://github.com/projectdiscovery/httpx/releases' | grep -E 'httpx_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
+	httpx_file=$(curl --silent 'https://github.com/projectdiscovery/httpx/releases' | grep -E 'httpx_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$httpx_url" > /dev/null 2>&1
+	tar -xzf /tmp/httpx_1.0.2_linux_amd64.tar.gz > /dev/null 2>&1
+	mv /tmp/httpx /usr/local/bin > /dev/null 2>&1
+	check "Agregando la aplicación httpx"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
