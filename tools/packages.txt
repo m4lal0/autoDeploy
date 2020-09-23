@@ -41,4 +41,9 @@ i3lock-fancy
 imagemagick
 html2text
 ffuf
+lolcat
+info
+virtualenv
+cowsay
+pwncat
 seclists
