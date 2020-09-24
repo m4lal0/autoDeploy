@@ -39,6 +39,19 @@ function installApps(){
 	check "Al tranformar archivo de ZenMap"
 	dpkg -i /tmp/zenmap_7.80-2_all.deb > /dev/null 2>&1
 	check "Al instalar ZenMap"
+	## Instalación de NordVPN
+	info "Instalando NordVPN"
+	NordVPN_url=$(curl -sSL "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main" | grep 'nordvpn-release*' | awk '{print $2}' | tr '><' ' ' | awk '{print $2}')
+	cd /tmp/ 2>/dev/null
+	wget "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/$NordVPN_url" > /dev/null 2>&1
+	dpkg -i $NordVPN_url > /dev/null 2>&1
+	apt-get update -y > /dev/null 2>&1
+	apt-get install nordvpn -y > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		apt --fix-broken install -y > /dev/null 2>&1
+		apt-get install nordvpn -y > /dev/null 2>&1
+	fi
+	check "Al instalar NordVPN"
 
 	info "Instalando Gotop"
 	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
