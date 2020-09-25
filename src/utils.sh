@@ -52,6 +52,17 @@ function installApps(){
 		apt-get install nordvpn -y > /dev/null 2>&1
 	fi
 	check "Al instalar NordVPN"
+	## Instalacion Brave
+	info "Instalando Brave"
+	curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - > /dev/null 2>&1
+	echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list > /dev/null 2>&1
+	apt-get update -y > /dev/null 2>&1
+	apt-get install brave-browser -y > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		apt --fix-broken install -y > /dev/null 2>&1
+		apt-get install brave-browser -y > /dev/null 2>&1
+	fi
+	check "Al instalar Brave"
 
 	info "Instalando Gotop"
 	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
