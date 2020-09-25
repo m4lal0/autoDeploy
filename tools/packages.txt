@@ -46,4 +46,6 @@ info
 virtualenv
 cowsay
 pwncat
+apt-transport-https
+chromium
 seclists
