@@ -33,6 +33,7 @@
         <value type="int" value="16"/>
         <value type="int" value="20"/>
         <value type="int" value="18"/>
+        <value type="int" value="19"/>
         <value type="int" value="15"/>
         <value type="int" value="17"/>
         <value type="int" value="21"/>
@@ -142,5 +143,6 @@
     <property name="plugin-18" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
+    <property name="plugin-19" type="string" value="battery"/>
   </property>
 </channel>

@@ -53,7 +53,7 @@
     <property name="shadow_delta_y" type="int" value="-3"/>
     <property name="shadow_opacity" type="int" value="50"/>
     <property name="show_app_icon" type="bool" value="false"/>
-    <property name="show_dock_shadow" type="bool" value="true"/>
+    <property name="show_dock_shadow" type="bool" value="false"/>
     <property name="show_frame_shadow" type="bool" value="true"/>
     <property name="show_popup_shadow" type="bool" value="false"/>
     <property name="snap_resist" type="bool" value="false"/>
@@ -80,16 +80,16 @@
     <property name="wrap_workspaces" type="bool" value="false"/>
     <property name="zoom_desktop" type="bool" value="true"/>
     <property name="workspace_names" type="array">
-      <value type="string" value="Panel 1"/>
-      <value type="string" value="Panel 2"/>
-      <value type="string" value="Panel 3"/>
-      <value type="string" value="Panel 4"/>
-      <value type="string" value="Panel 5"/>
-      <value type="string" value="Panel 6"/>
-      <value type="string" value="Panel 7"/>
-      <value type="string" value="Panel 8"/>
-      <value type="string" value="Panel 9"/>
-      <value type="string" value="Panel 10"/>
+      <value type="string" value="         "/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
+      <value type="string" value=""/>
     </property>
     <property name="margin_top" type="int" value="0"/>
   </property>

@@ -41,6 +41,7 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;r" type="string" value="/usr/bin/rofi -show run"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;o" type="string" value="/usr/bin/mate-terminal -e &quot;gotop&quot;"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;n" type="string" value="/usr/bin/mousepad"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;w" type="string" value="/usr/bin/brave-browser-stable"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
