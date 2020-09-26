@@ -111,51 +111,44 @@ function gitTools(){
 	mkdir {$EVASION_PATH,$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
 	check "Al crear directorios"
 	## Wpseku
-	cd $WORDPRESS_PATH 2>/dev/null
 	info "Descargando wpseku"
+	cd $WORDPRESS_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/m4ll0k/WPSeku.git wpseku > /dev/null 2>&1
 	cd wpseku 2>/dev/null
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	check "Agregando la aplicación wpseku"
 	## Sherlock-Project
-	cd $OSINT_PATH 2>/dev/null
 	info "Descargando sherlock-project"
+	cd $OSINT_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/sherlock-project/sherlock.git > /dev/null 2>&1
 	cd sherlock 2>/dev/null
 	python3 -m pip install -r requirements.txt  > /dev/null 2>&1
 	check "Agregando la aplicación sherlock-project"
 	## Impacket Python
-	cd $UTILITIES_PATH 2>/dev/null
 	info "Descargando Impacket Python"
+	cd $UTILITIES_PATH 2>/dev/null
 	git clone https://github.com/SecureAuthCorp/impacket > /dev/null 2>&1
 	cd impacket 2>/dev/null
 	python3 setup.py install > /dev/null 2>&1
 	check "Agregando Impacket Python"
-	## CrackMapExec
-	cd $UTILITIES_PATH 2>/dev/null
-	info "Descargando CrackMapExec"
-	git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec > /dev/null 2>&1
-	cd CrackMapExec 2>/dev/null
-	python3 setup.py install > /dev/null 2>&1
-	check "Agregando CrackMapExec"
 	## GTFOBLookup
-	cd $UTILITIES_PATH 2>/dev/null
 	info "Descargando GTFOBLookup"
+	cd $UTILITIES_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/nccgroup/GTFOBLookup > /dev/null 2>&1
 	cd GTFOBLookup 2>/dev/null
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	python3 gtfoblookup.py update > /dev/null 2>&1
 	check "Agregando GTFOBLookup"
 	## SocialFish
-	cd $UTILITIES_PATH 2>/dev/null
 	info "Descargando SocialFish"
+	cd $UTILITIES_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/UndeadSec/SocialFish > /dev/null 2>&1
 	cd SocialFish 2>/dev/null
 	python3 -m pip install -r requirements.txt > /dev/null 2>&1
 	check "Agregando SocialFish"
 	## CRLFuzz
-	cd /tmp/ 2>/dev/null
 	info "Descargando CRLFuzz"
+	cd /tmp/ 2>/dev/null
 	git clone --depth 1 https://github.com/dwisiswant0/crlfuzz > /dev/null 2>&1
 	cd /tmp/crlfuzz/cmd/crlfuzz 2>/dev/null
 	go build . > /dev/null 2>&1
@@ -171,8 +164,8 @@ function gitTools(){
 
 ## Descarga usando wget
 	## psPY
-	cd $PRIVESCLIN_PATH 2>/dev/null
 	info "Descargando pspy"
+	cd $PRIVESCLIN_PATH 2>/dev/null
 	mkdir pspy > /dev/null 2>&1
 	cd pspy 2>/dev/null
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32 > /dev/null 2>&1
@@ -180,15 +173,15 @@ function gitTools(){
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 > /dev/null 2>&1
 	check "Agregando la aplicación pspy64"
 	## ffuf - Fuzz Faster U Fool
-	cd $WEB_PATH 2>/dev/null
 	info "Descargando ffuf"
+	cd $WEB_PATH 2>/dev/null
 	mkdir ffuf; cd ffuf 2>/dev/null
 	wget https://github.com/ffuf/ffuf/releases/download/v1.1.0/ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
 	tar -xzf ffuf_1.1.0_linux_amd64.tar.gz && rm ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación ffuf"
 	## Unix-Privesc-Check-PentestMonkey
-	cd $PRIVESCLIN_PATH 2>/dev/null
 	info "Descargando unix-privesc-check"
+	cd $PRIVESCLIN_PATH 2>/dev/null
 	wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	tar -xzf unix-privesc-check-1.4.tar.gz && rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	check "Agregando la aplicación unix-privesc-check"
@@ -210,6 +203,23 @@ function gitTools(){
 	tar -xzf /tmp/httpx_1.0.2_linux_amd64.tar.gz > /dev/null 2>&1
 	mv /tmp/httpx /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación httpx"
+	## CrackMapExec
+	info "Descargando CrackMapExec"
+	cd /tmp/ 2>/dev/null
+	cme_url=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}')
+	cme_file=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	cmedb_url=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cmedb-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}')
+	cmedb_file=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cmedb-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$cme_url" -O /tmp/$cme_file > /dev/null 2>&1
+	wget "https://github.com$cmedb_url" -O /tmp/$cmedb_file > /dev/null 2>&1
+	unzip /tmp/$cme_file > /dev/null 2>&1
+	unzip /tmp/$cmedb_file > /dev/null 2>&1
+	mv /tmp/cme /usr/local/bin > /dev/null 2>&1
+	chmod 755 /usr/local/bin/cme > /dev/null 2>&1
+	check "Agregando CrackMapExec"
+	mv /tmp/cmedb /usr/local/bin > /dev/null 2>&1
+	chmod 755 /usr/local/bin/cmedb > /dev/null 2>&1
+	check "Agregando CrackMapExec DB"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
