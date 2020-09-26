@@ -220,6 +220,15 @@ function gitTools(){
 	mv /tmp/cmedb /usr/local/bin > /dev/null 2>&1
 	chmod 755 /usr/local/bin/cmedb > /dev/null 2>&1
 	check "Agregando CrackMapExec DB"
+	## go-dork
+	info "Descargando go-Dork"
+	cd /tmp/ 2>/dev/null
+	godork_url=$(curl --silent 'https://github.com/dwisiswant0/go-dork/releases' | grep -E 'go-dork_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
+	godork_file=$(curl --silent 'https://github.com/dwisiswant0/go-dork/releases' | grep -E 'go-dork_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$godork_url" -O /tmp/$godork_file > /dev/null 2>&1
+	tar -xzf /tmp/$godork_file > /dev/null 2>&1
+	mv /tmp/go-dork /usr/local/bin > /dev/null 2>&1
+	check "Agregando go-Dork"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
