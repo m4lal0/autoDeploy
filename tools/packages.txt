@@ -48,4 +48,6 @@ cowsay
 pwncat
 apt-transport-https
 chromium
+terminator
+aircrack-ng
 seclists
