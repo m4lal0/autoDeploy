@@ -21,4 +21,5 @@ Web/Wordpress|https://github.com/Tuhinshubhra/CMSeeK
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 Utilities|https://github.com/Mebus/cupp
 Utilities|https://github.com/t0thkr1s/revshellgen
+Web|https://github.com/m4ll0k/WAScan
 Web|https://github.com/maurosoria/dirsearch

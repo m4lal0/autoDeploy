@@ -161,6 +161,13 @@ function gitTools(){
 	cd brutemap 2>/dev/null
 	pip install -r requirements.txt > /dev/null 2>&1
 	check "Agregando brutemap"
+	## h4rpy
+	info "Descargando h4rpy"
+	cd $WIFI_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/MS-WEB-BN/h4rpy > /dev/null 2>&1 
+	cd h4rpy 2>/dev/null
+	sudo bash config.sh > /dev/null 2>&1
+	check "Agregando h4rpy"
 
 ## Descarga usando wget
 	## psPY
@@ -229,6 +236,13 @@ function gitTools(){
 	tar -xzf /tmp/$godork_file > /dev/null 2>&1
 	mv /tmp/go-dork /usr/local/bin > /dev/null 2>&1
 	check "Agregando go-Dork"
+	## BruteShark
+	info "Descargando BruteShark"
+	cd $UTILITIES_PATH && mkdir BruteShark 2>/dev/null
+	cd BruteShark 2>/dev/null
+	wget https://github.com/odedshimon/BruteShark/releases/latest/download/BruteSharkCli > /dev/null 2>&1
+	chmod +x BruteSharkCli > /dev/null 2>&1
+	check "Agregando BruteShark"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
