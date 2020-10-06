@@ -50,4 +50,12 @@ apt-transport-https
 chromium
 terminator
 aircrack-ng
+crowbar
+rdate
+bc
+hashcat
+telnet
+traceroute
+prips
+metagoofil
 seclists
