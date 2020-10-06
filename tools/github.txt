@@ -22,4 +22,11 @@ OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 Utilities|https://github.com/Mebus/cupp
 Utilities|https://github.com/t0thkr1s/revshellgen
 Web|https://github.com/m4ll0k/WAScan
+PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
+WEB|https://github.com/s0md3v/XSStrike
+Utilities|https://github.com/htr-tech/zphisher
+Utilities|https://github.com/3ndG4me/AutoBlue-MS17-010
+PrivEsc-Win|https://github.com/411Hall/JAWS
+PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
+Utilities|https://github.com/Gr1mmie/autoenum.git
 Web|https://github.com/maurosoria/dirsearch

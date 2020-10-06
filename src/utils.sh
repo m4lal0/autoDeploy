@@ -105,6 +105,11 @@ function gitTools(){
 	go get github.com/hakluke/hakrawler > /dev/null 2>&1
 	mv ~/go/bin/hakrawler /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación Hakrawler"
+	## hakrevdns
+	info "Instalando hakrevdns"
+	go get github.com/hakluke/hakrevdns > /dev/null 2>&1
+	mv ~/go/bin/hakrevdns /usr/local/bin > /dev/null 2>&1
+	check "Agregando la aplicación hakrevdns"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
@@ -168,6 +173,19 @@ function gitTools(){
 	cd h4rpy 2>/dev/null
 	sudo bash config.sh > /dev/null 2>&1
 	check "Agregando h4rpy"
+	## CWFF
+	info "Descargando CWFF"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/D4Vinci/CWFF > /dev/null 2>&1
+	cd CWFF 2>/dev/null
+	python3 -m pip install -r requirements.txt > /dev/null 2>&1
+	check "Agregando CWFF"
+	## fuzzdb
+	info "Descargando wordlists fuzzdb"
+	cd /usr/share 2>/dev/null
+	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb 2>/dev/null
+	ln -s /usr/share/fuzzdb /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlist/"
 
 ## Descarga usando wget
 	## psPY
@@ -243,6 +261,15 @@ function gitTools(){
 	wget https://github.com/odedshimon/BruteShark/releases/latest/download/BruteSharkCli > /dev/null 2>&1
 	chmod +x BruteSharkCli > /dev/null 2>&1
 	check "Agregando BruteShark"
+	## naabu
+	info "Descargando naabu"
+	cd /tmp/ 2>/dev/null
+	naabu_url=$(curl --silent 'https://github.com/projectdiscovery/naabu/releases' | grep -E 'naabu_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
+	naabu_file=$(curl --silent 'https://github.com/projectdiscovery/naabu/releases' | grep -E 'naabu_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$naabu_url" -O /tmp/$naabu_file > /dev/null 2>&1
+	tar -xzf /tmp/$naabu_file > /dev/null 2>&1
+	mv /tmp/naabu /usr/local/bin > /dev/null 2>&1
+	check "Agregando naabu"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do

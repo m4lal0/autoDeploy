@@ -7,3 +7,5 @@ pip3:argparse
 pip:xlrd
 pip3:twint
 pip:BeautifulSoup
+pip:passpie
+pip:urlbuster
