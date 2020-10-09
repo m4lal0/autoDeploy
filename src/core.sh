@@ -29,8 +29,21 @@ clear
 banner
 
 ### Opciones
-while getopts "dh" arg; do
+local arg=
+for arg; do
+	local delim=""
 	case $arg in
+		--help)		args="${args}-h";;
+		--delete)	args="${args}-d";;
+		*) [[ "${arg:0:1}" == "-" ]] || delim="\""
+        args="${args}${delim}${arg}${delim} ";;
+	esac
+done
+
+eval set -- $args
+
+while getopts "dh" opt; do
+	case $opt in
 		h)  helpPanel;;
 		d)  deleteApp;;
 	esac
