@@ -29,9 +29,9 @@ clear
 banner
 
 ### Opciones
-local arg=
+arg=""
 for arg; do
-	local delim=""
+	delim=""
 	case $arg in
 		--help)		args="${args}-h";;
 		--delete)	args="${args}-d";;
@@ -46,6 +46,7 @@ while getopts "dh" opt; do
 	case $opt in
 		h)  helpPanel;;
 		d)  deleteApp;;
+		*) exit 1;
 	esac
 done
 
