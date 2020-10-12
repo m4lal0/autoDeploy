@@ -7,8 +7,8 @@ function installPackages(){
 	checkInternet
 	info "Descargando otros paquetes"
 	apt install -y $PACKAGES_LIST > /dev/null 2>&1
-	apt --fix-broken install -y > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
+		apt update > /dev/null 2>&1
 		apt install -y $PACKAGES_LIST > /dev/null 2>&1
 	fi
 	apt --fix-broken install -y > /dev/null 2>&1
@@ -110,6 +110,11 @@ function gitTools(){
 	go get github.com/hakluke/hakrevdns > /dev/null 2>&1
 	mv ~/go/bin/hakrevdns /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación hakrevdns"
+	## assetfinder
+	info "Instalando assetfinder"
+	go get -u github.com/tomnomnom/assetfinder > /dev/null 2>&1
+	mv ~/go/bin/assetfinder /usr/local/bin > /dev/null 2>&1
+	check "Agregando la aplicación assetfinder"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"

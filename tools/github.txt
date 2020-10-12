@@ -10,7 +10,6 @@ PrivEsc-Win|https://github.com/S3cur3Th1sSh1t/WinPwn
 PrivEsc-Win|https://github.com/adrecon/ADRecon
 Utilities|https://github.com/vivami/SauronEye
 Web|https://github.com/TheRook/subbrute
-Web|https://github.com/aboul3la/Sublist3r
 Utilities|https://github.com/samratashok/nishang
 PrivEsc-Win|https://github.com/bitsadmin/wesng
 PrivEsc-Win|https://github.com/AonCyberLabs/Windows-Exploit-Suggester
@@ -28,5 +27,5 @@ Utilities|https://github.com/htr-tech/zphisher
 Utilities|https://github.com/3ndG4me/AutoBlue-MS17-010
 PrivEsc-Win|https://github.com/411Hall/JAWS
 PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
-Utilities|https://github.com/Gr1mmie/autoenum.git
+Utilities|https://github.com/Gr1mmie/autoenum
 Web|https://github.com/maurosoria/dirsearch
