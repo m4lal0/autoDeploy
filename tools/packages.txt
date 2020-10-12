@@ -58,4 +58,9 @@ telnet
 traceroute
 prips
 metagoofil
+sublist3r
+cupp
+bpytop
+libreoffice
+thunderbird
 seclists
