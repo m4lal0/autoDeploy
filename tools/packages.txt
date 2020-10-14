@@ -63,4 +63,8 @@ cupp
 bpytop
 libreoffice
 thunderbird
+sslscan
+smbmap
+smtp-user-enum
+pipenv
 seclists
