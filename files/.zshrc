@@ -14,7 +14,7 @@ setopt promptsubst         # enable command substitution in prompt
 WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # Manual configuration
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/sbin:/sbin:/usr/local/games:/usr/games:/usr/lib/go
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/games:/usr/games:/usr/lib/go
 
 # hide EOL sign ('%')
 export PROMPT_EOL_MARK=""
@@ -206,11 +206,11 @@ function mkt() {
 function extractPorts(){
 	ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
 	ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
-	echo -e "\n[*] Extracting information...\n" > extractPorts.tmp
-	echo -e "\n[*] IP Address: $ip_address" >> extractPorts.tmp
-	echo -e "\n[*] open ports: $ports\n" >> extractPorts.tmp
+	echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mExtracting information...\033[0m" > extractPorts.tmp
+	echo -e "\n\t\033[0;36m[\033[0;34m+\033[0;36m] \033[0;37mIP Address: \033[0;35m$ip_address\033[0m" >> extractPorts.tmp
+	echo -e "\n\t\033[0;36m[\033[0;34m+\033[0;36m] \033[0;37mOpen Ports: \033[0;33m$ports\n\033[0m" >> extractPorts.tmp
 	echo $ports | tr -d '\n' | xclip -sel clip
-	echo -e "[*] Ports copied to clipboard\n" >> extractPorts.tmp
+	echo -e "\033[0;36m[\033[0;33m!\033[0;36m] \033[1;37mPorts copied to clipboard\n\033[0m" >> extractPorts.tmp
 	cat extractPorts.tmp; rm extractPorts.tmp
 }
 

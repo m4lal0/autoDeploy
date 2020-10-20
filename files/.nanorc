@@ -5,3 +5,4 @@ set nowrap
 set softwrap
 set linenumbers
 #set nohelp
+include /usr/share/nano/*.nanorc
