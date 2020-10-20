@@ -56,6 +56,22 @@ function customTerminal(){
 	check "Configuración de nano"
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.nanorc 2>/dev/null
 
+	info "Descargando archivos adicionales de Nano Syntax"
+	wget https://raw.githubusercontent.com/scopatz/nanorc/master/powershell.nanorc -O /usr/share/nano/powershell.nanorc > /dev/null 2>&1
+	check "Descargado powershell.nanorc en /usr/share/nano/"
+	wget https://raw.githubusercontent.com/scopatz/nanorc/master/js.nanorc -O /usr/share/nano/js.nanorc > /dev/null 2>&1
+	check "Descargado js.nanorc en /usr/share/nano/"
+	wget https://raw.githubusercontent.com/scopatz/nanorc/master/markdown.nanorc -O /usr/share/nano/markdown.nanorc > /dev/null 2>&1
+	check "Descargado markdown.nanorc en /usr/share/nano/"
+	wget https://raw.githubusercontent.com/scopatz/nanorc/master/arduino.nanorc -O /usr/share/nano/arduino.nanorc > /dev/null 2>&1
+	check "Descargado arduino.nanorc en /usr/share/nano/"
+	wget https://raw.githubusercontent.com/scopatz/nanorc/master/sql.nanorc -O /usr/share/nano/sql.nanorc > /dev/null 2>&1
+	check "Descargado sql.nanorc en /usr/share/nano/"
+	wget https://raw.githubusercontent.com/scopatz/nanorc/master/Dockerfile.nanorc -O /usr/share/nano/Dockerfile.nanorc > /dev/null 2>&1
+	check "Descargado Dockerfile.nanorc en /usr/share/nano/"
+	wget https://raw.githubusercontent.com/mitchell486/nanorc/master/bat.nanorc -O /usr/share/nano/bat.nanorc > /dev/null 2>&1
+	check "Descargado bat.nanorc en /usr/share/nano/"
+
 	info "Configurando Oh my Tmux! ($USERNAME)"
 	cd "$HOME_PATH"
 	git clone https://github.com/gpakosz/.tmux.git > /dev/null 2>&1
@@ -118,19 +134,19 @@ function customTerminal(){
 	check  "Al copiar script eth"
 	cp $FILES_PATH/panel/genmon-4.rc $HOME_PATH/.config/xfce4/panel/genmon-4.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-4.rc 2>/dev/null
-	check  "Al configurar info red (eth0) en barra de tarea"
+	check  "Al configurar info red en barra de tarea"
 	cp $FILES_PATH/scripts/vpnstatus.sh $HOME_PATH/.config/vpnstatus.sh > /dev/null 2>&1
 	chmod 774 $HOME_PATH/.config/vpnstatus.sh 2>/dev/null
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/vpnstatus.sh 2>/dev/null
 	check  "Al copiar script vpn"
 	cp $FILES_PATH/panel/genmon-5.rc $HOME_PATH/.config/xfce4/panel/genmon-5.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-5.rc 2>/dev/null
-	check  "Al configurar info red (tun0) en barra de tarea"
+	check  "Al configurar info VPN en barra de tarea"
 	cp $FILES_PATH/scripts/wifistatus.sh $HOME_PATH/.config/wifistatus.sh > /dev/null 2>&1
 	chmod 774 $HOME_PATH/.config/wifistatus.sh 2>/dev/null
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/wifistatus.sh 2>/dev/null
 	check  "Al copiar script wifi"
 	cp $FILES_PATH/panel/genmon-24.rc $HOME_PATH/.config/xfce4/panel/genmon-24.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-24.rc 2>/dev/null
-	check  "Al configurar info red (wlan0) en barra de tarea"
+	check  "Al configurar info Wifi en barra de tarea"
 }
