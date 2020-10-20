@@ -67,4 +67,6 @@ sslscan
 smbmap
 smtp-user-enum
 pipenv
+hcxdumptool
+hcxtools
 seclists
