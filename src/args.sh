@@ -1,15 +1,15 @@
 #!/bin/bash
-#by @M4lal0
+#by @m4lal0
 
 ### Panel de Ayuda
 function helpPanel(){
-    echo -e "\n${turquoiseColour}[${yellowColour}!${turquoiseColour}]${yellowColour} Uso:${endColour}"
+    echo -e "\n${Cyan}[${Yellow}!${Cyan}]${BYellow} Uso:${Color_Off}"
     echo -e "\nScript que permite instalar una capa de personalización en Kali Linux OS."
-    echo -e "\n${grayColour}OPCIONES:${endColour}"
-    echo -e "\t${turquoiseColour}[${redColour}-h, --help${turquoiseColour}]${purpleColour} \tMostrar este panel de ayuda${endColour}"
-    echo -e "\t${turquoiseColour}[${redColour}-d, --delete${turquoiseColour}]${purpleColour} \tEliminar directorios de los aplicativos creados${endColour}"
-    echo -e "\n${grayColour}EJEMPLOS:${endColour}"
-    echo -e "\t${grayColour}Instalación (root)${endColour}${greenColour}\n\t# bash autoDeploy.sh\n${endColour}"
-    echo -e "\t${grayColour}Eliminar directorios de aplicativos${endColour}${greenColour}\n\t# bash autoDeploy.sh -d\n${endColour}"
+    echo -e "\n${BGray}OPCIONES:${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \tMostrar este panel de ayuda${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \tEliminar directorios de los aplicativos creados${Color_Off}"
+    echo -e "\n${BGray}EJEMPLOS:${Color_Off}"
+    echo -e "\t${LGray}Instalación (root)${Color_Off}${Green}\n\t# bash autoDeploy.sh\n${Color_Off}"
+    echo -e "\t${LGray}Eliminar directorios de aplicativos${Color_Off}${Green}\n\t# bash autoDeploy.sh -d\n${Color_Off}"
     tput cnorm; exit 1
 }
