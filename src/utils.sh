@@ -1,5 +1,5 @@
 #!/bin/bash
-#by @M4lal0
+#by @m4lal0
 
 ### Instalación de paquetes extras
 function installPackages(){
@@ -63,6 +63,17 @@ function installApps(){
 		apt-get install brave-browser -y > /dev/null 2>&1
 	fi
 	check "Al instalar Brave"
+	## Instalacion Pyrit
+	info "Instalando Pyrit"
+	cd /tmp/ ; wget http://ftp.mx.debian.org/debian/pool/main/p/pyrit/pyrit_0.5.1+git20180801-1_amd64.deb > /dev/null 2>&1
+	dpkg -i /tmp/pyrit_0.5.1+git20180801-1_amd64.deb > /dev/null 2>&1
+	check "Al instalar Pyrit"
+	## Instalacion Scapy-2.4.2
+	info "Instalando Scapy 2.4.2"
+	cd /tmp/ ; wget https://github.com/secdev/scapy/archive/v2.4.2.zip > /dev/null 2>&1
+	unzip v2.4.2.zip > /dev/null 2>&1
+	cd scapy-2.4.2 && ./setup.py install 2>&1
+	check "Al instalar Scapy 2.4.2"
 
 	info "Instalando Gotop"
 	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
@@ -188,9 +199,15 @@ function gitTools(){
 	## fuzzdb
 	info "Descargando wordlists fuzzdb"
 	cd /usr/share 2>/dev/null
-	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb 2>/dev/null
+	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb > /dev/null 2>&1
 	ln -s /usr/share/fuzzdb /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlist/"
+	## Xerosploit
+	info "Descargando Xerosploit"
+	cd $WIFI_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/LionSec/xerosploit > /dev/null 2>&1
+	cd xerosploit && echo -e "1" | sudo python install.pyy > /dev/null 2>&1
+	check "Agregando Xerosploit"
 
 ## Descarga usando wget
 	## psPY
