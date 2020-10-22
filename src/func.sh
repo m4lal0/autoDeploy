@@ -13,7 +13,7 @@ White='\033[0;97m'      # White
 Color_Off='\033[0m'     # Text Reset
 
 # Additional colors
-BGray='\033[0;37m'      # Ligth Gray
+LGray='\033[0;37m'      # Ligth Gray
 DGray='\033[0;90m'      # Dark Gray
 LRed='\033[0;91m'       # Ligth Red
 LGreen='\033[0;92m'     # Ligth Green
