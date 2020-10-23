@@ -57,7 +57,7 @@ On_White='\033[47m'     # White
 trap ctrl_c INT
 
 function ctrl_c(){
-    echo -e "\n\n${Cyan}[${Yellow}!${Cyan}] ${Red}Saliendo de la aplicación...${Color_Off}"
+    echo -e "\n\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Saliendo de la aplicación...${Color_Off}"
     tput cnorm
     exit 1
 }
@@ -85,18 +85,18 @@ function banner(){
 
 ### Funciones informativos
 function info(){
-	echo -e "${Cyan}[${Yellow}!${Cyan}] ${BGray}$1${Color_Off}"
+	echo -e "${Cyan}[${BYellow}!${Cyan}] ${BGray}$1${Color_Off}"
 }
 
 function question(){
 	input=""
 	while [ "$input" == "" ]; do
-		echo -ne "${Cyan}[${Purple}?${Cyan}] ${BGray}$1: ${Color_Off}" && read input
+		echo -ne "${Cyan}[${BPurple}?${Cyan}] ${BGray}$1: ${Color_Off}" && read input
 	done
 }
 
 function yes_or_no(){
-	echo -ne "${Cyan}[${Purple}?${Cyan}] ${BGray}$1 ${Cyan}(${Green}Y${BGray}/${Red}n${Cyan})${BGray}: ${Color_Off}" && read input
+	echo -ne "${Cyan}[${BPurple}?${Cyan}] ${BGray}$1 ${Cyan}(${BGreen}Y${BGray}/${BRed}n${Cyan})${BGray}: ${Color_Off}" && read input
 	case "$input" in
 		n|N) input=0;;
 		*) input=1;;
@@ -104,12 +104,12 @@ function yes_or_no(){
 }
 
 function error(){
-	echo -e "${Cyan}[${Red}✘${Cyan}] ${Red}Error - $1${Color_Off}"
+	echo -e "${Cyan}[${BRed}✘${Cyan}] ${BRed}Error - $1${Color_Off}"
 	echo -e "[$(date +%T)] $1" 2>/dev/null >> $SCRIPT_PATH/error.log
 }
 
 function good(){
-	echo -e "${Cyan}[${Green}✔${Cyan}] ${Green}Exitoso - $1${Color_Off}"
+	echo -e "${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Exitoso - $1${Color_Off}"
 }
 
 function check(){
@@ -121,7 +121,7 @@ function check(){
 }
 
 function section(){
-	echo -e "\n${Cyan}[${Blue}+${Cyan}] ${Blue}$1${Color_Off}"
+	echo -e "\n${Cyan}[${BBlue}+${Cyan}] ${BBlue}$1${Color_Off}"
 }
 
 ### Eliminando directorios de los aplicativos descargados de Github
@@ -149,7 +149,7 @@ function checkInternet(){
 function validations(){
 ### Validación de ejecución con root
 	if [[ ! -d tools || ! -d files ]]; then
-		echo -e "\n${Cyan}[${Red}!${Cyan}] ${Red}Ejecuta este script desde la carpeta de autoDeploy para evitar errores${Color_Off}\n"
+		echo -e "\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Ejecuta este script desde la carpeta de autoDeploy para evitar errores${Color_Off}\n"
 		exit 1
 	fi
 	rm -f $SCRIPT_PATH/error.log 2>/dev/null

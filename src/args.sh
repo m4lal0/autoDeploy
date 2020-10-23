@@ -3,7 +3,7 @@
 
 ### Panel de Ayuda
 function helpPanel(){
-    echo -e "\n${Cyan}[${Yellow}!${Cyan}]${BYellow} Uso:${Color_Off}"
+    echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BGray} Uso:${Color_Off}"
     echo -e "\nScript que permite instalar una capa de personalización en Kali Linux OS."
     echo -e "\n${BGray}OPCIONES:${Color_Off}"
     echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \tMostrar este panel de ayuda${Color_Off}"

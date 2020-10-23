@@ -72,7 +72,7 @@ function installApps(){
 	info "Instalando Scapy 2.4.2"
 	cd /tmp/ ; wget https://github.com/secdev/scapy/archive/v2.4.2.zip > /dev/null 2>&1
 	unzip v2.4.2.zip > /dev/null 2>&1
-	cd scapy-2.4.2 && ./setup.py install 2>&1
+	cd scapy-2.4.2 && ./setup.py install > /dev/null 2>&1
 	check "Al instalar Scapy 2.4.2"
 
 	info "Instalando Gotop"
@@ -183,12 +183,12 @@ function gitTools(){
 	pip install -r requirements.txt > /dev/null 2>&1
 	check "Agregando brutemap"
 	## h4rpy
-	info "Descargando h4rpy"
-	cd $WIFI_PATH 2>/dev/null
-	git clone --depth 1 https://github.com/MS-WEB-BN/h4rpy > /dev/null 2>&1 
-	cd h4rpy 2>/dev/null
-	sudo bash config.sh > /dev/null 2>&1
-	check "Agregando h4rpy"
+	# info "Descargando h4rpy"
+	# cd $WIFI_PATH 2>/dev/null
+	# git clone --depth 1 https://github.com/MS-WEB-BN/h4rpy > /dev/null 2>&1 
+	# cd h4rpy 2>/dev/null
+	# sudo bash config.sh > /dev/null 2>&1
+	# check "Agregando h4rpy"
 	## CWFF
 	info "Descargando CWFF"
 	cd $UTILITIES_PATH 2>/dev/null
@@ -206,8 +206,14 @@ function gitTools(){
 	info "Descargando Xerosploit"
 	cd $WIFI_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/LionSec/xerosploit > /dev/null 2>&1
-	cd xerosploit && echo -e "1" | sudo python install.pyy > /dev/null 2>&1
+	cd xerosploit && echo -e "1" | sudo python install.py > /dev/null 2>&1
 	check "Agregando Xerosploit"
+	## Vulnx
+	info "Descargando Vulnx"
+	cd $WORDPRESS_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/anouarbensaad/vulnx > /dev/null 2>&1
+	cd vulnx && ./install.sh > /dev/null 2>&1
+	check "Agregando Vulnx"
 
 ## Descarga usando wget
 	## psPY
