@@ -182,13 +182,6 @@ function gitTools(){
 	cd brutemap 2>/dev/null
 	pip install -r requirements.txt > /dev/null 2>&1
 	check "Agregando brutemap"
-	## h4rpy
-	# info "Descargando h4rpy"
-	# cd $WIFI_PATH 2>/dev/null
-	# git clone --depth 1 https://github.com/MS-WEB-BN/h4rpy > /dev/null 2>&1 
-	# cd h4rpy 2>/dev/null
-	# sudo bash config.sh > /dev/null 2>&1
-	# check "Agregando h4rpy"
 	## CWFF
 	info "Descargando CWFF"
 	cd $UTILITIES_PATH 2>/dev/null
@@ -298,6 +291,21 @@ function gitTools(){
 	tar -xzf /tmp/$naabu_file > /dev/null 2>&1
 	mv /tmp/naabu /usr/local/bin > /dev/null 2>&1
 	check "Agregando naabu"
+	## evine
+	info "Descargando evine"
+	evine_url=$(curl --silent 'https://github.com/saeeddhqan/evine/releases' | grep -E 'evine_linux_amd64.tar.xz' | head -n 1 | awk -F '\"' '{print $2}')
+	evine_file=$(curl --silent 'https://github.com/saeeddhqan/evine/releases' | grep -E 'evine_linux_amd64.tar.xz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$evine_url" -O /tmp/$evine_file > /dev/null 2>&1
+	tar -xzf /tmp/$evine_file > /dev/null 2>&1
+	mv /tmp/evine /usr/local/bin > /dev/null 2>&1
+	check "Agregando evine"
+	## tempomail
+	info "Descargando tempomail"
+	cd /tmp/ 2>/dev/null
+	tempomail_url=$(curl --silent 'https://github.com/kavishgr/tempomail/releases' | grep -E 'linux-amd64-tempomail.tgz' | head -n 1 | awk -F '\"' '{print $2}')
+	wget "https://github.com$tempomail_url" > /dev/null 2>&1
+	tar -xzf linux-amd64-tempomail.tgz && mv tempomail /usr/local/bin/ > /dev/null 2>&1
+	check "Agregando la aplicación tempomail"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
