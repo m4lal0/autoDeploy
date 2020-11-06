@@ -9,3 +9,4 @@ pip3:twint
 pip:BeautifulSoup
 pip:passpie
 pip:urlbuster
+pip3:snscrape
