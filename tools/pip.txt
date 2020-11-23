@@ -10,3 +10,5 @@ pip:BeautifulSoup
 pip:passpie
 pip:urlbuster
 pip3:snscrape
+pip:yq
+pip3:hashid
