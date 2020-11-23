@@ -54,8 +54,6 @@ crowbar
 rdate
 bc
 hashcat
-telnet
-traceroute
 prips
 metagoofil
 sublist3r
