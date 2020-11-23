@@ -296,7 +296,7 @@ function gitTools(){
 	evine_url=$(curl --silent 'https://github.com/saeeddhqan/evine/releases' | grep -E 'evine_linux_amd64.tar.xz' | head -n 1 | awk -F '\"' '{print $2}')
 	evine_file=$(curl --silent 'https://github.com/saeeddhqan/evine/releases' | grep -E 'evine_linux_amd64.tar.xz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
 	wget "https://github.com$evine_url" -O /tmp/$evine_file > /dev/null 2>&1
-	tar -xzf /tmp/$evine_file > /dev/null 2>&1
+	tar -xJf /tmp/$evine_file > /dev/null 2>&1
 	mv /tmp/evine /usr/local/bin > /dev/null 2>&1
 	check "Agregando evine"
 	## tempomail
@@ -306,6 +306,14 @@ function gitTools(){
 	wget "https://github.com$tempomail_url" > /dev/null 2>&1
 	tar -xzf linux-amd64-tempomail.tgz && mv tempomail /usr/local/bin/ > /dev/null 2>&1
 	check "Agregando la aplicación tempomail"
+	## dnsx
+	info "Descargando dnsx"
+	dnsx_url=$(curl --silent 'https://github.com/projectdiscovery/dnsx/releases/' | grep -E 'dnsx_1.0.1_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
+	dnsx_file=$(curl --silent 'https://github.com/projectdiscovery/dnsx/releases/' | grep -E 'dnsx_1.0.1_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$dnsx_url" -O /tmp/$dnsx_file > /dev/null 2>&1
+	tar -xzf /tmp/$dnsx_file > /dev/null 2>&1
+	mv /tmp/dnsx /usr/local/bin > /dev/null 2>&1
+	check "Agregando dnsx"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
