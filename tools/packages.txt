@@ -19,7 +19,7 @@ fcrackzip
 mdk4
 zsh
 neofetch
-exiftool
+libimage-exiftool-perl
 hexedit
 alien
 traceroute
@@ -28,7 +28,6 @@ tree
 sshfs
 curlftpfs
 htop
-bashtop
 ranger
 ghex
 scrot
@@ -38,6 +37,7 @@ cmatrix
 rofi
 dconf-cli
 i3lock-fancy
+i3lock-color
 imagemagick
 html2text
 ffuf
@@ -58,7 +58,6 @@ prips
 metagoofil
 sublist3r
 cupp
-bpytop
 libreoffice
 thunderbird
 sslscan
@@ -67,4 +66,6 @@ smtp-user-enum
 pipenv
 hcxdumptool
 hcxtools
+dunst
+acpi
 seclists

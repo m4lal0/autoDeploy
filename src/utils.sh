@@ -207,6 +207,12 @@ function gitTools(){
 	git clone --depth 1 https://github.com/anouarbensaad/vulnx > /dev/null 2>&1
 	cd vulnx && ./install.sh > /dev/null 2>&1
 	check "Agregando Vulnx"
+	## bashtop
+	info "Descargando BashTOP"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/aristocratos/bashtop.git > /dev/null 2>&1
+	cd bashtop && sudo make install > /dev/null 2>&1
+	check "Agregando BashTOP"
 
 ## Descarga usando wget
 	## psPY
@@ -246,7 +252,7 @@ function gitTools(){
 	httpx_url=$(curl --silent 'https://github.com/projectdiscovery/httpx/releases' | grep -E 'httpx_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
 	httpx_file=$(curl --silent 'https://github.com/projectdiscovery/httpx/releases' | grep -E 'httpx_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
 	wget "https://github.com$httpx_url" > /dev/null 2>&1
-	tar -xzf /tmp/httpx_1.0.2_linux_amd64.tar.gz > /dev/null 2>&1
+	tar -xzf /tmp/$httpx_file > /dev/null 2>&1
 	mv /tmp/httpx /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación httpx"
 	## CrackMapExec
