@@ -1,5 +1,5 @@
 Command=/usr/bin/bash -c "~/.config/vpnstatus.sh"
 UseLabel=0
 Text=(vpn)
-UpdatePeriod=10000
-Font=Hack Nerd Font Mono Bold 11
+UpdatePeriod=5000
+Font=Hack Nerd Font Bold 11
