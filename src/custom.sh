@@ -111,7 +111,7 @@ function customTerminal(){
 	mkdir $HOME_PATH/.config/rofi && cd $HOME_PATH/.config/rofi
 	echo "rofi.theme: /usr/share/rofi/themes/Indego.rasi" > config 2>/dev/null
 	chmod 644 config > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME config 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/rofi 2>/dev/null
 	check "Configuracion de rofi ($USERNAME)"
 	cd && mkdir .config && ln -sf $HOME_PATH/.config/rofi /root/.config/rofi 2>/dev/null
 	check "Configuracion de rofi (root)"
@@ -167,6 +167,18 @@ function customTerminal(){
 	cp $FILES_PATH/panel/genmon-24.rc $HOME_PATH/.config/xfce4/panel/genmon-24.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-24.rc 2>/dev/null
 	check  "Al configurar info Wifi en barra de tarea"
+	cd $HOME_PATH/.config 2>/dev/null
+	echo "#!/bin/bash" > user.sh 2>/dev/null
+	echo "VAR=$USERNAME" >> user.sh 2>/dev/null
+	echo 'echo -n  ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
+	chown $USERNAME:$USERNAME user.sh && chmod 774 user.sh 2>/dev/null
+	check "Al configurar script de usuario en barra de tarea"
+	cp $FILES_PATH/panel/genmon-29.rc $HOME_PATH/.config/xfce4/panel/genmon-29.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-29.rc 2>/dev/null
+	check  "Al configurar usuario en barra de tarea"
+	cp $FILES_PATH/panel/battery-19.rc $HOME_PATH/.config/xfce4/panel/battery-19.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/battery-19.rc 2>/dev/null
+	check  "Al configurar icono bateria en barra de tarea"
 
 	info "Configuracion de notificaciones"
 	sudo apt remove xfce4-notifyd -y > /dev/null 2>&1
