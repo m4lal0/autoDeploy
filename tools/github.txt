@@ -28,7 +28,6 @@ Utilities|https://github.com/3ndG4me/AutoBlue-MS17-010
 PrivEsc-Win|https://github.com/411Hall/JAWS
 PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
 Utilities|https://github.com/Gr1mmie/autoenum
-Utilities|https://github.com/devim-stuffs/Zracker
 Utilities|https://github.com/ollypwn/SMBGhost
 Utilities|https://github.com/jaykali/maskphish
 Web|https://github.com/maurosoria/dirsearch
