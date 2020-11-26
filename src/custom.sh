@@ -30,8 +30,7 @@ function customTerminal(){
 	check "Agregando el p10k.zsh en root"
 
 	info "Instalando lsd"
-	#wget "https://github.com$(curl --silent https://github.com/Peltoche/lsd/releases | grep 'lsd_.*_amd64.deb' | awk -F '\"' '{print $2}' | head -n 1)" -O /tmp/lsd.deb > /dev/null 2>&1
-	wget "https://github.com/Peltoche/lsd/releases/download/0.14.0/lsd_0.14.0_amd64.deb" -O /tmp/lsd.deb > /dev/null 2>&1
+	wget "https://github.com$(curl --silent https://github.com/Peltoche/lsd/releases | grep 'lsd_.*_amd64.deb' | awk -F '\"' '{print $2}' | head -n 1)" -O /tmp/lsd.deb > /dev/null 2>&1
 	check "Descargando el release de lsd"
 	dpkg -i /tmp/lsd.deb > /dev/null 2>&1
 	check "Instalación de lsd"
@@ -48,6 +47,13 @@ function customTerminal(){
 	ln -sf $HOME_PATH/.zshrc /root/.zshrc 2>/dev/null
 	check "Agregando el .zshrc en root"
 	chown -R $USERNAME:$USERNAME $HOME_PATH/powerlevel10k $HOME_PATH/.p10k.zsh $HOME_PATH/.zshrc 2>/dev/null
+
+	info "Configurando plugins zsh"
+	cd /usr/share && mkdir zsh-sudo 2>&1
+	cd zsh-sudo && wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh > /dev/null 2>&1
+	cd /usr/share && chown -R $USERNAME:$USERNAME zsh-* 2>/dev/null
+	check "Agregnado plugin sudo zsh"
+	cd
 
 	info "Estableciendo configuración de nano"
 	cp $FILES_PATH/.nanorc $HOME_PATH/.nanorc 2>/dev/null
@@ -101,6 +107,15 @@ function customTerminal(){
 	sudo -u $USERNAME $HOME_PATH/.fzf/install < <(echo -e "y\ny\nn") > /dev/null 2>&1
 	check "Al instalar FZF ($USERNAME)"
 
+	info "Configurando rofi"
+	mkdir $HOME_PATH/.config/rofi && cd $HOME_PATH/.config/rofi
+	echo "rofi.theme: /usr/share/rofi/themes/Indego.rasi" > config 2>/dev/null
+	chmod 644 config > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME config 2>/dev/null
+	check "Configuracion de rofi ($USERNAME)"
+	cd && mkdir .config && ln -sf $HOME_PATH/.config/rofi /root/.config/rofi 2>/dev/null
+	check "Configuracion de rofi (root)"
+
 	info "Configurando mate terminal"
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/copy-selection 'true' > /dev/null 2>&1
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-darkness '0.87130434782608701' > /dev/null 2>&1
@@ -108,8 +123,11 @@ function customTerminal(){
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/bold-color '#000000000000' > /dev/null 2>&1
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/foreground-color '#000000000000' > /dev/null 2>&1
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/use-system-font 'false' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/font "'Hack Nerd Font Mono 11'" > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/font "'Hack Nerd Font Regular 11'" > /dev/null 2>&1
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-type "'transparent'" > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/silent-bell 'true' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/default-show-menubar 'false' > /dev/null 2>&1
+	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/cursor-shape "'ibeam'" > /dev/null 2>&1
 	check  "Al configurar mate terminal"
 
 	info "Configurando escritorio"
@@ -149,4 +167,18 @@ function customTerminal(){
 	cp $FILES_PATH/panel/genmon-24.rc $HOME_PATH/.config/xfce4/panel/genmon-24.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-24.rc 2>/dev/null
 	check  "Al configurar info Wifi en barra de tarea"
+
+	info "Configuracion de notificaciones"
+	sudo apt remove xfce4-notifyd -y > /dev/null 2>&1
+	cd /tmp/ && wget https://raw.githubusercontent.com/dunst-project/dunst/master/dunstrc > /dev/null 2>&1
+	mkdir -p $HOME_PATH/.config/dunst  2>/dev/null
+	mv /tmp/dunstrc  $HOME_PATH/.config/dunst/ && chown -R $USERNAME:$USERNAME $HOME_PATH/.config/dunst > /dev/null 2>&1
+	check "Notificaciones personalizadas"
+
+	info "Seleccionando Java 8 como predeterminado"
+	option=$(echo | update-alternatives --config java | grep "java-8" | tr -d '*' | awk '{print $1}')
+	if [ $option ]; then
+		echo "$option" | update-alternatives --config java > /dev/null 2>&1
+		check "Eligiendo Java 8 como predeterminado"
+	fi
 }
