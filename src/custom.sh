@@ -131,9 +131,14 @@ function customTerminal(){
 	check  "Al configurar mate terminal"
 
 	info "Configurando escritorio"
+	cp $FILES_PATH/backgrounds/*.png /usr/share/backgrounds/kali > /dev/null 2>&1
+	check "Al descargar fondos"
+	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-fade-2020b.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	check "Al configurar fondo de sesion"
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
-	check  "Al configurar fondo"
+	check  "Al configurar fondo de escritorio"
 	cp $FILES_PATH/xfce4/xfce4-keyboard-shortcuts.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml 2>/dev/null
 	check  "Al configurar atajos de teclado"
@@ -170,7 +175,9 @@ function customTerminal(){
 	cd $HOME_PATH/.config 2>/dev/null
 	echo "#!/bin/bash" > user.sh 2>/dev/null
 	echo "VAR=$USERNAME" >> user.sh 2>/dev/null
-	echo 'echo -n  ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
+	echo "ICON=(     )" >> user.sh 2>/dev/null
+	echo 'ELEC=$(( $RANDOM % 5 ))' >> user.sh 2>/dev/null
+	echo 'echo -n ${ICON[$ELEC]} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
 	chown $USERNAME:$USERNAME user.sh && chmod 774 user.sh 2>/dev/null
 	check "Al configurar script de usuario en barra de tarea"
 	cp $FILES_PATH/panel/genmon-29.rc $HOME_PATH/.config/xfce4/panel/genmon-29.rc > /dev/null 2>&1
