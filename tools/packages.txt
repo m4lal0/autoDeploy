@@ -68,4 +68,7 @@ hcxdumptool
 hcxtools
 dunst
 acpi
+airgraph-ng
+rinetd
+trash-cli
 seclists
