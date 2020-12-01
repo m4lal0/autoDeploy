@@ -62,6 +62,25 @@ function ctrl_c(){
     exit 1
 }
 
+### Panel de Ayuda
+function helpPanel(){
+    echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BGray} Uso:${Color_Off}"
+    echo -e "\nScript que permite instalar una capa de personalización en Kali Linux."
+    echo -e "\n${BGray}OPCIONES:${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tInstalación.${Color_Off}"
+    echo -e "\t\t${Yellow}all: ${Purple}\t\tInstalación completa de la capa de personalización.${Color_Off}"
+    echo -e "\t\t${Yellow}terminal: ${Purple}\tInstalación solamente de la personalización de la terminal y escritorio.${Color_Off}"
+    echo -e "\t\t${Yellow}apps: ${Purple}\t\tInstalación solamente de los programas de terceros.${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \t\tEliminar configuración de Escritorio y directorios de los aplicativos de terceros.${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \t\tMostrar este panel de ayuda.${Color_Off}"
+    echo -e "\n${BGray}EJEMPLOS:${Color_Off}"
+    echo -e "\t${LGray}Instalación Completa (root)${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}--install ${Yellow}all\n${Color_Off}"
+    echo -e "\t${LGray}Instalación solamente con personalización de terminal y escritorio (root)${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
+    echo -e "\t${LGray}Instalación solamente con aplicativos de terceros (root)${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
+    echo -e "\t${LGray}Eliminar configuración de escritorio y directorios de aplicativos${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}-d\n${Color_Off}"
+    tput cnorm; exit 1
+}
+
 ### Banner
 function banner(){
     echo -e "${BYellow}"
@@ -126,14 +145,19 @@ function section(){
 
 ### Eliminando directorios de los aplicativos descargados de Github
 function deleteApp(){
-	info "Eliminando directorios de aplicativos"
-	if [[ ! -d $EVASION_PATH || ! -d $PRIVESCLIN_PATH || ! -d $PRIVESCWIN_PATH || ! -d $OSINT_PATH || ! -d $UTILITIES_PATH || ! -d $WEB_PATH || ! -d $WIFI_PATH ]]; then
-		error "No se encuentran los directorios de los aplicativos"
-	else
+	validations
+	info "Eliminando directorios de aplicativos."
+	if [[ -d $EVASION_PATH || -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH ]]; then
 		rm -rf {$EVASION_PATH,$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH} 2>&1
-		check "Eliminado directorios"
+		check "Eliminado directorios."
+	else
+		error "No hay directorios de aplicativos instalados."
 	fi
-	tput cnorm; exit 0
+	info "Eliminando configuracion de Escritorio."
+	rm -rf $HOME_PATH/.config/xfce4 2>/dev/null
+	check "Eliminando configuración escritorio."
+	sleep 2
+	tput cnorm && reboot
 }
 
 ### Revisando conexión a Internet
@@ -171,8 +195,39 @@ function validations(){
 	fi
 }
 
+### Main instalation
+function install(){
+	echo -e "\n${Cyan}[${BYellow}*${Cyan}] ${BYellow}Instalación Completa.${Color_Off}\n"
+	validations
+	installPackages
+	installApps
+	customTerminal
+	gitTools
+	endInstall
+}
+
+function installTerminal(){
+	echo -e "\n${Cyan}[${BYellow}*${Cyan}] ${BYellow}Instalación de la capa de personalización de la Terminal y Escritorio.${Color_Off}\n"
+	validations
+	installPackages
+	customTerminal
+	endInstall
+}
+
+function installTerceros(){
+	echo -e "\n${Cyan}[${BYellow}*${Cyan}] ${BYellow}Instalación de Aplicativos de terceros.${Color_Off}\n"
+	validations
+	installPackages
+	installApps
+	gitTools
+	endInstall
+}
+
 ### Finalización del script
 function endInstall(){
+	info "Actualizacion de updatedb"
+	sudo updatedb > /dev/null 2>&1
+	check "Ejecutando updatedb"
 	section "INSTALACIÓN FINALIZADA"
 	tput cnorm
 	info "Debes reiniciar el ordenador para terminar la instalación"

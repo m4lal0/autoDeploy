@@ -3,4 +3,4 @@
 
 source src/core.sh
 
-main
+#main

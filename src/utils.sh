@@ -243,7 +243,7 @@ function gitTools(){
 	subfinder_url=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
 	subfinder_file=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
 	wget "https://github.com$subfinder_url" > /dev/null 2>&1
-	tar -xzvf /tmp/$subfinder_file > /dev/null 2>&1
+	tar -xzf /tmp/$subfinder_file > /dev/null 2>&1
 	mv /tmp/subfinder /usr/local/bin/ > /dev/null 2>&1
 	check "Agregando la aplicación subFinder"
 	## httpx
@@ -258,8 +258,8 @@ function gitTools(){
 	## CrackMapExec
 	info "Descargando CrackMapExec"
 	cd /tmp/ 2>/dev/null
-	cme_url=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}')
-	cme_file=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	cme_url=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu*.*.zip' | head -n 1 | awk -F '\"' '{print $2}')
+	cme_file=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu*.*.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
 	cmedb_url=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cmedb-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}')
 	cmedb_file=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cmedb-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
 	wget "https://github.com$cme_url" -O /tmp/$cme_file > /dev/null 2>&1
@@ -333,8 +333,4 @@ function gitTools(){
 	done
 	ln -s $WEB_PATH/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
 	check "Redireccionando el archivo dirsearch a /bin"
-
-	info "Actualizacion de updatedb"
-	sudo updatedb > /dev/null 2>&1
-	check "Ejecutando updatedb"
 }

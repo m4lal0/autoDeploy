@@ -2,7 +2,7 @@
 #by @M4lal0
 
 source src/func.sh
-source src/args.sh
+#source src/args.sh
 source src/utils.sh
 source src/custom.sh
 
@@ -33,6 +33,7 @@ arg=""
 for arg; do
 	delim=""
 	case $arg in
+		--install)	args="${args}-i";;
 		--help)		args="${args}-h";;
 		--delete)	args="${args}-d";;
 		*) [[ "${arg:0:1}" == "-" ]] || delim="\""
@@ -42,20 +43,25 @@ done
 
 eval set -- $args
 
-while getopts "dh" opt; do
+declare -i parameter_counter=0; while getopts "i:dh" opt; do
 	case $opt in
-		h)  helpPanel;;
-		d)  deleteApp;;
-		*) exit 1;
+		i) install=$OPTARG && let parameter_counter+=1 ;;
+		h) helpPanel ;;
+		d) deleteApp ;;
+		*) helpPanel ;;
 	esac
 done
 
-### Main
-function main(){
-	validations
-	installPackages
-	installApps
-	customTerminal
-	gitTools
-	endInstall
-}
+if [ $parameter_counter -eq 0 ]; then
+	helpPanel
+else
+	if [ "$(echo $install)" == "terminal" ]; then
+		installTerminal
+	elif [ "$(echo $install)" == "apps" ]; then
+		installTerceros
+	elif [ "$(echo $install)" == "all" ]; then
+		install
+	else
+		helpPanel
+	fi
+fi
