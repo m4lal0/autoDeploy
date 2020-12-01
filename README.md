@@ -15,9 +15,34 @@ AutoDeploy es un script que permite instalar una capa de personalización en Kal
 
 Ejecutarlo como root:
 
-    # git clone https://github.com/m4lal0/autoDeploy
-    # cd autoDeploy; chmod +x autoDeploy.sh
-    # ./autoDeploy.sh
+```bash
+git clone https://github.com/m4lal0/autoDeploy
+cd autoDeploy; chmod +x autoDeploy.sh
+./autoDeploy.sh
+```
+
+Al ejecutarlo nos mostrará un panel de ayuda:
+
+<p align="center">
+<img src="https://github.com/m4lal0/autoDeploy/blob/master/images/helpPanel.png"
+	alt="helpPanel"
+	width="1000"
+	style="float: left; margin-right: 10px;" />
+</p>
+
+El script cuenta con **3** modos de instalación:
+##### Instalación completa
+```bash
+./autoDeploy.sh --install all
+```
+##### Instalar personalización de terminal y escritorio xfce
+```bash
+./autoDeploy.sh --install terminal
+```
+##### Instalar aplicaciones de terceros
+```bash
+./autoDeploy.sh --install apps
+```
 
 Al inicio solicitará unos datos para el proceso de instalación, el resto de la ejecución debería de realizarse automáticamente sin necesitar interacción del usuario. Si algún paso del error de instalación falla, se almacena una copia del error en el fichero **error.log** para que estos puedan ser solucionados posteriormente de forma manual.
 
