@@ -71,4 +71,7 @@ acpi
 airgraph-ng
 rinetd
 trash-cli
+feh
+bpytop
+crackmapexec
 seclists
