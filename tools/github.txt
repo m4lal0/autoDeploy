@@ -30,4 +30,7 @@ PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
 Utilities|https://github.com/Gr1mmie/autoenum
 Utilities|https://github.com/ollypwn/SMBGhost
 Utilities|https://github.com/jaykali/maskphish
+WEB/Wordpress|https://github.com/n00py/WPForce
+WEB|https://github.com/rastating/joomlavs
+WEB|https://github.com/tampe125/jscanner
 Web|https://github.com/maurosoria/dirsearch

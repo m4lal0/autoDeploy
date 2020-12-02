@@ -126,6 +126,10 @@ function gitTools(){
 	go get -u github.com/tomnomnom/assetfinder > /dev/null 2>&1
 	mv ~/go/bin/assetfinder /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación assetfinder"
+	## WordPress Exploit Framework
+	info "Instalando WordPress Exploit Framework"
+	gem install wpxf > /dev/null 2>&1
+	check "Agregando la aplicacion WordPress Exploit Framework"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
@@ -212,7 +216,19 @@ function gitTools(){
 	cd $UTILITIES_PATH 2>/dev/null
 	git clone https://github.com/aristocratos/bashtop.git > /dev/null 2>&1
 	cd bashtop && sudo make install > /dev/null 2>&1
-	check "Agregando BashTOP"
+	check "Agregando BashTOP"´
+	## Drupwn
+	info "Descargando Drupwn"
+	cd $WEB_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/immunIT/drupwn > /dev/null 2>&1
+	cd drupwn && pip3 install -r requirements.txt > /dev/null 2>&1
+	check "Agregando Drupwn"
+	## Typo3Scan
+	info "Descargando Typo3Scan"
+	cd $WEB_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/whoot/Typo3Scan.git > /dev/null 2>&1
+	cd Typo3Scan && pip3 install -r requirements.txt > /dev/null 2>&1
+	check "Agregando Typo3Scan"
 
 ## Descarga usando wget
 	## psPY
