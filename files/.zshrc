@@ -215,7 +215,11 @@ function extractPorts(){
 }
 
 function rmk() {
+	echo -ne "\n\033[0;36m[\033[1;34m*\033[0;36m] \033[1;37mFichero a aplicar borrado seguro: \033[1;32m$1\033[0m "
+	echo
+	echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mFase [1/2]:\033[0m\n"
 	scrub -p dod $1
+	echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mFase [2/2]:\033[0m\n"
 	shred -zun 10 -v $1
 }
 
