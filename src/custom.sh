@@ -15,6 +15,11 @@ function customTerminal(){
 	unzip Hack.zip > /dev/null 2>&1
 	rm Hack.zip 2>/dev/null
 
+	info "Descargando fuente (Fira Code Nerd)"
+	cd /usr/local/share/fonts/ 2>/dev/null
+	wget https://github.com/daniruiz/nerd-fonts/raw/fira%2Bkali/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf > /dev/null 2>&1
+	check "Al descargar la fuente FiraCode Nerd"
+
 	info "Configurando shell predeterminada"
 	usermod --shell /usr/bin/zsh root > /dev/null 2>&1
 	usermod --shell /usr/bin/zsh $USERNAME > /dev/null 2>&1

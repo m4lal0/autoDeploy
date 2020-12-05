@@ -193,10 +193,15 @@ alias la='lsd -a --group-dirs=first'
 alias l='lsd --group-dirs=first'
 alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
+alias tree='lsd --tree'
 
 alias cat='/usr/bin/bat'
 alias catn='/usr/bin/cat'
 alias catnl='/usr/bin/bat --paging=never'
+
+alias rm='trash-put'
+alias rm-restore='trash-restore'
+alias rm-list='trash-list'
 
 # Functions
 function mkt() {

@@ -102,8 +102,10 @@ function gitTools(){
 	check "Al descargar netcat"
 	cd /tmp/ ; unzip /tmp/netcat.zip > /dev/null 2>&1
 	check "Al descomprimir netcat"
-	sudo cp /tmp/netcat-1.11/nc64.exe /usr/share/windows-binaries/nc64.exe > /dev/null 2>&1
-	check "Al copiar netcat en /usr/share/windows-binaries/"
+	sudo cp /tmp/netcat-1.11/nc64.exe /usr/share/windows-resources/binaries/nc64.exe > /dev/null 2>&1
+	check "Al copiar netcat en /usr/share/windows-resources/binaries"
+	chmod 755 /usr/share/windows-resources/binaries/nc64.exe 2>/dev/null
+	check "Permisos asignados nc64.exe"
 	## Descomprimir wordlist rockyou
     info "Descomprimiendo wordlist rockyou"
     cd /usr/share/wordlists 2>/dev/null
