@@ -1,14 +1,16 @@
 # autoDeploy
-<p align="center" style="color:#4169e1">
+<p align="center">
 <img src="https://github.com/m4lal0/autoDeploy/blob/master/images/autodeploy.png"
-	alt="helpPanel"
+	alt="autoDeploy"
 	width="1000"
 	style="float: left; margin-right: 10px;" />
+</p>
+
 [![GitHub top language](https://img.shields.io/github/languages/top/m4lal0/autoDeploy?logo=gnu-bash&style=for-the-badge)](#)
 [![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2020-Supported-blue?style=for-the-badge&logo=linux)](#)
 [![GitHub repo size](https://img.shields.io/github/repo-size/m4lal0/autoDeploy?logo=webpack&style=for-the-badge)](#)
 [![By](https://img.shields.io/badge/By-m4lal0-green?style=for-the-badge&logo=github)](#)
-</p>
+
 AutoDeploy es un script que permite instalar una capa de personalización en Kali Linux OS. Instala diferentes plugins, aplicaciones y utilidades para tener un entorno más agradable para trabajar.
 
 ## Instalación y Uso
