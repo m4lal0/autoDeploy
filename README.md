@@ -1,15 +1,16 @@
 # autoDeploy
+
+[![GitHub top language](https://img.shields.io/github/languages/top/m4lal0/autoDeploy?logo=gnu-bash&style=flat-square)](#)
+[![GitHub repo size](https://img.shields.io/github/repo-size/m4lal0/autoDeploy?logo=webpack&style=flat-square)](#)
+[![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2020-Supported-blue?style=flat-square&logo=linux)](#)
+[![By](https://img.shields.io/badge/By-m4lal0-green?style=flat-square&logo=github)](#)
+
 <p align="center">
 <img src="https://github.com/m4lal0/autoDeploy/blob/master/images/autodeploy.png"
 	alt="autoDeploy"
 	width="1000"
 	style="float: left; margin-right: 10px;" />
 </p>
-
-[![GitHub top language](https://img.shields.io/github/languages/top/m4lal0/autoDeploy?logo=gnu-bash&style=for-the-badge)](#)
-[![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2020-Supported-blue?style=for-the-badge&logo=linux)](#)
-[![GitHub repo size](https://img.shields.io/github/repo-size/m4lal0/autoDeploy?logo=webpack&style=for-the-badge)](#)
-[![By](https://img.shields.io/badge/By-m4lal0-green?style=for-the-badge&logo=github)](#)
 
 AutoDeploy es un script que permite instalar una capa de personalización en Kali Linux OS. Instala diferentes plugins, aplicaciones y utilidades para tener un entorno más agradable para trabajar.
 
