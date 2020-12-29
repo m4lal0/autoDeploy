@@ -1,5 +1,5 @@
 #!/bin/bash
-#by @M4lal0
+#by @m4lal0
 
 ### Personalización de la terminal
 function customTerminal(){
@@ -136,61 +136,82 @@ function customTerminal(){
 	check  "Al configurar mate terminal"
 
 	info "Configurando escritorio"
-	cp $FILES_PATH/backgrounds/*.png /usr/share/backgrounds/kali > /dev/null 2>&1
+	cp $FILES_PATH/backgrounds/* /usr/share/backgrounds/kali > /dev/null 2>&1
 	check "Al descargar fondos"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-fade-2020b.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	check "Al configurar fondo de sesion"
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
-	check  "Al configurar fondo de escritorio"
+	check "Al configurar fondo de escritorio"
 	cp $FILES_PATH/xfce4/xfce4-keyboard-shortcuts.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml 2>/dev/null
-	check  "Al configurar atajos de teclado"
+	check "Al configurar atajos de teclado"
 	cp $FILES_PATH/xfce4/thunar.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml 2>/dev/null
-	check  "Al configurar ventanas"
+	check "Al configurar ventanas"
 	cp $FILES_PATH/xfce4/xfce4-panel.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml 2>/dev/null
-	check  "Al configurar barra de tarea"
+	check "Al configurar barra de tarea"
 	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
-	check  "Al configurar paneles de trabajo"
+	check "Al configurar paneles de trabajo"
+	cd $FILES_PATH/xfce4 2>/dev/null
+	tar -xJf Sweet-Rainbow.tar.xz && tar -xJf candy-icons.tar.xz > /dev/null 2>&1
+	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Sweet-Rainbow $FILES_PATH/xfce4/candy-icons $HOME_PATH/.local/share/icons > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/icons 2>/dev/null
+	check  "Al descargar iconos ($USERNAME)"
+	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
+	check "Al descargar iconos (root)"
+	cp $FILES_PATH/xfce4/xsettings.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml 2>/dev/null
+	check "Al configurar iconos en el sistema"
+	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Sweet-Rainbow > /dev/null 2>&1 && gtk-update-icon-cache $HOME_PATH/.local/share/icons/candy-icons > /dev/null 2>&1
+	check "Al actualizar iconos"
+	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
+	check "Al configurar paneles de trabajo"
 	cp $FILES_PATH/scripts/ethstatus.sh $HOME_PATH/.config/ethstatus.sh > /dev/null 2>&1
 	chmod 774 $HOME_PATH/.config/ethstatus.sh 2>/dev/null
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/ethstatus.sh 2>/dev/null
-	check  "Al copiar script eth"
+	check "Al copiar script eth"
 	cp $FILES_PATH/panel/genmon-4.rc $HOME_PATH/.config/xfce4/panel/genmon-4.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-4.rc 2>/dev/null
-	check  "Al configurar info red en barra de tarea"
+	check "Al configurar info red en barra de tarea"
 	cp $FILES_PATH/scripts/vpnstatus.sh $HOME_PATH/.config/vpnstatus.sh > /dev/null 2>&1
 	chmod 774 $HOME_PATH/.config/vpnstatus.sh 2>/dev/null
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/vpnstatus.sh 2>/dev/null
-	check  "Al copiar script vpn"
+	check "Al copiar script vpn"
 	cp $FILES_PATH/panel/genmon-5.rc $HOME_PATH/.config/xfce4/panel/genmon-5.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-5.rc 2>/dev/null
-	check  "Al configurar info VPN en barra de tarea"
+	check "Al configurar info VPN en barra de tarea"
 	cp $FILES_PATH/scripts/wifistatus.sh $HOME_PATH/.config/wifistatus.sh > /dev/null 2>&1
 	chmod 774 $HOME_PATH/.config/wifistatus.sh 2>/dev/null
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/wifistatus.sh 2>/dev/null
-	check  "Al copiar script wifi"
+	check "Al copiar script wifi"
 	cp $FILES_PATH/panel/genmon-24.rc $HOME_PATH/.config/xfce4/panel/genmon-24.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-24.rc 2>/dev/null
-	check  "Al configurar info Wifi en barra de tarea"
+	check "Al configurar info Wifi en barra de tarea"
 	cd $HOME_PATH/.config 2>/dev/null
 	echo "#!/bin/bash" > user.sh 2>/dev/null
 	echo "VAR=$USERNAME" >> user.sh 2>/dev/null
-	echo "ICON=(     )" >> user.sh 2>/dev/null
-	echo 'ELEC=$(( $RANDOM % 5 ))' >> user.sh 2>/dev/null
+	echo "ICON=(      )" >> user.sh 2>/dev/null
+	echo 'ELEC=$(( $RANDOM % 6 ))' >> user.sh 2>/dev/null
 	echo 'echo -n ${ICON[$ELEC]} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
 	chown $USERNAME:$USERNAME user.sh && chmod 774 user.sh 2>/dev/null
 	check "Al configurar script de usuario en barra de tarea"
 	cp $FILES_PATH/panel/genmon-29.rc $HOME_PATH/.config/xfce4/panel/genmon-29.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-29.rc 2>/dev/null
-	check  "Al configurar usuario en barra de tarea"
+	check "Al configurar usuario en barra de tarea"
 	cp $FILES_PATH/panel/battery-19.rc $HOME_PATH/.config/xfce4/panel/battery-19.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/battery-19.rc 2>/dev/null
-	check  "Al configurar icono bateria en barra de tarea"
+	check "Al configurar icono bateria en barra de tarea"
+	cp $FILES_PATH/panel/whiskermenu-1.rc $HOME_PATH/.config/xfce4/panel/whiskermenu-1.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/whiskermenu-1.rc 2>/dev/null
+	check "Al configurar opciones en menu de inicio"
+	cp $FILES_PATH/xfce4/helpers.rc $HOME_PATH/.config/xfce4/helpers.rc > /dev/null 2>&1
+	chown $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/helpers.rc 2>/dev/null
+	check "Al configurar aplicativos por default"
 
 	info "Configuracion de notificaciones"
 	sudo apt remove xfce4-notifyd -y > /dev/null 2>&1
@@ -199,10 +220,10 @@ function customTerminal(){
 	mv /tmp/dunstrc  $HOME_PATH/.config/dunst/ && chown -R $USERNAME:$USERNAME $HOME_PATH/.config/dunst > /dev/null 2>&1
 	check "Notificaciones personalizadas"
 
-	info "Seleccionando Java 8 como predeterminado"
-	option=$(echo | update-alternatives --config java | grep "java-8" | tr -d '*' | awk '{print $1}')
-	if [ $option ]; then
-		echo "$option" | update-alternatives --config java > /dev/null 2>&1
-		check "Eligiendo Java 8 como predeterminado"
-	fi
+	# info "Seleccionando Java 8 como predeterminado"
+	# option=$(echo | update-alternatives --config java | grep "java-8" | tr -d '*' | awk '{print $1}')
+	# if [ $option ]; then
+	# 	echo "$option" | update-alternatives --config java > /dev/null 2>&1
+	# 	check "Eligiendo Java 8 como predeterminado"
+	# fi
 }

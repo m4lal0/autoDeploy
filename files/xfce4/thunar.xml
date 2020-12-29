@@ -12,6 +12,7 @@
   <property name="last-window-maximized" type="bool" value="false"/>
   <property name="last-side-pane" type="string" value="ThunarShortcutsPane"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_25_PERCENT"/>
-  <property name="last-details-view-column-widths" type="string" value="50,176,50,50,266,50,50,85,50,189"/>
+  <property name="last-details-view-column-widths" type="string" value="50,209,50,50,246,50,50,85,50,189"/>
   <property name="last-separator-position" type="int" value="170"/>
+  <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_DDMMYYYY"/>
 </channel>
