@@ -47,7 +47,6 @@ virtualenv
 cowsay
 pwncat
 apt-transport-https
-chromium
 terminator
 aircrack-ng
 crowbar
@@ -74,4 +73,5 @@ trash-cli
 feh
 bpytop
 crackmapexec
+tcptrack
 seclists
