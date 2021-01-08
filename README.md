@@ -36,7 +36,7 @@ Al ejecutarlo nos mostrará un panel de ayuda:
 El script cuenta con **3** modos de instalación:
 ##### Instalación completa
 ```bash
-./autoDeploy.sh --install all
+./autoDeploy.sh --install
 ```
 ##### Instalar personalización de terminal y escritorio xfce
 ```bash
