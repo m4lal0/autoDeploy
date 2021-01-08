@@ -1,8 +1,7 @@
 #!/bin/bash
-#by @M4lal0
+#by @m4lal0
 
 source src/func.sh
-#source src/args.sh
 source src/utils.sh
 source src/custom.sh
 
@@ -12,7 +11,6 @@ FILES_PATH="$SCRIPT_PATH/files"
 TOOLS_PATH="$SCRIPT_PATH/tools"
 GIT_TOOLS_PATH="/opt"
 
-EVASION_PATH="$GIT_TOOLS_PATH/Evasion"
 PRIVESCLIN_PATH="$GIT_TOOLS_PATH/PrivEsc-Lin"
 PRIVESCWIN_PATH="$GIT_TOOLS_PATH/PrivEsc-Win"
 OSINT_PATH="$GIT_TOOLS_PATH/OSINT"
@@ -43,11 +41,12 @@ done
 
 eval set -- $args
 
-declare -i parameter_counter=0; while getopts "i:dh" opt; do
+declare -i parameter_counter=0; while getopts ":i:dh" opt; do
 	case $opt in
 		i) install=$OPTARG && let parameter_counter+=1 ;;
 		h) helpPanel ;;
 		d) deleteApp ;;
+		:) install ;;
 		*) helpPanel ;;
 	esac
 done
@@ -59,8 +58,6 @@ else
 		installTerminal
 	elif [ "$(echo $install)" == "apps" ]; then
 		installTerceros
-	elif [ "$(echo $install)" == "all" ]; then
-		install
 	else
 		helpPanel
 	fi
