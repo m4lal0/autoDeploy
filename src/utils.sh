@@ -22,7 +22,7 @@ function installPackages(){
 	apt autoremove -y > /dev/null 2>&1
 	check "Al eliminar paquetes sin uso"
 }
-
+EVASION_PATH
 ### Instalación de otras aplicaciones
 function installApps(){
 	section "COMENZANDO INSTALACIÓN DE UTILIDADES"
@@ -135,7 +135,7 @@ function gitTools(){
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
-	mkdir {$EVASION_PATH,$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
+	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
 	check "Al crear directorios"
 	## Wpseku
 	info "Descargando wpseku"
@@ -338,6 +338,21 @@ function gitTools(){
 	tar -xzf /tmp/$dnsx_file > /dev/null 2>&1
 	mv /tmp/dnsx /usr/local/bin > /dev/null 2>&1
 	check "Agregando dnsx"
+	## Pandoc
+	info "Descargando pandoc"
+	pandoc_url=$(curl --silent 'https://github.com/jgm/pandoc/releases/' | grep -E 'pandoc-?[1-9].*-amd64.deb' | head -n 1 | awk -F '\"' '{print $2}')
+	pandoc_file=$(curl --silent 'https://github.com/jgm/pandoc/releases/' | grep -E 'pandoc-?[1-9].*-amd64.deb' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$pandoc_url" -O /tmp/$pandoc_file > /dev/null 2>&1
+	dpkg -i /tmp/$pandoc_file > /dev/null 2>&1
+	check "Agregando pandoc"
+	## Eisvogel
+	info "Descargando Eisvogel"
+	cd /tmp && wget "https://github.com$(curl --silent 'https://github.com/Wandmalfarbe/pandoc-latex-template/releases/' | grep -E 'Eisvogel-?[1-9]*.zip' | head -n 1 | awk -F '\"' '{print $2}')" > /dev/null 2>&1
+	echo -e "A" | unzip $(curl --silent 'https://github.com/Wandmalfarbe/pandoc-latex-template/releases/' | grep -E 'Eisvogel-?[1-9]*.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}') > /dev/null 2>&1
+	mkdir -p /root/.local/share/pandoc/templates > /dev/null 2>&1
+	check "Creando directorio Eisvogel"
+	mv /tmp/eisvogel.latex /root/.local/share/pandoc/templates > /dev/null 2>&1
+	check "Agregando Eisvogel"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do

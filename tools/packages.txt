@@ -74,4 +74,7 @@ feh
 bpytop
 crackmapexec
 tcptrack
+texlive
+texlive-latex-extra
+texlive-fonts-extra
 seclists
