@@ -22,7 +22,7 @@ Utilities|https://github.com/Mebus/cupp
 Utilities|https://github.com/t0thkr1s/revshellgen
 Web|https://github.com/m4ll0k/WAScan
 PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
-WEB|https://github.com/s0md3v/XSStrike
+Web|https://github.com/s0md3v/XSStrike
 Utilities|https://github.com/htr-tech/zphisher
 Utilities|https://github.com/3ndG4me/AutoBlue-MS17-010
 PrivEsc-Win|https://github.com/411Hall/JAWS
@@ -30,7 +30,9 @@ PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
 Utilities|https://github.com/Gr1mmie/autoenum
 Utilities|https://github.com/ollypwn/SMBGhost
 Utilities|https://github.com/jaykali/maskphish
-WEB/Wordpress|https://github.com/n00py/WPForce
-WEB|https://github.com/rastating/joomlavs
-WEB|https://github.com/tampe125/jscanner
+Web/Wordpress|https://github.com/n00py/WPForce
+Web|https://github.com/rastating/joomlavs
+Web|https://github.com/tampe125/jscanner
+Utilities|https://github.com/ByDog3r/FAQUE
+Wifi|https://github.com/m4lal0/wifiAttack
 Web|https://github.com/maurosoria/dirsearch
