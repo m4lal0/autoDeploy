@@ -59,43 +59,220 @@ Al inicio solicitará unos datos para el proceso de instalación, el resto de la
 </p>
 Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa de personalización:
 
-- Configuración de fuente Hacker Nerd
-- Instalación de algunas aplicaciones
-    + Google Chrome
-    + Gotop
-    + upDog
-    + impacket
-    + entre otras...
-- zsh + powerlevel10k
-    + lsd
-    + bat
-    + fzf
-- Oh my Tmux!
-- Algunas funciones creadas para el zshrc
-    + Colorido para manuales
-    + Borrado de archivo anti-Forense
-    + entre otras...
-- Instalación de otros paquetes
-    + rlwrap
-    + xclip
-    + steghide
-    + fcrackzip
-    + rofi
-    + ffuf
-    + golang
-    + entre otras...
-- Actualización de Wordlists
-    + /usr/share/wordlist
-    + /usr/share/seclists
-- Herramientas desde github (/opt):
-    + Dirsearch
-    + PowerSploit
-    + pspy
-    + Wpseku
-    + LinEnum
-    + Airgeddon
-    + CrackMapExec
-    + GTFOBLookup
-    + entre otras...
+#### PERSONALIZACION DE ESCRITORIO Y TERMINAL
 
-> Con el tiempo iré actualizando el repositorio...
+<details>
+<summary>Fonts</summary>
+
+- Hacker Nerd
+- Fira Code
+
+</details>
+
+<details>
+<summary>Desktop Custom</summary>
+
+- xfce custom
+- rofi
+- i3lock-fancy
+- Notifications custom
+- Candy-icons
+
+</details>
+
+<details>
+<summary>Terminal</summary>
+
+- zsh custom
+- lsd
+- bat
+- fzf
+- powerlevel10k
+- Oh my Tmux!
+- mate terminal custom
+- terminator
+
+</details>
+
+#### HERRAMIENTAS ADICIONALES
+
+<details>
+<summary>Web Browser</summary>
+
+- Google Chrome
+- Brave
+
+</details>
+
+<details>
+<summary>Recon tools</summary>
+
+- Port Scanning
+	- ZenMap
+	- Naabu
+- Subdomains
+	- Subblist3r
+	- SubFinder
+	- Assetfinder
+	- Subbrute
+- DNS Lookups
+	- Hakrevdns
+	- dnsx
+- Crawler
+	- Hakrawler
+	- Evine
+- Fuzzer
+	- Dirsearch
+	- GoBuster
+	- ffuf
+	- URLBuster
+	- CRLFuzz
+	- Cross Site Scripting
+	- XXStrike
+- CMS
+	- WAScan
+	- CMSeeK
+	- WPSeku
+	- Vulnx
+	- Droopescan
+	- Wordpress-Exploit-Framework
+	- Drupwn
+	- Typo3Scan
+	- WPForce
+	- joomlavs
+	- jscanner
+- Metadata
+	- Metagoofil
+
+</details>
+
+<details>
+<summary>Wordlists & Wordlist Tools</summary>
+
+- Fuzzdb
+- Seclists
+- Cupp
+- CWFF
+
+</details>
+
+<details>
+<summary>Brute Force</summary>
+
+- crowbar
+- BruteMap
+
+</details>
+
+<details>
+<summary>Cracking & Password Attacks</summary>
+
+- HashCat
+- Hashid
+- Pyrit
+- Decodify
+
+</details>
+
+<details>
+<summary>OS Enumeration</summary>
+
+- htbenum
+- linux-smart-enumeration
+- LinEnum
+- pspy
+- Windows Exploit Suggerter (WES-NG)
+- PrivescCheck
+- Unix-Privesc-Check
+- WinPwn
+- JAWS
+
+</details>
+
+<details>
+<summary>Active Directory Tools</summary>
+
+- CrackMapExec
+- Nishang
+- PowerSploit
+- ADRecon
+
+</details>
+
+<details>
+<summary>Reverse shell</summary>
+
+- rlwrap
+- pwncat
+- GTFOBLookup
+- revshellgen
+
+</details>
+
+<details>
+<summary>Developer Tools</summary>
+
+- Golang
+- html2text
+- Virtualenv
+- pipenv
+- Impacket-Python
+
+</details>
+
+<details>
+<summary>Networking Tools</summary>
+
+- Htop
+- bpytop
+- Gotop
+- BashTOP
+- Updog
+- httpx
+- SMBGhost
+
+</details>
+
+<details>
+<summary>OSINT Tools</summary>
+
+- steghide
+- twint
+- Sherlock-Project
+- go-Dork
+
+</details>
+
+<details>
+<summary>Phishing Tools</summary>
+
+- SocialFish
+- Zphisher
+- Maskphish
+- FAQUE
+
+</details>
+
+<details>
+<summary>Wifi Tools</summary>
+
+- Xerosploit
+- Airgeddon
+- WifiAttack
+
+</details>
+
+<details>
+<summary>Utilities</summary>
+
+- xClip
+- LibreOffice
+- Thunderbird
+- LaTeX
+- NordVPN
+- Tempomail
+- Pandoc
+- Bitwarden
+- SauronEye
+
+</details>
