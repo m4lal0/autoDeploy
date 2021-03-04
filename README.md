@@ -2,7 +2,7 @@
 
 [![GitHub top language](https://img.shields.io/github/languages/top/m4lal0/autoDeploy?logo=gnu-bash&style=flat-square)](#)
 [![GitHub repo size](https://img.shields.io/github/repo-size/m4lal0/autoDeploy?logo=webpack&style=flat-square)](#)
-[![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2020-Supported-blue?style=flat-square&logo=linux)](#)
+[![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2020_&_2021-Supported-blue?style=flat-square&logo=kali-linux)](#)
 [![By](https://img.shields.io/badge/By-m4lal0-green?style=flat-square&logo=github)](#)
 
 <p align="center">
@@ -77,6 +77,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - i3lock-fancy
 - Notifications custom
 - Candy-icons
+- Wallpapers
 
 </details>
 
@@ -115,12 +116,17 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 	- SubFinder
 	- Assetfinder
 	- Subbrute
+	- AltDNS
+	- httprobe
 - DNS Lookups
 	- Hakrevdns
 	- dnsx
+	- DNSGen
+	- MassDNS
 - Crawler
 	- Hakrawler
 	- Evine
+	- Certgraph
 - Fuzzer
 	- Dirsearch
 	- GoBuster
@@ -230,6 +236,11 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - Updog
 - httpx
 - SMBGhost
+- Chisel
+- WhatMask
+- GoDoH
+- DNScat2
+- Apple-bleee
 
 </details>
 
@@ -259,6 +270,9 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - Xerosploit
 - Airgeddon
 - WifiAttack
+- PSKracker
+- Airgraph-ng
+- hostapd-mana
 
 </details>
 
@@ -274,5 +288,12 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - Pandoc
 - Bitwarden
 - SauronEye
+- feh
+- Trash-cli
+- Rofi
 
 </details>
+
+<br>
+
+> Y muchas más herramientas...
