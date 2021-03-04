@@ -56,8 +56,11 @@ function customTerminal(){
 	info "Configurando plugins zsh"
 	cd /usr/share && mkdir zsh-sudo 2>&1
 	cd zsh-sudo && wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh > /dev/null 2>&1
+	check "Agregando plugin sudo zsh"
+	cd /usr/share && mkdir zsh-command-not-found 2>&1
+	cd zsh-command-not-found && wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/command-not-found/command-not-found.plugin.zsh > /dev/null 2>&1
 	cd /usr/share && chown -R $USERNAME:$USERNAME zsh-* 2>/dev/null
-	check "Agregnado plugin sudo zsh"
+	check "Agregando plugin command-not-found zsh"
 	cd
 
 	info "Estableciendo configuración de nano"
@@ -122,6 +125,9 @@ function customTerminal(){
 	check "Configuracion de rofi (root)"
 
 	info "Configurando mate terminal"
+	if [ ! -d /org/mate/terminal/profiles/default ]; then
+		mkdir /org/mate/terminal/profiles/default
+	fi
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/copy-selection 'true' > /dev/null 2>&1
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-darkness '0.87130434782608701' > /dev/null 2>&1
 	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-color '#FFFFFFFFDDDD' > /dev/null 2>&1
@@ -136,11 +142,16 @@ function customTerminal(){
 	check  "Al configurar mate terminal"
 
 	info "Configurando escritorio"
-	cp $FILES_PATH/backgrounds/* /usr/share/backgrounds/kali > /dev/null 2>&1
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-geometric-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-geometric-16x9.png > /dev/null 2>&1
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-geometric-16x10.png?inline=false -O /usr/share/backgrounds/kali/kali-geometric-16x10.png > /dev/null 2>&1
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-light-strips-16x10.png?inline=false -O /usr/share/backgrounds/kali/kali-light-strips-16x10.png > /dev/null 2>&1
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-light-strips-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-light-strips-16x9.png > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-geometric-16x9.png /usr/share/backgrounds/kali-16x9/kali-geometric-16x9.png > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-light-strips-16x9.png /usr/share/backgrounds/kali-16x9/kali-light-strips-16x9.png > /dev/null 2>&1
 	check "Al descargar fondos"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/kali/kali-fade-2020b.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	check "Al configurar fondo de sesion"
+	ln -s /usr/share/backgrounds/kali/kali-light-strips-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	check "Al configurar fondo de inicio de sesión"
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
 	check "Al configurar fondo de escritorio"
@@ -195,8 +206,8 @@ function customTerminal(){
 	cd $HOME_PATH/.config 2>/dev/null
 	echo "#!/bin/bash" > user.sh 2>/dev/null
 	echo "VAR=$USERNAME" >> user.sh 2>/dev/null
-	echo "ICON=(      )" >> user.sh 2>/dev/null
-	echo 'ELEC=$(( $RANDOM % 6 ))' >> user.sh 2>/dev/null
+	echo "ICON=(   )" >> user.sh 2>/dev/null
+	echo 'ELEC=$(( $RANDOM % 4 ))' >> user.sh 2>/dev/null
 	echo 'echo -n ${ICON[$ELEC]} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
 	chown $USERNAME:$USERNAME user.sh && chmod 774 user.sh 2>/dev/null
 	check "Al configurar script de usuario en barra de tarea"

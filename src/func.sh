@@ -65,7 +65,7 @@ function ctrl_c(){
 ### Panel de Ayuda
 function helpPanel(){
     echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BGray} Uso:${Color_Off}"
-    echo -e "\nScript que permite instalar una capa de personalización en Kali Linux."
+    echo -e "\n\t./autoDeploy.sh <OPCION>"
     echo -e "\n${BGray}OPCIONES:${Color_Off}"
     echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tInstalación completa de la capa de personalización.${Color_Off}"
     echo -e "\t\t${Yellow}terminal: ${Purple}\tInstalación solamente de la personalización de la terminal y escritorio.${Color_Off}"
@@ -73,31 +73,30 @@ function helpPanel(){
     echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \t\tEliminar configuración de Escritorio y directorios de los aplicativos de terceros.${Color_Off}"
     echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \t\tMostrar este panel de ayuda.${Color_Off}"
     echo -e "\n${BGray}EJEMPLOS:${Color_Off}"
-    echo -e "\t${LGray}Instalación Completa (root)${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}--install\n${Color_Off}"
-    echo -e "\t${LGray}Instalación solamente con personalización de terminal y escritorio (root)${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
-    echo -e "\t${LGray}Instalación solamente con aplicativos de terceros (root)${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
-    echo -e "\t${LGray}Eliminar configuración de escritorio y directorios de aplicativos${Color_Off}${Green}\n\t# bash autoDeploy.sh ${Red}-d\n${Color_Off}"
+    echo -e "\t${LGray}Instalación Completa (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install\n${Color_Off}"
+    echo -e "\t${LGray}Instalación solamente con personalización de terminal y escritorio (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
+    echo -e "\t${LGray}Instalación solamente con aplicativos de terceros (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
+    echo -e "\t${LGray}Eliminar configuración de escritorio y directorios de aplicativos${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}-d\n${Color_Off}"
     tput cnorm; exit 1
 }
 
 ### Banner
 function banner(){
     echo -e "${BYellow}"
-    sleep 0.15 && echo -e "                     __              _______                    __                   "
-    sleep 0.15 && echo -e "                    |  \            |       \                  |  \                  "
-    sleep 0.15 && echo -e "  ______  __    __ _| ▓▓_    ______ | ▓▓▓▓▓▓▓\ ______   ______ | ▓▓ ______  __    __ "
-    sleep 0.15 && echo -e " |      \|  \  |  \   ▓▓ \  /      \| ▓▓  | ▓▓/      \ /      \| ▓▓/      \|  \  |  \\"
-    sleep 0.15 && echo -e "  \▓▓▓▓▓▓\ ▓▓  | ▓▓\▓▓▓▓▓▓ |  ▓▓▓▓▓▓\ ▓▓  | ▓▓  ▓▓▓▓▓▓\  ▓▓▓▓▓▓\ ▓▓  ▓▓▓▓▓▓\ ▓▓  | ▓▓"
-    sleep 0.15 && echo -e " /      ▓▓ ▓▓  | ▓▓ | ▓▓ __| ▓▓  | ▓▓ ▓▓  | ▓▓ ▓▓    ▓▓ ▓▓  | ▓▓ ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓"
-    sleep 0.15 && echo -e "|  ▓▓▓▓▓▓▓ ▓▓__/ ▓▓ | ▓▓|  \ ▓▓__/ ▓▓ ▓▓__/ ▓▓ ▓▓▓▓▓▓▓▓ ▓▓__/ ▓▓ ▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓"
-    sleep 0.15 && echo -e " \▓▓    ▓▓\▓▓    ▓▓  \▓▓  ▓▓\▓▓    ▓▓ ▓▓    ▓▓\▓▓     \ ▓▓    ▓▓ ▓▓\▓▓    ▓▓\▓▓    ▓▓"
-    sleep 0.15 && echo -e "  \▓▓▓▓▓▓▓ \▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓ \▓▓▓▓▓▓▓  \▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ \▓▓ \▓▓▓▓▓▓ _\▓▓▓▓▓▓▓"
-    sleep 0.15 && echo -e "                                                      | ▓▓                 |  \__| ▓▓"
-    sleep 0.15 && echo -e "                                                      | ▓▓                  \▓▓    ▓▓"
-    sleep 0.15 && echo -e "                                                       \▓▓                   \▓▓▓▓▓▓ "
+    sleep 0.15 && echo -e "\t                     __              _______                    __                   "
+    sleep 0.15 && echo -e "\t                    |  \            |       \                  |  \                  "
+    sleep 0.15 && echo -e "\t  ______  __    __ _| ▓▓_    ______ | ▓▓▓▓▓▓▓\ ______   ______ | ▓▓ ______  __    __ "
+    sleep 0.15 && echo -e "\t |      \|  \  |  \   ▓▓ \  /      \| ▓▓  | ▓▓/      \ /      \| ▓▓/      \|  \  |  \\"
+    sleep 0.15 && echo -e "\t  \▓▓▓▓▓▓\ ▓▓  | ▓▓\▓▓▓▓▓▓ |  ▓▓▓▓▓▓\ ▓▓  | ▓▓  ▓▓▓▓▓▓\  ▓▓▓▓▓▓\ ▓▓  ▓▓▓▓▓▓\ ▓▓  | ▓▓"
+    sleep 0.15 && echo -e "\t /      ▓▓ ▓▓  | ▓▓ | ▓▓ __| ▓▓  | ▓▓ ▓▓  | ▓▓ ▓▓    ▓▓ ▓▓  | ▓▓ ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓"
+    sleep 0.15 && echo -e "\t|  ▓▓▓▓▓▓▓ ▓▓__/ ▓▓ | ▓▓|  \ ▓▓__/ ▓▓ ▓▓__/ ▓▓ ▓▓▓▓▓▓▓▓ ▓▓__/ ▓▓ ▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓"
+    sleep 0.15 && echo -e "\t \▓▓    ▓▓\▓▓    ▓▓  \▓▓  ▓▓\▓▓    ▓▓ ▓▓    ▓▓\▓▓     \ ▓▓    ▓▓ ▓▓\▓▓    ▓▓\▓▓    ▓▓"
+    sleep 0.15 && echo -e "\t  \▓▓▓▓▓▓▓ \▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓ \▓▓▓▓▓▓▓  \▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ \▓▓ \▓▓▓▓▓▓ _\▓▓▓▓▓▓▓"
+    sleep 0.15 && echo -e "\t                                                      | ▓▓                 |  \__| ▓▓"
+    sleep 0.15 && echo -e "\t                                                      | ▓▓                  \▓▓    ▓▓"
+    sleep 0.15 && echo -e "\t                                                       \▓▓                   \▓▓▓▓▓▓ "
     echo -e "${Color_Off}"
-	sleep 0.15 && echo -e "\t\t    ${Green}---[ Github: https://github.com/m4lal0/autoDeploy.git ]--- ${Color_Off}"
-    sleep 0.15 && echo -e "\t\t\t\t\t\t    ${Green} +--==[ By @M4lal0 ]==-- +${Color_Off}\n\n"
+	sleep 0.15 && echo -e "\t${On_Blue}${BWhite} Script para personalizar el entorno de trabajo de Kali Linux .:.:. By ${On_Blue}${BYellow}@m4lal0${On_Blue}${BWhite} .:.:. ${Color_Off}\n"
 	tput civis
 }
 

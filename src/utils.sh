@@ -32,13 +32,6 @@ function installApps(){
 	check "Al descargar Google Chrome"
 	dpkg -i /tmp/chrome.deb > /dev/null 2>&1
 	check "Al instalar Google Chrome"
-	info "Instalando ZenMap"
-	wget https://nmap.org/dist/zenmap-7.80-1.noarch.rpm -O /tmp/zenmap-7.80-1.noarch.rpm > /dev/null 2>&1
-	check "Al descargar ZenMap"
-	cd /tmp/ ; alien /tmp/zenmap-7.80-1.noarch.rpm > /dev/null 2>&1
-	check "Al tranformar archivo de ZenMap"
-	dpkg -i /tmp/zenmap_7.80-2_all.deb > /dev/null 2>&1
-	check "Al instalar ZenMap"
 	## Instalación de NordVPN
 	info "Instalando NordVPN"
 	NordVPN_url=$(curl -sSL "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main" | grep 'nordvpn-release*' | awk '{print $2}' | tr '><' ' ' | awk '{print $2}')
@@ -123,11 +116,6 @@ function gitTools(){
 	go get github.com/hakluke/hakrevdns > /dev/null 2>&1
 	mv ~/go/bin/hakrevdns /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación hakrevdns"
-	## assetfinder
-	info "Instalando assetfinder"
-	go get -u github.com/tomnomnom/assetfinder > /dev/null 2>&1
-	mv ~/go/bin/assetfinder /usr/local/bin > /dev/null 2>&1
-	check "Agregando la aplicación assetfinder"
 	## WordPress Exploit Framework
 	info "Instalando WordPress Exploit Framework"
 	gem install wpxf > /dev/null 2>&1
@@ -242,13 +230,6 @@ function gitTools(){
 	check "Agregando la aplicación pspy32"
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 > /dev/null 2>&1
 	check "Agregando la aplicación pspy64"
-	## ffuf - Fuzz Faster U Fool
-	info "Descargando ffuf"
-	cd $WEB_PATH 2>/dev/null
-	mkdir ffuf; cd ffuf 2>/dev/null
-	wget https://github.com/ffuf/ffuf/releases/download/v1.1.0/ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
-	tar -xzf ffuf_1.1.0_linux_amd64.tar.gz && rm ffuf_1.1.0_linux_amd64.tar.gz > /dev/null 2>&1
-	check "Agregando la aplicación ffuf"
 	## Unix-Privesc-Check-PentestMonkey
 	info "Descargando unix-privesc-check"
 	cd $PRIVESCLIN_PATH 2>/dev/null
@@ -273,23 +254,6 @@ function gitTools(){
 	tar -xzf /tmp/$httpx_file > /dev/null 2>&1
 	mv /tmp/httpx /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación httpx"
-	## CrackMapExec
-	info "Descargando CrackMapExec"
-	cd /tmp/ 2>/dev/null
-	cme_url=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu*.*.zip' | head -n 1 | awk -F '\"' '{print $2}')
-	cme_file=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cme-ubuntu*.*.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	cmedb_url=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cmedb-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}')
-	cmedb_file=$(curl --silent 'https://github.com/byt3bl33d3r/CrackMapExec/releases' | grep -E 'cmedb-ubuntu.latest.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$cme_url" -O /tmp/$cme_file > /dev/null 2>&1
-	wget "https://github.com$cmedb_url" -O /tmp/$cmedb_file > /dev/null 2>&1
-	unzip /tmp/$cme_file > /dev/null 2>&1
-	unzip /tmp/$cmedb_file > /dev/null 2>&1
-	mv /tmp/cme /usr/local/bin > /dev/null 2>&1
-	chmod 755 /usr/local/bin/cme > /dev/null 2>&1
-	check "Agregando CrackMapExec"
-	mv /tmp/cmedb /usr/local/bin > /dev/null 2>&1
-	chmod 755 /usr/local/bin/cmedb > /dev/null 2>&1
-	check "Agregando CrackMapExec DB"
 	## go-dork
 	info "Descargando go-Dork"
 	cd /tmp/ 2>/dev/null
