@@ -1,5 +1,4 @@
 PrivEsc-Lin|https://github.com/diego-treitos/linux-smart-enumeration
-Wifi|https://github.com/v1s1t0r1sh3r3/airgeddon
 PrivEsc-Win|https://github.com/PowerShellMafia/PowerSploit
 PrivEsc-Lin|https://github.com/rebootuser/LinEnum
 PrivEsc-Win|https://github.com/itm4n/PrivescCheck
