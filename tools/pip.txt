@@ -13,3 +13,4 @@ pip3:snscrape
 pip:yq
 pip3:hashid
 pip3:droopescan
+pip3:osrframework
