@@ -95,4 +95,6 @@ certgraph
 apple-bleee
 assetfinder
 nmap
+command-not-found
+torbrowser-launcher
 seclists
