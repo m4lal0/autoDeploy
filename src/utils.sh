@@ -219,6 +219,13 @@ function gitTools(){
 	git clone --depth 1 https://github.com/whoot/Typo3Scan.git > /dev/null 2>&1
 	cd Typo3Scan && pip3 install -r requirements.txt > /dev/null 2>&1
 	check "Agregando Typo3Scan"
+	## Billcipher
+	info "Descargando Billcipher"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone --depth 1 https://github.com/GitHackTools/BillCipher > /dev/null 2>&1
+	cd BillCipher && pip install -r requirements.txt > /dev/null 2>&1
+	pip3 install -r requirements.txt > /dev/null 2>&1
+	check "Agregando Billcipher"
 
 ## Descarga usando wget
 	## psPY
@@ -317,6 +324,13 @@ function gitTools(){
 	check "Creando directorio Eisvogel"
 	mv /tmp/eisvogel.latex /root/.local/share/pandoc/templates > /dev/null 2>&1
 	check "Agregando Eisvogel"
+	## duf
+	info "Descargando duf"
+	duf_url=$(curl --silent 'https://github.com/muesli/duf/releases' | grep -E 'duf_*.*_linux_amd64.deb' | head -n 1 | awk -F '\"' '{print $2}')
+	duf_file=$(curl --silent 'https://github.com/muesli/duf/releases' | grep -E 'duf_*.*_linux_amd64.deb' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
+	wget "https://github.com$duf_url" -O /tmp/$duf_file > /dev/null 2>&1
+	dpkg -i /tmp/$duf_file > /dev/null 2>&1
+	check "Agregando pandoc"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
