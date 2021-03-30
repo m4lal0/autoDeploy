@@ -10,6 +10,7 @@ Blue='\033[0;34m'       # Blue
 Purple='\033[0;35m'     # Purple
 Cyan='\033[0;36m'       # Cyan
 White='\033[0;97m'      # White
+Blink='\033[5m'         # Blink
 Color_Off='\033[0m'     # Text Reset
 
 # Additional colors
@@ -32,6 +33,17 @@ BBlue='\033[1;34m'      # Blue
 BPurple='\033[1;35m'    # Purple
 BCyan='\033[1;36m'      # Cyan
 BWhite='\033[1;37m'     # White
+
+# Italics
+IBlack='\033[3;30m'     # Black
+IGray='\033[3;90m'      # Gray
+IRed='\033[3;31m'       # Red
+IGreen='\033[3;32m'     # Green
+IYellow='\033[3;33m'    # Yellow
+IBlue='\033[3;34m'      # Blue
+IPurple='\033[3;35m'    # Purple
+ICyan='\033[3;36m'      # Cyan
+IWhite='\033[3;37m'     # White
 
 # Underline
 UBlack='\033[4;30m'     # Black
@@ -65,7 +77,7 @@ function ctrl_c(){
 ### Panel de Ayuda
 function helpPanel(){
     echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BGray} Uso:${Color_Off}"
-    echo -e "\n\t./autoDeploy.sh <OPCION>"
+    echo -e "\n\t${LGreen}./autoDeploy.sh ${LRed}[OPCION]${Color_Off}"
     echo -e "\n${BGray}OPCIONES:${Color_Off}"
     echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tInstalación completa de la capa de personalización.${Color_Off}"
     echo -e "\t\t${Yellow}terminal: ${Purple}\tInstalación solamente de la personalización de la terminal y escritorio.${Color_Off}"
