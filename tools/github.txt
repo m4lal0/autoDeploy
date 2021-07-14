@@ -34,4 +34,13 @@ Web|https://github.com/rastating/joomlavs
 Web|https://github.com/tampe125/jscanner
 Utilities|https://github.com/ByDog3r/FAQUE
 Wifi|https://github.com/m4lal0/wifiAttack
-Web|https://github.com/maurosoria/dirsearch
+Utilities|https://github.com/hemp3l/sucrack
+OSINT|https://github.com/m4lal0/userSearch
+OSINT|https://github.com/pixelbubble/ProtOSINT
+Web|https://github.com/snwlvl/crt.sh
+Web|https://github.com/TarlogicSecurity/Chankro
+Utilities|https://github.com/Screetsec/BruteSploit
+Utilities|https://github.com/thewhiteh4t/killcast
+Utilities|https://github.com/BiZken/PhishMailer
+Utilities|https://github.com/Cerbrutus-BruteForcer/cerbrutus
+Utilities|https://github.com/m4lal0/mac-identifier
