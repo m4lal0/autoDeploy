@@ -14,3 +14,5 @@ pip:yq
 pip3:hashid
 pip3:droopescan
 pip3:osrframework
+pip:tldr
+pip3:emailfinder
