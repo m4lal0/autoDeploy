@@ -13,58 +13,65 @@ White='\033[0;97m'      # White
 Blink='\033[5m'         # Blink
 Color_Off='\033[0m'     # Text Reset
 
-# Additional colors
-LGray='\033[0;37m'      # Ligth Gray
-DGray='\033[0;90m'      # Dark Gray
+# Light
 LRed='\033[0;91m'       # Ligth Red
 LGreen='\033[0;92m'     # Ligth Green
 LYellow='\033[0;93m'    # Ligth Yellow
 LBlue='\033[0;94m'      # Ligth Blue
 LPurple='\033[0;95m'    # Light Purple
 LCyan='\033[0;96m'      # Ligth Cyan
+LWhite='\033[0;90m'     # Ligth White
+
+# Dark
+DGray='\033[2;37m'      # Dark Gray
+DRed='\033[2;91m'       # Dark Red
+DGreen='\033[2;92m'     # Dark Green
+DYellow='\033[2;93m'    # Dark Yellow
+DBlue='\033[2;94m'      # Dark Blue
+DPurple='\033[2;95m'    # Dark Purple
+DCyan='\033[2;96m'      # Dark Cyan
+DWhite='\033[2;90m'     # Dark White
 
 # Bold
-BBlack='\033[1;30m'     # Black
-BGray='\033[1;37m'		# Gray
-BRed='\033[1;31m'       # Red
-BGreen='\033[1;32m'     # Green
-BYellow='\033[1;33m'    # Yellow
-BBlue='\033[1;34m'      # Blue
-BPurple='\033[1;35m'    # Purple
-BCyan='\033[1;36m'      # Cyan
-BWhite='\033[1;37m'     # White
+BBlack='\033[1;30m'     # Bold Black
+BRed='\033[1;31m'       # Bold Red
+BGreen='\033[1;32m'     # Bold Green
+BYellow='\033[1;33m'    # Bold Yellow
+BBlue='\033[1;34m'      # Bold Blue
+BPurple='\033[1;35m'    # Bold Purple
+BCyan='\033[1;36m'      # Bold Cyan
+BWhite='\033[1;37m'     # Bold White
 
 # Italics
-IBlack='\033[3;30m'     # Black
-IGray='\033[3;90m'      # Gray
-IRed='\033[3;31m'       # Red
-IGreen='\033[3;32m'     # Green
-IYellow='\033[3;33m'    # Yellow
-IBlue='\033[3;34m'      # Blue
-IPurple='\033[3;35m'    # Purple
-ICyan='\033[3;36m'      # Cyan
-IWhite='\033[3;37m'     # White
+IBlack='\033[3;30m'     # Italic Black
+IGray='\033[3;90m'      # Italic Gray
+IRed='\033[3;31m'       # Italic Red
+IGreen='\033[3;32m'     # Italic Green
+IYellow='\033[3;33m'    # Italic Yellow
+IBlue='\033[3;34m'      # Italic Blue
+IPurple='\033[3;35m'    # Italic Purple
+ICyan='\033[3;36m'      # Italic Cyan
+IWhite='\033[3;37m'     # Italic White
 
 # Underline
-UBlack='\033[4;30m'     # Black
-UGray='\033[4;37m'		# Gray
-URed='\033[4;31m'       # Red
-UGreen='\033[4;32m'     # Green
-UYellow='\033[4;33m'    # Yellow
-UBlue='\033[4;34m'      # Blue
-UPurple='\033[4;35m'    # Purple
-UCyan='\033[4;36m'      # Cyan
-UWhite='\033[4;37m'     # White
+UBlack='\033[4;30m'     # Underline Black
+URed='\033[4;31m'       # Underline Red
+UGreen='\033[4;32m'     # Underline Green
+UYellow='\033[4;33m'    # Underline Yellow
+UBlue='\033[4;34m'      # Underline Blue
+UPurple='\033[4;35m'    # Underline Purple
+UCyan='\033[4;36m'      # Underline Cyan
+UWhite='\033[4;37m'     # Underline White
 
 # Background
-On_Black='\033[40m'     # Black
-On_Red='\033[41m'       # Red
-On_Green='\033[42m'     # Green
-On_Yellow='\033[43m'    # Yellow
-On_Blue='\033[44m'      # Blue
-On_Purple='\033[45m'    # Purple
-On_Cyan='\033[46m'      # Cyan
-On_White='\033[47m'     # White
+On_Black='\033[40m'     # Background Black
+On_Red='\033[41m'       # Background Red
+On_Green='\033[42m'     # Background Green
+On_Yellow='\033[43m'    # Background Yellow
+On_Blue='\033[44m'      # Background Blue
+On_Purple='\033[45m'    # Background Purple
+On_Cyan='\033[46m'      # Background Cyan
+On_White='\033[47m'     # Background White
 
 trap ctrl_c INT
 
@@ -76,19 +83,19 @@ function ctrl_c(){
 
 ### Panel de Ayuda
 function helpPanel(){
-    echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BGray} Uso:${Color_Off}"
+    echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BWhite} Uso:${Color_Off}"
     echo -e "\n\t${LGreen}./autoDeploy.sh ${LRed}[OPCION]${Color_Off}"
-    echo -e "\n${BGray}OPCIONES:${Color_Off}"
+    echo -e "\n${BWhite}OPCIONES:${Color_Off}"
     echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tInstalación completa de la capa de personalización.${Color_Off}"
     echo -e "\t\t${Yellow}terminal: ${Purple}\tInstalación solamente de la personalización de la terminal y escritorio.${Color_Off}"
     echo -e "\t\t${Yellow}apps: ${Purple}\t\tInstalación solamente de los programas de terceros.${Color_Off}"
     echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \t\tEliminar configuración de Escritorio y directorios de los aplicativos de terceros.${Color_Off}"
     echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \t\tMostrar este panel de ayuda.${Color_Off}"
-    echo -e "\n${BGray}EJEMPLOS:${Color_Off}"
-    echo -e "\t${LGray}Instalación Completa (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install\n${Color_Off}"
-    echo -e "\t${LGray}Instalación solamente con personalización de terminal y escritorio (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
-    echo -e "\t${LGray}Instalación solamente con aplicativos de terceros (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
-    echo -e "\t${LGray}Eliminar configuración de escritorio y directorios de aplicativos${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}-d\n${Color_Off}"
+    echo -e "\n${BWhite}EJEMPLOS:${Color_Off}"
+    echo -e "\t${LWhite}Instalación Completa (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install\n${Color_Off}"
+    echo -e "\t${LWhite}Instalación solamente con personalización de terminal y escritorio (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
+    echo -e "\t${LWhite}Instalación solamente con aplicativos de terceros (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
+    echo -e "\t${LWhite}Eliminar configuración de escritorio y directorios de aplicativos${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}-d\n${Color_Off}"
     tput cnorm; exit 1
 }
 
@@ -114,18 +121,24 @@ function banner(){
 
 ### Funciones informativos
 function info(){
-	echo -e "${Cyan}[${BYellow}!${Cyan}] ${BGray}$1${Color_Off}"
+	echo -e "${Cyan}[${BYellow}!${Cyan}] ${BWhite}$1${Color_Off}"
 }
 
 function question(){
 	input=""
 	while [ "$input" == "" ]; do
-		echo -ne "${Cyan}[${BPurple}?${Cyan}] ${BGray}$1: ${Color_Off}" && read input
+		#echo -ne "${Cyan}[${BPurple}?${Cyan}] ${BWhite}$1: ${Color_Off}" && read input
+		echo -e "${BBlue}┌─[${BWhite}$1${BBlue}]${Color_Off}"
+		echo -en "${BBlue}└──╼${BGreen} " && read input
+		echo -e "${Color_Off}"
 	done
 }
 
 function yes_or_no(){
-	echo -ne "${Cyan}[${BPurple}?${Cyan}] ${BGray}$1 ${Cyan}(${BGreen}Y${BGray}/${BRed}n${Cyan})${BGray}: ${Color_Off}" && read input
+	#echo -ne "${Cyan}[${BPurple}?${Cyan}] ${BWhite}$1 ${Cyan}(${BGreen}Y${BWhite}/${BRed}n${Cyan})${BWhite}: ${Color_Off}" && read input
+	echo -e "${BBlue}┌─[${BWhite}$1 ${Cyan}(${BGreen}Y${BWhite}/${BRed}n${Cyan})${BBlue}]${Color_Off}"
+	echo -en "${BBlue}└──╼${BGreen} " && read input
+	echo -e "${Color_Off}"
 	case "$input" in
 		n|N) input=0;;
 		*) input=1;;
@@ -193,12 +206,13 @@ function validations(){
 	fi
 
 ### Datos del equipo
+	tput cnorm
     question "Hostname"
 	HOSTNAME=$input
-	question "Nombre de usuario ($(ls /home | xargs | tr ' ' ','))"
+	question "Nombre de usuario ($(ls /home | xargs | tr ' ' '|'))"
 	USERNAME=$input
 	HOME_PATH="/home/$USERNAME"
-
+	tput civis
 	if [ ! -d "$HOME_PATH" ]; then
 		error "El directorio home del usuario no existe (/home/$USERNAME)"
 		exit 1

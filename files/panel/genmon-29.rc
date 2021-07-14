@@ -1,4 +1,4 @@
-Command=/usr/bin/bash -c "~/.config/user.sh"
+Command=/usr/bin/bash -c "~/.config/scripts/user.sh"
 UseLabel=0
 Text=(User)
 UpdatePeriod=60000

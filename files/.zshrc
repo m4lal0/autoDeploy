@@ -13,7 +13,7 @@ setopt promptsubst         # enable command substitution in prompt
 
 WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
-# Manual configuration
+# Manual PATH configuration
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/games:/usr/games:/usr/lib/go
 
 # hide EOL sign ('%')
@@ -46,6 +46,7 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
+setopt histignorealldups sharehistory
 
 # force zsh to show the complete history
 alias history="history 0"
@@ -203,35 +204,63 @@ alias rm='trash-put'
 alias rm-restore='trash-restore'
 alias rm-list='trash-list'
 
+alias zshrc='vi $HOME/.zshrc'
+
+alias dud='du -d 1 -h'
+
+alias cheat='tldr'
+
 # Functions
 function mkt() {
-	mkdir {discovery,exploits,content,scripts}
+	mkdir -p {discovery/nmap,discovery/web,exploits,content,scripts} && ls -lah
 }
 
 function extractPorts(){
-	ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
-	ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
-	echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mExtracting information...\033[0m" > extractPorts.tmp
-	echo -e "\n\t\033[0;36m[\033[0;34m+\033[0;36m] \033[0;37mIP Address: \033[0;35m$ip_address\033[0m" >> extractPorts.tmp
-	echo -e "\n\t\033[0;36m[\033[0;34m+\033[0;36m] \033[0;37mOpen Ports: \033[0;33m$ports\n\033[0m" >> extractPorts.tmp
-	echo $ports | tr -d '\n' | xclip -sel clip
-	echo -e "\033[0;36m[\033[0;33m!\033[0;36m] \033[1;37mPorts copied to clipboard\n\033[0m" >> extractPorts.tmp
-	cat extractPorts.tmp; rm extractPorts.tmp
+	if [[ -n $1 && -z $2 ]]; then
+		ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
+		ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
+		ports_list="$(cat $1 | grep -v ^#| sed 's/Ports: /\'$'\n/g' |  tr '/' '\t' | tr ',' '\n' | sed 's/^ //g' | grep -v "Host" | sed 's/Ignored State.*$//')"
+		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[3;37mExtracting information...\033[0m" > extractPorts.tmp
+		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mIP Address: \033[0;35m$ip_address\033[0m" >> extractPorts.tmp
+		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mOpen Ports: \033[0;33m$ports\033[0m" >> extractPorts.tmp
+		echo -e "\n\033[0;36m[\033[0;34m*\033[0;36m] \033[0;37mPorts & Services: \033[0m" >> extractPorts.tmp
+		echo -e "\n$ports_list" >> extractPorts.tmp
+		echo $ports | tr -d '\n' | xclip -sel clip
+		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[1;37mPorts copied to clipboard\n\033[0m" >> extractPorts.tmp
+		cat extractPorts.tmp; rm extractPorts.tmp
+	elif [[ -n $1 && -n $2 ]]; then
+		ports="$(cat $1 | grep "$2" | sort -u | head -n 1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
+		ports_list="$(grep -w "$2" $1 | grep -v ^# | sed 's/Ports: /\'$'\n/g' |  tr '/' '\t' | tr ',' '\n' | sed 's/^ //g' | grep -v "Host" | sed 's/Ignored State.*$//')"
+		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[3;37mExtracting information...\033[0m" > extractPorts.tmp
+		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mIP Address: \033[0;35m$2\033[0m" >> extractPorts.tmp
+		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mOpen Ports: \033[0;33m$ports\033[0m" >> extractPorts.tmp
+		echo -e "\n\033[0;36m[\033[0;34m*\033[0;36m] \033[0;37mPorts & Services: \033[0m" >> extractPorts.tmp
+		echo -e "\n$ports_list" >> extractPorts.tmp
+		echo $ports | tr -d '\n' | xclip -sel clip
+		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[1;37mPorts copied to clipboard\n\033[0m" >> extractPorts.tmp
+		cat extractPorts.tmp; rm extractPorts.tmp
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<nmap.grepeable>\033[0m"
+	fi
 }
 
 function rmk() {
-	echo -ne "\n\033[0;36m[\033[1;34m*\033[0;36m] \033[1;37mFichero a aplicar borrado seguro: \033[1;32m$1\033[0m "
-	echo
-	echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mFase [1/2]:\033[0m\n"
-	scrub -p dod $1
-	echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mFase [2/2]:\033[0m\n"
-	shred -zun 10 -v $1
+	if [[ -n $1 ]]; then
+		echo -ne "\n\033[0;36m[\033[1;34m*\033[0;36m] \033[1;37mFile to apply secure deletion: \033[1;32m$1\033[0m "
+		echo
+		echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mPhase [1/2]:\033[0m\n"
+		scrub -p dod $1
+		echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mPhase [2/2]:\033[0m\n"
+		shred -zun 10 -v $1
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<word>\033[0m"
+	fi
 }
 
 function man() {
     env \
-    LESS_TERMCAP_mb=$'\e[01;31m' \
-    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_mb=$'\e[01;34m' \
+    LESS_TERMCAP_md=$'\e[01;34m' \
     LESS_TERMCAP_me=$'\e[0m' \
     LESS_TERMCAP_se=$'\e[0m' \
     LESS_TERMCAP_so=$'\e[01;44;33m' \
@@ -261,6 +290,36 @@ function fzf-lovely(){
 	fi
 }
 
+# Search NSE script
+function nseSearch(){
+	#locate *.nse | grep -i -o "$1".*;
+	if [[ -n $1 ]]; then
+		nmap_basepath=$(nmap -v -d 2>/dev/null | grep -Po 'Read from \K\/.*(?=:)')
+		script_list=$(grep -Po '[\w-]+(?=.nse)' "$nmap_basepath"/scripts/script.db | grep "$1")
+
+		# Search NSE script names for search parameter
+		if [[ -n $script_list ]]; then
+			echo -e "\n\033[3;36mNSE scripts available in nmap:\033[0m"
+			grep -Po '[\w-]+(?=.nse)' "$nmap_basepath"/scripts/script.db | grep "$1"
+		else
+			echo -e "\n\033[1;31mNo matches found for \033[0;97m'$1'\033[1;31m.\033[0m"
+		fi
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<string>\033[0m"
+	fi
+}
+
+# Configuration tldr command 
+export TLDR_COLOR_NAME="bold yellow"
+export TLDR_COLOR_DESCRIPTION="white"
+export TLDR_COLOR_EXAMPLE="green"
+export TLDR_COLOR_COMMAND="bold cyan"
+export TLDR_COLOR_PARAMETER="yellow"
+export TLDR_CACHE_ENABLED=1
+export TLDR_CACHE_MAX_AGE=720
+export TLDR_PAGES_SOURCE_LOCATION="https://raw.githubusercontent.com/tldr-pages/tldr/master/pages"
+export TLDR_DOWNLOAD_CACHE_LOCATION="https://tldr-pages.github.io/assets/tldr.zip"
+
 # Fix the Java problem
 export _JAVA_AWT_WM_NONREPARENTING=1
 
@@ -272,6 +331,7 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
 fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh-sudo/sudo.plugin.zsh
+source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # enable command-not-found
 if [ -f /etc/zsh_command_not_found ]; then

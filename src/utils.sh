@@ -27,11 +27,21 @@ EVASION_PATH
 function installApps(){
 	section "COMENZANDO INSTALACIÓN DE UTILIDADES"
 	checkInternet
-	info "Instalando Google Chrome"
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb > /dev/null 2>&1
-	check "Al descargar Google Chrome"
-	dpkg -i /tmp/chrome.deb > /dev/null 2>&1
-	check "Al instalar Google Chrome"
+	#info "Instalando Google Chrome"
+	#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb > /dev/null 2>&1
+	#check "Al descargar Google Chrome"
+	#dpkg -i /tmp/chrome.deb > /dev/null 2>&1
+	#check "Al instalar Google Chrome"
+
+	## Instalación de Firefox
+	info "Instalando Firefox"
+	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/90.0/linux-x86_64/en-US/firefox-90.0.tar.bz2 -O /opt/firefox-90.0.tar.bz2 > /dev/null 2>&1
+	check "Al descargar Firefox"
+	cd /opt && tar -xf firefox-90.0.tar.bz2 > /dev/null 2>&1
+	rm -rf firefox-90.0.tar.bz2 2>/dev/null
+	cd /bin && mv firefox firefox2 && ln -sf /opt/firefox/firefox firefox 2>/dev/null
+	check "Al instalar Firefox"
+
 	## Instalación de NordVPN
 	info "Instalando NordVPN"
 	NordVPN_url=$(curl -sSL "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main" | grep 'nordvpn-release*' | awk '{print $2}' | tr '><' ' ' | awk '{print $2}')
@@ -45,6 +55,7 @@ function installApps(){
 		apt-get install nordvpn -y > /dev/null 2>&1
 	fi
 	check "Al instalar NordVPN"
+
 	## Instalacion Brave
 	info "Instalando Brave"
 	curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - > /dev/null 2>&1
@@ -56,11 +67,13 @@ function installApps(){
 		apt-get install brave-browser -y > /dev/null 2>&1
 	fi
 	check "Al instalar Brave"
+
 	## Instalacion Pyrit
 	info "Instalando Pyrit"
 	cd /tmp/ ; wget http://ftp.mx.debian.org/debian/pool/main/p/pyrit/pyrit_0.5.1+git20180801-1_amd64.deb > /dev/null 2>&1
 	dpkg -i /tmp/pyrit_0.5.1+git20180801-1_amd64.deb > /dev/null 2>&1
 	check "Al instalar Pyrit"
+	
 	## Instalacion Scapy-2.4.2
 	info "Instalando Scapy 2.4.2"
 	cd /tmp/ ; wget https://github.com/secdev/scapy/archive/v2.4.2.zip > /dev/null 2>&1
@@ -120,18 +133,24 @@ function gitTools(){
 	info "Instalando WordPress Exploit Framework"
 	gem install wpxf > /dev/null 2>&1
 	check "Agregando la aplicacion WordPress Exploit Framework"
+	## gophish
+	info "Instalando GoPhish"
+	cd /tmp/ 2>/dev/null
+	go get github.com/gophish/gophish > /dev/null 2>&1
+	mv ~/go/bin/gophish /usr/local/bin > /dev/null 2>&1
+	check "Agregando la aplicación GoPhish"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
 	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
 	check "Al crear directorios"
 	## Wpseku
-	info "Descargando wpseku"
-	cd $WORDPRESS_PATH 2>/dev/null
-	git clone --depth 1 https://github.com/m4ll0k/WPSeku.git wpseku > /dev/null 2>&1
-	cd wpseku 2>/dev/null
-	pip3 install -r requirements.txt > /dev/null 2>&1
-	check "Agregando la aplicación wpseku"
+	# info "Descargando wpseku"
+	# cd $WORDPRESS_PATH 2>/dev/null
+	# git clone --depth 1 https://github.com/m4ll0k/WPSeku.git wpseku > /dev/null 2>&1
+	# cd wpseku 2>/dev/null
+	# pip3 install -r requirements.txt > /dev/null 2>&1
+	# check "Agregando la aplicación wpseku"
 	## Sherlock-Project
 	info "Descargando sherlock-project"
 	cd $OSINT_PATH 2>/dev/null
@@ -187,7 +206,7 @@ function gitTools(){
 	info "Descargando wordlists fuzzdb"
 	cd /usr/share 2>/dev/null
 	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb > /dev/null 2>&1
-	ln -s /usr/share/fuzzdb /usr/share/wordlists > /dev/null 2>&1
+	ln -s `pwd`/fuzzdb /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlist/"
 	## Xerosploit
 	info "Descargando Xerosploit"
@@ -226,6 +245,12 @@ function gitTools(){
 	cd BillCipher && pip install -r requirements.txt > /dev/null 2>&1
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	check "Agregando Billcipher"
+	## Vulscan
+	info "Descargando Vulscan NSE"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/scipag/vulscan scipag_vulscan > /dev/null 2>&1
+	ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan > /dev/null 2>&1
+	check "Agregando Vulscan NSE"
 
 ## Descarga usando wget
 	## psPY
@@ -330,7 +355,25 @@ function gitTools(){
 	duf_file=$(curl --silent 'https://github.com/muesli/duf/releases' | grep -E 'duf_*.*_linux_amd64.deb' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
 	wget "https://github.com$duf_url" -O /tmp/$duf_file > /dev/null 2>&1
 	dpkg -i /tmp/$duf_file > /dev/null 2>&1
-	check "Agregando pandoc"
+	check "Agregando duf"
+	## md2pdf
+	info "Descargando md2pdf"
+	cd /tmp && wget https://raw.githubusercontent.com/m4lal0/md2pdf/main/md2pdf.sh > /dev/null 2>&1
+	mv /tmp/md2pdf.sh /usr/local/bin/md2pdf && chmod +x /usr/local/bin/md2pdf > /dev/null 2>&1
+	check "Agregando md2pdf"
+	## Rustcat
+	info "Descargando rustcat"
+	cd /tmp && wget https://github.com/robiot/rustcat/releases/latest/download/rustcat_amd64.deb  > /dev/null 2>&1
+	sudo apt install ./rustcat_amd64.deb  > /dev/null 2>&1
+	check "Agregando rustcat"
+	## NSE Scripts
+	info "Descargando NSE Scripts adicionales"
+	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/GossiTheDog/scanning/main/http-vuln-exchange.nse -O /usr/share/nmap/scripts/http-vuln-exchange.nse > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/s4n7h0/NSE/master/http-lfi.nse -O /usr/share/nmap/scripts/http-lfi.nse > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/psc4re/NSE-scripts/master/CVE-2021-21972.nse -O /usr/share/nmap/scripts/smb3-smbghost.nse > /dev/null 2>&1
+	nmap --script-updatedb > /dev/null 2>&1
+	check "Agregando NSE scripts adicionales"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
@@ -342,6 +385,6 @@ function gitTools(){
 		git clone --depth 1 $url > /dev/null 2>&1
 		check "Agregando la aplicación $name"
 	done
-	ln -s $WEB_PATH/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
-	check "Redireccionando el archivo dirsearch a /bin"
+	# ln -s $WEB_PATH/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
+	# check "Redireccionando el archivo dirsearch a /bin"
 }

@@ -1,0 +1,135 @@
+#!/bin/bash
+
+# Regular Colors
+Black='\033[0;30m'      # Black
+Red='\033[0;31m'        # Red
+Green='\033[0;32m'      # Green
+Yellow='\033[0;33m'     # Yellow
+Blue='\033[0;34m'       # Blue
+Purple='\033[0;35m'     # Purple
+Cyan='\033[0;36m'       # Cyan
+White='\033[0;97m'      # White
+Blink='\033[5m'         # Blink
+Color_Off='\033[0m'     # Text Reset
+
+# Bold
+BBlack='\033[1;30m'     # Bold Black
+BRed='\033[1;31m'       # Bold Red
+BGreen='\033[1;32m'     # Bold Green
+BYellow='\033[1;33m'    # Bold Yellow
+BBlue='\033[1;34m'      # Bold Blue
+BPurple='\033[1;35m'    # Bold Purple
+BCyan='\033[1;36m'      # Bold Cyan
+BWhite='\033[1;37m'     # Bold White
+
+# Light
+LRed='\033[0;91m'       # Ligth Red
+LGreen='\033[0;92m'     # Ligth Green
+LYellow='\033[0;93m'    # Ligth Yellow
+LBlue='\033[0;94m'      # Ligth Blue
+LPurple='\033[0;95m'    # Light Purple
+LCyan='\033[0;96m'      # Ligth Cyan
+LWhite='\033[0;90m'     # Ligth White
+
+# Italics
+IBlack='\033[3;30m'     # Italic Black
+IGray='\033[3;90m'      # Italic Gray
+IRed='\033[3;31m'       # Italic Red
+IGreen='\033[3;32m'     # Italic Green
+IYellow='\033[3;33m'    # Italic Yellow
+IBlue='\033[3;34m'      # Italic Blue
+IPurple='\033[3;35m'    # Italic Purple
+ICyan='\033[3;36m'      # Italic Cyan
+IWhite='\033[3;37m'     # Italic White
+
+trap ctrl_c INT
+
+function ctrl_c(){
+    echo -e "\n\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Saliendo de la aplicación...${Color_Off}"
+    tput cnorm
+    exit 1
+}
+
+### Panel de Ayuda
+function helpPanel(){
+    echo -e "\n${Cyan}[${BBlue}*${Cyan}]${BWhite} INFO:${Color_Off}\t${IWhite}Identifica el Sistema Operativo a traves del TTL.${Color_Off}"
+    echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BWhite} USO:${Color_Off}\t${LGreen}./whichSystem.sh ${LYellow}[OPCION]${Color_Off}"
+    echo -e "\n${BWhite}OPCIONES:${Color_Off}"
+    echo -e "\t${Cyan}[${LYellow}-i${Color_Off}, ${LYellow}--ip${Cyan}]${LBlue} \tDirección IP del Host.${Color_Off}"
+    echo -e "\t${Cyan}[${LYellow}-f${Color_Off}, ${LYellow}--file${Cyan}]${LBlue} \tNombre del archivo que contiene listado de Direcciones IP.${Color_Off}"
+    echo -e "\t${Cyan}[${LYellow}-h${Color_Off}, ${LYellow}--help${Cyan}]${LBlue} \tMostrar este panel de ayuda.${Color_Off}"
+    tput cnorm; exit 1
+}
+
+function toFile(){
+    while IFS= read -r line
+    do
+        timeout 1 bash -c "ping -c 1 $line" &>/dev/null
+        if [ $? -eq 0 ]; then
+            TTL=$(ping -c 1 $line | awk '/ttl/{print $6}' | awk '{print $2}' FS='=')
+            if [[ $TTL == "63" || $TTL == "64" ]];then
+                echo -e "${BWhite}$line - ${BGreen}Linux ${Color_Off}"
+            elif [[ $TTL == "127" || $TTL == "128" ]];then
+                echo -e "${BWhite}$line - ${BGreen}Windows ${Color_Off}"
+            else
+                echo -e "${BWhite}$line - ${BGreen}Solaris/AIX${Color_Off}"
+            fi
+        else
+            echo -e "${BWhite}$line - ${BRed}No alcanzable${Color_Off}"
+        fi
+    done < $FILE
+}
+
+function toIP(){
+    timeout 1 bash -c "ping -c 1 $IP" &>/dev/null
+    if [ $? -eq 0 ]; then
+        TTL=$(ping -c 1 $IP | awk '/ttl/{print $6}' | awk '{print $2}' FS='=')
+        if [[ $TTL == "63" || $TTL == "64" ]];then
+            echo -e "${BWhite}$IP - ${BGreen}Linux ${Color_Off}"
+        elif [[ $TTL == "127" || $TTL == "128" ]];then
+            echo -e "${BWhite}$IP - ${BGreen}Windows ${Color_Off}"
+        else
+            echo -e "${BWhite}$IP - ${BGreen}Solaris/AIX${Color_Off}"
+        fi
+    else
+        echo -e "${BWhite}$IP - ${BRed}No alcanzable${Color_Off}"
+    fi
+}
+
+### Opciones
+arg=""
+for arg; do
+	delim=""
+	case $arg in
+		--ip)	args="${args}-i";;
+		--file)	args="${args}-f";;
+		--help)	args="${args}-h";;
+		*) [[ "${arg:0:1}" == "-" ]] || delim="\""
+        args="${args}${delim}${arg}${delim} ";;
+	esac
+done
+
+eval set -- $args
+
+declare -i parameter_counter=0; while getopts ":i:f:h" opt; do
+	case $opt in
+		i) IP=$OPTARG && let parameter_counter+=1 ;;
+		f) FILE=$OPTARG && let parameter_counter+=1;;
+		h) helpPanel ;;
+		*) helpPanel ;;
+	esac
+done
+
+if [[ $parameter_counter -eq 0 || $parameter_counter -ge 2 ]]; then
+	helpPanel
+else
+	if [[ -n $IP ]]; then
+        tput civis
+		toIP
+        tput cnorm
+	elif [[ -z $IP && -n $FILE ]]; then
+        tput civis
+		toFile
+        tput cnorm
+	fi
+fi

@@ -1,4 +1,4 @@
-Command=/usr/bin/bash -c "~/.config/ethstatus.sh"
+Command=/usr/bin/bash -c "~/.config/scripts/ethstatus.sh"
 UseLabel=0
 Text=(eth0)
 UpdatePeriod=2000
