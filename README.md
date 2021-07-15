@@ -41,7 +41,7 @@ Al inicio solicitará unos datos para el proceso de instalación, el resto de la
 
 ## Utilidades
 
-![autoDeploy](./images/preview.png)
+![autoDeploy](./images/preview.PNG)
 
 Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa de personalización:
 
