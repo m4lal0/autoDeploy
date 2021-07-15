@@ -41,7 +41,7 @@ Al inicio solicitará unos datos para el proceso de instalación, el resto de la
 
 ## Utilidades
 
-![autoDeploy](./images/preview.PNG)
+![autoDeploy](./images/preview.png)
 
 Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa de personalización:
 
@@ -75,6 +75,8 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - lsd
 - bat
 - fzf
+- fd-find
+- cheat
 - powerlevel10k
 - Oh my Tmux!
 - mate terminal custom
@@ -87,7 +89,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 <details>
 <summary>Web Browser</summary>
 
-- Google Chrome
+- Firefox
 - Brave
 - TOR Browser
 
@@ -97,7 +99,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 <summary>Recon tools</summary>
 
 - Port Scanning
-	- ZenMap
+	- amass
 	- Naabu
 - Subdomains
 	- Subblist3r
@@ -123,6 +125,8 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 	- CRLFuzz
 	- Cross Site Scripting
 	- XXStrike
+	- Uniscan
+	- Feroxbuster
 - CMS
 	- WAScan
 	- CMSeeK
@@ -155,6 +159,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 
 - crowbar
 - BruteMap
+- sucrack
 
 </details>
 
@@ -200,6 +205,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - pwncat
 - GTFOBLookup
 - revshellgen
+- Rustcat
 
 </details>
 
@@ -238,7 +244,9 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - steghide
 - twint
 - Sherlock-Project
+- userSearch
 - go-Dork
+- OSRFramework
 
 </details>
 
@@ -274,11 +282,10 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - NordVPN
 - Tempomail
 - Pandoc
-- Bitwarden
 - SauronEye
 - feh
 - Trash-cli
-- Rofi
+- Firejail
 
 </details>
 
