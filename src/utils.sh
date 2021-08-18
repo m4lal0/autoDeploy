@@ -122,23 +122,30 @@ function gitTools(){
 	info "Instalando Hakrawler"
 	cd /tmp/ 2>/dev/null
 	go get github.com/hakluke/hakrawler > /dev/null 2>&1
-	mv ~/go/bin/hakrawler /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación Hakrawler"
 	## hakrevdns
 	info "Instalando hakrevdns"
 	go get github.com/hakluke/hakrevdns > /dev/null 2>&1
-	mv ~/go/bin/hakrevdns /usr/local/bin > /dev/null 2>&1
 	check "Agregando la aplicación hakrevdns"
 	## WordPress Exploit Framework
 	info "Instalando WordPress Exploit Framework"
 	gem install wpxf > /dev/null 2>&1
 	check "Agregando la aplicacion WordPress Exploit Framework"
 	## gophish
-	info "Instalando GoPhish"
+	# info "Instalando GoPhish"
+	# cd /tmp/ 2>/dev/null
+	# go get github.com/gophish/gophish > /dev/null 2>&1
+	# check "Agregando la aplicación GoPhish"
+	## stegoveritas
+	info "Instalando stegoveritas"
+	pip3 install stegoveritas > /dev/null 2>&1
+	stegoveritas_install_deps > /dev/null 2>&1
+	check "Agregando la aplicación stegoveritas"
+	## gospider
+	info "Instalando GoSpider"
 	cd /tmp/ 2>/dev/null
-	go get github.com/gophish/gophish > /dev/null 2>&1
-	mv ~/go/bin/gophish /usr/local/bin > /dev/null 2>&1
-	check "Agregando la aplicación GoPhish"
+	go get -u github.com/jaeles-project/gospider > /dev/null 2>&1
+	check "Agregando la aplicación GoSpider"
 
 ## Git clone con instalación aparte
 	info "Creando directorios de aplicativos"
@@ -251,6 +258,37 @@ function gitTools(){
 	git clone https://github.com/scipag/vulscan scipag_vulscan > /dev/null 2>&1
 	ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan > /dev/null 2>&1
 	check "Agregando Vulscan NSE"
+	## Evil-Winrm
+	info "Descargando Evil-WinRM"
+	cd $UTILITIES_PATH 2>/dev/null
+	gem install winrm winrm-fs stringio > /dev/null 2>&1
+	git clone https://github.com/Hackplayers/evil-winrm.git > /dev/null 2>&1
+	mv evil-winrm/evil-winrm.rb /usr/local/bin/evil-winrm > /dev/null 2>&1
+	check "Agregando Evil-WinRM"
+	## Reverse Shell Generator
+	info "Descargando Reverse Shell Generator"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/mthbernardes/rsg.git > /dev/null 2>&1
+	cd rsg && ln -s $(pwd)/rsg /usr/local/bin > /dev/null 2>&1
+	check "Agregando Reverse Shell Generator"
+	## Next Generation version of Enum4Linux
+	info "Descargando Enum4Linux-ng"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/cddmp/enum4linux-ng.git >/dev/null 2>&1
+	cd enum4linux-ng && pip3 install -r requirements.txt >/dev/null 2>&1
+	check "Agregando Enum4Linux-ng"
+	## SpoofCheck
+	info "Descargando spoofcheck"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/BishopFox/spoofcheck.git >/dev/null 2>&1
+	cd spoofcheck && pip install -r requirements.txt >/dev/null 2>&1
+	check "Agregando spoofcheck"
+	## ASN Lookup Tool and Traceroute Server
+	info "Descargando asn"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/nitefood/asn >/dev/null 2>&1
+	ln -sf $UTILITIES_PATH/asn/asn /usr/local/bin/asn >/dev/null 2>&1
+	check "Agregando asn"
 
 ## Descarga usando wget
 	## psPY
@@ -366,12 +404,21 @@ function gitTools(){
 	cd /tmp && wget https://github.com/robiot/rustcat/releases/latest/download/rustcat_amd64.deb  > /dev/null 2>&1
 	sudo apt install ./rustcat_amd64.deb  > /dev/null 2>&1
 	check "Agregando rustcat"
+	## RPCRecon
+	info "Descargando RPCRecon"
+	cd /tmp && wget https://raw.githubusercontent.com/m4lal0/RPCrecon/main/rpcrecon.sh -O /tmp/rpcrecon > /dev/null 2>&1
+	chmod +x /tmp/rpcrecon && mv /tmp/rpcrecon /usr/local/bin/rpcrecon > /dev/null 2>&1
+	check "Agregando RPCRecon"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
 	wget https://raw.githubusercontent.com/GossiTheDog/scanning/main/http-vuln-exchange.nse -O /usr/share/nmap/scripts/http-vuln-exchange.nse > /dev/null 2>&1
 	wget https://raw.githubusercontent.com/s4n7h0/NSE/master/http-lfi.nse -O /usr/share/nmap/scripts/http-lfi.nse > /dev/null 2>&1
 	wget https://raw.githubusercontent.com/psc4re/NSE-scripts/master/CVE-2021-21972.nse -O /usr/share/nmap/scripts/smb3-smbghost.nse > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/http-vulners-regex.nse -O /usr/share/nmap/scripts/http-vulners-regex.nse > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/http-vulners-regex.json -O /usr/share/nmap/nselib/data/http-vulners-regex.json > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/http-vulners-paths.txt -O /usr/share/nmap/nselib/data/http-vulners-paths.txt > /dev/null 2>&1
+	wget https://svn.nmap.org/nmap/scripts/clamav-exec.nse -O /usr/share/nmap/scripts/clamav-exec.nse >/dev/null 2>&1
 	nmap --script-updatedb > /dev/null 2>&1
 	check "Agregando NSE scripts adicionales"
 

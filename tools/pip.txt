@@ -16,3 +16,7 @@ pip3:droopescan
 pip3:osrframework
 pip:tldr
 pip3:emailfinder
+pip3:mitm6
+pip3:pyftpdlib
+pip3:dnstwist
+pip3:ciphey

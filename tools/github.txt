@@ -19,7 +19,6 @@ Web/Wordpress|https://github.com/Tuhinshubhra/CMSeeK
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 Utilities|https://github.com/Mebus/cupp
 Utilities|https://github.com/t0thkr1s/revshellgen
-Web|https://github.com/m4ll0k/WAScan
 PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
 Web|https://github.com/s0md3v/XSStrike
 Utilities|https://github.com/htr-tech/zphisher
@@ -44,3 +43,11 @@ Utilities|https://github.com/thewhiteh4t/killcast
 Utilities|https://github.com/BiZken/PhishMailer
 Utilities|https://github.com/Cerbrutus-BruteForcer/cerbrutus
 Utilities|https://github.com/m4lal0/mac-identifier
+Web|https://github.com/flozz/p0wny-shell
+Utilities|https://github.com/carlospolop/PEASS-ng
+Utilities|https://github.com/besimorhino/powercat
+Wifi|https://github.com/kleo/evilportals
+Wifi|https://github.com/frozenjava/EvilPortalNano
+Utilities|https://github.com/Screetsec/TheFatRat
+Utilities|https://github.com/trustedsec/unicorn
+Utilities|https://github.com/m4lal0/smbrelay
