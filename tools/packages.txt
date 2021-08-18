@@ -37,7 +37,6 @@ cmatrix
 rofi
 dconf-cli
 i3lock-fancy
-i3lock-color
 imagemagick
 html2text
 ffuf
@@ -113,5 +112,7 @@ recon-ng
 msfpc
 firejail
 burpsuite
+gcc
+bloodhound
 snapd
 seclists
