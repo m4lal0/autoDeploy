@@ -159,5 +159,16 @@
     <property name="plugin-30" type="string" value="separator">
       <property name="style" type="uint" value="3"/>
     </property>
+    <property name="plugin-31" type="string" value="genmon"/>
+    <property name="plugin-32" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-33" type="string" value="separator">
+      <property name="style" type="uint" value="2"/>
+      <property name="expand" type="bool" value="false"/>
+    </property>
+    <property name="plugin-34" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
   </property>
 </channel>

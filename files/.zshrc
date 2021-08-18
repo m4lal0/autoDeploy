@@ -14,7 +14,8 @@ setopt promptsubst         # enable command substitution in prompt
 WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # Manual PATH configuration
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/games:/usr/games:/usr/lib/go
+GOPATH=/root/go
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/games:/usr/games:/usr/lib/go:$GOPATH/bin
 
 # hide EOL sign ('%')
 export PROMPT_EOL_MARK=""
@@ -307,6 +308,20 @@ function nseSearch(){
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<string>\033[0m"
 	fi
+}
+
+# Add target
+function addtarget(){
+	if [[ -n $1 ]]; then
+		echo $1 > $HOME/.config/scripts/.targets 2>/dev/null
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: addtarget <IP-Address>\033[0m"
+	fi
+}
+
+# Delete target
+function deltarget(){
+	echo "" > $HOME/.config/scripts/.targets 2>/dev/null
 }
 
 # Configuration tldr command 

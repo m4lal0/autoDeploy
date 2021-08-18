@@ -1,0 +1,5 @@
+Command=/usr/bin/bash -c "$HOME/.config/scripts/targetstatus.sh"
+UseLabel=0
+Text=(target)
+UpdatePeriod=2000
+Font=Hack Nerd Font Bold 11

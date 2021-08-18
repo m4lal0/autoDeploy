@@ -201,6 +201,9 @@ function customTerminal(){
 	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
 	check "Al configurar paneles de trabajo"
+	cp $FILES_PATH/xfce4/xfce4-power-manager.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml 2>/dev/null
+	check "Al configurar administrador de energia"
 	cd $FILES_PATH/xfce4 2>/dev/null
 	tar -xJf Sweet-Rainbow.tar.xz && tar -xJf candy-icons.tar.xz > /dev/null 2>&1
 	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Sweet-Rainbow $FILES_PATH/xfce4/candy-icons $HOME_PATH/.local/share/icons > /dev/null 2>&1
@@ -253,6 +256,14 @@ function customTerminal(){
 	cp $FILES_PATH/panel/genmon-29.rc $HOME_PATH/.config/xfce4/panel/genmon-29.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-29.rc 2>/dev/null
 	check "Al configurar usuario en barra de tarea"
+	cp $FILES_PATH/scripts/targetstatus.sh $HOME_PATH/.config/scripts/targetstatus.sh > /dev/null 2>&1
+	chmod 774 $HOME_PATH/.config/scripts/targetstatus.sh 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/targetstatus.sh 2>/dev/null
+	touch $HOME_PATH/.config/scripts/.targets && chown $USERNAME:$USERNAME $HOME_PATH/.config/scripts/.targets 2>/dev/null
+	check "Al copiar script targets"
+	cp $FILES_PATH/panel/genmon-31.rc $HOME_PATH/.config/xfce4/panel/genmon-31.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-31.rc 2>/dev/null
+	check "Al configurar info Target en barra de tarea"
 	cp $FILES_PATH/panel/battery-19.rc $HOME_PATH/.config/xfce4/panel/battery-19.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/battery-19.rc 2>/dev/null
 	check "Al configurar icono bateria en barra de tarea"
@@ -276,4 +287,22 @@ function customTerminal(){
 	# 	echo "$option" | update-alternatives --config java > /dev/null 2>&1
 	# 	check "Eligiendo Java 8 como predeterminado"
 	# fi
+
+	info "Configurar smb.conf"
+	cat /etc/samba/smb.conf | sed 's/\[global\]/\[global\]\n   client min protocol = CORE\n   client max protocol = SMB3\n''/' > /tmp/fix_smbconf.tmp 2> /dev/null
+	cat /tmp/fix_smbconf.tmp > /etc/samba/smb.conf
+	check "Actualizando smb.conf"
+
+	info "Configurar GRUB"
+	cat /etc/default/grub | sed 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet mitigations=off"/' > /tmp/fix_grub.tmp 2> /dev/null
+	cat /tmp/fix_grub.tmp > /etc/default/grub 2> /dev/null
+	update-grub &>/dev/null
+	check "Actualizando GRUB"
+
+	info "Actualizacion de MSF"
+	gem update --system > /dev/null 2>&1
+	check "Actualizando gem"
+	cd /usr/share/metasploit-framework && gem install bundler:2.2.5 > /dev/null 2>&1
+	bundle install > /dev/null 2>&1
+	check "Actualizando bundle"
 }
