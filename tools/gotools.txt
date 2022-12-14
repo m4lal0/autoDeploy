@@ -1,0 +1,17 @@
+smap:github.com/s0md3v/smap/cmd/smap@latest
+webanalyze:github.com/rverton/webanalyze/cmd/webanalyze@latest
+meg:github.com/tomnomnom/meg@latest
+katana:github.com/projectdiscovery/katana/cmd/katana@latest
+httpx:github.com/projectdiscovery/httpx/cmd/httpx@latest
+dalfox:github.com/hahwul/dalfox/v2@latest
+crlfuzz:github.com/dwisiswant0/crlfuzz/cmd/crlfuzz@latest
+asnmap:github.com/projectdiscovery/asnmap/cmd/asnmap@latest
+firebaseExploiter:github.com/securebinary/firebaseExploiter@latest
+simplehttpserver:github.com/projectdiscovery/simplehttpserver/cmd/simplehttpserver@latest
+proxify:github.com/projectdiscovery/proxify/cmd/proxify@latest
+apkurlgrep:github.com/ndelphit/apkurlgrep@latest
+gum:github.com/charmbracelet/gum@latest
+hakrevdns:github.com/hakluke/hakrevdns@latest
+qsreplace:github.com/tomnomnom/qsreplace@latest
+kxss:github.com/Emoe/kxss@latest
+waybackurls:github.com/tomnomnom/waybackurls@latest

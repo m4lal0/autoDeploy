@@ -1,5 +1,4 @@
 PrivEsc-Lin|https://github.com/diego-treitos/linux-smart-enumeration
-PrivEsc-Win|https://github.com/PowerShellMafia/PowerSploit
 PrivEsc-Lin|https://github.com/rebootuser/LinEnum
 PrivEsc-Win|https://github.com/itm4n/PrivescCheck
 PrivEsc-Lin|https://github.com/mzet-/linux-exploit-suggester
@@ -9,7 +8,6 @@ PrivEsc-Win|https://github.com/S3cur3Th1sSh1t/WinPwn
 PrivEsc-Win|https://github.com/adrecon/ADRecon
 Utilities|https://github.com/vivami/SauronEye
 Web|https://github.com/TheRook/subbrute
-Utilities|https://github.com/samratashok/nishang
 PrivEsc-Win|https://github.com/bitsadmin/wesng
 PrivEsc-Win|https://github.com/AonCyberLabs/Windows-Exploit-Suggester
 Utilities|https://github.com/s0md3v/Decodify
@@ -17,7 +15,6 @@ Web|https://github.com/Dhayalanb/windows-php-reverse-shell
 Web|https://github.com/WhiteWinterWolf/wwwolf-php-webshell
 Web/Wordpress|https://github.com/Tuhinshubhra/CMSeeK
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
-Utilities|https://github.com/Mebus/cupp
 Utilities|https://github.com/t0thkr1s/revshellgen
 PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
 Web|https://github.com/s0md3v/XSStrike
@@ -26,7 +23,6 @@ Utilities|https://github.com/3ndG4me/AutoBlue-MS17-010
 PrivEsc-Win|https://github.com/411Hall/JAWS
 PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
 Utilities|https://github.com/Gr1mmie/autoenum
-Utilities|https://github.com/ollypwn/SMBGhost
 Utilities|https://github.com/jaykali/maskphish
 Web/Wordpress|https://github.com/n00py/WPForce
 Web|https://github.com/rastating/joomlavs
@@ -44,10 +40,24 @@ Utilities|https://github.com/BiZken/PhishMailer
 Utilities|https://github.com/Cerbrutus-BruteForcer/cerbrutus
 Utilities|https://github.com/m4lal0/mac-identifier
 Web|https://github.com/flozz/p0wny-shell
-Utilities|https://github.com/carlospolop/PEASS-ng
+PrivEsc-Lin|https://github.com/carlospolop/PEASS-ng
 Utilities|https://github.com/besimorhino/powercat
 Wifi|https://github.com/kleo/evilportals
 Wifi|https://github.com/frozenjava/EvilPortalNano
 Utilities|https://github.com/Screetsec/TheFatRat
 Utilities|https://github.com/trustedsec/unicorn
+Web|https://github.com/MrH0wl/Cloudmare.git
+Web|https://github.com/m0rtem/CloudFail
+Web|https://github.com/sensepost/jack
+Web|https://github.com/saleem8054/clickjack
 Utilities|https://github.com/m4lal0/smbrelay
+Utilities|https://github.com/internetwache/GitTools
+Utilities|https://github.com/D3VL/L3MON
+Utilities|https://github.com/ly4k/SMBGhost
+Utilities|https://github.com/vdjagilev/nmap2md
+Web|https://github.com/merttasci/csrf-poc-generator
+Web|https://github.com/Dheerajmadhukar/4-ZERO-3
+Web|https://github.com/nil0x42/phpsploit
+Utilities|https://github.com/ari5ti/Janus-Exploit
+Web|https://github.com/devanshbatham/OpenRedireX
+Utilities|https://github.com/keraattin/EmailAnalyzer
