@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #by @m4lal0
 
 ### Instalación de paquetes extras
@@ -14,80 +14,50 @@ function installPackages(){
 	apt --fix-broken install -y > /dev/null 2>&1
 	check "Instalando paquetes adicionales"
 	## Actualizar paquetes
-	info "Actualizando paquetes"
+	info "Actualizar paquetes"
 	apt update > /dev/null 2>&1
-	check "Al actualizar paquetes"
+	check "Actualizando paquetes"
 	## Descartar paquetes obsoletos
-	info "Eliminando paquetes sin usar (apt autoremove)"
+	info "Eliminar paquetes sin usar (apt autoremove)"
 	apt autoremove -y > /dev/null 2>&1
-	check "Al eliminar paquetes sin uso"
+	check "Eliminando paquetes sin uso"
 }
-EVASION_PATH
+
 ### Instalación de otras aplicaciones
 function installApps(){
 	section "COMENZANDO INSTALACIÓN DE UTILIDADES"
 	checkInternet
-	#info "Instalando Google Chrome"
-	#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb > /dev/null 2>&1
-	#check "Al descargar Google Chrome"
-	#dpkg -i /tmp/chrome.deb > /dev/null 2>&1
-	#check "Al instalar Google Chrome"
 
 	## Instalación de Firefox
-	info "Instalando Firefox"
-	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/90.0/linux-x86_64/en-US/firefox-90.0.tar.bz2 -O /opt/firefox-90.0.tar.bz2 > /dev/null 2>&1
-	check "Al descargar Firefox"
-	cd /opt && tar -xf firefox-90.0.tar.bz2 > /dev/null 2>&1
-	rm -rf firefox-90.0.tar.bz2 2>/dev/null
+	info "Instalar Firefox"
+	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/99.0/linux-x86_64/en-US/firefox-99.0.tar.bz2 -O /opt/firefox-99.0.tar.bz2 > /dev/null 2>&1
+	check "Descargando Firefox"
+	cd /opt && tar -xf firefox-99.0.tar.bz2 > /dev/null 2>&1
+	rm -rf firefox-99.0.tar.bz2 2>/dev/null
+	check "Descomprimiendo archivo de Firefox"
 	cd /bin && mv firefox firefox2 && ln -sf /opt/firefox/firefox firefox 2>/dev/null
-	check "Al instalar Firefox"
-
-	## Instalación de NordVPN
-	info "Instalando NordVPN"
-	NordVPN_url=$(curl -sSL "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main" | grep 'nordvpn-release*' | awk '{print $2}' | tr '><' ' ' | awk '{print $2}')
-	cd /tmp/ 2>/dev/null
-	wget "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/$NordVPN_url" > /dev/null 2>&1
-	dpkg -i $NordVPN_url > /dev/null 2>&1
-	apt-get update -y > /dev/null 2>&1
-	apt-get install nordvpn -y > /dev/null 2>&1
-	if [ $? -ne 0 ]; then
-		apt --fix-broken install -y > /dev/null 2>&1
-		apt-get install nordvpn -y > /dev/null 2>&1
-	fi
-	check "Al instalar NordVPN"
+	check "Instalando Firefox"
 
 	## Instalacion Brave
-	info "Instalando Brave"
+	info "Instalar Brave"
 	curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - > /dev/null 2>&1
 	echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list > /dev/null 2>&1
+	check "Descargando Brave"
 	apt-get update -y > /dev/null 2>&1
 	apt-get install brave-browser -y > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		apt --fix-broken install -y > /dev/null 2>&1
 		apt-get install brave-browser -y > /dev/null 2>&1
 	fi
-	check "Al instalar Brave"
+	check "Instalando Brave"
 
-	## Instalacion Pyrit
-	info "Instalando Pyrit"
-	cd /tmp/ ; wget http://ftp.mx.debian.org/debian/pool/main/p/pyrit/pyrit_0.5.1+git20180801-1_amd64.deb > /dev/null 2>&1
-	dpkg -i /tmp/pyrit_0.5.1+git20180801-1_amd64.deb > /dev/null 2>&1
-	check "Al instalar Pyrit"
-	
-	## Instalacion Scapy-2.4.2
-	info "Instalando Scapy 2.4.2"
-	cd /tmp/ ; wget https://github.com/secdev/scapy/archive/v2.4.2.zip > /dev/null 2>&1
-	unzip v2.4.2.zip > /dev/null 2>&1
-	cd scapy-2.4.2 && ./setup.py install > /dev/null 2>&1
-	check "Al instalar Scapy 2.4.2"
-
-	info "Instalando Gotop"
+	info "Instalar Gotop"
 	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
 	check "Clonando el repositorio de Gotop"
 	/tmp/gotop/scripts/download.sh > /dev/null 2>&1
-	check "En la instalación de Gotop"
+	check "Instalando Gotop"
 	mv gotop /usr/local/bin 2>/dev/null
-	check "Al mover el binario de gotop a /usr/local/bin"
+	check "Mover el binario de gotop a /usr/local/bin"
 
 	## Instalación de paquetes con pip & pip3
 	for ap in $(cat $PIP_TOOLS_LIST); do
@@ -97,74 +67,68 @@ function installApps(){
 		sudo -u $USERNAME $(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) > /dev/null 2>&1
 		check "Instalando $(echo $ap | cut -d ':' -f 2) ($USERNAME)"
 	done
+
+	## Instalación de paquetes con go
+	for ap in $(cat $GO_TOOLS_LIST); do
+		info "Instalando $(echo $ap | cut -d ':' -f 1)"
+		go install $(echo $ap | cut -d ':' -f 2) > /dev/null 2>&1
+		check "Instalando $(echo $ap | cut -d ':' -f 1) (root)"
+	done
 }
 
 ### Instalacion de aplicaciones terceras en /opt/
 function gitTools(){
 	section "COMENZANDO INSTALACIÓN DE APLICACIONES DE TERCEROS"
 	checkInternet
-	info "Descargando netcat 64bits"
+	info "Configurando netcat 64bits"
 	wget https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip -O /tmp/netcat.zip > /dev/null 2>&1
-	check "Al descargar netcat"
+	check "Descargando netcat"
 	cd /tmp/ ; unzip /tmp/netcat.zip > /dev/null 2>&1
-	check "Al descomprimir netcat"
+	check "Descompirmiendo netcat"
 	sudo cp /tmp/netcat-1.11/nc64.exe /usr/share/windows-resources/binaries/nc64.exe > /dev/null 2>&1
-	check "Al copiar netcat en /usr/share/windows-resources/binaries"
+	check "Copiando netcat en /usr/share/windows-resources/binaries"
 	chmod 755 /usr/share/windows-resources/binaries/nc64.exe 2>/dev/null
-	check "Permisos asignados nc64.exe"
+	check "Asignando permisos a nc64.exe"
+	### WORDLISTS
 	## Descomprimir wordlist rockyou
     info "Descomprimiendo wordlist rockyou"
     cd /usr/share/wordlists 2>/dev/null
     gunzip rockyou.txt.gz > /dev/null 2>&1
     check "Descomprimir archivo rockyou en /usr/share/wordlist/"
     cd 2>/dev/null
-	## Hakrawler
-	info "Instalando Hakrawler"
-	cd /tmp/ 2>/dev/null
-	go get github.com/hakluke/hakrawler > /dev/null 2>&1
-	check "Agregando la aplicación Hakrawler"
-	## hakrevdns
-	info "Instalando hakrevdns"
-	go get github.com/hakluke/hakrevdns > /dev/null 2>&1
-	check "Agregando la aplicación hakrevdns"
+	## fuzzdb
+	info "Descargando wordlists fuzzdb"
+	cd /usr/share 2>/dev/null
+	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb > /dev/null 2>&1
+	ln -s `pwd`/fuzzdb /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlist/"
+	## OneListForAll
+	info "Descargando wordlists OneListForAll"
+	cd /usr/share 2>/dev/null
+	git clone --depth 1 https://github.com/six2dez/OneListForAll > /dev/null 2>&1
+	ln -s `pwd`/OneListForAll /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlist/"
+	## Others Wordlists
+	info "Descargando otras wordlists"
+	cd /usr/share 2>/dev/null
+	mkdir trickest; cd trickest; git clone https://github.com/trickest/wordlists > /dev/null 2>&1
+	cd wordlists; mv inventory robots technologies technology-repositories.json ../ && rm -rf wordlists 2>&1
+	ln -s /usr/share/trickest /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlist/trickest"
 	## WordPress Exploit Framework
 	info "Instalando WordPress Exploit Framework"
+	cd /
 	gem install wpxf > /dev/null 2>&1
-	check "Agregando la aplicacion WordPress Exploit Framework"
-	## gophish
-	# info "Instalando GoPhish"
-	# cd /tmp/ 2>/dev/null
-	# go get github.com/gophish/gophish > /dev/null 2>&1
-	# check "Agregando la aplicación GoPhish"
+	check "Agregando WordPress Exploit Framework"
 	## stegoveritas
 	info "Instalando stegoveritas"
-	pip3 install stegoveritas > /dev/null 2>&1
 	stegoveritas_install_deps > /dev/null 2>&1
-	check "Agregando la aplicación stegoveritas"
-	## gospider
-	info "Instalando GoSpider"
-	cd /tmp/ 2>/dev/null
-	go get -u github.com/jaeles-project/gospider > /dev/null 2>&1
-	check "Agregando la aplicación GoSpider"
+	check "Agregando stegoveritas"
 
 ## Git clone con instalación aparte
-	info "Creando directorios de aplicativos"
+	info "Directorios de aplicativos"
 	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
-	check "Al crear directorios"
-	## Wpseku
-	# info "Descargando wpseku"
-	# cd $WORDPRESS_PATH 2>/dev/null
-	# git clone --depth 1 https://github.com/m4ll0k/WPSeku.git wpseku > /dev/null 2>&1
-	# cd wpseku 2>/dev/null
-	# pip3 install -r requirements.txt > /dev/null 2>&1
-	# check "Agregando la aplicación wpseku"
-	## Sherlock-Project
-	info "Descargando sherlock-project"
-	cd $OSINT_PATH 2>/dev/null
-	git clone --depth 1 https://github.com/sherlock-project/sherlock.git > /dev/null 2>&1
-	cd sherlock 2>/dev/null
-	python3 -m pip install -r requirements.txt  > /dev/null 2>&1
-	check "Agregando la aplicación sherlock-project"
+	check "Creando directorios"
 	## Impacket Python
 	info "Descargando Impacket Python"
 	cd $UTILITIES_PATH 2>/dev/null
@@ -180,21 +144,6 @@ function gitTools(){
 	pip3 install -r requirements.txt > /dev/null 2>&1
 	python3 gtfoblookup.py update > /dev/null 2>&1
 	check "Agregando GTFOBLookup"
-	## SocialFish
-	info "Descargando SocialFish"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone --depth 1 https://github.com/UndeadSec/SocialFish > /dev/null 2>&1
-	cd SocialFish 2>/dev/null
-	python3 -m pip install -r requirements.txt > /dev/null 2>&1
-	check "Agregando SocialFish"
-	## CRLFuzz
-	info "Descargando CRLFuzz"
-	cd /tmp/ 2>/dev/null
-	git clone --depth 1 https://github.com/dwisiswant0/crlfuzz > /dev/null 2>&1
-	cd /tmp/crlfuzz/cmd/crlfuzz 2>/dev/null
-	go build . > /dev/null 2>&1
-	mv crlfuzz /usr/local/bin > /dev/null 2>&1
-	check "Agregando CRLFuzz"
 	## brutemap
 	info "Descargando brutemap"
 	cd $WEB_PATH 2>/dev/null
@@ -209,30 +158,12 @@ function gitTools(){
 	cd CWFF 2>/dev/null
 	python3 -m pip install -r requirements.txt > /dev/null 2>&1
 	check "Agregando CWFF"
-	## fuzzdb
-	info "Descargando wordlists fuzzdb"
-	cd /usr/share 2>/dev/null
-	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb > /dev/null 2>&1
-	ln -s `pwd`/fuzzdb /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlist/"
-	## Xerosploit
-	info "Descargando Xerosploit"
-	cd $WIFI_PATH 2>/dev/null
-	git clone --depth 1 https://github.com/LionSec/xerosploit > /dev/null 2>&1
-	cd xerosploit && echo -e "1" | sudo python install.py > /dev/null 2>&1
-	check "Agregando Xerosploit"
 	## Vulnx
 	info "Descargando Vulnx"
 	cd $WORDPRESS_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/anouarbensaad/vulnx > /dev/null 2>&1
 	cd vulnx && ./install.sh > /dev/null 2>&1
 	check "Agregando Vulnx"
-	## bashtop
-	info "Descargando BashTOP"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/aristocratos/bashtop.git > /dev/null 2>&1
-	cd bashtop && sudo make install > /dev/null 2>&1
-	check "Agregando BashTOP"´
 	## Drupwn
 	info "Descargando Drupwn"
 	cd $WEB_PATH 2>/dev/null
@@ -245,26 +176,6 @@ function gitTools(){
 	git clone --depth 1 https://github.com/whoot/Typo3Scan.git > /dev/null 2>&1
 	cd Typo3Scan && pip3 install -r requirements.txt > /dev/null 2>&1
 	check "Agregando Typo3Scan"
-	## Billcipher
-	info "Descargando Billcipher"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone --depth 1 https://github.com/GitHackTools/BillCipher > /dev/null 2>&1
-	cd BillCipher && pip install -r requirements.txt > /dev/null 2>&1
-	pip3 install -r requirements.txt > /dev/null 2>&1
-	check "Agregando Billcipher"
-	## Vulscan
-	info "Descargando Vulscan NSE"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/scipag/vulscan scipag_vulscan > /dev/null 2>&1
-	ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan > /dev/null 2>&1
-	check "Agregando Vulscan NSE"
-	## Evil-Winrm
-	info "Descargando Evil-WinRM"
-	cd $UTILITIES_PATH 2>/dev/null
-	gem install winrm winrm-fs stringio > /dev/null 2>&1
-	git clone https://github.com/Hackplayers/evil-winrm.git > /dev/null 2>&1
-	mv evil-winrm/evil-winrm.rb /usr/local/bin/evil-winrm > /dev/null 2>&1
-	check "Agregando Evil-WinRM"
 	## Reverse Shell Generator
 	info "Descargando Reverse Shell Generator"
 	cd $UTILITIES_PATH 2>/dev/null
@@ -276,19 +187,54 @@ function gitTools(){
 	cd $UTILITIES_PATH 2>/dev/null
 	git clone https://github.com/cddmp/enum4linux-ng.git >/dev/null 2>&1
 	cd enum4linux-ng && pip3 install -r requirements.txt >/dev/null 2>&1
+	ln -s $UTILITIES_PATH/enum4linux-ng/enum4linux-ng.py /usr/local/bin/enum4linux-ng  >/dev/null 2>&1
 	check "Agregando Enum4Linux-ng"
-	## SpoofCheck
-	info "Descargando spoofcheck"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/BishopFox/spoofcheck.git >/dev/null 2>&1
-	cd spoofcheck && pip install -r requirements.txt >/dev/null 2>&1
-	check "Agregando spoofcheck"
 	## ASN Lookup Tool and Traceroute Server
 	info "Descargando asn"
 	cd $UTILITIES_PATH 2>/dev/null
 	git clone https://github.com/nitefood/asn >/dev/null 2>&1
 	ln -sf $UTILITIES_PATH/asn/asn /usr/local/bin/asn >/dev/null 2>&1
 	check "Agregando asn"
+	## PyShell
+	info "Descargando PyShell"
+	cd $WEB_PATH 2>/dev/null
+	git clone https://github.com/JoelGMSec/PyShell >/dev/null 2>&1
+	cd PyShell ; pip3 install -r requirements.txt >/dev/null 2>&1
+	check "Agregando PyShell"
+	## Ghauri
+	info "Descargando ghauri"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/r0oth3x49/ghauri >/dev/null 2>&1
+	cd ghauri ; pip3 install -r requirements.txt >/dev/null 2>&1
+	python3 setup.py install >/dev/null 2>&1
+	check "Agregando ghauri"
+	## WhatWeb-Next-Generation
+	info "Descargando WhatWeb-Next-Generation"
+	cd $WEB_PATH 2>/dev/null
+	git clone https://github.com/urbanadventurer/WhatWeb &>/dev/null
+	cd WhatWeb; bundle install &>/dev/null
+	check "Agregando WhatWeb-Next-Generation"
+	## Nuclei-Fuzzing-Templates
+	info "Descargando Nuclei-Fuzzing-Templates"
+	cd /root/.local/nuclei-templates/ 2>/dev/null
+	git clone https://github.com/projectdiscovery/fuzzing-templates > /dev/null 2>&1
+	check "Agregando la aplicación Nuclei-Fuzzing-Templates"
+	## MobSF
+	info "Descargando MobSF"
+	git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git > /dev/null 2>&1
+	cd Mobile-Security-Framework-MobSF; ./setup.sh > /dev/null 2>&1
+	check "Agregando la aplicación MobFS"
+¡
+	## Eternalblue-Doublepulsar-Metasploit
+	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/ElevenPaths/Eternalblue-Doublepulsar-Metasploit >/dev/null 2>&1
+	cd Eternalblue-Doublepulsar-Metasploit 2>/dev/null
+	perl -pi -e "s[/root/Eternalblue-Doublepulsar-Metasploit/deps/][/opt/Utilities/Eternalblue-Doublepulsar-Metasploit/deps/]g" eternalblue_doublepulsar.rb
+	cp eternalblue_doublepulsar.rb /usr/share/metasploit-framework/modules/exploits/windows/smb > /dev/null 2>&1
+	mkdir -p /root/.wine/drive_c/ > /dev/null 2>&1
+	check "Agregando modulo Eternalblue-Doublepulsar en Metasploit"
+
 
 ## Descarga usando wget
 	## psPY
@@ -297,130 +243,125 @@ function gitTools(){
 	mkdir pspy > /dev/null 2>&1
 	cd pspy 2>/dev/null
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32 > /dev/null 2>&1
-	check "Agregando la aplicación pspy32"
+	check "Agregando pspy32"
 	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 > /dev/null 2>&1
-	check "Agregando la aplicación pspy64"
+	check "Agregando pspy64"
 	## Unix-Privesc-Check-PentestMonkey
 	info "Descargando unix-privesc-check"
 	cd $PRIVESCLIN_PATH 2>/dev/null
 	wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
 	tar -xzf unix-privesc-check-1.4.tar.gz && rm unix-privesc-check-1.4.tar.gz > /dev/null 2>&1
-	check "Agregando la aplicación unix-privesc-check"
-	## SubFinder
-	info "Instalando subFinder"
-	cd /tmp/ 2>/dev/null
-	subfinder_url=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
-	subfinder_file=$(curl --silent 'https://github.com/projectdiscovery/subfinder/releases' | grep -E 'subfinder_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$subfinder_url" > /dev/null 2>&1
-	tar -xzf /tmp/$subfinder_file > /dev/null 2>&1
-	mv /tmp/subfinder /usr/local/bin/ > /dev/null 2>&1
-	check "Agregando la aplicación subFinder"
-	## httpx
-	info "Instalando httpx"
-	cd /tmp/ 2>/dev/null
-	httpx_url=$(curl --silent 'https://github.com/projectdiscovery/httpx/releases' | grep -E 'httpx_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
-	httpx_file=$(curl --silent 'https://github.com/projectdiscovery/httpx/releases' | grep -E 'httpx_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$httpx_url" > /dev/null 2>&1
-	tar -xzf /tmp/$httpx_file > /dev/null 2>&1
-	mv /tmp/httpx /usr/local/bin > /dev/null 2>&1
-	check "Agregando la aplicación httpx"
-	## go-dork
-	info "Descargando go-Dork"
-	cd /tmp/ 2>/dev/null
-	godork_url=$(curl --silent 'https://github.com/dwisiswant0/go-dork/releases' | grep -E 'go-dork_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
-	godork_file=$(curl --silent 'https://github.com/dwisiswant0/go-dork/releases' | grep -E 'go-dork_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$godork_url" -O /tmp/$godork_file > /dev/null 2>&1
-	tar -xzf /tmp/$godork_file > /dev/null 2>&1
-	mv /tmp/go-dork /usr/local/bin > /dev/null 2>&1
-	check "Agregando go-Dork"
-	## BruteShark
-	info "Descargando BruteShark"
-	cd $UTILITIES_PATH && mkdir BruteShark 2>/dev/null
-	cd BruteShark 2>/dev/null
-	wget https://github.com/odedshimon/BruteShark/releases/latest/download/BruteSharkCli > /dev/null 2>&1
-	chmod +x BruteSharkCli > /dev/null 2>&1
-	check "Agregando BruteShark"
-	## naabu
-	info "Descargando naabu"
-	cd /tmp/ 2>/dev/null
-	naabu_url=$(curl --silent 'https://github.com/projectdiscovery/naabu/releases' | grep -E 'naabu_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
-	naabu_file=$(curl --silent 'https://github.com/projectdiscovery/naabu/releases' | grep -E 'naabu_?[0-9].*_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$naabu_url" -O /tmp/$naabu_file > /dev/null 2>&1
-	tar -xzf /tmp/$naabu_file > /dev/null 2>&1
-	mv /tmp/naabu /usr/local/bin > /dev/null 2>&1
-	check "Agregando naabu"
-	## evine
-	info "Descargando evine"
-	evine_url=$(curl --silent 'https://github.com/saeeddhqan/evine/releases' | grep -E 'evine_linux_amd64.tar.xz' | head -n 1 | awk -F '\"' '{print $2}')
-	evine_file=$(curl --silent 'https://github.com/saeeddhqan/evine/releases' | grep -E 'evine_linux_amd64.tar.xz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$evine_url" -O /tmp/$evine_file > /dev/null 2>&1
-	tar -xJf /tmp/$evine_file > /dev/null 2>&1
-	mv /tmp/evine /usr/local/bin > /dev/null 2>&1
-	check "Agregando evine"
-	## tempomail
-	info "Descargando tempomail"
-	cd /tmp/ 2>/dev/null
-	tempomail_url=$(curl --silent 'https://github.com/kavishgr/tempomail/releases' | grep -E 'linux-amd64-tempomail.tgz' | head -n 1 | awk -F '\"' '{print $2}')
-	wget "https://github.com$tempomail_url" > /dev/null 2>&1
-	tar -xzf linux-amd64-tempomail.tgz && mv tempomail /usr/local/bin/ > /dev/null 2>&1
-	check "Agregando la aplicación tempomail"
-	## dnsx
-	info "Descargando dnsx"
-	dnsx_url=$(curl --silent 'https://github.com/projectdiscovery/dnsx/releases/' | grep -E 'dnsx_1.0.1_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}')
-	dnsx_file=$(curl --silent 'https://github.com/projectdiscovery/dnsx/releases/' | grep -E 'dnsx_1.0.1_linux_amd64.tar.gz' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$dnsx_url" -O /tmp/$dnsx_file > /dev/null 2>&1
-	tar -xzf /tmp/$dnsx_file > /dev/null 2>&1
-	mv /tmp/dnsx /usr/local/bin > /dev/null 2>&1
-	check "Agregando dnsx"
+	check "Agregando unix-privesc-check"
 	## Pandoc
 	info "Descargando pandoc"
-	pandoc_url=$(curl --silent 'https://github.com/jgm/pandoc/releases/' | grep -E 'pandoc-?[1-9].*-amd64.deb' | head -n 1 | awk -F '\"' '{print $2}')
-	pandoc_file=$(curl --silent 'https://github.com/jgm/pandoc/releases/' | grep -E 'pandoc-?[1-9].*-amd64.deb' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$pandoc_url" -O /tmp/$pandoc_file > /dev/null 2>&1
-	dpkg -i /tmp/$pandoc_file > /dev/null 2>&1
+	wget "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-amd64.deb" -O /tmp/pandoc-2.19.2-1-amd64.deb > /dev/null 2>&1
+	dpkg -i /tmp/pandoc-2.19.2-1-amd64.deb > /dev/null 2>&1
 	check "Agregando pandoc"
 	## Eisvogel
 	info "Descargando Eisvogel"
-	cd /tmp && wget "https://github.com$(curl --silent 'https://github.com/Wandmalfarbe/pandoc-latex-template/releases/' | grep -E 'Eisvogel-?[1-9]*.zip' | head -n 1 | awk -F '\"' '{print $2}')" > /dev/null 2>&1
-	echo -e "A" | unzip $(curl --silent 'https://github.com/Wandmalfarbe/pandoc-latex-template/releases/' | grep -E 'Eisvogel-?[1-9]*.zip' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}') > /dev/null 2>&1
+	cd /tmp && wget "https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.1.0/Eisvogel-2.1.0.zip" > /dev/null 2>&1
+	echo -e "A" | unzip Eisvogel-2.1.0.zip > /dev/null 2>&1
 	mkdir -p /root/.local/share/pandoc/templates > /dev/null 2>&1
 	check "Creando directorio Eisvogel"
 	mv /tmp/eisvogel.latex /root/.local/share/pandoc/templates > /dev/null 2>&1
 	check "Agregando Eisvogel"
 	## duf
 	info "Descargando duf"
-	duf_url=$(curl --silent 'https://github.com/muesli/duf/releases' | grep -E 'duf_*.*_linux_amd64.deb' | head -n 1 | awk -F '\"' '{print $2}')
-	duf_file=$(curl --silent 'https://github.com/muesli/duf/releases' | grep -E 'duf_*.*_linux_amd64.deb' | head -n 1 | awk -F '\"' '{print $2}' | tr '/' ' ' | awk 'NF{print $NF}')
-	wget "https://github.com$duf_url" -O /tmp/$duf_file > /dev/null 2>&1
-	dpkg -i /tmp/$duf_file > /dev/null 2>&1
+	wget "https://github.com/muesli/duf/releases/download/v0.8.0/duf_0.8.0_linux_amd64.deb" -O /tmp/duf_0.8.0_linux_amd64.deb > /dev/null 2>&1
+	dpkg -i /tmp/duf_0.8.0_linux_amd64.deb > /dev/null 2>&1
 	check "Agregando duf"
 	## md2pdf
 	info "Descargando md2pdf"
 	cd /tmp && wget https://raw.githubusercontent.com/m4lal0/md2pdf/main/md2pdf.sh > /dev/null 2>&1
 	mv /tmp/md2pdf.sh /usr/local/bin/md2pdf && chmod +x /usr/local/bin/md2pdf > /dev/null 2>&1
 	check "Agregando md2pdf"
-	## Rustcat
-	info "Descargando rustcat"
-	cd /tmp && wget https://github.com/robiot/rustcat/releases/latest/download/rustcat_amd64.deb  > /dev/null 2>&1
-	sudo apt install ./rustcat_amd64.deb  > /dev/null 2>&1
-	check "Agregando rustcat"
 	## RPCRecon
 	info "Descargando RPCRecon"
 	cd /tmp && wget https://raw.githubusercontent.com/m4lal0/RPCrecon/main/rpcrecon.sh -O /tmp/rpcrecon > /dev/null 2>&1
 	chmod +x /tmp/rpcrecon && mv /tmp/rpcrecon /usr/local/bin/rpcrecon > /dev/null 2>&1
 	check "Agregando RPCRecon"
+	## RustScan
+	info "Descargando RustScan"
+	wget "https://github.com/RustScan/RustScan/releases/download/2.0.1/rustscan_2.0.1_amd64.deb" -O /tmp/rustscan_2.0.1_amd64.deb > /dev/null 2>&1
+	dpkg -i /tmp/rustscan_2.0.1_amd64.deb > /dev/null 2>&1
+	check "Agregando RustScan"
+	## tempomail
+	info "Descargando tempomail"
+	cd /tmp/ 2>/dev/null
+	wget https://github.com/kavishgr/tempomail/releases/download/1.1.0/linux-amd64-tempomail.tgz > /dev/null 2>&1
+	tar -xf linux-amd64-tempomail.tgz > /dev/null 2>&1
+	mv tempomail /usr/local/bin/ > /dev/null 2>&1
+	check "Agregando tempomail"
+	## ABE (Android-Backup-Extractor)
+	info "Descargando Android-Backup-Extractor"
+	mkdir $UTILITIES_PATH/Android-Backup-Extractor && wget "https://github.com/nelenkov/android-backup-extractor/releases/download/master-20221109063121-8fdfc5e/abe.jar" -O $UTILITIES_PATH/Android-Backup-Extractor/abe.jar > /dev/null 2>&1
+	check "Agregando Android-Backup-Extractor"
+	## Venom
+	info "Descargando venom"
+	curl https://github.com/ovh/venom/releases/download/v1.1.0/venom.linux-amd64 -L -o /usr/local/bin/venom > /dev/null 2>&1
+	chmod +x /usr/local/bin/venom
+	check "Agregando venom"
+	## CORS
+	info "Descargando CORS"
+	mkdir $WEB_PATH/CORS &&	wget https://raw.githubusercontent.com/gwen001/pentest-tools/master/cors.py -O $WEB_PATH/CORS/cors.py > /dev/null 2>&1
+	check "Agregando cors.py"
+	## Rustcat
+	info "Descargando rustcat"
+	wget "https://github.com/robiot/rustcat/releases/download/v3.0.0/rcat-v3.0.0-linux-x86_64.deb" -O /tmp/rcat-v3.0.0-linux-x86_64.deb > /dev/null 2>&1
+	cd /tmp && sudo apt install ./rcat-v3.0.0-linux-x86_64.deb  > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		apt --fix-broken install -y > /dev/null 2>&1
+		sudo apt install ./rcat-v3.0.0-linux-x86_64.deb > /dev/null 2>&1
+	fi
+	check "Agregando rustcat"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
+	check "Agregando web_techno.nse"
 	wget https://raw.githubusercontent.com/GossiTheDog/scanning/main/http-vuln-exchange.nse -O /usr/share/nmap/scripts/http-vuln-exchange.nse > /dev/null 2>&1
+	check "Agregando http-vuln-exchange.nse"
 	wget https://raw.githubusercontent.com/s4n7h0/NSE/master/http-lfi.nse -O /usr/share/nmap/scripts/http-lfi.nse > /dev/null 2>&1
-	wget https://raw.githubusercontent.com/psc4re/NSE-scripts/master/CVE-2021-21972.nse -O /usr/share/nmap/scripts/smb3-smbghost.nse > /dev/null 2>&1
+	check "Agregando http-lfi.nse"
+	wget https://raw.githubusercontent.com/psc4re/NSE-scripts/master/CVE-2021-21972.nse -O /usr/share/nmap/scripts/cve-2021-21972.nse > /dev/null 2>&1
+	check "Agregando CVE-2021-21972.nse"
+	wget https://raw.githubusercontent.com/psc4re/NSE-scripts/master/cve-2020-0796.nse -O /usr/share/nmap/scripts/smb3-smbghost.nse > /dev/null 2>&1
+	check "Agregando cve-2020-0796.nse"
+	wget https://raw.githubusercontent.com/psc4re/NSE-scripts/master/cve-2020-1350.nse -O /usr/share/nmap/scripts/cve-2020-1350.nse > /dev/null 2>&1
+	check "Agregando cve-2020-1350.nse"
+	wget https://raw.githubusercontent.com/psc4re/NSE-scripts/master/proxyshell.nse -O /usr/share/nmap/scripts/proxyshell.nse > /dev/null 2>&1
+	check "Agregando proxyshell.nse"
 	wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/http-vulners-regex.nse -O /usr/share/nmap/scripts/http-vulners-regex.nse > /dev/null 2>&1
+	check "Agregando http-vulners-regex.nse"
 	wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/http-vulners-regex.json -O /usr/share/nmap/nselib/data/http-vulners-regex.json > /dev/null 2>&1
+	check "Agregando http-vulners-regex.json"
 	wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/http-vulners-paths.txt -O /usr/share/nmap/nselib/data/http-vulners-paths.txt > /dev/null 2>&1
+	check "Agregando http-vulners-paths.txt"
+	wget https://raw.githubusercontent.com/hackertarget/nmap-nse-scripts/master/http-wordpress-info.nse -O /usr/share/nmap/scripts/http-wordpress-info.nse > /dev/null 2>&1
+	check "Agregando http-wordpress-info.nse"
+	wget https://raw.githubusercontent.com/hackertarget/nmap-nse-scripts/master/wp-themes.lst -O /usr/share/nmap/nselib/data/wp-themes.lst > /dev/null 2>&1
+	check "Agregando wp-themes.lst"
+	wget https://raw.githubusercontent.com/hackertarget/nmap-nse-scripts/master/wp-plugins.lst -O /usr/share/nmap/nselib/data/wp-plugins.lst > /dev/null 2>&1
+	check "Agregando wp-plugins.lst"
 	wget https://svn.nmap.org/nmap/scripts/clamav-exec.nse -O /usr/share/nmap/scripts/clamav-exec.nse >/dev/null 2>&1
+	check "Agregando clamav-exec.nse"
+	wget https://raw.githubusercontent.com/giterlizzi/nmap-log4shell/main/log4shell.nse -O /usr/share/nmap/scripts/log4shell.nse > /dev/null 2>&1
+	check "Agregando log4shell.nse"
+	wget https://raw.githubusercontent.com/claroty/CVE2020-0796/master/nse_script/smb2-capabilities_patched.nse -O /usr/share/nmap/smb2-capabilities_patched.nse >/dev/null 2>&1
+	check "Agregando smb2-capabilities_patched.nse"
+	wget https://raw.githubusercontent.com/GossiTheDog/scanning/main/http-vuln-exchange-proxyshell.nse -O /usr/share/nmap/scripts/http-vuln-exchange-proxyshell.nse >/dev/null 2>&1
+	check "Agregando http-vuln-exchange-proxyshell.nse"
+	wget https://raw.githubusercontent.com/CronUp/Vulnerabilidades/main/proxynotshell_checker.nse -O /usr/share/nmap/scripts/proxynotshell_checker.nse >/dev/null 2>&1
+	check "Agregando proxynotshell_checker.nse"
+	wget https://raw.githubusercontent.com/Diverto/nse-exchange/main/http-vuln-cve2022-41082.nse -O /usr/share/nmap/scripts/http-vuln-cve2022-41082.nse >/dev/null 2>&1
+	check "Agregando http-vuln-cve2022-41082.nse"
+	## Vulscan
+	info "Descargando Vulscan NSE"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/scipag/vulscan scipag_vulscan > /dev/null 2>&1
+	ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan > /dev/null 2>&1
+	check "Agregando Vulscan NSE"
 	nmap --script-updatedb > /dev/null 2>&1
-	check "Agregando NSE scripts adicionales"
+	check "Actualizando NSE scripts adicionales"
 
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
@@ -432,6 +373,4 @@ function gitTools(){
 		git clone --depth 1 $url > /dev/null 2>&1
 		check "Agregando la aplicación $name"
 	done
-	# ln -s $WEB_PATH/dirsearch/dirsearch.py /bin/dirsearch > /dev/null 2>&1
-	# check "Redireccionando el archivo dirsearch a /bin"
 }

@@ -21,6 +21,7 @@ WORDPRESS_PATH="$WEB_PATH/Wordpress"
 
 GIT_TOOLS_LIST="$TOOLS_PATH/github.txt"
 PIP_TOOLS_LIST="$TOOLS_PATH/pip.txt"
+GO_TOOLS_LIST="$TOOLS_PATH/gotools.txt"
 PACKAGES_LIST=$(cat $TOOLS_PATH/packages.txt | tr '\r\n' ' ')
 
 clear

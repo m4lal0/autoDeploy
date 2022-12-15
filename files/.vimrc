@@ -8,8 +8,6 @@ nnoremap <space>x :wq!<CR>
 let g:indentLine_color_gui = '#ea4c88'
 let g:indentLine_char = '⏽ '
 
-set noshowmode
-
 hi EndOfBuffer guifg=bg guibg=bg
 hi LineNr guibg=bg
 set foldcolumn=2
@@ -21,6 +19,8 @@ colorscheme nord
 syntax on
 set number
 set ruler
+set showmode
+set showcmd
 set showmatch
 set sw=4
 set tabstop=4

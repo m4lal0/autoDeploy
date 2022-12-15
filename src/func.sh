@@ -76,7 +76,7 @@ On_White='\033[47m'     # Background White
 trap ctrl_c INT
 
 function ctrl_c(){
-    echo -e "\n\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Saliendo de la aplicación...${Color_Off}"
+    echo -e "\n\n${Cyan}[${BYellow}⚠${Cyan}] ${BRed}Saliendo de la aplicación...${Color_Off}"
     tput cnorm
     exit 1
 }
@@ -146,7 +146,7 @@ function yes_or_no(){
 }
 
 function error(){
-	echo -e "${Cyan}[${BRed}✘${Cyan}] ${BRed}Error - $1${Color_Off}"
+	echo -e "${Cyan}[${BRed}✖${Cyan}] ${BRed}Error - $1${Color_Off}"
 	echo -e "[$(date +%T)] $1" 2>/dev/null >> $SCRIPT_PATH/error.log
 }
 
@@ -170,8 +170,8 @@ function section(){
 function deleteApp(){
 	validations
 	info "Eliminando directorios de aplicativos."
-	if [[ -d $EVASION_PATH || -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH ]]; then
-		rm -rf {$EVASION_PATH,$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH} 2>&1
+	if [[ -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH  || -d $WORDPRESS_PATH ]]; then
+		rm -rf {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>&1
 		check "Eliminado directorios."
 	else
 		error "No hay directorios de aplicativos instalados."
@@ -221,7 +221,7 @@ function validations(){
 
 ### Main instalation
 function install(){
-	echo -e "\n${Cyan}[${BYellow}*${Cyan}] ${BYellow}Instalación Completa.${Color_Off}\n"
+	echo -e "\n ${BYellow}⚠ Instalación Completa.${Color_Off}\n"
 	validations
 	installPackages
 	installApps
@@ -231,7 +231,7 @@ function install(){
 }
 
 function installTerminal(){
-	echo -e "\n${Cyan}[${BYellow}*${Cyan}] ${BYellow}Instalación de la capa de personalización de la Terminal y Escritorio.${Color_Off}\n"
+	echo -e "\n ${BYellow}⚠ Instalación de la capa de personalización de la Terminal y Escritorio.${Color_Off}\n"
 	validations
 	installPackages
 	customTerminal
@@ -239,7 +239,7 @@ function installTerminal(){
 }
 
 function installTerceros(){
-	echo -e "\n${Cyan}[${BYellow}*${Cyan}] ${BYellow}Instalación de Aplicativos de terceros.${Color_Off}\n"
+	echo -e "\n ${BYellow}⚠ Instalación de Aplicativos de terceros.${Color_Off}\n"
 	validations
 	installPackages
 	installApps

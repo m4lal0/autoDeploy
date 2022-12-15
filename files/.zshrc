@@ -190,14 +190,22 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more aliases
-alias ll='lsd -lh --group-dirs=first'
+alias ll='lsd -lha --group-dirs=first'
 alias la='lsd -a --group-dirs=first'
 alias l='lsd --group-dirs=first'
-alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias tree='lsd --tree'
+alias ping='grc ping'
+alias ps='grc ps'
+alias traceroute='grc traceroute'
+alias netstat='grc netstat'
+alias nmap='grc nmap'
+alias abe='java -jar /opt/Utilities/abe.jar'
+alias dud='grc du -d 1 -h'
+alias cheat='tldr'
+alias whatweb='/opt/Web/WhatWeb/whatweb'
 
-alias cat='/usr/bin/bat'
+alias cat='/usr/bin/bat -l python'
 alias catn='/usr/bin/cat'
 alias catnl='/usr/bin/bat --paging=never'
 
@@ -206,14 +214,42 @@ alias rm-restore='trash-restore'
 alias rm-list='trash-list'
 
 alias zshrc='vi $HOME/.zshrc'
+alias reload='source $HOME/.zshrc'
 
-alias dud='du -d 1 -h'
-
-alias cheat='tldr'
+alias textup="curl -F 'f:1=@file.ext' ix.io"
+alias transfer="curl --upload-file $1 https://transfer.sh/$1"
 
 # Functions
+
+# Encrypt file
+function encryptFile(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		openssl enc -aes-256-cbc -pbkdf2 -k strongPass <$1 >$1.enc
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<file>\033[0m"
+	fi
+}
+
+# Decrypt file
+function decryptFile(){
+	if [[ -n $1 && -n $2 && $# -le 2 ]]; then
+		openssl enc -d -aes-256-cbc -pbkdf2 -k strongPass <$1 >$2
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<Encrypt-File> <Output-File>\033[0m"
+	fi
+}
+
 function mkt() {
-	mkdir -p {discovery/nmap,discovery/web,exploits,content,scripts} && ls -lah
+	mkdir -p {recon,exploits,content} && ls -lah
+}
+
+# Search Wordlists
+function wordlists(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		find -L /usr/share/wordlists -type f -iname "*$1*"
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<string>\033[0m"
+	fi
 }
 
 function extractPorts(){
@@ -246,15 +282,13 @@ function extractPorts(){
 }
 
 function rmk() {
-	if [[ -n $1 ]]; then
+	if [[ -n $1 && $# -eq 1 ]]; then
 		echo -ne "\n\033[0;36m[\033[1;34m*\033[0;36m] \033[1;37mFile to apply secure deletion: \033[1;32m$1\033[0m "
 		echo
 		echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mPhase [1/2]:\033[0m\n"
-		scrub -p dod $1
-		echo -e "\n\033[0;36m[\033[1;33m!\033[0;36m] \033[1;37mPhase [2/2]:\033[0m\n"
-		shred -zun 10 -v $1
+		gum confirm "Desea eliminar?" && scrub -p dod $1 && shred -zun 10 -v $1
 	else
-		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<word>\033[0m"
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<file>\033[0m"
 	fi
 }
 
@@ -294,14 +328,14 @@ function fzf-lovely(){
 # Search NSE script
 function nseSearch(){
 	#locate *.nse | grep -i -o "$1".*;
-	if [[ -n $1 ]]; then
+	if [[ -n $1 && $# -eq 1 ]]; then
 		nmap_basepath=$(nmap -v -d 2>/dev/null | grep -Po 'Read from \K\/.*(?=:)')
-		script_list=$(grep -Po '[\w-]+(?=.nse)' "$nmap_basepath"/scripts/script.db | grep "$1")
+		script_list=$(grep -Po '[\w-]+(?=.nse)' "$nmap_basepath"/scripts/script.db | grep -i "$1")
 
 		# Search NSE script names for search parameter
 		if [[ -n $script_list ]]; then
 			echo -e "\n\033[3;36mNSE scripts available in nmap:\033[0m"
-			grep -Po '[\w-]+(?=.nse)' "$nmap_basepath"/scripts/script.db | grep "$1"
+			grep -Po '[\w-]+(?=.nse)' "$nmap_basepath"/scripts/script.db | grep -i "$1"
 		else
 			echo -e "\n\033[1;31mNo matches found for \033[0;97m'$1'\033[1;31m.\033[0m"
 		fi
@@ -313,7 +347,7 @@ function nseSearch(){
 # Add target
 function addtarget(){
 	if [[ -n $1 ]]; then
-		echo $1 > $HOME/.config/scripts/.targets 2>/dev/null
+		echo $1 > /home/$SUDO_USER/.config/scripts/.targets 2>/dev/null
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: addtarget <IP-Address>\033[0m"
 	fi
@@ -321,7 +355,83 @@ function addtarget(){
 
 # Delete target
 function deltarget(){
-	echo "" > $HOME/.config/scripts/.targets 2>/dev/null
+	echo "" > /home/$SUDO_USER/.config/scripts/.targets 2>/dev/null
+}
+
+# IP Address Information
+function ipinfo(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		curl http://ipinfo.io/$1
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: ipinfo <IP-Address>\033[0m"
+	fi
+}
+
+# My IP Address Public
+function myip(){
+	curl ifconfig.co
+}
+
+# Conocer la URL en una URL acortada
+function urlAcortada(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		curl -sLI $1 | grep -i Location
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: urlAcortada <URL>\033[0m"
+	fi
+}
+
+# Conocer la version de WordPress de un sitio
+function wpVersion(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		curl -s -X GET $1 | grep '<meta name="generator"'
+		if [ $? -ne 0 ]; then
+			curl -s -X GET $1/wp-links-opml.php | grep '<meta name="generator"'
+		fi
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: wpVersion <URL-WordPress>\033[0m"
+	fi
+}
+
+# Conocer los plugins instalados de un sitio web con WordPress
+function wpPlugins(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		curl -s -X GET $1 | sed 's/href=/\n/g' | sed 's/src=/\n/g' | grep 'wp-content/plugins/*' | cut -d"'" -f2
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: wpPlugins <URL>\033[0m"
+	fi
+}
+
+# Conocer los temas instalados de un sitio web con WordPress
+function wpThemes(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		curl -s -X GET $1 | sed 's/href=/\n/g' | sed 's/src=/\n/g' | grep 'themes' | cut -d"'" -f2
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: wpThemes <URL>\033[0m"
+	fi
+}
+
+function zoneTransfer(){
+	if [[ -n $1 && $# -eq 1 ]]; then
+		domain=$1
+		n=0
+		for server in $(host -t ns $domain | cut -d ' ' -f 4) ; do
+			address=`host -l $1 $server | grep -i 'address' | tr "\n" "|"`
+				if [ -n "$address" ] ; then
+					address2=`echo $address | cut -d '#' -f 1`
+					echo $address2
+					tmp=`echo $address2 | cut -d ' ' -f 2`
+					zonetransfer=`dig +short -t AXFR $domain @$tmp`
+					echo -e "\t $zonetransfer"
+					n=1
+				fi
+		done
+		if [ $n -eq 0 ] ; then
+			echo "\n\t\033[1;31m[-] Zone transfer not possible!\033[0m"
+		fi
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: zoneTransfer <DOMAIN>\033[0m"
+	fi
 }
 
 # Configuration tldr command 
@@ -346,7 +456,7 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
 fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh-sudo/sudo.plugin.zsh
-source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+#source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # enable command-not-found
 if [ -f /etc/zsh_command_not_found ]; then
