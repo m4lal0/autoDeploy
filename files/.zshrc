@@ -15,7 +15,7 @@ WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # Manual PATH configuration
 GOPATH=/root/go
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/games:/usr/games:/usr/lib/go:$GOPATH/bin
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/games:/usr/games:/snap/bin:/usr/lib/go:$GOPATH/bin
 
 # hide EOL sign ('%')
 export PROMPT_EOL_MARK=""
@@ -203,9 +203,9 @@ alias nmap='grc nmap'
 alias abe='java -jar /opt/Utilities/abe.jar'
 alias dud='grc du -d 1 -h'
 alias cheat='tldr'
-alias whatweb='/opt/Web/WhatWeb/whatweb'
+#alias whatweb='/opt/Web/WhatWeb/whatweb'
 
-alias cat='/usr/bin/bat -l python'
+alias cat='/usr/bin/bat'
 alias catn='/usr/bin/cat'
 alias catnl='/usr/bin/bat --paging=never'
 
@@ -254,9 +254,9 @@ function wordlists(){
 
 function extractPorts(){
 	if [[ -n $1 && -z $2 ]]; then
-		ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
-		ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
-		ports_list="$(cat $1 | grep -v ^#| sed 's/Ports: /\'$'\n/g' |  tr '/' '\t' | tr ',' '\n' | sed 's/^ //g' | grep -v "Host" | sed 's/Ignored State.*$//')"
+		ip_address="$(/usr/bin/cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
+		ports="$(/usr/bin/cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
+		ports_list="$(/usr/bin/cat $1 | grep -v ^#| sed 's/Ports: /\'$'\n/g' |  tr '/' '\t' | tr ',' '\n' | sed 's/^ //g' | grep -v "Host" | sed 's/Ignored State.*$//')"
 		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[3;37mExtracting information...\033[0m" > extractPorts.tmp
 		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mIP Address: \033[0;35m$ip_address\033[0m" >> extractPorts.tmp
 		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mOpen Ports: \033[0;33m$ports\033[0m" >> extractPorts.tmp
@@ -264,9 +264,9 @@ function extractPorts(){
 		echo -e "\n$ports_list" >> extractPorts.tmp
 		echo $ports | tr -d '\n' | xclip -sel clip
 		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[1;37mPorts copied to clipboard\n\033[0m" >> extractPorts.tmp
-		cat extractPorts.tmp; rm extractPorts.tmp
+		/usr/bin/cat extractPorts.tmp; rm extractPorts.tmp
 	elif [[ -n $1 && -n $2 ]]; then
-		ports="$(cat $1 | grep "$2" | sort -u | head -n 1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
+		ports="$(/usr/bin/cat $1 | grep "$2" | sort -u | head -n 1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
 		ports_list="$(grep -w "$2" $1 | grep -v ^# | sed 's/Ports: /\'$'\n/g' |  tr '/' '\t' | tr ',' '\n' | sed 's/^ //g' | grep -v "Host" | sed 's/Ignored State.*$//')"
 		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[3;37mExtracting information...\033[0m" > extractPorts.tmp
 		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mIP Address: \033[0;35m$2\033[0m" >> extractPorts.tmp
@@ -275,7 +275,7 @@ function extractPorts(){
 		echo -e "\n$ports_list" >> extractPorts.tmp
 		echo $ports | tr -d '\n' | xclip -sel clip
 		echo -e "\n\033[0;36m[\033[0;33m!\033[0;36m] \033[1;37mPorts copied to clipboard\n\033[0m" >> extractPorts.tmp
-		cat extractPorts.tmp; rm extractPorts.tmp
+		/usr/bin/cat extractPorts.tmp; rm extractPorts.tmp
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<nmap.grepeable>\033[0m"
 	fi
@@ -313,7 +313,7 @@ function fzf-lovely(){
 			highlight -O ansi -l {} ||
 			coderay {} ||
 			rougify {} ||
-			cat {}) 2> /dev/null | head -500'
+			/usr/bin/cat {}) 2> /dev/null | head -500'
 	else
 		fzf -m --preview '[[ $(file --mime {}) =~ binary ]] &&
 			echo {} is a binary file ||
@@ -321,7 +321,7 @@ function fzf-lovely(){
 			highlight -O ansi -l {} ||
 			coderay {} ||
 			rougify {} ||
-			cat {}) 2> /dev/null | head -500'
+			/usr/bin/cat {}) 2> /dev/null | head -500'
 	fi
 }
 
@@ -433,6 +433,9 @@ function zoneTransfer(){
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: zoneTransfer <DOMAIN>\033[0m"
 	fi
 }
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 
 # Configuration tldr command 
 export TLDR_COLOR_NAME="bold yellow"

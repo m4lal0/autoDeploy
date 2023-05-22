@@ -2,4 +2,4 @@ Command=/usr/bin/bash -c "~/.config/scripts/user.sh"
 UseLabel=0
 Text=(User)
 UpdatePeriod=60000
-Font=FiraCode Nerd Font Bold 11
+Font=Hack Nerd Font Bold 11
