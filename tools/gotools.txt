@@ -15,3 +15,7 @@ hakrevdns:github.com/hakluke/hakrevdns@latest
 qsreplace:github.com/tomnomnom/qsreplace@latest
 kxss:github.com/Emoe/kxss@latest
 waybackurls:github.com/tomnomnom/waybackurls@latest
+gau:github.com/lc/gau/v2/cmd/gau@latest
+hakrawler:github.com/hakluke/hakrawler@latest
+corsme:github.com/shivangx01b/CorsMe@latest
+kerbrute:github.com/ropnop/kerbrute@latest
