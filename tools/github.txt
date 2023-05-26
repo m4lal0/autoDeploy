@@ -9,7 +9,7 @@ PrivEsc-Win|https://github.com/adrecon/ADRecon
 Utilities|https://github.com/vivami/SauronEye
 Web|https://github.com/TheRook/subbrute
 PrivEsc-Win|https://github.com/bitsadmin/wesng
-PrivEsc-Win|https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+PrivEsc-Win|https://github.com/Pwnistry/Windows-Exploit-Suggester-python3
 Utilities|https://github.com/s0md3v/Decodify
 Web|https://github.com/Dhayalanb/windows-php-reverse-shell
 Web|https://github.com/WhiteWinterWolf/wwwolf-php-webshell
@@ -27,7 +27,6 @@ Utilities|https://github.com/jaykali/maskphish
 Web/Wordpress|https://github.com/n00py/WPForce
 Web|https://github.com/rastating/joomlavs
 Web|https://github.com/tampe125/jscanner
-Utilities|https://github.com/ByDog3r/FAQUE
 Wifi|https://github.com/m4lal0/wifiAttack
 Utilities|https://github.com/hemp3l/sucrack
 OSINT|https://github.com/m4lal0/userSearch
@@ -52,12 +51,13 @@ Web|https://github.com/sensepost/jack
 Web|https://github.com/saleem8054/clickjack
 Utilities|https://github.com/m4lal0/smbrelay
 Utilities|https://github.com/internetwache/GitTools
-Utilities|https://github.com/D3VL/L3MON
 Utilities|https://github.com/ly4k/SMBGhost
 Utilities|https://github.com/vdjagilev/nmap2md
 Web|https://github.com/merttasci/csrf-poc-generator
-Web|https://github.com/Dheerajmadhukar/4-ZERO-3
 Web|https://github.com/nil0x42/phpsploit
 Utilities|https://github.com/ari5ti/Janus-Exploit
 Web|https://github.com/devanshbatham/OpenRedireX
 Utilities|https://github.com/keraattin/EmailAnalyzer
+PrivEsc-Win|https://github.com/rasta-mouse/Sherlock
+Web|https://github.com/Dheerajmadhukar/4-ZERO-3
+Web|https://github.com/vladko312/SSTImap
