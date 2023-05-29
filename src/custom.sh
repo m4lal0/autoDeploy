@@ -10,16 +10,20 @@ function customTerminal(){
 
 	info "Descargando fuente (Hack Nerd Font)"
 	cd /usr/local/share/fonts/ 2>/dev/null
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip > /dev/null 2>&1
-	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip"
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip > /dev/null 2>&1
+	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
 	unzip Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
 	rm Hack.zip 2>/dev/null
 
-	info "Descargando fuente (Fira Code Nerd)"
-	cd /usr/local/share/fonts/ 2>/dev/null
-	wget https://github.com/daniruiz/nerd-fonts/raw/fira%2Bkali/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf > /dev/null 2>&1
-	check "Instalando la fuente FiraCode Nerd"
+	#info "Descargando fuente (Fira Code Nerd)"
+	#cd /usr/local/share/fonts/ 2>/dev/null
+	#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip > /dev/null 2>&1
+	#check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip"
+	#unzip FiraCode.zip > /dev/null 2>&1
+	#check "Instalando la fuente Fira Code"
+	#rm FiraCode.zip 2>/dev/null
+	#wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf > /dev/null 2>&1
 
 	info "Configurando shell predeterminada"
 	usermod --shell /usr/bin/zsh root > /dev/null 2>&1
@@ -82,7 +86,7 @@ function customTerminal(){
 	check "Configurando permisos para nano"
 
 	info "Estableciendo configuración de vim"
-	wget https://raw.githubusercontent.com/arcticicestudio/nord-vim/main/colors/nord.vim -O /usr/share/vim/vim82/colors/nord.vim > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/arcticicestudio/nord-vim/main/colors/nord.vim -O /usr/share/vim/vim90/colors/nord.vim > /dev/null 2>&1
 	check "Descargando color para vim"
 	cp $FILES_PATH/.vimrc $HOME_PATH/.vimrc 2>/dev/null
 	check "Al encontrar $HOME_PATH/.vimrc"
@@ -153,35 +157,47 @@ function customTerminal(){
 		check "Configurando rofi (root)"
 	fi
 
-	info "Configurando mate terminal"
-	if [ ! -d /org/mate/terminal/profiles/default ]; then
-		mkdir /org/mate/terminal/profiles/default 2> /dev/null
+	info "Configurando qterminal del usuario"
+	if [ ! -d $HOME_PATH/qterminal.org ]; then
+		mkdir $HOME_PATH/qterminal.org 2> /dev/null
 	fi
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/copy-selection 'true' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-darkness '0.87130434782608701' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-color '#FFFFFFFFDDDD' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/bold-color '#000000000000' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/foreground-color '#000000000000' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/use-system-font 'false' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/font "'FiraCode Nerd Font Bold 11'" > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/background-type "'transparent'" > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/silent-bell 'true' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/default-show-menubar 'false' > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/cursor-shape "'ibeam'" > /dev/null 2>&1
-	sudo -u $USERNAME dconf write /org/mate/terminal/profiles/default/scrollback-unlimited 'true' > /dev/null 2>&1
-	check  "Al configurar mate terminal"
+	cp -f $FILES_PATH/qterminal.ini $HOME_PATH/.config/qterminal.org/ 2>/dev/null
+	check "Copiando archivo de configuración de qterminal del usuario"
+	perl -pi -e "s[USER-PATH][$HOME_PATH/]g" $HOME_PATH/.config/qterminal.org/qterminal.ini 2>/dev/null
+	check "Configurando archivo de qterminal del usuario"
+
+	info "Configurando qterminal de root"
+	if [ ! -d /root/.config/qterminal.org ]; then
+		mkdir /root/.config/qterminal.org 2> /dev/null
+	fi
+	cp -f $FILES_PATH/qterminal.ini /root/.config/qterminal.org/ 2>/dev/null
+	check "Copiando archivo de configuración de qterminal de root"
+	perl -pi -e "s[USER-PATH][/root/.config/]g" /root/.config/qterminal.org/qterminal.ini 2>/dev/null
+	check "Configurando archivo de qterminal de root"
 
 	info "Configurando escritorio"
 	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-geometric-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-geometric-16x9.png > /dev/null 2>&1
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-geometric-16x10.png?inline=false -O /usr/share/backgrounds/kali/kali-geometric-16x10.png > /dev/null 2>&1
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-light-strips-16x10.png?inline=false -O /usr/share/backgrounds/kali/kali-light-strips-16x10.png > /dev/null 2>&1
+	check "Descargando fondo kali-geometric"
 	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-light-strips-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-light-strips-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-light-strips"
 	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-contours-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-contours-16x9.png > /dev/null 2>&1
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-contours-16x10.png?inline=false -O /usr/share/backgrounds/kali/kali-contours-16x10.png > /dev/null 2>&1
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2021.4/backgrounds/kali/kali-abstract-sky-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-abstract-sky-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-contours"
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2022/backgrounds/kali-16x9/kali-abstract-sky.png?inline=false -O /usr/share/backgrounds/kali/kali-abstract-sky-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-abstract-sky"
 	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/legacy/backgrounds/kali-2.0/kali-2.0-1920x1080.png?inline=false -O /usr/share/backgrounds/kali/kali-2.0-1920x1080.png > /dev/null 2>&1
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-cubism-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-cubism-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-2.0"
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali-16x9/kali-cubism.jpg?inline=false -O /usr/share/backgrounds/kali/kali-cubism-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-cubism"
 	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2022/backgrounds/kali/kali-actiniaria-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-actiniaria-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-actiniaria"
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-neon-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-neon-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-neon"
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-laminaria-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-laminaria-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-laminaria"
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-red-sticker-16x9.jpg?inline=false -O /usr/share/backgrounds/kali/kali-red-sticker-16x9.jpg > /dev/null 2>&1
+	check "Descargando fondo kali-red-sticker"
+	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2024/backgrounds/kali/kali-aqua-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-aqua-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-aqua"
 	ln -s /usr/share/backgrounds/kali/kali-geometric-16x9.png /usr/share/backgrounds/kali-16x9/kali-geometric-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-light-strips-16x9.png /usr/share/backgrounds/kali-16x9/kali-light-strips-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-abstract-sky-16x9.png /usr/share/backgrounds/kali-16x9/kali-abstract-sky-16x9.png > /dev/null 2>&1
@@ -189,9 +205,13 @@ function customTerminal(){
 	ln -s /usr/share/backgrounds/kali/kali-2.0-1920x1080.png /usr/share/backgrounds/kali-16x9/kali-2.0-1920x1080.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-cubism-16x9.png /usr/share/backgrounds/kali-16x9/kali-cubism-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-actiniaria-16x9.png /usr/share/backgrounds/kali-16x9/kali-actiniaria-16x9.png > /dev/null 2>&1
-	check "Descargando fondos"
+	ln -s /usr/share/backgrounds/kali/kali-neon-16x9.png /usr/share/backgrounds/kali-16x9/kali-neon-16x9.png > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-laminaria-16x9.png /usr/share/backgrounds/kali-16x9/kali-laminaria-16x9.png > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-red-sticker-16x9.jpg /usr/share/backgrounds/kali-16x9/kali-red-sticker-16x9.jpg > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-aqua-16x9.png /usr/share/backgrounds/kali-16x9/kali-aqua-16x9.png > /dev/null 2>&1
+	check "Configurando fondos"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/kali-16x9/kali-actiniaria-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali-16x9/kali-aqua-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	check "Configurando fondo de inicio de sesión"
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
@@ -298,6 +318,10 @@ function customTerminal(){
 	cat /tmp/fix_grub.tmp > /etc/default/grub 2> /dev/null
 	update-grub &>/dev/null
 	check "Actualizando GRUB"
+
+	info "Configurando SNMP.conf"
+	perl -pi -e "s[mibs :][#mibs :]" /etc/snmp/snmp.conf
+	check "Actualizando SNMP.conf"
 
 	#info "Actualizacion de MSF"
 	#gem update --system > /dev/null 2>&1

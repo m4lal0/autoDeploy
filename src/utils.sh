@@ -29,14 +29,14 @@ function installApps(){
 	checkInternet
 
 	## Instalación de Firefox
-	info "Instalar Firefox"
-	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/99.0/linux-x86_64/en-US/firefox-99.0.tar.bz2 -O /opt/firefox-99.0.tar.bz2 > /dev/null 2>&1
-	check "Descargando Firefox"
-	cd /opt && tar -xf firefox-99.0.tar.bz2 > /dev/null 2>&1
-	rm -rf firefox-99.0.tar.bz2 2>/dev/null
-	check "Descomprimiendo archivo de Firefox"
-	cd /bin && mv firefox firefox2 && ln -sf /opt/firefox/firefox firefox 2>/dev/null
-	check "Instalando Firefox"
+	#info "Instalar Firefox"
+	#wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/99.0/linux-x86_64/en-US/firefox-99.0.tar.bz2 -O /opt/firefox-99.0.tar.bz2 > /dev/null 2>&1
+	#check "Descargando Firefox"
+	#cd /opt && tar -xf firefox-99.0.tar.bz2 > /dev/null 2>&1
+	#rm -rf firefox-99.0.tar.bz2 2>/dev/null
+	#check "Descomprimiendo archivo de Firefox"
+	#cd /bin && mv firefox firefox2 && ln -sf /opt/firefox/firefox firefox 2>/dev/null
+	#check "Instalando Firefox"
 
 	## Instalacion Brave
 	info "Instalar Brave"
@@ -62,9 +62,9 @@ function installApps(){
 	## Instalación de paquetes con pip & pip3
 	for ap in $(cat $PIP_TOOLS_LIST); do
 		info "Instalando $(echo $ap | cut -d ':' -f 2)"
-		$(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) > /dev/null 2>&1
+		$(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) --break-system-packages > /dev/null 2>&1
 		check "Instalando $(echo $ap | cut -d ':' -f 2) (root)"
-		sudo -u $USERNAME $(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) > /dev/null 2>&1
+		sudo -u $USERNAME $(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) --break-system-packages > /dev/null 2>&1
 		check "Instalando $(echo $ap | cut -d ':' -f 2) ($USERNAME)"
 	done
 
@@ -108,6 +108,12 @@ function gitTools(){
 	git clone --depth 1 https://github.com/six2dez/OneListForAll > /dev/null 2>&1
 	ln -s `pwd`/OneListForAll /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlist/"
+	## Kerberos-Enum-userlists
+	info "Descargando wordlists Kerberos-Username-Enumeration"
+	cd /usr/share 2>/dev/null
+	git clone https://github.com/attackdebris/kerberos_enum_userlists > /dev/null 2>&1
+	ln -s `pwd`/kerberos_enum_userlists /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlist/"
 	## Others Wordlists
 	info "Descargando otras wordlists"
 	cd /usr/share 2>/dev/null
@@ -120,28 +126,24 @@ function gitTools(){
 	cd /
 	gem install wpxf > /dev/null 2>&1
 	check "Agregando WordPress Exploit Framework"
-	## stegoveritas
-	info "Instalando stegoveritas"
-	stegoveritas_install_deps > /dev/null 2>&1
-	check "Agregando stegoveritas"
 
 ## Git clone con instalación aparte
 	info "Directorios de aplicativos"
 	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
 	check "Creando directorios"
 	## Impacket Python
-	info "Descargando Impacket Python"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/SecureAuthCorp/impacket > /dev/null 2>&1
-	cd impacket 2>/dev/null
-	python3 setup.py install > /dev/null 2>&1
-	check "Agregando Impacket Python"
+	#info "Descargando Impacket Python"
+	#cd $UTILITIES_PATH 2>/dev/null
+	#git clone https://github.com/SecureAuthCorp/impacket > /dev/null 2>&1
+	#cd impacket 2>/dev/null
+	#python3 setup.py install > /dev/null 2>&1
+	#check "Agregando Impacket Python"
 	## GTFOBLookup
 	info "Descargando GTFOBLookup"
 	cd $UTILITIES_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/nccgroup/GTFOBLookup > /dev/null 2>&1
 	cd GTFOBLookup 2>/dev/null
-	pip3 install -r requirements.txt > /dev/null 2>&1
+	pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
 	python3 gtfoblookup.py update > /dev/null 2>&1
 	check "Agregando GTFOBLookup"
 	## brutemap
@@ -149,14 +151,14 @@ function gitTools(){
 	cd $WEB_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/brutemap-dev/brutemap > /dev/null 2>&1
 	cd brutemap 2>/dev/null
-	pip install -r requirements.txt > /dev/null 2>&1
+	pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
 	check "Agregando brutemap"
 	## CWFF
 	info "Descargando CWFF"
 	cd $UTILITIES_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/D4Vinci/CWFF > /dev/null 2>&1
 	cd CWFF 2>/dev/null
-	python3 -m pip install -r requirements.txt > /dev/null 2>&1
+	pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
 	check "Agregando CWFF"
 	## Vulnx
 	info "Descargando Vulnx"
@@ -168,13 +170,13 @@ function gitTools(){
 	info "Descargando Drupwn"
 	cd $WEB_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/immunIT/drupwn > /dev/null 2>&1
-	cd drupwn && pip3 install -r requirements.txt > /dev/null 2>&1
+	cd drupwn && pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
 	check "Agregando Drupwn"
 	## Typo3Scan
 	info "Descargando Typo3Scan"
 	cd $WEB_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/whoot/Typo3Scan.git > /dev/null 2>&1
-	cd Typo3Scan && pip3 install -r requirements.txt > /dev/null 2>&1
+	cd Typo3Scan && pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
 	check "Agregando Typo3Scan"
 	## Reverse Shell Generator
 	info "Descargando Reverse Shell Generator"
@@ -186,7 +188,7 @@ function gitTools(){
 	info "Descargando Enum4Linux-ng"
 	cd $UTILITIES_PATH 2>/dev/null
 	git clone https://github.com/cddmp/enum4linux-ng.git >/dev/null 2>&1
-	cd enum4linux-ng && pip3 install -r requirements.txt >/dev/null 2>&1
+	cd enum4linux-ng && pip install -r requirements.txt --break-system-packages >/dev/null 2>&1
 	ln -s $UTILITIES_PATH/enum4linux-ng/enum4linux-ng.py /usr/local/bin/enum4linux-ng  >/dev/null 2>&1
 	check "Agregando Enum4Linux-ng"
 	## ASN Lookup Tool and Traceroute Server
@@ -199,32 +201,38 @@ function gitTools(){
 	info "Descargando PyShell"
 	cd $WEB_PATH 2>/dev/null
 	git clone https://github.com/JoelGMSec/PyShell >/dev/null 2>&1
-	cd PyShell ; pip3 install -r requirements.txt >/dev/null 2>&1
+	cd PyShell ; pip install -r requirements.txt --break-system-packages >/dev/null 2>&1
 	check "Agregando PyShell"
 	## Ghauri
 	info "Descargando ghauri"
 	cd $UTILITIES_PATH 2>/dev/null
 	git clone https://github.com/r0oth3x49/ghauri >/dev/null 2>&1
-	cd ghauri ; pip3 install -r requirements.txt >/dev/null 2>&1
+	cd ghauri ; pip install -r requirements.txt --break-system-packages >/dev/null 2>&1
 	python3 setup.py install >/dev/null 2>&1
 	check "Agregando ghauri"
 	## WhatWeb-Next-Generation
-	info "Descargando WhatWeb-Next-Generation"
-	cd $WEB_PATH 2>/dev/null
-	git clone https://github.com/urbanadventurer/WhatWeb &>/dev/null
-	cd WhatWeb; bundle install &>/dev/null
-	check "Agregando WhatWeb-Next-Generation"
+	#info "Descargando WhatWeb-Next-Generation"
+	#cd $WEB_PATH 2>/dev/null
+	#git clone https://github.com/urbanadventurer/WhatWeb &>/dev/null
+	#cd WhatWeb; bundle install &>/dev/null
+	#check "Agregando WhatWeb-Next-Generation"
 	## Nuclei-Fuzzing-Templates
 	info "Descargando Nuclei-Fuzzing-Templates"
 	cd /root/.local/nuclei-templates/ 2>/dev/null
 	git clone https://github.com/projectdiscovery/fuzzing-templates > /dev/null 2>&1
 	check "Agregando la aplicación Nuclei-Fuzzing-Templates"
 	## MobSF
-	info "Descargando MobSF"
-	git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git > /dev/null 2>&1
-	cd Mobile-Security-Framework-MobSF; ./setup.sh > /dev/null 2>&1
-	check "Agregando la aplicación MobFS"
-¡
+	#info "Descargando MobSF"
+	#git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git > /dev/null 2>&1
+	#cd Mobile-Security-Framework-MobSF; ./setup.sh > /dev/null 2>&1
+	#check "Agregando la aplicación MobFS"
+	## BloodHound.py
+	info "Descargando BloodHound.py"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/fox-it/BloodHound.py >/dev/null 2>&1
+	cd BloodHound.py && python3 setup.py install >/dev/null 2>&1
+	check "Agregando BloodHound.py"
+
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
 	cd $UTILITIES_PATH 2>/dev/null
@@ -236,15 +244,16 @@ function gitTools(){
 	check "Agregando modulo Eternalblue-Doublepulsar en Metasploit"
 
 
+
 ## Descarga usando wget
 	## psPY
 	info "Descargando pspy"
 	cd $PRIVESCLIN_PATH 2>/dev/null
 	mkdir pspy > /dev/null 2>&1
 	cd pspy 2>/dev/null
-	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32 > /dev/null 2>&1
+	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy32 > /dev/null 2>&1
 	check "Agregando pspy32"
-	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 > /dev/null 2>&1
+	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64 > /dev/null 2>&1
 	check "Agregando pspy64"
 	## Unix-Privesc-Check-PentestMonkey
 	info "Descargando unix-privesc-check"
@@ -314,6 +323,14 @@ function gitTools(){
 		sudo apt install ./rcat-v3.0.0-linux-x86_64.deb > /dev/null 2>&1
 	fi
 	check "Agregando rustcat"
+	## BloodHound
+	info "Descargando BloodHound"
+	cd $UTILITIES_PATH 2>/dev/null
+	wget https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-linux-x64.zip > /dev/null 2>&1
+	unzip BloodHound-linux-x64.zip > /dev/null 2>&1
+	rm BloodHound-linux-x64.zip > /dev/null 2>&1
+	mv BloodHound-linux-x64 BloodHound 2>/dev/null
+	check "Agregando BloodHound 4.0.3"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
@@ -354,6 +371,8 @@ function gitTools(){
 	check "Agregando proxynotshell_checker.nse"
 	wget https://raw.githubusercontent.com/Diverto/nse-exchange/main/http-vuln-cve2022-41082.nse -O /usr/share/nmap/scripts/http-vuln-cve2022-41082.nse >/dev/null 2>&1
 	check "Agregando http-vuln-cve2022-41082.nse"
+	wget https://raw.githubusercontent.com/RootUp/PersonalStuff/master/http-vuln-cve-2021-41773.nse -O /usr/share/nmap/scripts/http-vuln-cve-2021-41773.nse >/dev/null 2>&1
+	check "Agregando http-vuln-cve-2021-41773.nse"
 	## Vulscan
 	info "Descargando Vulscan NSE"
 	cd $UTILITIES_PATH 2>/dev/null
