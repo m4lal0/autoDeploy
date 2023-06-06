@@ -31,3 +31,5 @@ pip3:termcolor
 pip3:qark
 pip3:pyfiglet
 pip3:wsgidav
+pip3:black
+pip3:exurl
