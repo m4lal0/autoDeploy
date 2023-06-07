@@ -331,6 +331,12 @@ function gitTools(){
 	rm BloodHound-linux-x64.zip > /dev/null 2>&1
 	mv BloodHound-linux-x64 BloodHound 2>/dev/null
 	check "Agregando BloodHound 4.0.3"
+	## Kill-Port
+	info "Descargando KillPort"
+	cd /tmp && wget https://github.com/jkfran/killport/releases/download/v0.9.0/killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
+	tar -xzf killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
+	mv killport /usr/local/bin
+	check "Agregando KillPort"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
