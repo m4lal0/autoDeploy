@@ -1,9 +1,9 @@
 # autoDeploy
 
-[![GitHub top language](https://img.shields.io/github/languages/top/m4lal0/autoDeploy?logo=gnu-bash&style=flat-square)](#)
-[![GitHub repo size](https://img.shields.io/github/repo-size/m4lal0/autoDeploy?logo=webpack&style=flat-square)](#)
-[![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2020_&_2021-Supported-blue?style=flat-square&logo=kali-linux)](#)
-[![By](https://img.shields.io/badge/By-m4lal0-green?style=flat-square&logo=github)](#)
+[![GitHub top language](https://img.shields.io/github/languages/top/m4lal0/autoDeploy?logo=gnu-bash&style=for-the-badge)](#)
+[![GitHub repo size](https://img.shields.io/github/repo-size/m4lal0/autoDeploy?logo=webpack&style=for-the-badge)](#)
+[![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2023-Supported-blue?style=for-the-badge&logo=kali-linux)](#)
+[![By](https://img.shields.io/badge/By-m4lal0-green?style=for-the-badge&logo=github)](#)
 
 ![autoDeploy](./images/autodeploy.png)
 
@@ -79,7 +79,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - cheat
 - powerlevel10k
 - Oh my Tmux!
-- mate terminal custom
+- qterminal custom
 - terminator
 
 </details>
@@ -101,6 +101,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - Port Scanning
 	- amass
 	- Naabu
+	- RustScan
 - Subdomains
 	- Subblist3r
 	- SubFinder
@@ -256,7 +257,6 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 - SocialFish
 - Zphisher
 - Maskphish
-- FAQUE
 
 </details>
 
@@ -276,10 +276,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 <summary>Utilities</summary>
 
 - xClip
-- LibreOffice
-- Thunderbird
 - LaTeX
-- NordVPN
 - Tempomail
 - Pandoc
 - SauronEye
