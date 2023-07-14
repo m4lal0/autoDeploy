@@ -194,4 +194,5 @@ snmp-mibs-downloader
 xxd
 ipmitool
 pst-utils
+realtek-rtl8188eus-dkms
 seclists
