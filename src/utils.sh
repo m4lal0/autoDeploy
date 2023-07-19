@@ -129,7 +129,7 @@ function gitTools(){
 
 ## Git clone con instalación aparte
 	info "Directorios de aplicativos"
-	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>/dev/null
+	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH} 2>/dev/null
 	check "Creando directorios"
 	## Impacket Python
 	#info "Descargando Impacket Python"
@@ -228,7 +228,7 @@ function gitTools(){
 	#check "Agregando la aplicación MobFS"
 	## BloodHound.py
 	info "Descargando BloodHound.py"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $AD_PATH 2>/dev/null
 	git clone https://github.com/fox-it/BloodHound.py >/dev/null 2>&1
 	cd BloodHound.py && python3 setup.py install >/dev/null 2>&1
 	check "Agregando BloodHound.py"
@@ -325,7 +325,7 @@ function gitTools(){
 	check "Agregando rustcat"
 	## BloodHound
 	info "Descargando BloodHound"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $AD_PATH 2>/dev/null
 	wget https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-linux-x64.zip > /dev/null 2>&1
 	unzip BloodHound-linux-x64.zip > /dev/null 2>&1
 	rm BloodHound-linux-x64.zip > /dev/null 2>&1
@@ -337,6 +337,51 @@ function gitTools(){
 	tar -xzf killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
 	mv killport /usr/local/bin
 	check "Agregando KillPort"
+	## PHP_Reverse_Shell
+	info "Descargando php_reverse_shell.php"
+	wget https://raw.githubusercontent.com/ivan-sincek/php-reverse-shell/master/src/reverse/php_reverse_shell.php -O /usr/share/webshells/php/php_reverse_shell.php > /dev/null 2>&1
+	check "Agregando php_reverse_shell.php"
+	## Rubeus.exe
+	info "Descargando Rubeus.exe"
+	cd $AD_PATH && mkdir Rubeus 2>/dev/null
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Rubeus.exe -O $AD_PATH/Rubeus/Rubeus.exe > /dev/null 2>&1
+	check "Agregando Rubeus.exe"
+	## SharpHound
+	info "Descargando SharpHound.ps1"
+	cd $AD_PATH && mkdir SharpHound 2>/dev/null
+	wget https://raw.githubusercontent.com/puckiestyle/powershell/master/SharpHound.ps1 -O $AD_PATH/SharpHound/SharpHound.ps1 > /dev/null 2>&1
+	check "Agregando SharpHound.ps1"
+	## SafetyKatz.exe
+	info "Descargando SafetyKatz.exe"
+	cd $AD_PATH && mkdir SafetyKatz 2>/dev/null
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SafetyKatz.exe -O $AD_PATH/SafetyKatz/SafetyKatz.exe > /dev/null 2>&1
+	check "Agregando SafetyKatz.exe"
+	## JuicyPotatoNG
+	info "Descargando JuicyPotatoNG"
+	cd $PRIVESCWIN_PATH && mkdir JuicyPotato 2>/dev/null
+	wget https://github.com/antonioCoco/JuicyPotatoNG/releases/download/v1.1/JuicyPotatoNG.zip -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotatoNG.zip > /dev/null 2>&1
+	unzip JuicyPotatoNG.zip > /dev/null 2>&1
+	rm -rf JuicyPotatoNG.zip > /dev/null 2>&1
+	check "Agregando JuicyPotatoNG"
+	## JuicyPotato.exe
+	info "Descargando JuicyPotato.exe"
+	wget https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotato.exe > /dev/null 2>&1
+	check "Agregando JuicyPotato.exe"
+	## Churrasco.exe
+	info "Descargando churrasco.exe"
+	cd $PRIVESCWIN_PATH && mkdir churrasco 2>/dev/null
+	wget https://github.com/Re4son/Churrasco/raw/master/churrasco.exe -O $PRIVESCWIN_PATH/churrasco/churrasco.exe > /dev/null 2>&1
+	check "Agregando churrasco.exe"
+	## PrintSpoofer.exe
+	info "Descargando PrintSpoofer.exe"
+	cd $PRIVESCWIN_PATH && mkdir PrintSpoofer 2>/dev/null
+	wget https://github.com/k4sth4/PrintSpoofer/raw/main/PrintSpoofer.exe -O $PRIVESCWIN_PATH/PrintSpoofer/PrintSpoofer.exe > /dev/null 2>&1
+	check "Agregando PrintSpoofer.exe"
+	## LinPEAS
+	info "Descargando LinPEAS"
+	cd $PRIVESCLIN_PATH && mkdir linpeas 2>/dev/null
+	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh -O $PRIVESCLIN_PATH/linpeas/linpeas.sh > /dev/null 2>&1
+	check "Agregando LinPEAS"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1

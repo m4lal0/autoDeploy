@@ -170,8 +170,8 @@ function section(){
 function deleteApp(){
 	validations
 	info "Eliminando directorios de aplicativos."
-	if [[ -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH  || -d $WORDPRESS_PATH ]]; then
-		rm -rf {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH} 2>&1
+	if [[ -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH  || -d $WORDPRESS_PATH || -d $AD_PATH ]]; then
+		rm -rf {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH} 2>&1
 		check "Eliminado directorios."
 	else
 		error "No hay directorios de aplicativos instalados."
