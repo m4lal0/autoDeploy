@@ -39,7 +39,6 @@ Utilities|https://github.com/BiZken/PhishMailer
 Utilities|https://github.com/Cerbrutus-BruteForcer/cerbrutus
 Utilities|https://github.com/m4lal0/mac-identifier
 Web|https://github.com/flozz/p0wny-shell
-PrivEsc-Lin|https://github.com/carlospolop/PEASS-ng
 Utilities|https://github.com/besimorhino/powercat
 Wifi|https://github.com/kleo/evilportals
 Wifi|https://github.com/frozenjava/EvilPortalNano
@@ -69,3 +68,4 @@ AD|https://github.com/rasta-mouse/Sherlock
 Web|https://github.com/epsylon/Smuggler
 Web|https://github.com/m4ll0k/Atlas
 Web|https://github.com/zidansec/CloudPeler
+PrivEsc-Win|https://github.com/samratashok/nishang
