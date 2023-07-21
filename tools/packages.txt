@@ -175,7 +175,6 @@ qpdf
 reaver
 sendemail
 upx-ucl
-docker
 docker-compose
 cargo
 php
