@@ -69,6 +69,6 @@ Web|https://github.com/epsylon/Smuggler
 Web|https://github.com/m4ll0k/Atlas
 Web|https://github.com/zidansec/CloudPeler
 PrivEsc-Win|https://github.com/samratashok/nishang
-Web|https://github.com/commixproject/commix
 Web|https://github.com/jekyc/wig
 Web|https://github.com/lightos/Panoptic
+Utilities|https://github.com/t3l3machus/eviltree
