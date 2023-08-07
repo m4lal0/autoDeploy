@@ -205,9 +205,9 @@ alias dud='grc du -d 1 -h'
 alias cheat='tldr'
 #alias whatweb='/opt/Web/WhatWeb/whatweb'
 
-alias cat='/usr/bin/bat'
+alias cat='/usr/bin/bat --paging=never --style=plain'
 alias catn='/usr/bin/cat'
-alias catnl='/usr/bin/bat --paging=never'
+alias catl='/usr/bin/bat'
 
 alias rm='trash-put'
 alias rm-restore='trash-restore'
