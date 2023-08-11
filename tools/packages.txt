@@ -194,6 +194,6 @@ xxd
 ipmitool
 pst-utils
 realtek-rtl8188eus-dkms
-commmix
+commix
 parsero
 seclists
