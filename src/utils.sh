@@ -232,6 +232,12 @@ function gitTools(){
 	git clone https://github.com/fox-it/BloodHound.py >/dev/null 2>&1
 	cd BloodHound.py && python3 setup.py install >/dev/null 2>&1
 	check "Agregando BloodHound.py"
+	## wwwtree.py
+	info "Descargando wwwtree"
+	cd $WEB_PATH 2>/dev/null
+	git clone https://github.com/t3l3machus/wwwtree > /dev/null 2>&1
+	cd wwwtree && cp wwwtree.py /usr/local/bin/wwwtree 2>/dev/null
+	check "Agregando wwwtree"
 
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
