@@ -21,3 +21,4 @@ corsme:github.com/shivangx01b/CorsMe@latest
 kerbrute:github.com/ropnop/kerbrute@latest
 cariddi:github.com/edoardottt/cariddi/cmd/cariddi@latest
 encode:github.com/Brum3ns/encode/cmd/encode@latest
+getJS:github.com/003random/getJS@latest
