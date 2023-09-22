@@ -198,4 +198,7 @@ commix
 parsero
 villain
 humble
+exe2hexbat
+fierce
+shellter
 seclists
