@@ -72,3 +72,14 @@ PrivEsc-Win|https://github.com/samratashok/nishang
 Web|https://github.com/jekyc/wig
 Web|https://github.com/lightos/Panoptic
 Utilities|https://github.com/t3l3machus/eviltree
+Web|https://github.com/0xKayala/ParamSpider
+Web|https://github.com/JoelGMSec/HTTP-Shell
+Web|https://github.com/vladko312/SSTImap
+Web|https://github.com/fullhunt/log4j-scan
+Web|https://github.com/arthaud/git-dumper
+Web|https://github.com/faiyazahmad07/xss_vibes
+Web|https://github.com/Th0h0/autoredirect
+Web|https://github.com/Th0h0/autopoisoner
+Web|https://github.com/Th0h0/autossrf
+Web|https://github.com/MattKeeley/gitscanner
+Utilities|https://github.com/The-Viper-One/PsMapExec
