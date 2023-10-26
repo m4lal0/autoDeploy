@@ -34,3 +34,4 @@ pip3:wsgidav
 pip3:black
 pip3:exurl
 pip3:humanfriendly
+pip3:regex
