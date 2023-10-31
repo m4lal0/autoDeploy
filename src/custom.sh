@@ -338,4 +338,12 @@ function customTerminal(){
 	#check "Limpieza apt"
 	#apt install wpscan -y &>/dev/null
 	#check "Instalando wpscan"
+
+	#info "Corregir wfuzz"
+	#apt --purge remove python3-pycurl -y &>/dev/null
+	#check "Remover python3-pycurl"
+	#apt install libcurl4-openssl-dev libssl-dev -y &>/dev/null
+	#check "Instalación de libcurl4-openssl-dev y libssl-dev"
+	#pip3 install pycurl wfuzz --break-system-packages &>/dev/null
+	#check "Instalando pycurl y wfuzz"
 }

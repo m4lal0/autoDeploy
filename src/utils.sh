@@ -127,6 +127,7 @@ function gitTools(){
 	gem install wpxf > /dev/null 2>&1
 	check "Agregando WordPress Exploit Framework"
 
+
 ## Git clone con instalación aparte
 	info "Directorios de aplicativos"
 	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH} 2>/dev/null
@@ -238,6 +239,28 @@ function gitTools(){
 	git clone https://github.com/t3l3machus/wwwtree > /dev/null 2>&1
 	cd wwwtree && cp wwwtree.py /usr/local/bin/wwwtree 2>/dev/null
 	check "Agregando wwwtree"
+	## ligolo-ng
+	info "Descargando ligolo-ng"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/nicocha30/ligolo-ng >/dev/null 2>&1
+	cd ligolo-ng
+	go build -o bin/ligolo-agent cmd/agent/main.go >/dev/null 2>&1
+	go build -o bin/ligolo-proxy cmd/proxy/main.go >/dev/null 2>&1
+	GOOS=windows go build -o bin/ligolo-agent.exe cmd/agent/main.go >/dev/null 2>&1
+	GOOS=windows go build -o bin/ligolo-proxy.exe cmd/proxy/main.go >/dev/null 2>&1
+	mv ligolo-proxy /usr/local/bin > /dev/null 2>&1
+	check "Agregando ligolo-ng"
+	## wifi_db
+	info "Instalando wifi_db"
+	cd $WIFI_PATH && git clone https://github.com/r4ulcl/wifi_db > /dev/null 2>&1
+	cd wifi_db && pip3 install -r requirements.txt --break-system-packages > /dev/null 2>&1
+	check "Agregando wifi_db"
+	## UploadBypass
+	info "Instalando Upload_Bypass"
+	cd $WEB_PATH && wget https://github.com/sAjibuu/Upload_Bypass/releases/download/v2.0.8-offical/Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
+	unzip Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
+	rm Upload_Bypass_v2.0.8-offical.zip 2>/dev/null
+	check "Agregando Upload_Bypass"
 
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
@@ -395,6 +418,19 @@ function gitTools(){
 	tar -xzf arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz > /dev/null 2>&1
 	rm -rf arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz > /dev/null 2>&1
 	check "Agregando Arachni"
+	## CAPA
+	info "Descargando CAPA"
+	wget https://github.com/mandiant/capa/releases/download/v6.1.0/capa-v6.1.0-linux.zip -O /tmp/capa-v6.1.0-linux.zip > /dev/null 2>&1
+	unzip /tmp/capa-v6.1.0-linux.zip > /dev/null 2>&1
+	mv /tmp/capa /usr/local/bin
+	check "Agregando CAPA"
+	## IPATool
+	info "Descargando IPAtool"
+	wget https://github.com/majd/ipatool/releases/download/v2.1.3/ipatool-2.1.3-linux-amd64.tar.gz -O /tmp/ipatool-2.1.3-linux-amd64.tar.gz > /dev/null 2>&1
+	tar -xzf /tmp/ipatool-2.1.3-linux-amd64.tar.gz > /dev/null 2>&1
+	chmod +x /tmp/bin/ipatool-2.1.3-linux-amd64
+	mv /tmp/bin/ipatool-2.1.3-linux-amd64 /usr/local/bin/ipatool
+	check "Agregando IPAtool"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
