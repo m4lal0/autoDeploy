@@ -201,4 +201,5 @@ humble
 exe2hexbat
 fierce
 shellter
+ntpsec
 seclists
