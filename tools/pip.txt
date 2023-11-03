@@ -35,3 +35,4 @@ pip3:black
 pip3:exurl
 pip3:humanfriendly
 pip3:regex
+pip3:certipy-ad
