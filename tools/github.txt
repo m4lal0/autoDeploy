@@ -83,3 +83,9 @@ Web|https://github.com/Th0h0/autopoisoner
 Web|https://github.com/Th0h0/autossrf
 Web|https://github.com/MattKeeley/gitscanner
 Utilities|https://github.com/The-Viper-One/PsMapExec
+Web|https://github.com/pwn0sec/PwnXSS
+Utilities|https://github.com/t3l3machus/hoaxshell
+Web|https://github.com/almandin/fuxploider
+Web|https://github.com/enjoiz/XXEinjector
+Utilities|https://github.com/sameera-madushan/Print-My-Shell
+Web|https://github.com/capture0x/Lfi-Space
