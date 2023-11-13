@@ -261,6 +261,18 @@ function gitTools(){
 	unzip Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
 	rm Upload_Bypass_v2.0.8-offical.zip 2>/dev/null
 	check "Agregando Upload_Bypass"
+	## CrackMapExec
+	info "Instalando CrackMapExec"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/byt3bl33d3r/CrackMapExec >/dev/null 2>&1
+	cd CrackMapExec && poetry install >/dev/null 2>&1
+	check "Agregando CrackMapExec"
+	## NetExec
+	info "Instalando NetExec"
+	cd $UTILITIES_PATH 2>/dev/null
+	git clone https://github.com/Pennyw0rth/NetExec >/dev/null 2>&1
+	cd NetExec && poetry install >/dev/null 2>&1
+	check "Agregando NetExec"
 
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
@@ -421,16 +433,22 @@ function gitTools(){
 	## CAPA
 	info "Descargando CAPA"
 	wget https://github.com/mandiant/capa/releases/download/v6.1.0/capa-v6.1.0-linux.zip -O /tmp/capa-v6.1.0-linux.zip > /dev/null 2>&1
-	unzip /tmp/capa-v6.1.0-linux.zip > /dev/null 2>&1
+	cd /tmp && unzip /tmp/capa-v6.1.0-linux.zip > /dev/null 2>&1
 	mv /tmp/capa /usr/local/bin
 	check "Agregando CAPA"
 	## IPATool
 	info "Descargando IPAtool"
 	wget https://github.com/majd/ipatool/releases/download/v2.1.3/ipatool-2.1.3-linux-amd64.tar.gz -O /tmp/ipatool-2.1.3-linux-amd64.tar.gz > /dev/null 2>&1
-	tar -xzf /tmp/ipatool-2.1.3-linux-amd64.tar.gz > /dev/null 2>&1
+	cd /tmp && tar -xzf /tmp/ipatool-2.1.3-linux-amd64.tar.gz > /dev/null 2>&1
 	chmod +x /tmp/bin/ipatool-2.1.3-linux-amd64
 	mv /tmp/bin/ipatool-2.1.3-linux-amd64 /usr/local/bin/ipatool
 	check "Agregando IPAtool"
+	## Govenom
+	info "Descargando Govenom"
+	wget https://github.com/arch3rPro/Govenom/releases/download/pre/darwin_amd64.tar.gz -O /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
+	cd /tmp && tar -xzf /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
+	mv /tmp/Govenom /usr/local/bin
+	check "Instalando Govenom"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
