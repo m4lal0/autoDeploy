@@ -202,4 +202,5 @@ exe2hexbat
 fierce
 shellter
 ntpsec
+shellfire
 seclists
