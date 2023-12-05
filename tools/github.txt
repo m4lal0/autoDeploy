@@ -89,3 +89,4 @@ Web|https://github.com/almandin/fuxploider
 Web|https://github.com/enjoiz/XXEinjector
 Utilities|https://github.com/sameera-madushan/Print-My-Shell
 Web|https://github.com/capture0x/Lfi-Space
+Web|https://github.com/xnl-h4ck3r/xnLinkFinder
