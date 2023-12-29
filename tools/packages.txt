@@ -181,7 +181,7 @@ php
 davtest
 ltrace
 strace
-mlocate
+plocate
 ntpdate
 bloodhound.py
 libpoppler-cpp-dev
