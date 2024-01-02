@@ -74,7 +74,6 @@ Web|https://github.com/lightos/Panoptic
 Utilities|https://github.com/t3l3machus/eviltree
 Web|https://github.com/0xKayala/ParamSpider
 Web|https://github.com/JoelGMSec/HTTP-Shell
-Web|https://github.com/vladko312/SSTImap
 Web|https://github.com/fullhunt/log4j-scan
 Web|https://github.com/arthaud/git-dumper
 Web|https://github.com/faiyazahmad07/xss_vibes
