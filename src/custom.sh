@@ -176,28 +176,30 @@ function customTerminal(){
 	check "Configurando archivo de qterminal de root"
 
 	info "Configurando escritorio"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-geometric-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-geometric-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-geometric-16x9.png?inline=false" -O /usr/share/backgrounds/kali/kali-geometric-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-geometric"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-light-strips-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-light-strips-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-light-strips-16x9.png?inline=false" -O /usr/share/backgrounds/kali/kali-light-strips-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-light-strips"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-contours-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-contours-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-contours-16x9.png?inline=false" -O /usr/share/backgrounds/kali/kali-contours-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-contours"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2022/backgrounds/kali-16x9/kali-abstract-sky.png?inline=false -O /usr/share/backgrounds/kali/kali-abstract-sky-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2022/backgrounds/kali/kali-abstract-sky-16x9.png?ref_type=heads&inline=false" -O /usr/share/backgrounds/kali/kali-abstract-sky-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-abstract-sky"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/legacy/backgrounds/kali-2.0/kali-2.0-1920x1080.png?inline=false -O /usr/share/backgrounds/kali/kali-2.0-1920x1080.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/legacy/backgrounds/kali-2.0/kali-2.0-1920x1080.png?inline=false" -O /usr/share/backgrounds/kali/kali-2.0-1920x1080.png > /dev/null 2>&1
 	check "Descargando fondo kali-2.0"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali-16x9/kali-cubism.jpg?inline=false -O /usr/share/backgrounds/kali/kali-cubism-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-cubism-16x9.jpg?ref_type=heads&inline=false" -O /usr/share/backgrounds/kali/kali-cubism-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-cubism"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2022/backgrounds/kali/kali-actiniaria-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-actiniaria-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2022/backgrounds/kali/kali-actiniaria-16x9.png?inline=false" -O /usr/share/backgrounds/kali/kali-actiniaria-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-actiniaria"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-neon-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-neon-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-neon-16x9.png?inline=false" -O /usr/share/backgrounds/kali/kali-neon-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-neon"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-laminaria-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-laminaria-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-laminaria-16x9.png?inline=false" -O /usr/share/backgrounds/kali/kali-laminaria-16x9.png > /dev/null 2>&1
 	check "Descargando fondo kali-laminaria"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-red-sticker-16x9.jpg?inline=false -O /usr/share/backgrounds/kali/kali-red-sticker-16x9.jpg > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2023/backgrounds/kali/kali-red-sticker-16x9.jpg?inline=false" -O /usr/share/backgrounds/kali/kali-red-sticker-16x9.jpg > /dev/null 2>&1
 	check "Descargando fondo kali-red-sticker"
-	wget https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2024/backgrounds/kali/kali-aqua-16x9.png?inline=false -O /usr/share/backgrounds/kali/kali-aqua-16x9.png > /dev/null 2>&1
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2024/backgrounds/kali/kali-aqua-16x9.jpg?ref_type=heads&inline=false" -O /usr/share/backgrounds/kali/kali-aqua-16x9.jpg > /dev/null 2>&1
 	check "Descargando fondo kali-aqua"
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2024/backgrounds/kali/kali-metal-16x9.jpg?ref_type=heads&inline=false" -O /usr/share/backgrounds/kali/kali-metal-16x9.jpg > /dev/null 2>&1
+	check "Descargando fondo kali-metal"
 	ln -s /usr/share/backgrounds/kali/kali-geometric-16x9.png /usr/share/backgrounds/kali-16x9/kali-geometric-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-light-strips-16x9.png /usr/share/backgrounds/kali-16x9/kali-light-strips-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-abstract-sky-16x9.png /usr/share/backgrounds/kali-16x9/kali-abstract-sky-16x9.png > /dev/null 2>&1
@@ -208,10 +210,11 @@ function customTerminal(){
 	ln -s /usr/share/backgrounds/kali/kali-neon-16x9.png /usr/share/backgrounds/kali-16x9/kali-neon-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-laminaria-16x9.png /usr/share/backgrounds/kali-16x9/kali-laminaria-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-red-sticker-16x9.jpg /usr/share/backgrounds/kali-16x9/kali-red-sticker-16x9.jpg > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/kali/kali-aqua-16x9.png /usr/share/backgrounds/kali-16x9/kali-aqua-16x9.png > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-aqua-16x9.jpg /usr/share/backgrounds/kali-16x9/kali-aqua-16x9.jpg > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-metal-16x9.jpg /usr/share/backgrounds/kali-16x9/kali-metal-16x9.jpg > /dev/null 2>&1
 	check "Configurando fondos"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/kali-16x9/kali-aqua-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali-16x9/kali-metal-16x9.jpg /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	check "Configurando fondo de inicio de sesión"
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
