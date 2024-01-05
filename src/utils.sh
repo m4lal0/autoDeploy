@@ -248,7 +248,7 @@ function gitTools(){
 	go build -o bin/ligolo-proxy cmd/proxy/main.go >/dev/null 2>&1
 	GOOS=windows go build -o bin/ligolo-agent.exe cmd/agent/main.go >/dev/null 2>&1
 	GOOS=windows go build -o bin/ligolo-proxy.exe cmd/proxy/main.go >/dev/null 2>&1
-	mv ligolo-proxy /usr/local/bin > /dev/null 2>&1
+	mv $UTILITIES_PATH/ligolo-ng/bin/ligolo-proxy /usr/local/bin > /dev/null 2>&1
 	check "Agregando ligolo-ng"
 	## wifi_db
 	info "Instalando wifi_db"
@@ -261,18 +261,12 @@ function gitTools(){
 	unzip Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
 	rm Upload_Bypass_v2.0.8-offical.zip 2>/dev/null
 	check "Agregando Upload_Bypass"
-	## CrackMapExec
-	info "Instalando CrackMapExec"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/byt3bl33d3r/CrackMapExec >/dev/null 2>&1
-	cd CrackMapExec && poetry install >/dev/null 2>&1
-	check "Agregando CrackMapExec"
-	## NetExec
-	info "Instalando NetExec"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/Pennyw0rth/NetExec >/dev/null 2>&1
-	cd NetExec && poetry install >/dev/null 2>&1
-	check "Agregando NetExec"
+	### CrackMapExec
+	#info "Instalando CrackMapExec"
+	#cd $UTILITIES_PATH 2>/dev/null
+	#git clone https://github.com/byt3bl33d3r/CrackMapExec >/dev/null 2>&1
+	#cd CrackMapExec && poetry install >/dev/null 2>&1
+	#check "Agregando CrackMapExec"
 
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
@@ -449,6 +443,12 @@ function gitTools(){
 	cd /tmp && tar -xzf /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
 	mv /tmp/Govenom /usr/local/bin
 	check "Instalando Govenom"
+	## NetExec
+	info "Instalando NetExec"
+	cd /tmp 2>/dev/null
+	wget https://github.com/Pennyw0rth/NetExec/releases/download/v1.1.0/nxc >/dev/null 2>&1
+	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/NetExec >/dev/null 2>&1
+	check "Agregando NetExec"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
