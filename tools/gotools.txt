@@ -25,3 +25,6 @@ getJS:github.com/003random/getJS@latest
 interactsh:github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest
 wayfiles:github.com/Rffrench/wayfiles@latest
 afrog:github.com/zan8in/afrog/v2/cmd/afrog@latest
+surf:github.com/assetnote/surf/cmd/surf@latest
+fuzzuli:github.com/musana/fuzzuli@latest
+fallparams:github.com/ImAyrix/fallparams@latest
