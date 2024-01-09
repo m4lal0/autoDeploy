@@ -260,5 +260,8 @@ function endInstall(){
 	section "Happy Hacking! =)" && sleep 2
 	if [ $input -eq 1 ]; then
 		reboot
+	else
+		echo -e "\n ${BGreen}Finalizado la instalación. Es necesario reiniciar su sistema de manera manual.${Color_Off}\n"
+		tput cnorm; exit 1
 	fi
 }
