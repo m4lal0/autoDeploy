@@ -38,3 +38,5 @@ pip3:regex
 pip3:certipy-ad
 pip3:coloredlogs
 pip3:shellcat
+pip3:huepy
+pip3:tqdm
