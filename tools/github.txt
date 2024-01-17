@@ -90,3 +90,4 @@ Utilities|https://github.com/sameera-madushan/Print-My-Shell
 Web|https://github.com/capture0x/Lfi-Space
 Web|https://github.com/xnl-h4ck3r/xnLinkFinder
 Web|https://github.com/americo/sqlifinder
+Web|https://github.com/swisskyrepo/SSRFmap
