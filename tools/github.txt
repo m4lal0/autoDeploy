@@ -13,7 +13,6 @@ PrivEsc-Win|https://github.com/Pwnistry/Windows-Exploit-Suggester-python3
 Utilities|https://github.com/s0md3v/Decodify
 Web|https://github.com/Dhayalanb/windows-php-reverse-shell
 Web|https://github.com/WhiteWinterWolf/wwwolf-php-webshell
-Web/Wordpress|https://github.com/Tuhinshubhra/CMSeeK
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 Utilities|https://github.com/t0thkr1s/revshellgen
 PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
