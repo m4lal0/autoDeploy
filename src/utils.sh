@@ -411,7 +411,14 @@ function gitTools(){
 	info "Descargando PrintSpoofer.exe"
 	cd $PRIVESCWIN_PATH && mkdir PrintSpoofer 2>/dev/null
 	wget https://github.com/k4sth4/PrintSpoofer/raw/main/PrintSpoofer.exe -O $PRIVESCWIN_PATH/PrintSpoofer/PrintSpoofer.exe > /dev/null 2>&1
+	wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe -O $PRIVESCWIN_PATH/PrintSpoofer/PrintSpoofer64.exe > /dev/null 2>&1
 	check "Agregando PrintSpoofer.exe"
+	## WinPEAS.exe
+	info "Descargando winPEAS.exe"
+	cd $PRIVESCWIN_PATH && mkdir winPEAS 2>/dev/null
+	wget https://github.com/carlospolop/PEASS-ng/releases/download/20240211-db8c669a/winPEASx64.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx64.exe > /dev/null 2>&1
+	wget https://github.com/carlospolop/PEASS-ng/releases/download/20240211-db8c669a/winPEASx86.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx86.exe > /dev/null 2>&1
+	wget https://github.com/carlospolop/PEASS-ng/releases/download/20240211-db8c669a/winPEASany.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASany.exe > /dev/null 2>&1
 	## LinPEAS
 	info "Descargando LinPEAS"
 	cd $PRIVESCLIN_PATH && mkdir linpeas 2>/dev/null
