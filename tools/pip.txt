@@ -40,3 +40,4 @@ pip3:coloredlogs
 pip3:shellcat
 pip3:huepy
 pip3:tqdm
+pip3:fuzzywuzzy
