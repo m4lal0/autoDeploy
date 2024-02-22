@@ -25,23 +25,20 @@
       <property name="XF86WWW" type="empty"/>
     </property>
     <property name="custom" type="empty">
-      <property name="&lt;Alt&gt;Print" type="string" value="xfce4-screenshooter --window"/>
-      <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter --region"/>
       <property name="Print" type="string" value="xfce4-screenshooter"/>
-      <property name="&lt;Primary&gt;Print" type="string" value="xfce4-screenshooter --fullscreen --clipboard"/>
-      <property name="&lt;Primary&gt;&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter --region --clipboard"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;dead_diaeresis" type="string" value="xfce4-screenshooter --fullscreen"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;asterisk" type="string" value="xfce4-screenshooter --region"/>
       <property name="override" type="bool" value="true"/>
-      <property name="&lt;Primary&gt;&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter --window --clipboard"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;p" type="string" value="xfce4-screenshooter --window"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;l" type="string" value="/usr/bin/i3lock-fancy"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;t" type="string" value="/bin/qterminal"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;c" type="string" value="/usr/bin/thunar"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;f" type="string" value="/bin/firejail /usr/bin/firefox"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;b" type="string" value="/usr/bin/burpsuite"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;r" type="string" value="/usr/bin/rofi -show run"/>
-      <property name="&lt;Primary&gt;&lt;Shift&gt;o" type="string" value="/bin/qterminal -e &quot;bpytop&quot;"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;o" type="string" value="/bin/qterminal -e &quot;gotop&quot;"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;n" type="string" value="/usr/bin/mousepad"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;w" type="string" value="/bin/firejail /usr/bin/brave-browser-stable"/>
-      <property name="&lt;Primary&gt;&lt;Shift&gt;s" type="string" value="/bin/mate-screenshot -w"/>
       <property name="Super_L" type="string" value="/usr/bin/xfce4-popup-whiskermenu"/>
     </property>
   </property>
