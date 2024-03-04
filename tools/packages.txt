@@ -205,4 +205,6 @@ ntpsec
 shellfire
 raven
 cmseek
+xfce4-panel
+xfce4-panel-profiles
 seclists
