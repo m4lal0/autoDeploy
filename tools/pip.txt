@@ -41,3 +41,5 @@ pip3:shellcat
 pip3:huepy
 pip3:tqdm
 pip3:fuzzywuzzy
+pip3:langdetect
+pip3:colored
