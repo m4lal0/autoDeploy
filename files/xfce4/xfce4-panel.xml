@@ -34,7 +34,11 @@
         <value type="int" value="27"/>
         <value type="int" value="31"/>
         <value type="int" value="32"/>
+        <value type="int" value="36"/>
+        <value type="int" value="35"/>
         <value type="int" value="33"/>
+        <value type="int" value="37"/>
+        <value type="int" value="38"/>
         <value type="int" value="34"/>
         <value type="int" value="14"/>
         <value type="int" value="16"/>
@@ -49,10 +53,10 @@
       <property name="autohide-behavior" type="uint" value="0"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-rgba" type="array">
-        <value type="double" value="0.000000"/>
-        <value type="double" value="0.000000"/>
-        <value type="double" value="0.000000"/>
-        <value type="double" value="0.064189"/>
+        <value type="double" value="0"/>
+        <value type="double" value="0"/>
+        <value type="double" value="0"/>
+        <value type="double" value="0.064188999999999996"/>
       </property>
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="leave-opacity" type="uint" value="100"/>
@@ -87,6 +91,8 @@
     <property name="plugin-14" type="string" value="clock">
       <property name="digital-format" type="string" value="%a %d %b, %R"/>
       <property name="mode" type="uint" value="2"/>
+      <property name="digital-time-format" type="string" value="%a %d %b, %R"/>
+      <property name="digital-layout" type="uint" value="3"/>
     </property>
     <property name="plugin-15" type="string" value="systray">
       <property name="show-frame" type="bool" value="false"/>
@@ -95,6 +101,9 @@
       <property name="names-ordered" type="array">
         <value type="string" value="blueman-tray"/>
         <value type="string" value="miniaplicación gestor de la red"/>
+      </property>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="networkmanager applet"/>
       </property>
     </property>
     <property name="plugin-17" type="string" value="pulseaudio">
@@ -173,6 +182,14 @@
     </property>
     <property name="plugin-34" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-35" type="string" value="genmon"/>
+    <property name="plugin-36" type="string" value="separator">
+      <property name="style" type="uint" value="2"/>
+    </property>
+    <property name="plugin-37" type="string" value="genmon"/>
+    <property name="plugin-38" type="string" value="separator">
+      <property name="style" type="uint" value="2"/>
     </property>
   </property>
 </channel>

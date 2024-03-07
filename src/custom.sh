@@ -86,7 +86,7 @@ function customTerminal(){
 	check "Configurando permisos para nano"
 
 	info "Estableciendo configuración de vim"
-	wget https://raw.githubusercontent.com/arcticicestudio/nord-vim/main/colors/nord.vim -O /usr/share/vim/vim90/colors/nord.vim > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/arcticicestudio/nord-vim/main/colors/nord.vim -O /usr/share/vim/vim91/colors/nord.vim > /dev/null 2>&1
 	check "Descargando color para vim"
 	cp $FILES_PATH/.vimrc $HOME_PATH/.vimrc 2>/dev/null
 	check "Al encontrar $HOME_PATH/.vimrc"
@@ -157,6 +157,13 @@ function customTerminal(){
 		check "Configurando rofi (root)"
 	fi
 
+	info "Configurando findex"
+	wget https://github.com/mdgaziur/findex/releases/download/v0.8.1/findex-0.8.1-x86_64.tar.gz -O /tmp/findex-0.8.1-x86_64.tar.gz > /dev/null 2>&1
+	tar -xzf /tmp/findex-0.8.1-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
+	mv /tmp/findex-0.8.1-x86_64/findex /usr/bin 2>/dev/null
+	chown root:$USERNAME /usr/bin/findex 2>/dev/null
+	check "Configurando findex"
+
 	info "Configurando qterminal del usuario"
 	if [ ! -d $HOME_PATH/qterminal.org ]; then
 		mkdir $HOME_PATH/qterminal.org 2> /dev/null
@@ -200,6 +207,8 @@ function customTerminal(){
 	check "Descargando fondo kali-aqua"
 	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2024/backgrounds/kali/kali-metal-16x9.jpg?ref_type=heads&inline=false" -O /usr/share/backgrounds/kali/kali-metal-16x9.jpg > /dev/null 2>&1
 	check "Descargando fondo kali-metal"
+	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2024/backgrounds/kali/kali-metal-dark-16x9.png?ref_type=heads&inline=false" -O /usr/share/backgrounds/kali/kali-metal-dark-16x9.png > /dev/null 2>&1
+	check "Descargando fondo kali-metal-dark"
 	ln -s /usr/share/backgrounds/kali/kali-geometric-16x9.png /usr/share/backgrounds/kali-16x9/kali-geometric-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-light-strips-16x9.png /usr/share/backgrounds/kali-16x9/kali-light-strips-16x9.png > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-abstract-sky-16x9.png /usr/share/backgrounds/kali-16x9/kali-abstract-sky-16x9.png > /dev/null 2>&1
@@ -212,6 +221,7 @@ function customTerminal(){
 	ln -s /usr/share/backgrounds/kali/kali-red-sticker-16x9.jpg /usr/share/backgrounds/kali-16x9/kali-red-sticker-16x9.jpg > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-aqua-16x9.jpg /usr/share/backgrounds/kali-16x9/kali-aqua-16x9.jpg > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali/kali-metal-16x9.jpg /usr/share/backgrounds/kali-16x9/kali-metal-16x9.jpg > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali/kali-metal-dark-16x9.png /usr/share/backgrounds/kali-16x9/kali-metal-dark-16x9.png > /dev/null 2>&1
 	check "Configurando fondos"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/kali-16x9/kali-metal-16x9.jpg /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
@@ -272,6 +282,20 @@ function customTerminal(){
 	cp $FILES_PATH/panel/genmon-24.rc $HOME_PATH/.config/xfce4/panel/genmon-24.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-24.rc 2>/dev/null
 	check "Configurando info Wifi en barra de tarea"
+	cp $FILES_PATH/panel/genmon-35.rc $HOME_PATH/.config/xfce4/panel/genmon-35.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-35.rc 2>/dev/null
+	check "Configurando info de uso de memoria ram"
+	cp $FILES_PATH/scripts/ramstatus.sh $HOME_PATH/.config/scripts/ramstatus.sh > /dev/null 2>&1
+	chmod 774 $HOME_PATH/.config/scripts/ramstatus.sh 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/ramstatus.sh 2>/dev/null
+	check "Copiando script de uso de memoria ram"
+	cp $FILES_PATH/panel/genmon-37.rc $HOME_PATH/.config/xfce4/panel/genmon-37.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-37.rc 2>/dev/null
+	check "Configurando info de uso de cpu"
+	cp $FILES_PATH/scripts/cpustatus.sh $HOME_PATH/.config/scripts/cpustatus.sh > /dev/null 2>&1
+	chmod 774 $HOME_PATH/.config/scripts/cpustatus.sh 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/cpustatus.sh 2>/dev/null
+	check "Copiando script de uso de cpu"
 	cp $FILES_PATH/scripts/whichSystem /usr/local/bin/whichSystem > /dev/null 2>&1
 	chmod +x /usr/local/bin/whichSystem 2>/dev/null
 	check "Copiando script whichSystem"

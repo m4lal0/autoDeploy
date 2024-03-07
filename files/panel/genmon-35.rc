@@ -1,0 +1,5 @@
+Command=/usr/bin/bash -c "~/.config/scripts/ramstatus.sh"
+UseLabel=0
+Text=(ram)
+UpdatePeriod=2000
+Font=Hack Nerd Font 9

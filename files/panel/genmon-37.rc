@@ -1,0 +1,5 @@
+Command=/usr/bin/bash -c "~/.config/scripts/cpustatus.sh"
+UseLabel=0
+Text=(cpu)
+UpdatePeriod=2000
+Font=Hack Nerd Font 9

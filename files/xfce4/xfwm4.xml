@@ -6,7 +6,7 @@
     <property name="theme" type="string" value="Kali-Dark"/>
     <property name="title_font" type="string" value="Hack Nerd Font Mono Bold 9"/>
     <property name="easy_click" type="empty"/>
-    <property name="workspace_count" type="int" value="10"/>
+    <property name="workspace_count" type="int" value="8"/>
     <property name="cycle_workspaces" type="empty"/>
     <property name="scroll_workspaces" type="empty"/>
     <property name="activate_action" type="string" value="bring"/>
@@ -81,8 +81,6 @@
     <property name="zoom_desktop" type="bool" value="true"/>
     <property name="workspace_names" type="array">
       <value type="string" value="         "/>
-      <value type="string" value=""/>
-      <value type="string" value=""/>
       <value type="string" value=""/>
       <value type="string" value=""/>
       <value type="string" value=""/>
