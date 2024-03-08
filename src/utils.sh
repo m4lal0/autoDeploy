@@ -38,6 +38,100 @@ function installApps(){
 	#cd /bin && mv firefox firefox2 && ln -sf /opt/firefox/firefox firefox 2>/dev/null
 	#check "Instalando Firefox"
 
+	## Instalacion de Extensiones en Firefox
+	info "Instalar extensiones en Firefox"
+	if [[ -d $HOME_PATH/.mozilla ]];then
+		if [[ -d $HOME_PATH/.mozilla/firefox/*.default-esr ]];then
+			if [[ ! -d $HOME_PATH/.mozilla/firefox/*.default-esr/extensions ]];then
+				cd $HOME_PATH/.mozilla/firefox/*.default-esr ; mkdir extensions
+				chown $USERNAME:$USERNAME extensions 2>/dev/null
+				check "Creando directorio de extensiones"
+			fi
+		fi
+	else
+		su $USERNAME -c "nohup /bin/firejail /usr/bin/firefox &>/dev/null &; sleep 3; kill %1"
+	fi
+
+	if [[ -d $HOME_PATH/.mozilla ]];then
+		if [[ ! -d $HOME_PATH/.mozilla/firefox/*.default-esr/extensions ]];then
+			cd $HOME_PATH/.mozilla/firefox/*.default-esr ; mkdir extensions
+			chown $USERNAME:$USERNAME extensions 2>/dev/null
+			check "Creando directorio de extensiones"
+		fi
+	fi
+
+	#Instalando extensión: Wappalyzer
+	mkdir /tmp/extensions && cd /tmp/extensions 2>/dev/null
+	mkdir wappalyzer && cd wappalyzer 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4239079/wappalyzer-6.10.68.xpi > /dev/null 2>&1
+	cp wappalyzer-6.10.68.xpi wappalyzer@crunchlabz.com.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME wappalyzer@crunchlabz.com.xpi 2>/dev/null
+	mv wappalyzer@crunchlabz.com.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión Wappalyzer"
+
+	#Instalando extensión: uBlock Origin
+	cd /tmp/extensions 2>/dev/null
+	mkdir ublock && cd ublock 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4237670/ublock_origin-1.56.0.xpi > /dev/null 2>&1
+	cp ublock_origin-1.56.0.xpi uBlock0@raymondhill.net.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME uBlock0@raymondhill.net.xpi 2>/dev/null
+	mv uBlock0@raymondhill.net.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión uBlock Origin"
+
+	#Instalando extensión: Privacy Badger
+	cd /tmp/extensions 2>/dev/null
+	mkdir privacybadger && cd privacybadger 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4232703/privacy_badger17-2024.2.6.xpi > /dev/null 2>&1
+	cp privacy_badger17-2024.2.6.xpi jid1-MnnxcxisBPnSXQ@jetpack.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME jid1-MnnxcxisBPnSXQ@jetpack.xpi 2>/dev/null
+	mv jid1-MnnxcxisBPnSXQ@jetpack.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión Privacy Badger"
+
+	#Instalando extensión: FoxyProxy
+	cd /tmp/extensions 2>/dev/null
+	mkdir foxyproxy && cd foxyproxy 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4228676/foxyproxy_standard-8.9.xpi > /dev/null 2>&1
+	cp foxyproxy_standard-8.9.xpi foxyproxy@eric.h.jung.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME foxyproxy@eric.h.jung.xpi 2>/dev/null
+	mv foxyproxy@eric.h.jung.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión FoxyProxy"
+
+	#Instalando extensión: HackTools
+	cd /tmp/extensions 2>/dev/null
+	mkdir hacktools && cd hacktools 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/3901885/hacktools-0.4.0.xpi > /dev/null 2>&1
+	cp hacktools-0.4.0.xpi {f1423c11-a4e2-4709-a0f8-6d6a68c83d08}.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME \{f1423c11-a4e2-4709-a0f8-6d6a68c83d08\}.xpi 2>/dev/null
+	mv \{f1423c11-a4e2-4709-a0f8-6d6a68c83d08\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión HackTools"
+
+	#Instalando extensión: IP Address and Domain Information
+	cd /tmp/extensions 2>/dev/null
+	mkdir ipaddress && cd ipaddress 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4200011/ip_address_and_domain_info-4.0.6.4.xpi > /dev/null 2>&1
+	cp ip_address_and_domain_info-4.0.6.4.xpi jid0-jJRRRBMgoShUhb07IvnxTBAl29w@jetpack.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME jid0-jJRRRBMgoShUhb07IvnxTBAl29w@jetpack.xpi 2>/dev/null
+	mv jid0-jJRRRBMgoShUhb07IvnxTBAl29w@jetpack.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión IP Address and Domain Information"
+
+	#Instalando extensión: Edit This Cookie2
+	cd /tmp/extensions 2>/dev/null
+	mkdir editcookie && cd editcookie 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/3449327/etc2-1.5.0.xpi > /dev/null 2>&1
+	cp etc2-1.5.0.xpi {ae627955-50e3-431c-b6c5-7cd912f961cb}.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME \{ae627955-50e3-431c-b6c5-7cd912f961cb\}.xpi 2>/dev/null
+	mv \{ae627955-50e3-431c-b6c5-7cd912f961cb\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión EditThisCookie2"
+
+	#Instalando extensión: Custom UserAgent String
+	cd /tmp/extensions  2>/dev/null
+	mkdir useragent && cd useragent  2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4098688/user_agent_string_switcher-0.5.0.xpi > /dev/null 2>&1
+	cp user_agent_string_switcher-0.5.0.xpi {a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME \{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7\}.xpi 2>/dev/null
+	mv \{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión Custom-UserAgent"
+
 	## Instalacion Brave
 	info "Instalar Brave"
 	curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - > /dev/null 2>&1
@@ -132,13 +226,6 @@ function gitTools(){
 	info "Directorios de aplicativos"
 	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH} 2>/dev/null
 	check "Creando directorios"
-	## Impacket Python
-	#info "Descargando Impacket Python"
-	#cd $UTILITIES_PATH 2>/dev/null
-	#git clone https://github.com/SecureAuthCorp/impacket > /dev/null 2>&1
-	#cd impacket 2>/dev/null
-	#python3 setup.py install > /dev/null 2>&1
-	#check "Agregando Impacket Python"
 	## GTFOBLookup
 	info "Descargando GTFOBLookup"
 	cd $UTILITIES_PATH 2>/dev/null
@@ -235,7 +322,7 @@ function gitTools(){
 	check "Agregando BloodHound.py"
 	## wwwtree.py
 	info "Descargando wwwtree"
-	cd $WEB_PATH 2>/dev/null
+	cd /tmp 2>/dev/null
 	git clone https://github.com/t3l3machus/wwwtree > /dev/null 2>&1
 	cd wwwtree && cp wwwtree.py /usr/local/bin/wwwtree 2>/dev/null
 	check "Agregando wwwtree"
@@ -261,6 +348,18 @@ function gitTools(){
 	unzip Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
 	rm Upload_Bypass_v2.0.8-offical.zip 2>/dev/null
 	check "Agregando Upload_Bypass"
+	## Decodify
+	info "Instalando Decodify"
+	cd /tmp && git clone https://github.com/s0md3v/Decodify >/dev/null 2>&1
+	cd Decodify && chmod +x dcode 2>/dev/null
+	mv dcode /usr/local/bin 2>/dev/null
+	check "Agregando dcode"
+	## KillCast
+	info "Instalando KillCast"
+	cd /tmp && git clone https://github.com/thewhiteh4t/killcast >/dev/null 2>&1
+	cd killcast && chmod +x killcast.py 2>/dev/null
+	mv killcast.py /usr/local/bin/killcast 2>/dev/null
+	check "Agregando killCast"
 	### CrackMapExec
 	#info "Instalando CrackMapExec"
 	#cd $UTILITIES_PATH 2>/dev/null
@@ -286,9 +385,9 @@ function gitTools(){
 	cd $PRIVESCLIN_PATH 2>/dev/null
 	mkdir pspy > /dev/null 2>&1
 	cd pspy 2>/dev/null
-	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy32 > /dev/null 2>&1
+	wget https://github.com/DominicBreuker/pspy/releases/latest/download/pspy32 > /dev/null 2>&1
 	check "Agregando pspy32"
-	wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64 > /dev/null 2>&1
+	wget https://github.com/DominicBreuker/pspy/releases/latest/download/pspy64 > /dev/null 2>&1
 	check "Agregando pspy64"
 	## Unix-Privesc-Check-PentestMonkey
 	info "Descargando unix-privesc-check"
@@ -311,8 +410,8 @@ function gitTools(){
 	check "Agregando Eisvogel"
 	## duf
 	info "Descargando duf"
-	wget "https://github.com/muesli/duf/releases/download/v0.8.0/duf_0.8.0_linux_amd64.deb" -O /tmp/duf_0.8.0_linux_amd64.deb > /dev/null 2>&1
-	dpkg -i /tmp/duf_0.8.0_linux_amd64.deb > /dev/null 2>&1
+	wget "https://github.com/muesli/duf/releases/latest/download/duf_0.8.1_linux_amd64.deb" -O /tmp/duf_0.8.1_linux_amd64.deb > /dev/null 2>&1
+	dpkg -i /tmp/duf_0.8.1_linux_amd64.deb > /dev/null 2>&1
 	check "Agregando duf"
 	## md2pdf
 	info "Descargando md2pdf"
@@ -332,7 +431,7 @@ function gitTools(){
 	## tempomail
 	info "Descargando tempomail"
 	cd /tmp/ 2>/dev/null
-	wget https://github.com/kavishgr/tempomail/releases/download/1.1.0/linux-amd64-tempomail.tgz > /dev/null 2>&1
+	wget https://github.com/kavishgr/tempomail/releases/latest/download/linux-amd64-tempomail.tgz > /dev/null 2>&1
 	tar -xf linux-amd64-tempomail.tgz > /dev/null 2>&1
 	mv tempomail /usr/local/bin/ > /dev/null 2>&1
 	check "Agregando tempomail"
@@ -351,7 +450,7 @@ function gitTools(){
 	check "Agregando cors.py"
 	## Rustcat
 	info "Descargando rustcat"
-	wget "https://github.com/robiot/rustcat/releases/download/v3.0.0/rcat-v3.0.0-linux-x86_64.deb" -O /tmp/rcat-v3.0.0-linux-x86_64.deb > /dev/null 2>&1
+	wget "https://github.com/robiot/rustcat/releases/latest/download/rcat-v3.0.0-linux-x86_64.deb" -O /tmp/rcat-v3.0.0-linux-x86_64.deb > /dev/null 2>&1
 	cd /tmp && sudo apt install ./rcat-v3.0.0-linux-x86_64.deb  > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		apt --fix-broken install -y > /dev/null 2>&1
@@ -368,7 +467,7 @@ function gitTools(){
 	check "Agregando BloodHound 4.0.3"
 	## Kill-Port
 	info "Descargando KillPort"
-	cd /tmp && wget https://github.com/jkfran/killport/releases/download/v0.9.0/killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
+	cd /tmp && wget https://github.com/jkfran/killport/releases/latest/download/killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
 	tar -xzf killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
 	mv killport /usr/local/bin
 	check "Agregando KillPort"
@@ -394,13 +493,13 @@ function gitTools(){
 	## JuicyPotatoNG
 	info "Descargando JuicyPotatoNG"
 	cd $PRIVESCWIN_PATH && mkdir JuicyPotato 2>/dev/null
-	wget https://github.com/antonioCoco/JuicyPotatoNG/releases/download/v1.1/JuicyPotatoNG.zip -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotatoNG.zip > /dev/null 2>&1
+	wget https://github.com/antonioCoco/JuicyPotatoNG/releases/latest/download/JuicyPotatoNG.zip -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotatoNG.zip > /dev/null 2>&1
 	unzip JuicyPotatoNG.zip > /dev/null 2>&1
 	rm -rf JuicyPotatoNG.zip > /dev/null 2>&1
 	check "Agregando JuicyPotatoNG"
 	## JuicyPotato.exe
 	info "Descargando JuicyPotato.exe"
-	wget https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotato.exe > /dev/null 2>&1
+	wget https://github.com/ohpe/juicy-potato/releases/latest/download/JuicyPotato.exe -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotato.exe > /dev/null 2>&1
 	check "Agregando JuicyPotato.exe"
 	## Churrasco.exe
 	info "Descargando churrasco.exe"
@@ -411,14 +510,14 @@ function gitTools(){
 	info "Descargando PrintSpoofer.exe"
 	cd $PRIVESCWIN_PATH && mkdir PrintSpoofer 2>/dev/null
 	wget https://github.com/k4sth4/PrintSpoofer/raw/main/PrintSpoofer.exe -O $PRIVESCWIN_PATH/PrintSpoofer/PrintSpoofer.exe > /dev/null 2>&1
-	wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe -O $PRIVESCWIN_PATH/PrintSpoofer/PrintSpoofer64.exe > /dev/null 2>&1
+	wget https://github.com/itm4n/PrintSpoofer/releases/latest/download/PrintSpoofer64.exe -O $PRIVESCWIN_PATH/PrintSpoofer/PrintSpoofer64.exe > /dev/null 2>&1
 	check "Agregando PrintSpoofer.exe"
 	## WinPEAS.exe
 	info "Descargando winPEAS.exe"
 	cd $PRIVESCWIN_PATH && mkdir winPEAS 2>/dev/null
-	wget https://github.com/carlospolop/PEASS-ng/releases/download/20240211-db8c669a/winPEASx64.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx64.exe > /dev/null 2>&1
-	wget https://github.com/carlospolop/PEASS-ng/releases/download/20240211-db8c669a/winPEASx86.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx86.exe > /dev/null 2>&1
-	wget https://github.com/carlospolop/PEASS-ng/releases/download/20240211-db8c669a/winPEASany.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASany.exe > /dev/null 2>&1
+	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx64.exe > /dev/null 2>&1
+	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx86.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx86.exe > /dev/null 2>&1
+	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASany.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASany.exe > /dev/null 2>&1
 	## LinPEAS
 	info "Descargando LinPEAS"
 	cd $PRIVESCLIN_PATH && mkdir linpeas 2>/dev/null
@@ -433,27 +532,27 @@ function gitTools(){
 	check "Agregando Arachni"
 	## CAPA
 	info "Descargando CAPA"
-	wget https://github.com/mandiant/capa/releases/download/v6.1.0/capa-v6.1.0-linux.zip -O /tmp/capa-v6.1.0-linux.zip > /dev/null 2>&1
-	cd /tmp && unzip /tmp/capa-v6.1.0-linux.zip > /dev/null 2>&1
+	wget https://github.com/mandiant/capa/releases/download/v7.0.1/capa-v7.0.1-linux.zip -O /tmp/capa-v7.0.1-linux.zip > /dev/null 2>&1
+	cd /tmp && unzip /tmp/capa-v7.0.1-linux.zip > /dev/null 2>&1
 	mv /tmp/capa /usr/local/bin
 	check "Agregando CAPA"
 	## IPATool
 	info "Descargando IPAtool"
-	wget https://github.com/majd/ipatool/releases/download/v2.1.3/ipatool-2.1.3-linux-amd64.tar.gz -O /tmp/ipatool-2.1.3-linux-amd64.tar.gz > /dev/null 2>&1
-	cd /tmp && tar -xzf /tmp/ipatool-2.1.3-linux-amd64.tar.gz > /dev/null 2>&1
-	chmod +x /tmp/bin/ipatool-2.1.3-linux-amd64
-	mv /tmp/bin/ipatool-2.1.3-linux-amd64 /usr/local/bin/ipatool
+	wget https://github.com/majd/ipatool/releases/download/v2.1.4/ipatool-2.1.4-linux-amd64.tar.gz -O /tmp/ipatool-2.1.4-linux-amd64.tar.gz > /dev/null 2>&1
+	cd /tmp && tar -xzf /tmp/ipatool-2.1.4-linux-amd64.tar.gz > /dev/null 2>&1
+	chmod +x /tmp/bin/ipatool-2.1.4-linux-amd64
+	mv /tmp/bin/ipatool-2.1.4-linux-amd64 /usr/local/bin/ipatool
 	check "Agregando IPAtool"
 	## Govenom
 	info "Descargando Govenom"
-	wget https://github.com/arch3rPro/Govenom/releases/download/pre/darwin_amd64.tar.gz -O /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
+	wget https://github.com/arch3rPro/Govenom/releases/latest/download/darwin_amd64.tar.gz -O /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
 	cd /tmp && tar -xzf /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
 	mv /tmp/Govenom /usr/local/bin
 	check "Instalando Govenom"
 	## NetExec
 	info "Instalando NetExec"
 	cd /tmp 2>/dev/null
-	wget https://github.com/Pennyw0rth/NetExec/releases/download/v1.1.0/nxc >/dev/null 2>&1
+	wget https://github.com/Pennyw0rth/NetExec/releases/latest/download/nxc >/dev/null 2>&1
 	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/NetExec >/dev/null 2>&1
 	check "Agregando NetExec"
 	## NSE Scripts
