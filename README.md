@@ -2,26 +2,55 @@
 
 [![GitHub top language](https://img.shields.io/github/languages/top/m4lal0/autoDeploy?logo=gnu-bash&style=for-the-badge)](#)
 [![GitHub repo size](https://img.shields.io/github/repo-size/m4lal0/autoDeploy?logo=webpack&style=for-the-badge)](#)
-[![Kali Linux Supported](https://img.shields.io/badge/Kali_Linux_2023-Supported-blue?style=for-the-badge&logo=kali-linux)](#)
+[![Developed on Kali Linux](https://img.shields.io/badge/Developed_on-Kali_Linux-purple?style=for-the-badge&logo=kali-linux)](#)
+[![Version](https://img.shields.io/badge/Version-2024-orange?style=for-the-badge&logo=github)](#)
 [![By](https://img.shields.io/badge/By-m4lal0-green?style=for-the-badge&logo=github)](#)
 
 ![autoDeploy](./images/autodeploy.png)
 
-AutoDeploy es un script que permite instalar una capa de personalización en Kali Linux OS. Instala diferentes plugins, aplicaciones y utilidades para tener un entorno más agradable para trabajar.
+<h4 align="center">AutoDeploy es un script en bash que permite instalar una capa de personalización en Kali Linux OS. Instala diferentes plugins, aplicaciones y utilidades para tener un entorno más agradable para trabajar.</h4><br>
 
-## Instalación y Uso
+---
 
-Ejecutarlo como root:
+## Descarga
+
+Descargar el proyecto y darle permisos de ejecución:
 
 ```
 git clone https://github.com/m4lal0/autoDeploy
 cd autoDeploy; chmod +x autoDeploy.sh
-./autoDeploy.sh
 ```
 
-Al ejecutarlo nos mostrará un panel de ayuda:
+## ¿Cómo usarlo?
 
-![HelpPanel](./images/helpPanel.png)
+```
+                             __              _______                    __                   
+                            |  \            |       \                  |  \                  
+          ______  __    __ _| ▓▓_    ______ | ▓▓▓▓▓▓▓\ ______   ______ | ▓▓ ______  __    __ 
+         |      \|  \  |  \   ▓▓ \  /      \| ▓▓  | ▓▓/      \ /      \| ▓▓/      \|  \  |  \
+          \▓▓▓▓▓▓\ ▓▓  | ▓▓\▓▓▓▓▓▓ |  ▓▓▓▓▓▓\ ▓▓  | ▓▓  ▓▓▓▓▓▓\  ▓▓▓▓▓▓\ ▓▓  ▓▓▓▓▓▓\ ▓▓  | ▓▓
+         /      ▓▓ ▓▓  | ▓▓ | ▓▓ __| ▓▓  | ▓▓ ▓▓  | ▓▓ ▓▓    ▓▓ ▓▓  | ▓▓ ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓
+        |  ▓▓▓▓▓▓▓ ▓▓__/ ▓▓ | ▓▓|  \ ▓▓__/ ▓▓ ▓▓__/ ▓▓ ▓▓▓▓▓▓▓▓ ▓▓__/ ▓▓ ▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓
+         \▓▓    ▓▓\▓▓    ▓▓  \▓▓  ▓▓\▓▓    ▓▓ ▓▓    ▓▓\▓▓     \ ▓▓    ▓▓ ▓▓\▓▓    ▓▓\▓▓    ▓▓
+          \▓▓▓▓▓▓▓ \▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓ \▓▓▓▓▓▓▓  \▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ \▓▓ \▓▓▓▓▓▓ _\▓▓▓▓▓▓▓
+                                                              | ▓▓                 |  \__| ▓▓
+                                                              | ▓▓                  \▓▓    ▓▓
+                                                               \▓▓                   \▓▓▓▓▓▓ 
+
+         Script para personalizar el entorno de trabajo de Kali Linux .:.:. By @m4lal0 .:.:. 
+
+
+[!] Uso:
+
+        ./autoDeploy.sh [OPCION]
+
+OPCIONES:
+        -i, --install         Instalación completa de la capa de personalización.
+              terminal:       Instalación solamente de la personalización de la terminal y escritorio.
+              apps:           Instalación solamente de los programas de terceros.
+        -d, --delete          Eliminar configuración de Escritorio y directorios de los aplicativos de terceros.
+        -h, --help            Mostrar este panel de ayuda.
+```
 
 El script cuenta con **3** modos de instalación:
 ##### Instalación completa
@@ -41,8 +70,6 @@ Al inicio solicitará unos datos para el proceso de instalación, el resto de la
 
 ## Utilidades
 
-![autoDeploy](./images/preview.PNG)
-
 Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa de personalización:
 
 #### PERSONALIZACION DE ESCRITORIO Y TERMINAL
@@ -51,7 +78,6 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 <summary>Fonts</summary>
 
 - Hacker Nerd
-- Fira Code
 
 </details>
 
@@ -60,6 +86,7 @@ Estas son algunas de las aplicaciones y utilidades que se incluyen en esta capa 
 
 - xfce custom
 - rofi
+- findex
 - i3lock-fancy
 - Notifications custom
 - Candy-icons
