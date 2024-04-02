@@ -207,4 +207,15 @@ raven
 cmseek
 xfce4-panel
 xfce4-panel-profiles
+passdetective
+sharpshooter
+enum4linux-ng
+wig
+wig-ng
+h8mail
+dnstwist
+stegcracker
+hashid
+sucrack
+powercat
 seclists
