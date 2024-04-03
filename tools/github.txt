@@ -26,7 +26,6 @@ Utilities|https://github.com/t0thkr1s/revshellgen
 Utilities|https://github.com/htr-tech/zphisher
 Utilities|https://github.com/Gr1mmie/autoenum
 Utilities|https://github.com/jaykali/maskphish
-Utilities|https://github.com/hemp3l/sucrack
 Utilities|https://github.com/Screetsec/BruteSploit
 Utilities|https://github.com/BiZken/PhishMailer
 Utilities|https://github.com/Cerbrutus-BruteForcer/cerbrutus
@@ -68,7 +67,6 @@ Web|https://github.com/eslam3kl/SQLiDetector
 Web|https://github.com/epsylon/Smuggler
 Web|https://github.com/m4ll0k/Atlas
 Web|https://github.com/zidansec/CloudPeler
-Web|https://github.com/jekyc/wig
 Web|https://github.com/lightos/Panoptic
 Web|https://github.com/0xKayala/ParamSpider
 Web|https://github.com/JoelGMSec/HTTP-Shell
