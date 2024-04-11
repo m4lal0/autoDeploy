@@ -273,12 +273,12 @@ function gitTools(){
 	cd rsg && ln -s $(pwd)/rsg /usr/local/bin > /dev/null 2>&1
 	check "Agregando Reverse Shell Generator"
 	## Next Generation version of Enum4Linux
-	info "Descargando Enum4Linux-ng"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/cddmp/enum4linux-ng.git >/dev/null 2>&1
-	cd enum4linux-ng && pip install -r requirements.txt --break-system-packages >/dev/null 2>&1
-	ln -s $UTILITIES_PATH/enum4linux-ng/enum4linux-ng.py /usr/local/bin/enum4linux-ng  >/dev/null 2>&1
-	check "Agregando Enum4Linux-ng"
+	#info "Descargando Enum4Linux-ng"
+	#cd $UTILITIES_PATH 2>/dev/null
+	#git clone https://github.com/cddmp/enum4linux-ng.git >/dev/null 2>&1
+	#cd enum4linux-ng && pip install -r requirements.txt --break-system-packages >/dev/null 2>&1
+	#ln -s $UTILITIES_PATH/enum4linux-ng/enum4linux-ng.py /usr/local/bin/enum4linux-ng  >/dev/null 2>&1
+	#check "Agregando Enum4Linux-ng"
 	## ASN Lookup Tool and Traceroute Server
 	info "Descargando asn"
 	cd $UTILITIES_PATH 2>/dev/null
