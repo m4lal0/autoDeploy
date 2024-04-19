@@ -218,4 +218,5 @@ stegcracker
 hashid
 sucrack
 powercat
+autorecon
 seclists
