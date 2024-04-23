@@ -27,3 +27,4 @@ afrog:github.com/zan8in/afrog/v2/cmd/afrog@latest
 surf:github.com/assetnote/surf/cmd/surf@latest
 fuzzuli:github.com/musana/fuzzuli@latest
 fallparams:github.com/ImAyrix/fallparams@latest
+smugglefuzz:github.com/moopinger/smugglefuzz@latest
