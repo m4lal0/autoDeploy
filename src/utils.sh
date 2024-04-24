@@ -494,8 +494,8 @@ function gitTools(){
 	info "Descargando JuicyPotatoNG"
 	cd $PRIVESCWIN_PATH && mkdir JuicyPotato 2>/dev/null
 	wget https://github.com/antonioCoco/JuicyPotatoNG/releases/latest/download/JuicyPotatoNG.zip -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotatoNG.zip > /dev/null 2>&1
-	unzip JuicyPotatoNG.zip > /dev/null 2>&1
-	rm -rf JuicyPotatoNG.zip > /dev/null 2>&1
+	cd $PRIVESCWIN_PATH/JuicyPotato/ && unzip JuicyPotatoNG.zip > /dev/null 2>&1
+	rm -f $PRIVESCWIN_PATH/JuicyPotato/JuicyPotatoNG.zip > /dev/null 2>&1
 	check "Agregando JuicyPotatoNG"
 	## JuicyPotato.exe
 	info "Descargando JuicyPotato.exe"
@@ -555,6 +555,18 @@ function gitTools(){
 	wget https://github.com/Pennyw0rth/NetExec/releases/latest/download/nxc >/dev/null 2>&1
 	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/NetExec >/dev/null 2>&1
 	check "Agregando NetExec"
+	## RunasCs
+	info "Descargando RunasCs"
+	cd $PRIVESCWIN_PATH && mkdir RunasCs 2>/dev/null
+	wget https://github.com/antonioCoco/RunasCs/releases/download/v1.5/RunasCs.zip -O $PRIVESCWIN_PATH/RunasCs/RunasCs.zip > /dev/null 2>&1
+	cd $PRIVESCWIN_PATH/RunasCs && unzip RunasCs.zip > /dev/null 2>&1
+	rm -f $PRIVESCWIN_PATH/RunasCs/RunasCs.zip > /dev/null 2>&1
+	check "Agregando RunasCs"
+	## Seatbelt.exe
+	info "Descargando Seatbelt.exe"
+	cd $PRIVESCWIN_PATH && mkdir Seatbelt 2>/dev/null
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Seatbelt.exe -O $PRIVESCWIN_PATH/Seatbelt/Seatbelt.exe > /dev/null 2>&1
+	check "Agregando Seatbelt.exe"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
