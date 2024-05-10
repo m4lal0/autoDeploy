@@ -219,4 +219,6 @@ hashid
 sucrack
 powercat
 autorecon
+knockpy
+exiflooter
 seclists
