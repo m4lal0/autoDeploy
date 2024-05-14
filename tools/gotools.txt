@@ -28,3 +28,4 @@ surf:github.com/assetnote/surf/cmd/surf@latest
 fuzzuli:github.com/musana/fuzzuli@latest
 fallparams:github.com/ImAyrix/fallparams@latest
 smugglefuzz:github.com/moopinger/smugglefuzz@latest
+hauditor:github.com/trap-bytes/hauditor@latest
