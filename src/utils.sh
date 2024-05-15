@@ -224,7 +224,7 @@ function gitTools(){
 
 ## Git clone con instalación aparte
 	info "Directorios de aplicativos"
-	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH} 2>/dev/null
+	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH,$MOBILE_PATH} 2>/dev/null
 	check "Creando directorios"
 	## GTFOBLookup
 	info "Descargando GTFOBLookup"
