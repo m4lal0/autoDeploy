@@ -37,7 +37,6 @@ Utilities|https://github.com/m4lal0/smbrelay
 Utilities|https://github.com/internetwache/GitTools
 Utilities|https://github.com/ly4k/SMBGhost
 Utilities|https://github.com/vdjagilev/nmap2md
-Utilities|https://github.com/ari5ti/Janus-Exploit
 Utilities|https://github.com/keraattin/EmailAnalyzer
 Utilities|https://github.com/t3l3machus/eviltree
 Utilities|https://github.com/t3l3machus/hoaxshell
@@ -86,3 +85,6 @@ Web|https://github.com/americo/sqlifinder
 Web|https://github.com/swisskyrepo/SSRFmap
 Web|https://github.com/danialhalo/SqliSniper
 Web/Wordpress|https://github.com/n00py/WPForce
+Mobile|https://github.com/Cyber-Buddy/APKHunt
+Mobile|https://github.com/vincentcox/StaCoAn
+Mobile|https://github.com/ari5ti/Janus-Exploit
