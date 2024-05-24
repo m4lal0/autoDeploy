@@ -90,8 +90,10 @@ function installApps(){
 	#Instalando extensión: FoxyProxy
 	cd /tmp/extensions 2>/dev/null
 	mkdir foxyproxy && cd foxyproxy 2>/dev/null
-	wget https://addons.mozilla.org/firefox/downloads/file/4228676/foxyproxy_standard-8.9.xpi > /dev/null 2>&1
-	cp foxyproxy_standard-8.9.xpi foxyproxy@eric.h.jung.xpi 2>/dev/null
+	#wget https://addons.mozilla.org/firefox/downloads/file/4228676/foxyproxy_standard-8.9.xpi > /dev/null 2>&1
+	wget https://github.com/rohsec/BetterBugBounty/raw/main/FoxyProxy/Firefox/foxyproxy_standard-7.5.1.xpi > /dev/null 2>&1
+	#cp foxyproxy_standard-8.9.xpi foxyproxy@eric.h.jung.xpi 2>/dev/null
+	cp foxyproxy_standard-7.5.1.xpi foxyproxy@eric.h.jung.xpi 2>/dev/null
 	chown $USERNAME:$USERNAME foxyproxy@eric.h.jung.xpi 2>/dev/null
 	mv foxyproxy@eric.h.jung.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
 	check "Instalando extensión FoxyProxy"
@@ -134,11 +136,11 @@ function installApps(){
 
 	## Instalacion Brave
 	info "Instalar Brave"
-	curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - > /dev/null 2>&1
-	echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list > /dev/null 2>&1
+	curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg 2>/dev/null
+	echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list > /dev/null 2>&1
 	check "Descargando Brave"
-	apt-get update -y > /dev/null 2>&1
-	apt-get install brave-browser -y > /dev/null 2>&1
+	apt update -y > /dev/null 2>&1
+	apt install brave-browser -y > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		apt --fix-broken install -y > /dev/null 2>&1
 		apt-get install brave-browser -y > /dev/null 2>&1
@@ -207,6 +209,13 @@ function gitTools(){
 	cd /usr/share 2>/dev/null
 	git clone https://github.com/attackdebris/kerberos_enum_userlists > /dev/null 2>&1
 	ln -s `pwd`/kerberos_enum_userlists /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlist/"
+	## IntruderPayloads
+	info "Descargando wordlists IntruderPayloads"
+	cd /usr/share 2>/dev/null
+	git clone https://github.com/1N3/IntruderPayloads > /dev/null 2>&1
+	rm /usr/share/IntruderPayloads/BurpsuiteIntruderPayloads.png /usr/share/IntruderPayloads/install.sh /usr/share/IntruderPayloads/OWASPTestingChecklist_v_1.0.xls /usr/share/IntruderPayloads/README.md /usr/share/IntruderPayloads/update.sh  2>/dev/null
+	ln -s `pwd`/IntruderPayloads /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlist/"
 	## Others Wordlists
 	info "Descargando otras wordlists"
@@ -325,6 +334,7 @@ function gitTools(){
 	cd /tmp 2>/dev/null
 	git clone https://github.com/t3l3machus/wwwtree > /dev/null 2>&1
 	cd wwwtree && cp wwwtree.py /usr/local/bin/wwwtree 2>/dev/null
+	chmod +x /usr/local/bin/wwwtree 2>/dev/null
 	check "Agregando wwwtree"
 	## ligolo-ng
 	info "Descargando ligolo-ng"
@@ -343,11 +353,11 @@ function gitTools(){
 	cd wifi_db && pip3 install -r requirements.txt --break-system-packages > /dev/null 2>&1
 	check "Agregando wifi_db"
 	## UploadBypass
-	info "Instalando Upload_Bypass"
-	cd $WEB_PATH && wget https://github.com/sAjibuu/Upload_Bypass/releases/download/v2.0.8-offical/Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
-	unzip Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
-	rm Upload_Bypass_v2.0.8-offical.zip 2>/dev/null
-	check "Agregando Upload_Bypass"
+	#info "Instalando Upload_Bypass"
+	#cd $WEB_PATH && wget https://github.com/sAjibuu/Upload_Bypass/releases/download/v2.0.8-offical/Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
+	#unzip Upload_Bypass_v2.0.8-offical.zip > /dev/null 2>&1
+	#rm Upload_Bypass_v2.0.8-offical.zip 2>/dev/null
+	#check "Agregando Upload_Bypass"
 	## Decodify
 	info "Instalando Decodify"
 	cd /tmp && git clone https://github.com/s0md3v/Decodify >/dev/null 2>&1
@@ -437,7 +447,7 @@ function gitTools(){
 	check "Agregando tempomail"
 	## ABE (Android-Backup-Extractor)
 	info "Descargando Android-Backup-Extractor"
-	mkdir $UTILITIES_PATH/Android-Backup-Extractor && wget "https://github.com/nelenkov/android-backup-extractor/releases/download/master-20221109063121-8fdfc5e/abe.jar" -O $UTILITIES_PATH/Android-Backup-Extractor/abe.jar > /dev/null 2>&1
+	mkdir $MOBILE_PATH/Android-Backup-Extractor && wget "https://github.com/nelenkov/android-backup-extractor/releases/download/master-20221109063121-8fdfc5e/abe.jar" -O $MOBILE_PATH/Android-Backup-Extractor/abe.jar > /dev/null 2>&1
 	check "Agregando Android-Backup-Extractor"
 	## Venom
 	info "Descargando venom"
@@ -567,6 +577,13 @@ function gitTools(){
 	cd $PRIVESCWIN_PATH && mkdir Seatbelt 2>/dev/null
 	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Seatbelt.exe -O $PRIVESCWIN_PATH/Seatbelt/Seatbelt.exe > /dev/null 2>&1
 	check "Agregando Seatbelt.exe"
+	## x8
+	info "Descargando x8"
+	cd /tmp && wget https://github.com/Sh1Yo/x8/releases/download/v4.3.0/x86_64-linux-x8.gz > /dev/null 2>&1
+	gzip -d x86_64-linux-x8.gz 2>/dev/null
+	mv x86_64-linux-x8 x8 && mv x8 /usr/local/bin/ 2>/dev/null
+	chmod +x /usr/local/bin/x8 2>/dev/null
+	check "Agregando x8"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
