@@ -190,33 +190,41 @@ function gitTools(){
     info "Descomprimiendo wordlist rockyou"
     cd /usr/share/wordlists 2>/dev/null
     gunzip rockyou.txt.gz > /dev/null 2>&1
-    check "Descomprimir archivo rockyou en /usr/share/wordlist/"
+    check "Descomprimir archivo rockyou en /usr/share/wordlists/"
     cd 2>/dev/null
 	## fuzzdb
 	info "Descargando wordlists fuzzdb"
 	cd /usr/share 2>/dev/null
 	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb > /dev/null 2>&1
 	ln -s `pwd`/fuzzdb /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlist/"
+	check "Agregando wordlist en /usr/share/wordlists/"
 	## OneListForAll
 	info "Descargando wordlists OneListForAll"
 	cd /usr/share 2>/dev/null
 	git clone --depth 1 https://github.com/six2dez/OneListForAll > /dev/null 2>&1
 	ln -s `pwd`/OneListForAll /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlist/"
+	check "Agregando wordlist en /usr/share/wordlists/"
 	## Kerberos-Enum-userlists
 	info "Descargando wordlists Kerberos-Username-Enumeration"
 	cd /usr/share 2>/dev/null
 	git clone https://github.com/attackdebris/kerberos_enum_userlists > /dev/null 2>&1
 	ln -s `pwd`/kerberos_enum_userlists /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlist/"
+	check "Agregando wordlist en /usr/share/wordlists/"
 	## IntruderPayloads
 	info "Descargando wordlists IntruderPayloads"
 	cd /usr/share 2>/dev/null
 	git clone https://github.com/1N3/IntruderPayloads > /dev/null 2>&1
 	rm /usr/share/IntruderPayloads/BurpsuiteIntruderPayloads.png /usr/share/IntruderPayloads/install.sh /usr/share/IntruderPayloads/OWASPTestingChecklist_v_1.0.xls /usr/share/IntruderPayloads/README.md /usr/share/IntruderPayloads/update.sh  2>/dev/null
 	ln -s `pwd`/IntruderPayloads /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlist/"
+	check "Agregando wordlist en /usr/share/wordlists/"
+	## LFI Server Configurations - Linux
+	info "Descargando wordlists de Configuraciones de Servidores de Linux"
+	wget https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Linux -O /usr/share/wordlists/LFI-WordList-Linux.txt > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlists/"
+	## LFI Server Configurations - Windows
+	info "Descargando wordlists de Configuraciones de Servidores de Windows"
+	wget https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Windows -O /usr/share/wordlists/LFI-WordList-Windows.txt > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlists/"
 	## Others Wordlists
 	info "Descargando otras wordlists"
 	cd /usr/share 2>/dev/null
