@@ -85,6 +85,7 @@ Web|https://github.com/americo/sqlifinder
 Web|https://github.com/swisskyrepo/SSRFmap
 Web|https://github.com/danialhalo/SqliSniper
 Web|https://github.com/anshumanpattnaik/http-request-smuggling
+Web|https://github.com/epinna/tplmap
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
