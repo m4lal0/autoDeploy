@@ -221,4 +221,6 @@ powercat
 autorecon
 knockpy
 exiflooter
+getsploit
+sploitscan
 seclists
