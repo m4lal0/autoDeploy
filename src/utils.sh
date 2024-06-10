@@ -534,8 +534,11 @@ function gitTools(){
 	info "Descargando winPEAS.exe"
 	cd $PRIVESCWIN_PATH && mkdir winPEAS 2>/dev/null
 	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx64.exe > /dev/null 2>&1
+	check "Agregando winPEASx64.exe"
 	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx86.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx86.exe > /dev/null 2>&1
+	check "Agregando winPEASx86.exe"
 	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASany.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASany.exe > /dev/null 2>&1
+	check "Agregando winPEASany.exe"
 	## LinPEAS
 	info "Descargando LinPEAS"
 	cd $PRIVESCLIN_PATH && mkdir linpeas 2>/dev/null
@@ -571,7 +574,7 @@ function gitTools(){
 	info "Instalando NetExec"
 	cd /tmp 2>/dev/null
 	wget https://github.com/Pennyw0rth/NetExec/releases/latest/download/nxc >/dev/null 2>&1
-	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/NetExec >/dev/null 2>&1
+	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/netexec >/dev/null 2>&1
 	check "Agregando NetExec"
 	## RunasCs
 	info "Descargando RunasCs"
