@@ -43,6 +43,7 @@ Utilities|https://github.com/t3l3machus/hoaxshell
 Utilities|https://github.com/t3l3machus/BabelStrike
 Utilities|https://github.com/The-Viper-One/PsMapExec
 Utilities|https://github.com/sameera-madushan/Print-My-Shell
+Utilities|https://github.com/p0dalirius/smbclient-ng
 Web|https://github.com/InfosecMatter/default-http-login-hunter
 Web|https://github.com/TheRook/subbrute
 Web|https://github.com/Dhayalanb/windows-php-reverse-shell
