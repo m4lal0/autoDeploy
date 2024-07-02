@@ -378,6 +378,12 @@ function gitTools(){
 	cd killcast && chmod +x killcast.py 2>/dev/null
 	mv killcast.py /usr/local/bin/killcast 2>/dev/null
 	check "Agregando killCast"
+	## BashFuscator
+	info "Instalando BashFuscator"
+	cd /tmp && git clone https://github.com/Bashfuscator/Bashfuscator >/dev/null 2>&1
+	cd Bashfuscator && python3 setup.py install --user >/dev/null 2>&1
+	mv bashfuscator/bin/bashfuscator /usr/local/bin/bashfuscator 2>/dev/null
+	check "Agregando Bashfuscator"
 	### CrackMapExec
 	#info "Instalando CrackMapExec"
 	#cd $UTILITIES_PATH 2>/dev/null
@@ -595,6 +601,11 @@ function gitTools(){
 	mv x86_64-linux-x8 x8 && mv x8 /usr/local/bin/ 2>/dev/null
 	chmod +x /usr/local/bin/x8 2>/dev/null
 	check "Agregando x8"
+	## LaZagne.exe
+	info "Descargando LaZagne.exe"
+	cd $UTILITIES_PATH && mkdir LaZagne 2>/dev/null
+	wget https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.6/LaZagne.exe -O $UTILITIES_PATH/LaZagne/LaZagne.exe > /dev/null 2>&1
+	check "Agregando LaZagne.exe"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
