@@ -10,6 +10,7 @@ PrivEsc-Win|https://github.com/Pwnistry/Windows-Exploit-Suggester-python3
 PrivEsc-Win|https://github.com/411Hall/JAWS
 PrivEsc-Win|https://github.com/rasta-mouse/Sherlock
 PrivEsc-Win|https://github.com/samratashok/nishang
+PrivEsc-Win|https://github.com/OmerYa/Invisi-Shell
 AD|https://github.com/adrecon/ADRecon
 AD|https://github.com/urbanadventurer/username-anarchy
 AD|https://github.com/RipFran/ldapenum
