@@ -10,8 +10,8 @@ function customTerminal(){
 
 	info "Descargando fuente (Hack Nerd Font)"
 	cd /usr/local/share/fonts/ 2>/dev/null
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip > /dev/null 2>&1
-	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
+	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
 	unzip Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
 	rm Hack.zip 2>/dev/null
@@ -158,9 +158,9 @@ function customTerminal(){
 	fi
 
 	info "Configurando findex"
-	wget https://github.com/mdgaziur/findex/releases/download/v0.8.1/findex-0.8.1-x86_64.tar.gz -O /tmp/findex-0.8.1-x86_64.tar.gz > /dev/null 2>&1
-	tar -xzf /tmp/findex-0.8.1-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
-	mv /tmp/findex-0.8.1-x86_64/findex /usr/bin 2>/dev/null
+	wget https://github.com/mdgaziur/findex/releases/download/v0.8.2/findex-0.8.2-x86_64.tar.gz -O /tmp/findex-0.8.2-x86_64.tar.gz > /dev/null 2>&1
+	tar -xzf /tmp/findex-0.8.2-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
+	mv /tmp/findex-0.8.2-x86_64/findex /usr/bin 2>/dev/null
 	chown root:$USERNAME /usr/bin/findex 2>/dev/null
 	check "Configurando findex"
 
