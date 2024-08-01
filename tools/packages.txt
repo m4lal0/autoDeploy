@@ -223,4 +223,5 @@ knockpy
 exiflooter
 getsploit
 sploitscan
+s3scanner
 seclists
