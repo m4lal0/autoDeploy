@@ -3,6 +3,7 @@ PrivEsc-Lin|https://github.com/rebootuser/LinEnum
 PrivEsc-Lin|https://github.com/mzet-/linux-exploit-suggester
 PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
 PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
+PrivEsc-Lin|https://github.com/whotwagner/logrotten
 PrivEsc-Win|https://github.com/itm4n/PrivescCheck
 PrivEsc-Win|https://github.com/S3cur3Th1sSh1t/WinPwn
 PrivEsc-Win|https://github.com/bitsadmin/wesng
