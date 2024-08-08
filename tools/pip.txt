@@ -40,3 +40,4 @@ pip3:fuzzywuzzy
 pip3:langdetect
 pip3:colored
 pip3:webtech
+pip3:apkscan
