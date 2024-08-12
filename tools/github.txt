@@ -22,6 +22,7 @@ OSINT|https://github.com/pixelbubble/ProtOSINT
 Wifi|https://github.com/m4lal0/wifiAttack
 Wifi|https://github.com/kleo/evilportals
 Wifi|https://github.com/frozenjava/EvilPortalNano
+Wifi|https://github.com/D3Ext/WEF
 Utilities|https://github.com/paranoidninja/CarbonCopy
 Utilities|https://github.com/vivami/SauronEye
 Utilities|https://github.com/t0thkr1s/revshellgen
@@ -89,6 +90,7 @@ Web|https://github.com/swisskyrepo/SSRFmap
 Web|https://github.com/danialhalo/SqliSniper
 Web|https://github.com/anshumanpattnaik/http-request-smuggling
 Web|https://github.com/epinna/tplmap
+Web|https://github.com/dagrz/aws_pwn
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
