@@ -225,4 +225,5 @@ getsploit
 sploitscan
 s3scanner
 pacu
+havoc
 seclists
