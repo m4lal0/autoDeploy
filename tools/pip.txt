@@ -42,3 +42,4 @@ pip3:colored
 pip3:webtech
 pip3:apkscan
 pip3:prowler
+pip3:xsrfprobe
