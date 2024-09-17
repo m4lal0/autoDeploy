@@ -6,6 +6,7 @@ python3-scapy
 python3-setuptools
 python2-dev
 python3-poetry
+python3-pyqt5
 php-curl
 libssl-dev
 snmp
@@ -226,4 +227,10 @@ sploitscan
 s3scanner
 pacu
 havoc
+goshs
+hekatomb
+mxcheck
+netscanner
+sprayhound
+sqlmc
 seclists
