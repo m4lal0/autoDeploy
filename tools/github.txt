@@ -4,6 +4,7 @@ PrivEsc-Lin|https://github.com/mzet-/linux-exploit-suggester
 PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
 PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
 PrivEsc-Lin|https://github.com/whotwagner/logrotten
+PrivEsc-Lin|https://github.com/CISOfy/lynis
 PrivEsc-Win|https://github.com/itm4n/PrivescCheck
 PrivEsc-Win|https://github.com/S3cur3Th1sSh1t/WinPwn
 PrivEsc-Win|https://github.com/bitsadmin/wesng
@@ -91,6 +92,7 @@ Web|https://github.com/danialhalo/SqliSniper
 Web|https://github.com/anshumanpattnaik/http-request-smuggling
 Web|https://github.com/epinna/tplmap
 Web|https://github.com/dagrz/aws_pwn
+Web|https://github.com/r0075h3ll/Oralyzer
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
