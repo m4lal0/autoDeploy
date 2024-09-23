@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-CPU=$(top -bn 2 -d 0.2 | grep '^%Cpu' | tail -n 1 | awk '{printf "%02d", $2+$4+$6}')
+#CPU=$(top -bn 2 -d 0.2 | grep '^%Cpu' | tail -n 1 | awk '{printf "%02d", $2+$4+$6}')
+CPU=$(mpstat 1 1 | awk '/Average:/ {printf "%.2f%%", 100 - $12}')
 
 if [ ${CPU} -gt 90 ]; then
         echo "<txt> 󰻠 <span foreground=\"red\">$CPU </span></txt>"

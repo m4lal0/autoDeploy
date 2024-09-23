@@ -256,9 +256,6 @@ function customTerminal(){
 	check "Configurando iconos en el sistema"
 	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Sweet-Rainbow > /dev/null 2>&1 && gtk-update-icon-cache $HOME_PATH/.local/share/icons/candy-icons > /dev/null 2>&1
 	check "Actualizando iconos"
-	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
-	check "Configurando paneles de trabajo"
 	mkdir $HOME_PATH/.config/scripts && chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/ 2>/dev/null
 	check "Configurando directorio de scripts para la barra de tarea"
 	cp $FILES_PATH/scripts/ethstatus.sh $HOME_PATH/.config/scripts/ethstatus.sh > /dev/null 2>&1
@@ -296,6 +293,13 @@ function customTerminal(){
 	chmod 774 $HOME_PATH/.config/scripts/cpustatus.sh 2>/dev/null
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/cpustatus.sh 2>/dev/null
 	check "Copiando script de uso de cpu"
+	cp $FILES_PATH/panel/genmon-40.rc $HOME_PATH/.config/xfce4/panel/genmon-40.rc > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/genmon-40.rc 2>/dev/null
+	check "Configurando info de uso de disco duro"
+	cp $FILES_PATH/scripts/diskstatus.sh $HOME_PATH/.config/scripts/diskstatus.sh > /dev/null 2>&1
+	chmod 774 $HOME_PATH/.config/scripts/diskstatus.sh 2>/dev/null
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/diskstatus.sh 2>/dev/null
+	check "Copiando script de uso de disco duro"
 	cp $FILES_PATH/scripts/whichSystem /usr/local/bin/whichSystem > /dev/null 2>&1
 	chmod +x /usr/local/bin/whichSystem 2>/dev/null
 	check "Copiando script whichSystem"
