@@ -39,6 +39,8 @@
         <value type="int" value="33"/>
         <value type="int" value="37"/>
         <value type="int" value="38"/>
+        <value type="int" value="40"/>
+        <value type="int" value="39"/>
         <value type="int" value="34"/>
         <value type="int" value="14"/>
         <value type="int" value="16"/>
@@ -60,8 +62,8 @@
       </property>
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="leave-opacity" type="uint" value="100"/>
-      <property name="disable-struts" type="bool" value="false"/>
       <property name="icon-size" type="uint" value="20"/>
+      <property name="enable-struts" type="bool" value="true"/>
     </property>
   </property>
   <property name="plugins" type="empty">
@@ -191,5 +193,9 @@
     <property name="plugin-38" type="string" value="separator">
       <property name="style" type="uint" value="2"/>
     </property>
+    <property name="plugin-39" type="string" value="separator">
+      <property name="style" type="uint" value="2"/>
+    </property>
+    <property name="plugin-40" type="string" value="genmon"/>
   </property>
 </channel>
