@@ -434,9 +434,10 @@ function gitTools(){
 	check "Agregando Eisvogel"
 	## duf
 	info "Descargando duf"
-	wget "https://github.com/muesli/duf/releases/latest/download/duf_0.8.1_linux_amd64.deb" -O /tmp/duf_0.8.1_linux_amd64.deb > /dev/null 2>&1
+	duf_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/muesli/duf/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget "https://github.com/muesli/duf/releases/download/v$duf_version/duf_$duf_version"_linux_amd64.deb -O "/tmp/duf_$duf_version"_linux_amd64.deb > /dev/null 2>&1
 	dpkg -i /tmp/duf_0.8.1_linux_amd64.deb > /dev/null 2>&1
-	check "Agregando duf"
+	check "Agregando duf v$duf_version"
 	## md2pdf
 	info "Descargando md2pdf"
 	cd /tmp && wget https://raw.githubusercontent.com/m4lal0/md2pdf/main/md2pdf.sh > /dev/null 2>&1
@@ -449,9 +450,10 @@ function gitTools(){
 	check "Agregando RPCRecon"
 	## RustScan
 	info "Descargando RustScan"
-	wget "https://github.com/RustScan/RustScan/releases/download/2.0.1/rustscan_2.0.1_amd64.deb" -O /tmp/rustscan_2.0.1_amd64.deb > /dev/null 2>&1
-	dpkg -i /tmp/rustscan_2.0.1_amd64.deb > /dev/null 2>&1
-	check "Agregando RustScan"
+	rustscan_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/RustScan/RustScan/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget "https://github.com/RustScan/RustScan/releases/download/$rustscan_version/rustscan_$rustscan_version"_amd64.deb -O "/tmp/rustscan_$rustscan_version"_amd64.deb > /dev/null 2>&1
+	dpkg -i "/tmp/rustscan_$rustscan_version"_amd64.deb > /dev/null 2>&1
+	check "Agregando RustScan v$rustscan_version"
 	## tempomail
 	info "Descargando tempomail"
 	cd /tmp/ 2>/dev/null
@@ -465,22 +467,24 @@ function gitTools(){
 	check "Agregando Android-Backup-Extractor"
 	## Venom
 	info "Descargando venom"
-	curl https://github.com/ovh/venom/releases/download/v1.1.0/venom.linux-amd64 -L -o /usr/local/bin/venom > /dev/null 2>&1
+	venom_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/ovh/venom/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	curl https://github.com/ovh/venom/releases/download/v$venom_version/venom.linux-amd64 -L -o /usr/local/bin/venom > /dev/null 2>&1
 	chmod +x /usr/local/bin/venom
-	check "Agregando venom"
+	check "Agregando venom v$venom_version"
 	## CORS
 	info "Descargando CORS"
 	mkdir $WEB_PATH/CORS &&	wget https://raw.githubusercontent.com/gwen001/pentest-tools/master/cors.py -O $WEB_PATH/CORS/cors.py > /dev/null 2>&1
 	check "Agregando cors.py"
 	## Rustcat
 	info "Descargando rustcat"
-	wget "https://github.com/robiot/rustcat/releases/latest/download/rcat-v3.0.0-linux-x86_64.deb" -O /tmp/rcat-v3.0.0-linux-x86_64.deb > /dev/null 2>&1
-	cd /tmp && sudo apt install ./rcat-v3.0.0-linux-x86_64.deb  > /dev/null 2>&1
+	rustcat_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/robiot/rustcat/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget "https://github.com/robiot/rustcat/releases/download/v$rustcat_version/rcat-v$rustcat_version-linux-x86_64.deb" -O /tmp/rcat-v$rustcat_version-linux-x86_64.deb > /dev/null 2>&1
+	cd /tmp && sudo apt install ./rcat-v$rustcat_version-linux-x86_64.deb  > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		apt --fix-broken install -y > /dev/null 2>&1
-		sudo apt install ./rcat-v3.0.0-linux-x86_64.deb > /dev/null 2>&1
+		sudo apt install ./rcat-v$rustcat_version-linux-x86_64.deb > /dev/null 2>&1
 	fi
-	check "Agregando rustcat"
+	check "Agregando rustcat v$rustcat_version"
 	## BloodHound
 	info "Descargando BloodHound"
 	cd $AD_PATH 2>/dev/null
@@ -488,7 +492,7 @@ function gitTools(){
 	unzip BloodHound-linux-x64.zip > /dev/null 2>&1
 	rm BloodHound-linux-x64.zip > /dev/null 2>&1
 	mv BloodHound-linux-x64 BloodHound 2>/dev/null
-	check "Agregando BloodHound 4.0.3"
+	check "Agregando BloodHound v4.0.3"
 	## Kill-Port
 	info "Descargando KillPort"
 	cd /tmp && wget https://github.com/jkfran/killport/releases/latest/download/killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
@@ -559,17 +563,19 @@ function gitTools(){
 	check "Agregando Arachni"
 	## CAPA
 	info "Descargando CAPA"
-	wget https://github.com/mandiant/capa/releases/download/v7.0.1/capa-v7.0.1-linux.zip -O /tmp/capa-v7.0.1-linux.zip > /dev/null 2>&1
-	cd /tmp && unzip /tmp/capa-v7.0.1-linux.zip > /dev/null 2>&1
+	capa_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/mandiant/capa/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/mandiant/capa/releases/download/v$capa_version/capa-v$capa_version-linux.zip -O /tmp/capa-v$capa_version-linux.zip > /dev/null 2>&1
+	cd /tmp && unzip /tmp/capa-v$capa_version-linux.zip > /dev/null 2>&1
 	mv /tmp/capa /usr/local/bin
-	check "Agregando CAPA"
+	check "Agregando CAPA v$capa_version"
 	## IPATool
 	info "Descargando IPAtool"
-	wget https://github.com/majd/ipatool/releases/download/v2.1.4/ipatool-2.1.4-linux-amd64.tar.gz -O /tmp/ipatool-2.1.4-linux-amd64.tar.gz > /dev/null 2>&1
-	cd /tmp && tar -xzf /tmp/ipatool-2.1.4-linux-amd64.tar.gz > /dev/null 2>&1
-	chmod +x /tmp/bin/ipatool-2.1.4-linux-amd64
-	mv /tmp/bin/ipatool-2.1.4-linux-amd64 /usr/local/bin/ipatool
-	check "Agregando IPAtool"
+	ipatool_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/majd/ipatool/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/majd/ipatool/releases/download/v$ipatool_version/ipatool-$ipatool_version-linux-amd64.tar.gz -O /tmp/ipatool-$ipatool_version-linux-amd64.tar.gz > /dev/null 2>&1
+	cd /tmp && tar -xzf /tmp/ipatool-$ipatool_version-linux-amd64.tar.gz > /dev/null 2>&1
+	chmod +x /tmp/bin/ipatool-$ipatool_version-linux-amd64
+	mv /tmp/bin/ipatool-$ipatool_version-linux-amd64 /usr/local/bin/ipatool
+	check "Agregando IPAtool v$ipatool_version"
 	## Govenom
 	info "Descargando Govenom"
 	wget https://github.com/arch3rPro/Govenom/releases/latest/download/darwin_amd64.tar.gz -O /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
@@ -585,10 +591,11 @@ function gitTools(){
 	## RunasCs
 	info "Descargando RunasCs"
 	cd $PRIVESCWIN_PATH && mkdir RunasCs 2>/dev/null
-	wget https://github.com/antonioCoco/RunasCs/releases/download/v1.5/RunasCs.zip -O $PRIVESCWIN_PATH/RunasCs/RunasCs.zip > /dev/null 2>&1
+	runascs_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/antonioCoco/RunasCs/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/antonioCoco/RunasCs/releases/download/v$runascs_version/RunasCs.zip -O $PRIVESCWIN_PATH/RunasCs/RunasCs.zip > /dev/null 2>&1
 	cd $PRIVESCWIN_PATH/RunasCs && unzip RunasCs.zip > /dev/null 2>&1
 	rm -f $PRIVESCWIN_PATH/RunasCs/RunasCs.zip > /dev/null 2>&1
-	check "Agregando RunasCs"
+	check "Agregando RunasCs v$runascs_version"
 	## Seatbelt.exe
 	info "Descargando Seatbelt.exe"
 	cd $PRIVESCWIN_PATH && mkdir Seatbelt 2>/dev/null
@@ -596,16 +603,18 @@ function gitTools(){
 	check "Agregando Seatbelt.exe"
 	## x8
 	info "Descargando x8"
-	cd /tmp && wget https://github.com/Sh1Yo/x8/releases/download/v4.3.0/x86_64-linux-x8.gz > /dev/null 2>&1
+	x8_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/Sh1Yo/x8/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	cd /tmp && wget https://github.com/Sh1Yo/x8/releases/download/v$x8_version/x86_64-linux-x8.gz > /dev/null 2>&1
 	gzip -d x86_64-linux-x8.gz 2>/dev/null
 	mv x86_64-linux-x8 x8 && mv x8 /usr/local/bin/ 2>/dev/null
 	chmod +x /usr/local/bin/x8 2>/dev/null
-	check "Agregando x8"
+	check "Agregando x8 v$x8_version"
 	## LaZagne.exe
 	info "Descargando LaZagne.exe"
 	cd $UTILITIES_PATH && mkdir LaZagne 2>/dev/null
-	wget https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.6/LaZagne.exe -O $UTILITIES_PATH/LaZagne/LaZagne.exe > /dev/null 2>&1
-	check "Agregando LaZagne.exe"
+	lazagne_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/AlessandroZ/LaZagne/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/AlessandroZ/LaZagne/releases/download/v$lazagne_version/LaZagne.exe -O $UTILITIES_PATH/LaZagne/LaZagne.exe > /dev/null 2>&1
+	check "Agregando LaZagne.exe v$lazagne_version"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
