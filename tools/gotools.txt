@@ -31,3 +31,4 @@ smugglefuzz:github.com/moopinger/smugglefuzz@latest
 hauditor:github.com/trap-bytes/hauditor@latest
 cf-check:github.com/dwisiswant0/cf-check@latest
 shortscan:github.com/bitquark/shortscan/cmd/shortscan@latest
+cloudfox:github.com/BishopFox/cloudfox@latest
