@@ -17,6 +17,11 @@ AD|https://github.com/adrecon/ADRecon
 AD|https://github.com/urbanadventurer/username-anarchy
 AD|https://github.com/RipFran/ldapenum
 AD|https://github.com/61106960/adPEAS
+AD|https://github.com/Kevin-Robertson/Inveigh
+AD|https://github.com/ropnop/windapsearch
+AD|https://github.com/dafthack/DomainPasswordSpray
+AD|https://github.com/SecuraBV/CVE-2020-1472
+AD|https://github.com/ShutdownRepo/targetedKerberoast
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 OSINT|https://github.com/m4lal0/userSearch
 OSINT|https://github.com/pixelbubble/ProtOSINT
@@ -69,6 +74,7 @@ Web|https://github.com/Dheerajmadhukar/4-ZERO-3
 Web|https://github.com/vladko312/SSTImap
 Web|https://github.com/eslam3kl/SQLiDetector
 Web|https://github.com/epsylon/Smuggler
+Web|https://github.com/defparam/smuggler
 Web|https://github.com/m4ll0k/Atlas
 Web|https://github.com/zidansec/CloudPeler
 Web|https://github.com/lightos/Panoptic
@@ -93,7 +99,9 @@ Web|https://github.com/anshumanpattnaik/http-request-smuggling
 Web|https://github.com/epinna/tplmap
 Web|https://github.com/dagrz/aws_pwn
 Web|https://github.com/r0075h3ll/Oralyzer
+Web|https://github.com/ShutdownRepo/Uberfile
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
 Mobile|https://github.com/ari5ti/Janus-Exploit
+Mobile|https://github.com/adarshshetty18/fcm_server_key
