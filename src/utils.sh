@@ -110,8 +110,8 @@ function installApps(){
 	#Instalando extensión: IP Address and Domain Information
 	cd /tmp/extensions 2>/dev/null
 	mkdir ipaddress && cd ipaddress 2>/dev/null
-	wget https://addons.mozilla.org/firefox/downloads/file/4200011/ip_address_and_domain_info-4.0.6.4.xpi > /dev/null 2>&1
-	cp ip_address_and_domain_info-4.0.6.4.xpi jid0-jJRRRBMgoShUhb07IvnxTBAl29w@jetpack.xpi 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4366078/ip_address_and_domain_info-4.0.6.5.xpi > /dev/null 2>&1
+	cp ip_address_and_domain_info-4.0.6.5.xpi jid0-jJRRRBMgoShUhb07IvnxTBAl29w@jetpack.xpi 2>/dev/null
 	chown $USERNAME:$USERNAME jid0-jJRRRBMgoShUhb07IvnxTBAl29w@jetpack.xpi 2>/dev/null
 	mv jid0-jJRRRBMgoShUhb07IvnxTBAl29w@jetpack.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
 	check "Instalando extensión IP Address and Domain Information"
@@ -133,6 +133,42 @@ function installApps(){
 	chown $USERNAME:$USERNAME \{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7\}.xpi 2>/dev/null
 	mv \{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
 	check "Instalando extensión Custom-UserAgent"
+
+	#Instalando extenión: WhatRuns
+	cd /tmp/extensions  2>/dev/null
+	mkdir whatruns && cd whatruns  2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/3728170/whatruns-1.7.7.xpi > /dev/null 2>&1
+	cp whatruns-1.7.7.xpi {66d854c2-fd1b-4857-bd0a-7d220e4834da}.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME \{66d854c2-fd1b-4857-bd0a-7d220e4834da\}.xpi 2>/dev/null
+	mv \{66d854c2-fd1b-4857-bd0a-7d220e4834da\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión WhatRuns"
+
+	#Instalando extenión: WebGL Fingerprint Defender
+	cd /tmp/extensions  2>/dev/null
+	mkdir webgl && cd webgl  2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4026370/webgl_fingerprint_defender-0.1.6.xpi > /dev/null 2>&1
+	cp webgl_fingerprint_defender-0.1.6.xpi {2cf5dbed-78fe-4bd5-9524-38fdf837be98}.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME \{2cf5dbed-78fe-4bd5-9524-38fdf837be98\}.xpi 2>/dev/null
+	mv \{2cf5dbed-78fe-4bd5-9524-38fdf837be98\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión WebGL Fingerprint Defender"
+
+	#Instalando extenión: Chameleon
+	cd /tmp/extensions  2>/dev/null
+	mkdir chameleon && cd chameleon  2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4349329/chameleon_ext-0.22.65.1.xpi > /dev/null 2>&1
+	cp chameleon_ext-0.22.65.1.xpi {3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME \{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a\}.xpi 2>/dev/null
+	mv \{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión Chameleon"
+
+	#Instalando extenión: CanvasBlocker
+	cd /tmp/extensions  2>/dev/null
+	mkdir canvasblocker && cd canvasblocker  2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4262820/canvasblocker-1.10.1.xpi > /dev/null 2>&1
+	cp canvasblocker-1.10.1.xpi CanvasBlocker@kkapsner.de.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME CanvasBlocker@kkapsner.de.xpi 2>/dev/null
+	mv CanvasBlocker@kkapsner.de.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión CanvasBlocker"
 
 	## Instalacion Brave
 	info "Instalar Brave"
@@ -384,6 +420,11 @@ function gitTools(){
 	cd Bashfuscator && python3 setup.py install --user >/dev/null 2>&1
 	mv bashfuscator/bin/bashfuscator /usr/local/bin/bashfuscator 2>/dev/null
 	check "Agregando Bashfuscator"
+	## Pypykatz
+	info "Instalando Pypykatz"
+	cd /tmp && git clone https://github.com/skelsec/pypykatz >/dev/null 2>&1
+	cd pypykatz && python3 setup.py install >/dev/null 2>&1
+	check "Agregando Pypykatz"
 	### CrackMapExec
 	#info "Instalando CrackMapExec"
 	#cd $UTILITIES_PATH 2>/dev/null
@@ -508,11 +549,25 @@ function gitTools(){
 	cd $AD_PATH && mkdir Rubeus 2>/dev/null
 	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Rubeus.exe -O $AD_PATH/Rubeus/Rubeus.exe > /dev/null 2>&1
 	check "Agregando Rubeus.exe"
-	## SharpHound
+	## SharpHound.ps1
 	info "Descargando SharpHound.ps1"
 	cd $AD_PATH && mkdir SharpHound 2>/dev/null
 	wget https://raw.githubusercontent.com/puckiestyle/powershell/master/SharpHound.ps1 -O $AD_PATH/SharpHound/SharpHound.ps1 > /dev/null 2>&1
 	check "Agregando SharpHound.ps1"
+	## SharpHound.exe
+	info "Descargando SharpHound.exe"
+	wget https://github.com/BloodHoundAD/BloodHound/raw/refs/heads/master/Collectors/SharpHound.exe -O $AD_PATH/SharpHound/SharpHound.exe > /dev/null 2>&1
+	check "Agregando SharpHound.exe"
+	## SharpView.exe
+	info "Descargando SharpView.exe"
+	cd $AD_PATH && mkdir SharpView 2>/dev/null
+	wget https://github.com/tevora-threat/SharpView/raw/refs/heads/master/Compiled/SharpView.exe -O $AD_PATH/SharpView/SharpView.exe > /dev/null 2>&1
+	check "Agregando SharpView.exe"
+	## SharpUp.exe
+	info "Descargando SharpUp.exe"
+	cd $PRIVESCWIN_PATH && mkdir SharpUp 2>/dev/null
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SharpUp.exe -O $PRIVESCWIN_PATH/SharpUp/SharpUp.exe > /dev/null 2>&1
+	check "Agregando SharpUp.exe"
 	## SafetyKatz.exe
 	info "Descargando SafetyKatz.exe"
 	cd $AD_PATH && mkdir SafetyKatz 2>/dev/null
@@ -585,7 +640,8 @@ function gitTools(){
 	## NetExec
 	info "Instalando NetExec"
 	cd /tmp 2>/dev/null
-	wget https://github.com/Pennyw0rth/NetExec/releases/latest/download/nxc >/dev/null 2>&1
+	wget https://github.com/Pennyw0rth/NetExec/releases/download/v1.3.0/nxc-ubuntu-latest.zip >/dev/null 2>&1
+	unzip nxc-ubuntu-latest.zip >/dev/null 2>&1
 	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/netexec >/dev/null 2>&1
 	check "Agregando NetExec"
 	## RunasCs
@@ -615,6 +671,34 @@ function gitTools(){
 	lazagne_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/AlessandroZ/LaZagne/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/AlessandroZ/LaZagne/releases/download/v$lazagne_version/LaZagne.exe -O $UTILITIES_PATH/LaZagne/LaZagne.exe > /dev/null 2>&1
 	check "Agregando LaZagne.exe v$lazagne_version"
+	## Pretender
+	info "Descargando Pretender"
+	cd /tmp && wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.2.0/pretender_Linux_x86_64.tar.gz > /dev/null 2>&1
+	tar -xzf pretender_Linux_x86_64.tar.gz > /dev/null 2>&1
+	mv /tmp/pretender /usr/local/bin
+	check "Instalando Pretender"
+	## Snaffler
+	info "Descargando Snaffler"
+	cd $AD_PATH && mkdir Snaffler 2>/dev/null
+	snaffler_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/SnaffCon/Snaffler/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/SnaffCon/Snaffler/releases/download/$snaffler_version/Snaffler.exe -O $AD_PATH/Snaffler/Snaffler.exe > /dev/null 2>&1
+	check "Agregando Snaffler v$snaffler_version"
+	## Kerbrute.exe
+	info "Descargando Kerbrute.exe"
+	cd $AD_PATH && mkdir Kerbrute 2>/dev/null
+	kerbrute_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/ropnop/kerbrute/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/ropnop/kerbrute/releases/download/v$kerbrute_version/kerbrute_windows_386.exe -O $AD_PATH/Kerbrute/kerbrute_windows_386.exe > /dev/null 2>&1
+	check "Agregando kerbrute_windows_386.exe v$kerbrute_version"
+	wget https://github.com/ropnop/kerbrute/releases/download/v$kerbrute_version/kerbrute_windows_amd64.exe -O $AD_PATH/Kerbrute/kerbrute_windows_amd64.exe > /dev/null 2>&1
+	check "Agregando kerbrute_windows_amd64.exe v$kerbrute_version"
+	## ILSpy
+	info "Descargando ILSpy"
+	cd $UTILITIES_PATH && mkdir ILSpy 2>/dev/null
+	cd /tmp && wget https://github.com/icsharpcode/AvaloniaILSpy/releases/download/v7.2-rc/Linux.x64.Release.zip > /dev/null 2>&1
+	unzip Linux.x64.Release.zip > /dev/null 2>&1
+	unzip ILSpy-linux-x64-Release.zip > /dev/null 2>&1
+	mv /tmp/artifacts $UTILITIES_PATH/ILSpy 2>/dev/null
+	check "Agregando ILSpy"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
