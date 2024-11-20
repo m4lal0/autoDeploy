@@ -699,6 +699,17 @@ function gitTools(){
 	unzip ILSpy-linux-x64-Release.zip > /dev/null 2>&1
 	mv /tmp/artifacts $UTILITIES_PATH/ILSpy 2>/dev/null
 	check "Agregando ILSpy"
+	## PowerUpSQL.ps1
+	info "Descargando PowerUpSQL.ps1"
+	cd $AD_PATH && mkdir PowerUpSQL 2>/dev/null
+	wget https://raw.githubusercontent.com/NetSPI/PowerUpSQL/refs/heads/master/PowerUpSQL.ps1 -O $AD_PATH/PowerUpSQL/PowerUpSQL.ps1 > /dev/null 2>&1
+	check "Agregando PowerUpSQL.ps1"
+	## Group3r.exe
+	info "Descargando Group3r.exe"
+	cd $AD_PATH && mkdir Group3r 2>/dev/null
+	group3r_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/Group3r/Group3r/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/Group3r/Group3r/releases/download/v$group3r_version/Group3r.exe -O $AD_PATH/Group3r/Group3r.exe > /dev/null 2>&1
+	check "Agregando Group3r.exe v$group3r_version"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
