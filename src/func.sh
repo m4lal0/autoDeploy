@@ -121,7 +121,8 @@ function banner(){
 
 ### Funciones informativos
 function info(){
-	echo -e "${Cyan}[${BYellow}!${Cyan}] ${BWhite}$1${Color_Off}"
+	#echo -e "${Cyan}[${BYellow}!${Cyan}] ${BWhite}$1${Color_Off}"
+	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${BYellow}$1${Color_Off}"
 }
 
 function question(){
@@ -146,12 +147,16 @@ function yes_or_no(){
 }
 
 function error(){
-	echo -e "${Cyan}[${BRed}✖${Cyan}] ${BRed}Error - $1${Color_Off}"
-	echo -e "[$(date +%T)] $1" 2>/dev/null >> $SCRIPT_PATH/error.log
+	#echo -e "${IBlue}[$(date +'%Y-%m-%d %T')]${Color_Off} ${Cyan}[${BRed}✖${Cyan}] ${BRed}Error - $1${Color_Off}"
+	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${On_Red}${BWhite}ERROR${Color_Off}${Cyan}] ${White}$1${Color_Off}"
+	#echo -e "${Cyan}[${BRed}✖${Cyan}] ${BRed}Error - $1${Color_Off}"
+	echo -e "[$(date +'%Y-%m-%d %T')] $1" 2>/dev/null >> $SCRIPT_PATH/error.log
 }
 
 function good(){
-	echo -e "${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Exitoso - $1${Color_Off}"
+	#echo -e "${IBlue}[$(date +'%Y-%m-%d %T')]${Color_Off} ${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Exitoso - $1${Color_Off}"
+	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${BGreen}SUCCESS${Color_Off}${Cyan}] ${White}$1${Color_Off}"
+	#echo -e "${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Exitoso - $1${Color_Off}"
 }
 
 function check(){
@@ -164,6 +169,7 @@ function check(){
 
 function section(){
 	echo -e "\n${Cyan}[${BBlue}+${Cyan}] ${BBlue}$1${Color_Off}"
+	#echo -e "\n${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${BBlue}$1${Cyan}]${Color_Off}"
 }
 
 ### Eliminando directorios de los aplicativos descargados de Github
@@ -189,25 +195,25 @@ function checkInternet(){
 	host www.google.com > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		error "En la resolución DNS - no se pudo resolver www.google.com"
-		exit 1
+		tput cnorm; exit 1
 	fi
 }
 
 function validations(){
 ### Validación de ejecución con root
 	if [[ ! -d tools || ! -d files ]]; then
-		echo -e "\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Ejecuta este script desde la carpeta de autoDeploy para evitar errores${Color_Off}\n"
-		exit 1
+		echo -e "\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Ejecuta este script desde la carpeta de autoDeploy para evitar errores.${Color_Off}\n"
+		tput cnorm; exit 1
 	fi
 	rm -f $SCRIPT_PATH/error.log 2>/dev/null
 	if [ "$EUID" -ne 0 ]; then
 		error "Este script debe ser ejecutado por r00t!\n"
-		exit 1
+		tput cnorm; exit 1
 	fi
 
 ### Datos del equipo
 	tput cnorm
-    question "Hostname"
+    question "Nombre del Hostname ($(hostname))"
 	HOSTNAME=$input
 	question "Nombre de usuario ($(ls /home | xargs | tr ' ' '|'))"
 	USERNAME=$input
@@ -215,7 +221,7 @@ function validations(){
 	tput civis
 	if [ ! -d "$HOME_PATH" ]; then
 		error "El directorio home del usuario no existe (/home/$USERNAME)"
-		exit 1
+		tput cnorm; exit 1
 	fi
 }
 
@@ -254,7 +260,8 @@ function endInstall(){
 	check "Ejecutando updatedb"
 	section "INSTALACIÓN FINALIZADA"
 	tput cnorm
-	info "Debes reiniciar el ordenador para terminar la instalación"
+	#info "Debes reiniciar el ordenador para terminar la instalación"
+	echo -e "${BYellow}⚠ Debes reiniciar el ordenador para terminal la instalación.${Color_Off}\n"
 	yes_or_no "¿Quieres hacerlo ahora?"
 
 	section "Happy Hacking! =)" && sleep 2
