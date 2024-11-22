@@ -22,6 +22,13 @@ AD|https://github.com/ropnop/windapsearch
 AD|https://github.com/dafthack/DomainPasswordSpray
 AD|https://github.com/SecuraBV/CVE-2020-1472
 AD|https://github.com/ShutdownRepo/targetedKerberoast
+AD|https://github.com/Ridter/noPac
+AD|https://github.com/dirkjanm/PKINITtools
+AD|https://github.com/zer1t0/certi
+AD|https://github.com/topotam/PetitPotam
+AD|https://github.com/JohnHammond/CVE-2021-34527
+AD|https://github.com/t0thkr1s/gpp-decrypt
+AD|https://github.com/dirkjanm/krbrelayx
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 OSINT|https://github.com/m4lal0/userSearch
 OSINT|https://github.com/pixelbubble/ProtOSINT
