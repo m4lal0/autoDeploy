@@ -710,6 +710,14 @@ function gitTools(){
 	group3r_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/Group3r/Group3r/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/Group3r/Group3r/releases/download/v$group3r_version/Group3r.exe -O $AD_PATH/Group3r/Group3r.exe > /dev/null 2>&1
 	check "Agregando Group3r.exe v$group3r_version"
+	## PingCastle.exe
+	info "Descargando PingCastle.exe"
+	cd $AD_PATH && mkdir PingCastle 2>/dev/null
+	pingcastle_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/netwrix/pingcastle/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/netwrix/pingcastle/releases/download/v$pingcastle_version/PingCastle_$pingcastle_version.zip -O $AD_PATH/PingCastle/PingCastle_$pingcastle_version.zip > /dev/null 2>&1
+	cd PingCastle && unzip PingCastle_$pingcastle_version.zip > /dev/null 2>&1
+	rm -rf PingCastle_$pingcastle_version.zip > /dev/null 2>&1
+	check "Agregando PingCastle.exe v$pingcastle_version"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
