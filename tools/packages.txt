@@ -235,4 +235,7 @@ sprayhound
 sqlmc
 dotdotpwn
 xsltproc
+ptunnel-ng
+socat
+sshuttle
 seclists
