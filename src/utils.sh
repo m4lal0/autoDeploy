@@ -49,7 +49,8 @@ function installApps(){
 			fi
 		fi
 	else
-		su $USERNAME -c "nohup /bin/firejail /usr/bin/firefox &>/dev/null &; sleep 3; kill %1"
+		##su $USERNAME -c "nohup /bin/firejail /usr/bin/firefox &>/dev/null &; sleep 3; kill %1"
+		su $USERNAME -c "nohup /usr/bin/firefox &>/dev/null &; sleep 3; kill %1"
 	fi
 
 	if [[ -d $HOME_PATH/.mozilla ]];then
@@ -277,11 +278,11 @@ function gitTools(){
 
 ## Git clone con instalación aparte
 	info "Directorios de aplicativos"
-	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH,$MOBILE_PATH} 2>/dev/null
+	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH,$MOBILE_PATH,$LINUX_PATH,$WINDOWS_PATH,$PIVOTING_PATH,$PHISHING_PATH} 2>/dev/null
 	check "Creando directorios"
 	## GTFOBLookup
 	info "Descargando GTFOBLookup"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $LINUX_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/nccgroup/GTFOBLookup > /dev/null 2>&1
 	cd GTFOBLookup 2>/dev/null
 	pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
@@ -296,7 +297,7 @@ function gitTools(){
 	check "Agregando brutemap"
 	## CWFF
 	info "Descargando CWFF"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $LINUX_PATH 2>/dev/null
 	git clone --depth 1 https://github.com/D4Vinci/CWFF > /dev/null 2>&1
 	cd CWFF 2>/dev/null
 	pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
@@ -316,13 +317,13 @@ function gitTools(){
 	## Typo3Scan
 	info "Descargando Typo3Scan"
 	cd $WEB_PATH 2>/dev/null
-	git clone --depth 1 https://github.com/whoot/Typo3Scan.git > /dev/null 2>&1
+	git clone --depth 1 https://github.com/whoot/Typo3Scan > /dev/null 2>&1
 	cd Typo3Scan && pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
 	check "Agregando Typo3Scan"
 	## Reverse Shell Generator
 	info "Descargando Reverse Shell Generator"
-	cd $UTILITIES_PATH 2>/dev/null
-	git clone https://github.com/mthbernardes/rsg.git > /dev/null 2>&1
+	cd $LINUX_PATH 2>/dev/null
+	git clone https://github.com/mthbernardes/rsg > /dev/null 2>&1
 	cd rsg && ln -s $(pwd)/rsg /usr/local/bin > /dev/null 2>&1
 	check "Agregando Reverse Shell Generator"
 	## Next Generation version of Enum4Linux
@@ -334,9 +335,9 @@ function gitTools(){
 	#check "Agregando Enum4Linux-ng"
 	## ASN Lookup Tool and Traceroute Server
 	info "Descargando asn"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $WEB_PATH 2>/dev/null
 	git clone https://github.com/nitefood/asn >/dev/null 2>&1
-	ln -sf $UTILITIES_PATH/asn/asn /usr/local/bin/asn >/dev/null 2>&1
+	ln -sf $WEB_PATH/asn/asn /usr/local/bin/asn >/dev/null 2>&1
 	check "Agregando asn"
 	## PyShell
 	info "Descargando PyShell"
@@ -346,7 +347,7 @@ function gitTools(){
 	check "Agregando PyShell"
 	## Ghauri
 	info "Descargando ghauri"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $WEB_PATH 2>/dev/null
 	git clone https://github.com/r0oth3x49/ghauri >/dev/null 2>&1
 	cd ghauri ; pip install -r requirements.txt --break-system-packages >/dev/null 2>&1
 	python3 setup.py install >/dev/null 2>&1
@@ -382,14 +383,14 @@ function gitTools(){
 	check "Agregando wwwtree"
 	## ligolo-ng
 	info "Descargando ligolo-ng"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $PIVOTING_PATH 2>/dev/null
 	git clone https://github.com/nicocha30/ligolo-ng >/dev/null 2>&1
 	cd ligolo-ng
 	go build -o bin/ligolo-agent cmd/agent/main.go >/dev/null 2>&1
 	go build -o bin/ligolo-proxy cmd/proxy/main.go >/dev/null 2>&1
 	GOOS=windows go build -o bin/ligolo-agent.exe cmd/agent/main.go >/dev/null 2>&1
 	GOOS=windows go build -o bin/ligolo-proxy.exe cmd/proxy/main.go >/dev/null 2>&1
-	mv $UTILITIES_PATH/ligolo-ng/bin/ligolo-proxy /usr/local/bin > /dev/null 2>&1
+	mv $PIVOTING_PATH/ligolo-ng/bin/ligolo-proxy /usr/local/bin > /dev/null 2>&1
 	check "Agregando ligolo-ng"
 	## wifi_db
 	info "Instalando wifi_db"
@@ -434,7 +435,7 @@ function gitTools(){
 
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $LINUX_PATH 2>/dev/null
 	git clone https://github.com/ElevenPaths/Eternalblue-Doublepulsar-Metasploit >/dev/null 2>&1
 	cd Eternalblue-Doublepulsar-Metasploit 2>/dev/null
 	perl -pi -e "s[/root/Eternalblue-Doublepulsar-Metasploit/deps/][/opt/Utilities/Eternalblue-Doublepulsar-Metasploit/deps/]g" eternalblue_doublepulsar.rb
@@ -667,9 +668,9 @@ function gitTools(){
 	check "Agregando x8 v$x8_version"
 	## LaZagne.exe
 	info "Descargando LaZagne.exe"
-	cd $UTILITIES_PATH && mkdir LaZagne 2>/dev/null
+	cd $WINDOWS_PATH && mkdir LaZagne 2>/dev/null
 	lazagne_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/AlessandroZ/LaZagne/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
-	wget https://github.com/AlessandroZ/LaZagne/releases/download/v$lazagne_version/LaZagne.exe -O $UTILITIES_PATH/LaZagne/LaZagne.exe > /dev/null 2>&1
+	wget https://github.com/AlessandroZ/LaZagne/releases/download/v$lazagne_version/LaZagne.exe -O $WINDOWS_PATH/LaZagne/LaZagne.exe > /dev/null 2>&1
 	check "Agregando LaZagne.exe v$lazagne_version"
 	## Pretender
 	info "Descargando Pretender"
@@ -693,11 +694,11 @@ function gitTools(){
 	check "Agregando kerbrute_windows_amd64.exe v$kerbrute_version"
 	## ILSpy
 	info "Descargando ILSpy"
-	cd $UTILITIES_PATH && mkdir ILSpy 2>/dev/null
+	cd $WINDOWS_PATH && mkdir ILSpy 2>/dev/null
 	cd /tmp && wget https://github.com/icsharpcode/AvaloniaILSpy/releases/download/v7.2-rc/Linux.x64.Release.zip > /dev/null 2>&1
 	unzip Linux.x64.Release.zip > /dev/null 2>&1
 	unzip ILSpy-linux-x64-Release.zip > /dev/null 2>&1
-	mv /tmp/artifacts $UTILITIES_PATH/ILSpy 2>/dev/null
+	mv /tmp/artifacts $WINDOWS_PATH/ILSpy 2>/dev/null
 	check "Agregando ILSpy"
 	## PowerUpSQL.ps1
 	info "Descargando PowerUpSQL.ps1"
@@ -708,7 +709,7 @@ function gitTools(){
 	info "Descargando Group3r.exe"
 	cd $AD_PATH && mkdir Group3r 2>/dev/null
 	group3r_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/Group3r/Group3r/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
-	wget https://github.com/Group3r/Group3r/releases/download/v$group3r_version/Group3r.exe -O $AD_PATH/Group3r/Group3r.exe > /dev/null 2>&1
+	wget https://github.com/Group3r/Group3r/releases/download/$group3r_version/Group3r.exe -O $AD_PATH/Group3r/Group3r.exe > /dev/null 2>&1
 	check "Agregando Group3r.exe v$group3r_version"
 	## PingCastle.exe
 	info "Descargando PingCastle.exe"
@@ -762,7 +763,7 @@ function gitTools(){
 	check "Agregando http-vuln-cve-2021-41773.nse"
 	## Vulscan
 	info "Descargando Vulscan NSE"
-	cd $UTILITIES_PATH 2>/dev/null
+	cd $LINUX_PATH 2>/dev/null
 	git clone https://github.com/scipag/vulscan scipag_vulscan > /dev/null 2>&1
 	ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan > /dev/null 2>&1
 	check "Agregando Vulscan NSE"
