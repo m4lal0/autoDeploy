@@ -266,7 +266,7 @@ function gitTools(){
 	info "Descargando otras wordlists"
 	cd /usr/share 2>/dev/null
 	mkdir trickest; cd trickest; git clone https://github.com/trickest/wordlists > /dev/null 2>&1
-	cd wordlists; mv inventory robots technologies technology-repositories.json ../ && rm -rf wordlists 2>&1
+	cd wordlists; mv inventory robots technologies cloud technology-repositories.json ../ && rm -rf wordlists 2>&1
 	ln -s /usr/share/trickest /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlist/trickest"
 	## WordPress Exploit Framework
@@ -640,10 +640,11 @@ function gitTools(){
 	check "Instalando Govenom"
 	## NetExec
 	info "Instalando NetExec"
-	cd /tmp 2>/dev/null
-	wget https://github.com/Pennyw0rth/NetExec/releases/download/v1.3.0/nxc-ubuntu-latest.zip >/dev/null 2>&1
+	cd $UTILITIES_PATH; mkdir NetExec 2>/dev/null
+	cd NetExec && wget https://github.com/Pennyw0rth/NetExec/releases/download/v1.3.0/nxc-ubuntu-latest.zip >/dev/null 2>&1
 	unzip nxc-ubuntu-latest.zip >/dev/null 2>&1
-	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/netexec >/dev/null 2>&1
+	rm -rf nxc-ubuntu-latest.zip >/dev/null 2>&1
+	chmod +x nxc; mv nxc netexec && cp netexec /usr/local/bin/netexec >/dev/null 2>&1
 	check "Agregando NetExec"
 	## RunasCs
 	info "Descargando RunasCs"
@@ -719,6 +720,13 @@ function gitTools(){
 	cd PingCastle && unzip PingCastle_$pingcastle_version.zip > /dev/null 2>&1
 	rm -rf PingCastle_$pingcastle_version.zip > /dev/null 2>&1
 	check "Agregando PingCastle.exe v$pingcastle_version"
+	## plink.exe
+	info "Descargando plink.exe"
+	cd $PIVOTING_PATH && mkdir plink 2>/dev/null
+	cd plink && wget https://the.earth.li/~sgtatham/putty/latest/w64/plink.exe -O $PIVOTING_PATH/plink/plink-64.exe  > /dev/null 2>&1
+	check "Agregando plink.exe de 64 bits"
+	wget https://the.earth.li/~sgtatham/putty/latest/w32/plink.exe -O $PIVOTING_PATH/plink/plink-32.exe  > /dev/null 2>&1
+	check "Agregando plink.exe de 32 bits"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
