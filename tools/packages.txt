@@ -22,7 +22,6 @@ bettercap
 fcrackzip
 mdk4
 zsh
-neofetch
 libimage-exiftool-perl
 hexedit
 alien
@@ -109,7 +108,6 @@ amass
 pdfcrack
 recon-ng
 msfpc
-firejail
 burpsuite
 gcc
 bloodhound
@@ -238,4 +236,7 @@ xsltproc
 ptunnel-ng
 socat
 sshuttle
+fastfetch
+spraykatz
+hekatomb
 seclists
