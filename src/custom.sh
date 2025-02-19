@@ -168,6 +168,9 @@ function customTerminal(){
 	if [ ! -d $HOME_PATH/qterminal.org ]; then
 		mkdir $HOME_PATH/qterminal.org 2> /dev/null
 	fi
+	if [ ! -d $HOME_PATH/.conf/qterminal.org ]; then
+		mkdir $HOME_PATH/.conf/qterminal.org 2> /dev/null
+	fi
 	cp -f $FILES_PATH/qterminal.ini $HOME_PATH/.config/qterminal.org/ 2>/dev/null
 	check "Copiando archivo de configuración de qterminal del usuario"
 	perl -pi -e "s[USER-PATH][$HOME_PATH/]g" $HOME_PATH/.config/qterminal.org/qterminal.ini 2>/dev/null
