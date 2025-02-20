@@ -239,4 +239,5 @@ sshuttle
 fastfetch
 spraykatz
 hekatomb
+bloodyad
 seclists
