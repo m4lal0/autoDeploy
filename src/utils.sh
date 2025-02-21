@@ -723,10 +723,29 @@ function gitTools(){
 	## plink.exe
 	info "Descargando plink.exe"
 	cd $PIVOTING_PATH && mkdir plink 2>/dev/null
-	cd plink && wget https://the.earth.li/~sgtatham/putty/latest/w64/plink.exe -O $PIVOTING_PATH/plink/plink-64.exe  > /dev/null 2>&1
+	cd plink && wget https://the.earth.li/~sgtatham/putty/latest/w64/plink.exe -O $PIVOTING_PATH/plink/plink-64.exe > /dev/null 2>&1
 	check "Agregando plink.exe de 64 bits"
-	wget https://the.earth.li/~sgtatham/putty/latest/w32/plink.exe -O $PIVOTING_PATH/plink/plink-32.exe  > /dev/null 2>&1
+	wget https://the.earth.li/~sgtatham/putty/latest/w32/plink.exe -O $PIVOTING_PATH/plink/plink-32.exe > /dev/null 2>&1
 	check "Agregando plink.exe de 32 bits"
+	## Find-WMILocalAdminAccess.ps1
+	info "Descargando Find-WMILocalAdminAccess.ps1"
+	cd $AD_PATH && mkdir Find-WMILocalAdminAccess 2>/dev/null
+	wget https://raw.githubusercontent.com/admin0987654321/admin1/refs/heads/master/Find-WMILocalAdminAccess.ps1 -O $AD_PATH/Find-WMILocalAdminAccess/Find-WMILocalAdminAccess.ps1 > /dev/null 2>&1
+	check "Agregando Find-WMILocalAdminAccess.ps1"
+	## SharpChisel.exe
+	info "Descargando SharpChisel.exe"
+	cd $AD_PATH && mkdir SharpChisel 2>/dev/null
+	sharpchisel_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/shantanu561993/SharpChisel/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/shantanu561993/SharpChisel/releases/download/v$sharpchisel_version/SharpChisel.exe -O $AD_PATH/SharpChisel/SharpChisel.exe > /dev/null 2>&1
+	check "Agregando SharpChisel.exe v$sharpchisel_version"
+	## beRoot.exe
+	info "Descargando beRoot.exe"
+	cd $PRIVESCWIN_PATH && mkdir beRoot 2>/dev/null
+	beRoot_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/AlessandroZ/BeRoot/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/AlessandroZ/BeRoot/releases/download/$beRoot_version/beRoot.zip -O $PRIVESCWIN_PATH/beRoot/beRoot.zip > /dev/null 2>&1
+	cd beRoot && unzip beRoot.zip > /dev/null 2>&1
+	rm -rf beRoot.zip > /dev/null 2>&1
+	check "Agregando beRoot.exe v$beRoot_version"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
