@@ -5,6 +5,7 @@ PrivEsc-Lin|https://github.com/SolomonSklash/htbenum
 PrivEsc-Lin|https://github.com/sleventyeleven/linuxprivchecker
 PrivEsc-Lin|https://github.com/whotwagner/logrotten
 PrivEsc-Lin|https://github.com/CISOfy/lynis
+PrivEsc-Lin|https://github.com/AlessandroZ/BeRoot
 PrivEsc-Win|https://github.com/itm4n/PrivescCheck
 PrivEsc-Win|https://github.com/S3cur3Th1sSh1t/WinPwn
 PrivEsc-Win|https://github.com/bitsadmin/wesng
@@ -28,6 +29,7 @@ AD|https://github.com/JohnHammond/CVE-2021-34527
 AD|https://github.com/t0thkr1s/gpp-decrypt
 AD|https://github.com/dirkjanm/krbrelayx
 AD|https://github.com/leoloobeek/LAPSToolkit
+AD|https://github.com/SecuraBV/Timeroast
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 OSINT|https://github.com/m4lal0/userSearch
 OSINT|https://github.com/pixelbubble/ProtOSINT
@@ -62,6 +64,7 @@ Utilities/Windows|https://github.com/trustedsec/unicorn
 Utilities/Windows|https://github.com/ly4k/SMBGhost
 Utilities/Windows|https://github.com/t3l3machus/hoaxshell
 Utilities/Windows|https://github.com/The-Viper-One/PsMapExec
+Utilities/Windows|https://github.com/danielbohannon/Invoke-Obfuscation
 Web|https://github.com/InfosecMatter/default-http-login-hunter
 Web|https://github.com/TheRook/subbrute
 Web|https://github.com/Dhayalanb/windows-php-reverse-shell
@@ -109,6 +112,9 @@ Web|https://github.com/epinna/tplmap
 Web|https://github.com/dagrz/aws_pwn
 Web|https://github.com/r0075h3ll/Oralyzer
 Web|https://github.com/ShutdownRepo/Uberfile
+Web|https://github.com/mazen160/bfac
+Web|https://github.com/gkbrk/slowloris
+Web|https://github.com/iamunixtz/Lazy-Hunter
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
