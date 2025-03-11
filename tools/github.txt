@@ -30,6 +30,7 @@ AD|https://github.com/t0thkr1s/gpp-decrypt
 AD|https://github.com/dirkjanm/krbrelayx
 AD|https://github.com/leoloobeek/LAPSToolkit
 AD|https://github.com/SecuraBV/Timeroast
+AD|https://github.com/Leo4j/Invoke-ADEnum
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 OSINT|https://github.com/m4lal0/userSearch
 OSINT|https://github.com/pixelbubble/ProtOSINT
