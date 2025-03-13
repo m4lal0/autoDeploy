@@ -240,4 +240,9 @@ fastfetch
 spraykatz
 hekatomb
 bloodyad
+ligolo-ng-common-binaries
+chisel-common-binaries
+bopscrk
+tinja
+peass
 seclists
