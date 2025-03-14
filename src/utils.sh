@@ -382,16 +382,16 @@ function gitTools(){
 	chmod +x /usr/local/bin/wwwtree 2>/dev/null
 	check "Agregando wwwtree"
 	## ligolo-ng
-	info "Descargando ligolo-ng"
-	cd $PIVOTING_PATH 2>/dev/null
-	git clone https://github.com/nicocha30/ligolo-ng >/dev/null 2>&1
-	cd ligolo-ng
-	go build -o bin/ligolo-agent cmd/agent/main.go >/dev/null 2>&1
-	go build -o bin/ligolo-proxy cmd/proxy/main.go >/dev/null 2>&1
-	GOOS=windows go build -o bin/ligolo-agent.exe cmd/agent/main.go >/dev/null 2>&1
-	GOOS=windows go build -o bin/ligolo-proxy.exe cmd/proxy/main.go >/dev/null 2>&1
-	mv $PIVOTING_PATH/ligolo-ng/bin/ligolo-proxy /usr/local/bin > /dev/null 2>&1
-	check "Agregando ligolo-ng"
+	#info "Descargando ligolo-ng"
+	#cd $PIVOTING_PATH 2>/dev/null
+	#git clone https://github.com/nicocha30/ligolo-ng >/dev/null 2>&1
+	#cd ligolo-ng
+	#go build -o bin/ligolo-agent cmd/agent/main.go >/dev/null 2>&1
+	#go build -o bin/ligolo-proxy cmd/proxy/main.go >/dev/null 2>&1
+	#GOOS=windows go build -o bin/ligolo-agent.exe cmd/agent/main.go >/dev/null 2>&1
+	#GOOS=windows go build -o bin/ligolo-proxy.exe cmd/proxy/main.go >/dev/null 2>&1
+	#mv $PIVOTING_PATH/ligolo-ng/bin/ligolo-proxy /usr/local/bin > /dev/null 2>&1
+	#check "Agregando ligolo-ng"
 	## wifi_db
 	info "Instalando wifi_db"
 	cd $WIFI_PATH && git clone https://github.com/r4ulcl/wifi_db > /dev/null 2>&1
@@ -432,6 +432,10 @@ function gitTools(){
 	#git clone https://github.com/byt3bl33d3r/CrackMapExec >/dev/null 2>&1
 	#cd CrackMapExec && poetry install >/dev/null 2>&1
 	#check "Agregando CrackMapExec"
+	## ldeep
+	info "Instalando ldeep"
+	cd /tmp && python3 -m pip install git+https://github.com/franc-pentest/ldeep --break-system-packages >/dev/null 2>&1
+	check "Agregando ldeep"
 
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
@@ -493,8 +497,9 @@ function gitTools(){
 	## RustScan
 	info "Descargando RustScan"
 	rustscan_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/RustScan/RustScan/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
-	wget "https://github.com/RustScan/RustScan/releases/download/$rustscan_version/rustscan_$rustscan_version"_amd64.deb -O "/tmp/rustscan_$rustscan_version"_amd64.deb > /dev/null 2>&1
-	dpkg -i "/tmp/rustscan_$rustscan_version"_amd64.deb > /dev/null 2>&1
+	wget https://github.com/bee-san/RustScan/releases/download/$rustscan_version/rustscan.deb.zip -O /tmp/rustscan.deb.zip > /dev/null 2>&1
+	cd /tmp && unzip rustscan.deb.zip > /dev/null 2>&1
+	dpkg -i /tmp/rustscan_$rustscan_version-1_amd64.deb > /dev/null 2>&1
 	check "Agregando RustScan v$rustscan_version"
 	## tempomail
 	info "Descargando tempomail"
@@ -598,12 +603,12 @@ function gitTools(){
 	check "Agregando PrintSpoofer.exe"
 	## WinPEAS.exe
 	info "Descargando winPEAS.exe"
-	cd $PRIVESCWIN_PATH && mkdir winPEAS 2>/dev/null
-	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx64.exe > /dev/null 2>&1
+	cd $PRIVESCWIN_PATH && mkdir winPEAS-common-binaries 2>/dev/null
+	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe -O $PRIVESCWIN_PATH/winPEAS-common-binaries/winPEASx64.exe > /dev/null 2>&1
 	check "Agregando winPEASx64.exe"
-	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx86.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASx86.exe > /dev/null 2>&1
+	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx86.exe -O $PRIVESCWIN_PATH/winPEAS-common-binaries/winPEASx86.exe > /dev/null 2>&1
 	check "Agregando winPEASx86.exe"
-	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASany.exe -O $PRIVESCWIN_PATH/winPEAS/winPEASany.exe > /dev/null 2>&1
+	wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASany.exe -O $PRIVESCWIN_PATH/winPEAS-common-binaries/winPEASany.exe > /dev/null 2>&1
 	check "Agregando winPEASany.exe"
 	## LinPEAS
 	info "Descargando LinPEAS"
@@ -723,10 +728,14 @@ function gitTools(){
 	## plink.exe
 	info "Descargando plink.exe"
 	cd $PIVOTING_PATH && mkdir plink 2>/dev/null
-	cd plink && wget https://the.earth.li/~sgtatham/putty/latest/w64/plink.exe -O $PIVOTING_PATH/plink/plink-64.exe > /dev/null 2>&1
-	check "Agregando plink.exe de 64 bits"
-	wget https://the.earth.li/~sgtatham/putty/latest/w32/plink.exe -O $PIVOTING_PATH/plink/plink-32.exe > /dev/null 2>&1
+	wget https://s3.amazonaws.com/plink1-assets/plink_win32_20241022.zip -O /tmp/plink_win32_20241022.zip > /dev/null 2>&1
+	cd /tmp && unzip -o plink_win32_20241022.zip > /dev/null 2>&1
+	mv /tmp/plink.exe $PIVOTING_PATH/plink/plink-32.exe 2>/dev/null
 	check "Agregando plink.exe de 32 bits"
+	wget https://s3.amazonaws.com/plink1-assets/plink_win64_20241022.zip -O /tmp/plink_win64_20241022.zip > /dev/null 2>&1
+	cd /tmp && unzip -o plink_win64_20241022.zip > /dev/null 2>&1
+	mv /tmp/plink.exe $PIVOTING_PATH/plink/plink-64.exe 2>/dev/null
+	check "Agregando plink.exe de 64 bits"
 	## Find-WMILocalAdminAccess.ps1
 	info "Descargando Find-WMILocalAdminAccess.ps1"
 	cd $AD_PATH && mkdir Find-WMILocalAdminAccess 2>/dev/null
@@ -746,6 +755,79 @@ function gitTools(){
 	cd beRoot && unzip beRoot.zip > /dev/null 2>&1
 	rm -rf beRoot.zip > /dev/null 2>&1
 	check "Agregando beRoot.exe v$beRoot_version"
+	## Ligolo-ng
+	info "Descargando ligolo-ng-agent"
+	cd $PIVOTING_PATH && mkdir ligolo-ng && cd ligolo-ng 2>/dev/null
+	ligolo_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/nicocha30/ligolo-ng/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/nicocha30/ligolo-ng/releases/download/v"$ligolo_version"/ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz -O $PIVOTING_PATH/ligolo-ng/ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz >/dev/null 2>&1
+	tar -xzf ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz >/dev/null 2>&1
+	rm -rf LICENSE README.md ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz 2>/dev/null
+	mv agent ligolo-agent 2>/dev/null
+	check "Agregando ligolo-ng-agent v$ligolo_version"
+	info "Descargando ligolo-ng-proxy"
+	wget https://github.com/nicocha30/ligolo-ng/releases/download/v"$ligolo_version"/ligolo-ng_proxy_"$ligolo_version"_linux_amd64.tar.gz -O $PIVOTING_PATH/ligolo-ng/ligolo-ng_proxy_"$ligolo_version"_linux_amd64.tar.gz >/dev/null 2>&1
+	tar -xzf ligolo-ng_proxy_"$ligolo_version"_linux_amd64.tar.gz >/dev/null 2>&1
+	rm -rf LICENSE README.md ligolo-ng_proxy_"$ligolo_version"_linux_amd64.tar.gz 2>/dev/null
+	mv proxy ligolo-proxy && cp ligolo-proxy /usr/local/bin 2>/dev/null
+	check "Agregando ligolo-ng-proxy v$ligolo_version"
+	info "Descargando ligolo-ng-agent.exe"
+	mkdir Windows && cd Windows 2>/dev/null
+	wget https://github.com/nicocha30/ligolo-ng/releases/download/v"$ligolo_version"/ligolo-ng_agent_"$ligolo_version"_windows_amd64.zip -O $PIVOTING_PATH/ligolo-ng/Windows/ligolo-ng_agent_"$ligolo_version"_windows_amd64.zip >/dev/null 2>&1
+	unzip ligolo-ng_agent_"$ligolo_version"_windows_amd64.zip >/dev/null 2>&1
+	rm -rf LICENSE README.md ligolo-ng_agent_"$ligolo_version"_windows_amd64.zip 2>/dev/null
+	mv agent.exe ligolo-agent.exe 2>/dev/null
+	check "Agregando ligolo-ng-agent.exe v$ligolo_version"
+	info "Descargando ligolo-ng-proxy.exe"
+	wget https://github.com/nicocha30/ligolo-ng/releases/download/v"$ligolo_version"/ligolo-ng_proxy_"$ligolo_version"_windows_amd64.zip -O $PIVOTING_PATH/ligolo-ng/Windows/ligolo-ng_proxy_"$ligolo_version"_windows_amd64.zip >/dev/null 2>&1
+	unzip ligolo-ng_proxy_"$ligolo_version"_windows_amd64.zip >/dev/null 2>&1
+	rm -rf LICENSE README.md ligolo-ng_proxy_"$ligolo_version"_windows_amd64.zip 2>/dev/null
+	mv proxy.exe ligolo-proxy.exe 2>/dev/null
+	check "Agregando ligolo-ng-proxy.exe v$ligolo_version"
+	## InvokeADCheck
+	info "Instalando InvokeADCheck"
+	cd $AD_PATH && mkdir InvokeADCheck 2>/dev/null
+	cd InvokeADCheck && wget https://github.com/sensepost/InvokeADCheck/raw/refs/heads/main/release/InvokeADCheck-current.zip >/dev/null 2>&1
+	unzip InvokeADCheck-current.zip >/dev/null 2>&1
+	rm InvokeADCheck-current.zip 2>/dev/null
+	check "Agregando InvokeADCheck"
+	## Caido
+	info "Descargando Caido"
+	caido_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/caido/caido/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://caido.download/releases/v"$caido_version"/caido-desktop-v"$caido_version"-linux-x86_64.deb -O /tmp/caido-desktop-v"$caido_version"-linux-x86_64.deb >/dev/null 2>&1
+	dpkg -i /tmp/caido-desktop-v"$caido_version"-linux-x86_64.deb > /dev/null 2>&1
+	check "Agregando Caido v$caido_version"
+	## Frida Server
+	info "Descargando Frida Server"
+	cd $MOBILE_PATH && mkdir frida-server-binaries 2>/dev/null
+	frida_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/frida/frida/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/frida/frida/releases/download/$frida_version/frida-server-"$frida_version"-android-x86.xz -O $MOBILE_PATH/frida-server-binaries/frida-server-"$frida_version"-android-x86.xz >/dev/null 2>&1
+	cd frida-server-binaries && xz -d frida-server-"$frida_version"-android-x86.xz > /dev/null 2>&1
+	check "Agregando frida-server-androidx86-v$frida_version"
+	wget https://github.com/frida/frida/releases/download/$frida_version/frida-server-"$frida_version"-android-x86_64.xz -O $MOBILE_PATH/frida-server-binaries/frida-server-"$frida_version"-android-x86_64.xz >/dev/null 2>&1
+	xz -d frida-server-"$frida_version"-android-x86_64.xz > /dev/null 2>&1
+	check "Agregando frida-server-androidx86_64-v$frida_version"
+	## goSecretsDump
+	info "Descargando goSecretsDump"
+	gosecretsdump_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/C-Sto/gosecretsdump/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/C-Sto/gosecretsdump/releases/download/v"$gosecretsdump_version"/gosecretsdump_linux_v"$gosecretsdump_version" -O /tmp/gosecretsdump_linux_v"$gosecretsdump_version" >/dev/null 2>&1
+	chmod +x /tmp/gosecretsdump_linux_v"$gosecretsdump_version" && mv /tmp/gosecretsdump_linux_v"$gosecretsdump_version" /usr/local/bin/gosecretsdump 2>/dev/null
+	check "Agregando gosecretsdump v$gosecretsdump_version"
+	## windapSearch
+	info "Descargando windapSearch"
+	windapsearch_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/ropnop/go-windapsearch/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/ropnop/go-windapsearch/releases/download/v"$windapsearch_version"/windapsearch-linux-amd64 -O /tmp/windapsearch-linux-amd64 >/dev/null 2>&1
+	chmod +x /tmp/windapsearch-linux-amd64 && mv /tmp/windapsearch-linux-amd64 /usr/local/bin/windapsearch 2>/dev/null
+	check "Agregando windapSearch v$windapsearch_version"
+	## GodPotato
+	info "Descargando GodPotato.exe"
+	cd $PRIVESCWIN_PATH && mkdir GodPotato 2>/dev/null
+	godpotato_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/BeichenDream/GodPotato/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/BeichenDream/GodPotato/releases/download/"$godpotato_version"/GodPotato-NET2.exe -O $PRIVESCWIN_PATH/GodPotato/GodPotato-NET2.exe >/dev/null 2>&1
+	check "Agregando GodPotato-NET2.exe $godpotato_version"
+	wget https://github.com/BeichenDream/GodPotato/releases/download/"$godpotato_version"/GodPotato-NET35.exe -O $PRIVESCWIN_PATH/GodPotato/GodPotato-NET35.exe >/dev/null 2>&1
+	check "Agregando GodPotato-NET35.exe $godpotato_version"
+	wget https://github.com/BeichenDream/GodPotato/releases/download/"$godpotato_version"/GodPotato-NET4.exe -O $PRIVESCWIN_PATH/GodPotato/GodPotato-NET4.exe >/dev/null 2>&1
+	check "Agregando GodPotato-NET4.exe $godpotato_version"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
