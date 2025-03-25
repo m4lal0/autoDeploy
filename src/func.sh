@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #by @m4lal0
 
 # Regular Colors
@@ -176,8 +176,8 @@ function section(){
 function deleteApp(){
 	validations
 	info "Eliminando directorios de aplicativos."
-	if [[ -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH  || -d $WORDPRESS_PATH || -d $AD_PATH || -d $MOBILE_PATH ]]; then
-		rm -rf {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH,$MOBILE_PATH} 2>&1
+	if [[ -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH  || -d $WORDPRESS_PATH || -d $AD_PATH || -d $MOBILE_PATH || -d $LINUX_PATH || -d $WINDOWS_PATH || -d $PHISHING_PATH || -d $PIVOTING_PATH || -d $CLOUD_PATH ]]; then
+		rm -rf {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH,$MOBILE_PATH,$LINUX_PATH,$WINDOWS_PATH,$PHISHING_PATH,$PIVOTING_PATH,$CLOUD_PATH} 2>&1
 		check "Eliminado directorios."
 	else
 		error "No hay directorios de aplicativos instalados."
