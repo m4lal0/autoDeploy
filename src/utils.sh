@@ -234,34 +234,40 @@ function gitTools(){
 	cd /usr/share 2>/dev/null
 	git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb > /dev/null 2>&1
 	ln -s `pwd`/fuzzdb /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlists/"
+	check "Agregando wordlist en /usr/share/wordlists/fuzzdb"
 	## OneListForAll
 	info "Descargando wordlists OneListForAll"
 	cd /usr/share 2>/dev/null
 	git clone --depth 1 https://github.com/six2dez/OneListForAll > /dev/null 2>&1
 	ln -s `pwd`/OneListForAll /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlists/"
+	check "Agregando wordlist en /usr/share/wordlists/OneListForAll"
 	## Kerberos-Enum-userlists
 	info "Descargando wordlists Kerberos-Username-Enumeration"
 	cd /usr/share 2>/dev/null
 	git clone https://github.com/attackdebris/kerberos_enum_userlists > /dev/null 2>&1
 	ln -s `pwd`/kerberos_enum_userlists /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlists/"
+	check "Agregando wordlist en /usr/share/wordlists/kerberos_enum_userlists"
 	## IntruderPayloads
 	info "Descargando wordlists IntruderPayloads"
 	cd /usr/share 2>/dev/null
 	git clone https://github.com/1N3/IntruderPayloads > /dev/null 2>&1
 	rm /usr/share/IntruderPayloads/BurpsuiteIntruderPayloads.png /usr/share/IntruderPayloads/install.sh /usr/share/IntruderPayloads/OWASPTestingChecklist_v_1.0.xls /usr/share/IntruderPayloads/README.md /usr/share/IntruderPayloads/update.sh  2>/dev/null
 	ln -s `pwd`/IntruderPayloads /usr/share/wordlists > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlists/"
+	check "Agregando wordlist en /usr/share/wordlists/IntruderPayloads"
 	## LFI Server Configurations - Linux
 	info "Descargando wordlists de Configuraciones de Servidores de Linux"
 	wget https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Linux -O /usr/share/wordlists/LFI-WordList-Linux.txt > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlists/"
+	check "Agregando wordlist en /usr/share/wordlists/LFI-WordList-Linux.txt"
 	## LFI Server Configurations - Windows
 	info "Descargando wordlists de Configuraciones de Servidores de Windows"
 	wget https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Windows -O /usr/share/wordlists/LFI-WordList-Windows.txt > /dev/null 2>&1
-	check "Agregando wordlist en /usr/share/wordlists/"
+	check "Agregando wordlist en /usr/share/wordlists/LFI-WordList-Windows.txt"
+	## Auto_Wordlists
+	info "Descargando wordlist Auto_Wordlists"
+	cd /usr/share 2>/dev/null
+	git clone https://github.com/carlospolop/Auto_Wordlists > /dev/null 2>&1
+	ln -s `pwd`/Auto_Wordlist /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlists/Auto_Wordlists"
 	## Others Wordlists
 	info "Descargando otras wordlists"
 	cd /usr/share 2>/dev/null
@@ -278,7 +284,7 @@ function gitTools(){
 
 ## Git clone con instalación aparte
 	info "Directorios de aplicativos"
-	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH,$MOBILE_PATH,$LINUX_PATH,$WINDOWS_PATH,$PIVOTING_PATH,$PHISHING_PATH} 2>/dev/null
+	mkdir -p {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH,$MOBILE_PATH,$LINUX_PATH,$WINDOWS_PATH,$PIVOTING_PATH,$PHISHING_PATH,$CLOUD_PATH} 2>/dev/null
 	check "Creando directorios"
 	## GTFOBLookup
 	info "Descargando GTFOBLookup"
@@ -828,6 +834,22 @@ function gitTools(){
 	check "Agregando GodPotato-NET35.exe $godpotato_version"
 	wget https://github.com/BeichenDream/GodPotato/releases/download/"$godpotato_version"/GodPotato-NET4.exe -O $PRIVESCWIN_PATH/GodPotato/GodPotato-NET4.exe >/dev/null 2>&1
 	check "Agregando GodPotato-NET4.exe $godpotato_version"
+	## CloudFlared
+	info "Descargando CloudFlared"
+	cloudflared_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/cloudflare/cloudflared/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/cloudflare/cloudflared/releases/download/"$cloudflared_version"/cloudflared-linux-amd64 -O /tmp/cloudflared-linux-amd64 >/dev/null 2>&1
+	chmod +x /tmp/cloudflared-linux-amd64 && mv /tmp/cloudflared-linux-amd64 /usr/local/bin/cloudflared 2>/dev/null
+	check "Agregando cloudflared v$cloudflared_version"
+	## Username_Generator
+	info "Descargando username_generator"
+	wget https://raw.githubusercontent.com/shroudri/username_generator/refs/heads/main/username_generator.py -O /usr/local/bin/username_generator >/dev/null 2>&1
+	chmod +x /usr/local/bin/username_generator 2>/dev/null
+	check "Agregando username_generator"
+	## ADSearch.exe
+	info "Descargando ADSearch.exe"
+	cd $AD_PATH && mkdir ADSearch 2>/dev/null
+	wget https://github.com/Flangvik/SharpCollection/raw/refs/heads/master/NetFramework_4.7_x64/ADSearch.exe -O $AD_PATH/ADSearch/ADSearch.exe >/dev/null 2>&1
+	check "Agregando ADSearch.exe"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
