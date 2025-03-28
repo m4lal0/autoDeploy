@@ -23,7 +23,7 @@ encode:github.com/Brum3ns/encode/cmd/encode@latest
 getJS:github.com/003random/getJS@latest
 interactsh:github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest
 wayfiles:github.com/Rffrench/wayfiles@latest
-afrog:github.com/zan8in/afrog/v2/cmd/afrog@latest
+afrog:github.com/zan8in/afrog/v3/cmd/afrog@latest
 surf:github.com/assetnote/surf/cmd/surf@latest
 fuzzuli:github.com/musana/fuzzuli@latest
 fallparams:github.com/ImAyrix/fallparams@latest
@@ -32,5 +32,6 @@ hauditor:github.com/trap-bytes/hauditor@latest
 cf-check:github.com/dwisiswant0/cf-check@latest
 shortscan:github.com/bitquark/shortscan/cmd/shortscan@latest
 cloudfox:github.com/BishopFox/cloudfox@latest
-gbounty:github.com/bountysecurity/gbounty/cmd/gbounty@main
+gbounty:github.com/BountySecurity/gbounty/cmd/gbounty@main
 subjack:github.com/haccer/subjack@latest
+traitor:github.com/liamg/traitor/cmd/traitor@latest
