@@ -1,6 +1,12 @@
 # ~/.zshrc file for zsh non-login shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
+reset=$'\E[0;0m'
+bold=$'\E[1m'
+red=$'\E[31m'
+green=$'\E[32m'
+blue=$'\E[34m'
+
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
@@ -15,7 +21,7 @@ WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # Manual PATH configuration
 GOPATH=/root/go
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/games:/usr/games:/snap/bin:/usr/lib/go:$GOPATH/bin
+PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/games:/usr/games:/snap/bin:/usr/lib/go:$GOPATH/bin
 
 # hide EOL sign ('%')
 export PROMPT_EOL_MARK=""
@@ -223,8 +229,12 @@ alias transfer="curl --upload-file $1 https://transfer.sh/$1"
 
 # Encrypt file
 function encryptFile(){
+	echo "${green}${bold}"
+	figlet Encrypt File
+	echo ${reset}
 	if [[ -n $1 && $# -eq 1 ]]; then
 		openssl enc -aes-256-cbc -pbkdf2 -k strongPass <$1 >$1.enc
+		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mEncrypted file: \033[0;33m$1.enc\033[0m"
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<file>\033[0m"
 	fi
@@ -232,8 +242,12 @@ function encryptFile(){
 
 # Decrypt file
 function decryptFile(){
+	echo "${green}${bold}"
+	figlet Decrypt File
+	echo ${reset}
 	if [[ -n $1 && -n $2 && $# -le 2 ]]; then
 		openssl enc -d -aes-256-cbc -pbkdf2 -k strongPass <$1 >$2
+		echo -e "\n\t\033[0;36m[\033[0;32m+\033[0;36m] \033[0;37mDecrypted file: \033[0;33m$2\033[0m"
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<Encrypt-File> <Output-File>\033[0m"
 	fi
@@ -245,14 +259,24 @@ function mkt() {
 
 # Search Wordlists
 function wordlists(){
+	echo "${green}${bold}"
+	figlet Wordlists
+	echo ${reset}
 	if [[ -n $1 && $# -eq 1 ]]; then
+		echo "${bold}Wordlist found:${reset}"
 		find -L /usr/share/wordlists -type f -iname "*$1*"
+		echo "________________________________________________________________________________________\n"
+		echo "> ${bold}wordlists${reset} ~ Contains the rockyou wordlist -> /usr/share/wordlists\n"
+  		tree /usr/share/wordlists
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<string>\033[0m"
 	fi
 }
 
 function extractPorts(){
+	echo "${green}${bold}"
+	figlet extractPorts
+	echo ${reset}
 	if [[ -n $1 && -z $2 ]]; then
 		ip_address="$(/usr/bin/cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
 		ports="$(/usr/bin/cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
@@ -327,6 +351,9 @@ function fzf-lovely(){
 
 # Search NSE script
 function nseSearch(){
+	echo "${green}${bold}"
+	figlet NSE Search
+	echo ${reset}
 	#locate *.nse | grep -i -o "$1".*;
 	if [[ -n $1 && $# -eq 1 ]]; then
 		nmap_basepath=$(nmap -v -d 2>/dev/null | grep -Po 'Read from \K\/.*(?=:)')
@@ -360,7 +387,11 @@ function deltarget(){
 
 # IP Address Information
 function ipinfo(){
+	echo "${green}${bold}"
+	figlet IP Info
+	echo ${reset}
 	if [[ -n $1 && $# -eq 1 ]]; then
+		echo -e "\n\033[0;36m[\033[0;34m+\033[0;36m] \033[0;37mIP Address Information: \033[0m\n"
 		curl http://ipinfo.io/$1
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: ipinfo <IP-Address>\033[0m"
@@ -383,6 +414,9 @@ function urlAcortada(){
 
 # Conocer la version de WordPress de un sitio
 function wpVersion(){
+	echo "${green}${bold}"
+	figlet WP Version
+	echo ${reset}
 	if [[ -n $1 && $# -eq 1 ]]; then
 		curl -s -X GET $1 | grep '<meta name="generator"'
 		if [ $? -ne 0 ]; then
@@ -395,6 +429,9 @@ function wpVersion(){
 
 # Conocer los plugins instalados de un sitio web con WordPress
 function wpPlugins(){
+	echo "${green}${bold}"
+	figlet WP Plugins
+	echo ${reset}
 	if [[ -n $1 && $# -eq 1 ]]; then
 		curl -s -X GET $1 | sed 's/href=/\n/g' | sed 's/src=/\n/g' | grep 'wp-content/plugins/*' | cut -d"'" -f2
 	else
@@ -404,6 +441,9 @@ function wpPlugins(){
 
 # Conocer los temas instalados de un sitio web con WordPress
 function wpThemes(){
+	echo "${green}${bold}"
+	figlet WP Themes
+	echo ${reset}
 	if [[ -n $1 && $# -eq 1 ]]; then
 		curl -s -X GET $1 | sed 's/href=/\n/g' | sed 's/src=/\n/g' | grep 'themes' | cut -d"'" -f2
 	else
@@ -432,6 +472,49 @@ function zoneTransfer(){
 	else
 		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: zoneTransfer <DOMAIN>\033[0m"
 	fi
+}
+
+function bloodhound-ce(){
+	command -v docker-compose > /dev/null || { sudo apt update && sudo apt -y install docker-compose }
+	curl -L https://ghst.ly/getbhce | sudo docker-compose -f - up | grep -E --color=always '#.+#|^' &
+	until curl http://127.0.0.1:8080 &>/dev/null; do printf ...; sleep 1; done
+	xdg-open http://127.0.0.1:8080
+}
+
+function gennames(){
+	echo "${green}${bold}"
+	figlet Gen Names
+	echo ${reset}
+	if [[ -n $1 && $# -eq 1 ]]; then
+		echo -e "\n\033[0;36m[\033[0;34m+\033[0;36m] \033[0;37mName generation: \033[0m\n"
+		echo $1 | while read line; do
+			firstname=$(echo $line | cut -d ' ' -f1 | tr '[:upper:]' '[:lower:]'); 
+			lastname=$(echo $line | cut -d ' ' -f2 | tr '[:upper:]' '[:lower:]') ;
+			echo $firstname$lastname ;                                              # johndoe
+			echo $lastname$firstname;                                               # doejohn
+			echo $firstname.$lastname ;                                             # john.doe
+			echo $lastname.$firstname ;                                             # doe.john
+			echo $lastname$(echo $firstname | cut -c1) ;                            # doej
+			echo $firstname$(echo $lastname | cut -c1) ;                            # jdoe
+			echo $(echo $firstname | cut -c1).$lastname;                            # j.doe
+			echo $(echo $firstname | cut -c1-3)$(echo $lastname | cut -c1-3);       # johdoe
+			echo $(echo $firstname | cut -c1-3).$(echo $lastname | cut -c1-3);      # joh.doe
+			echo $(echo $firstname | cut -c1)$lastname;                             # jdoe
+			echo $lastname.$(echo $firstname | cut -c1);                            # doe.j
+			echo "$(echo $lastname | cut -c1-3)"_$(echo $firstname | cut -c1-3) ;   # doe_joh
+			echo "$(echo $firstname | cut -c1-3)"_$(echo $lastname | cut -c1-3) ;   # joh_doe
+			echo "$firstname"                                                       # john
+			echo "$lastname"                                                        # doe
+			echo $(echo $lastname | cut -c1).$firstname                             # d.john
+			echo $(echo $lastname | cut -c1)$firstname                              # djohn
+		done
+	else
+		echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: gennames \"<NAME> <LASTNAME> | <EMAIL>\"\033[0m"
+	fi	
+}
+
+function locate-bin () {
+        find / -iname "$1*" -type f 2> /dev/null
 }
 
 bindkey "^[[1;3C" forward-word
