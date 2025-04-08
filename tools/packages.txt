@@ -245,4 +245,6 @@ chisel-common-binaries
 bopscrk
 tinja
 peass
+golang-github-binject-go-donut
+hoaxshell
 seclists
