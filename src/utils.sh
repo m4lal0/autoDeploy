@@ -559,7 +559,8 @@ function gitTools(){
 	## Rubeus.exe
 	info "Descargando Rubeus.exe"
 	cd $AD_PATH && mkdir Rubeus 2>/dev/null
-	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Rubeus.exe -O $AD_PATH/Rubeus/Rubeus.exe > /dev/null 2>&1
+	#wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Rubeus.exe -O $AD_PATH/Rubeus/Rubeus.exe > /dev/null 2>&1
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/refs/heads/master/dotnet%20v4.8.1%20compiled%20binaries/Rubeus.exe -O $AD_PATH/Rubeus/Rubeus.exe > /dev/null 2>&1
 	check "Agregando Rubeus.exe"
 	## SharpHound.ps1
 	info "Descargando SharpHound.ps1"
@@ -578,12 +579,14 @@ function gitTools(){
 	## SharpUp.exe
 	info "Descargando SharpUp.exe"
 	cd $PRIVESCWIN_PATH && mkdir SharpUp 2>/dev/null
-	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SharpUp.exe -O $PRIVESCWIN_PATH/SharpUp/SharpUp.exe > /dev/null 2>&1
+	#wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SharpUp.exe -O $PRIVESCWIN_PATH/SharpUp/SharpUp.exe > /dev/null 2>&1
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/refs/heads/master/dotnet%20v4.8.1%20compiled%20binaries/SharpUp.exe -O $PRIVESCWIN_PATH/SharpUp/SharpUp.exe > /dev/null 2>&1
 	check "Agregando SharpUp.exe"
 	## SafetyKatz.exe
 	info "Descargando SafetyKatz.exe"
 	cd $AD_PATH && mkdir SafetyKatz 2>/dev/null
-	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SafetyKatz.exe -O $AD_PATH/SafetyKatz/SafetyKatz.exe > /dev/null 2>&1
+	#wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SafetyKatz.exe -O $AD_PATH/SafetyKatz/SafetyKatz.exe > /dev/null 2>&1
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/refs/heads/master/dotnet%20v4.8.1%20compiled%20binaries/SafetyKatz.exe -O $AD_PATH/SafetyKatz/SafetyKatz.exe > /dev/null 2>&1
 	check "Agregando SafetyKatz.exe"
 	## JuicyPotatoNG
 	info "Descargando JuicyPotatoNG"
@@ -596,6 +599,10 @@ function gitTools(){
 	info "Descargando JuicyPotato.exe"
 	wget https://github.com/ohpe/juicy-potato/releases/latest/download/JuicyPotato.exe -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotato.exe > /dev/null 2>&1
 	check "Agregando JuicyPotato.exe"
+	## JuicyPotato-x86.exe
+	info "Descargando JuicyPotato.exe"
+	wget https://github.com/kraloveckey/ghostpack-binaries/raw/refs/heads/main/Potatos/JuicyPotato-x86-v0.1.exe -O $PRIVESCWIN_PATH/JuicyPotato/JuicyPotato-x86-v0.1.exe > /dev/null 2>&1
+	check "Agregando JuicyPotato-x86.exe"
 	## Churrasco.exe
 	info "Descargando churrasco.exe"
 	cd $PRIVESCWIN_PATH && mkdir churrasco 2>/dev/null
@@ -630,14 +637,14 @@ function gitTools(){
 	check "Agregando Arachni"
 	## CAPA
 	info "Descargando CAPA"
-	capa_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/mandiant/capa/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	capa_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/mandiant/capa/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/mandiant/capa/releases/download/v$capa_version/capa-v$capa_version-linux.zip -O /tmp/capa-v$capa_version-linux.zip > /dev/null 2>&1
 	cd /tmp && unzip /tmp/capa-v$capa_version-linux.zip > /dev/null 2>&1
 	mv /tmp/capa /usr/local/bin
 	check "Agregando CAPA v$capa_version"
 	## IPATool
 	info "Descargando IPAtool"
-	ipatool_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/majd/ipatool/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	ipatool_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/majd/ipatool/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/majd/ipatool/releases/download/v$ipatool_version/ipatool-$ipatool_version-linux-amd64.tar.gz -O /tmp/ipatool-$ipatool_version-linux-amd64.tar.gz > /dev/null 2>&1
 	cd /tmp && tar -xzf /tmp/ipatool-$ipatool_version-linux-amd64.tar.gz > /dev/null 2>&1
 	chmod +x /tmp/bin/ipatool-$ipatool_version-linux-amd64
@@ -660,7 +667,7 @@ function gitTools(){
 	## RunasCs
 	info "Descargando RunasCs"
 	cd $PRIVESCWIN_PATH && mkdir RunasCs 2>/dev/null
-	runascs_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/antonioCoco/RunasCs/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	runascs_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/antonioCoco/RunasCs/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/antonioCoco/RunasCs/releases/download/v$runascs_version/RunasCs.zip -O $PRIVESCWIN_PATH/RunasCs/RunasCs.zip > /dev/null 2>&1
 	cd $PRIVESCWIN_PATH/RunasCs && unzip RunasCs.zip > /dev/null 2>&1
 	rm -f $PRIVESCWIN_PATH/RunasCs/RunasCs.zip > /dev/null 2>&1
@@ -668,11 +675,12 @@ function gitTools(){
 	## Seatbelt.exe
 	info "Descargando Seatbelt.exe"
 	cd $PRIVESCWIN_PATH && mkdir Seatbelt 2>/dev/null
-	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Seatbelt.exe -O $PRIVESCWIN_PATH/Seatbelt/Seatbelt.exe > /dev/null 2>&1
+	#wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Seatbelt.exe -O $PRIVESCWIN_PATH/Seatbelt/Seatbelt.exe > /dev/null 2>&1
+	wget https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/refs/heads/master/dotnet%20v4.8.1%20compiled%20binaries/Seatbelt.exe -O $PRIVESCWIN_PATH/Seatbelt/Seatbelt.exe > /dev/null 2>&1
 	check "Agregando Seatbelt.exe"
 	## x8
 	info "Descargando x8"
-	x8_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/Sh1Yo/x8/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	x8_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/Sh1Yo/x8/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	cd /tmp && wget https://github.com/Sh1Yo/x8/releases/download/v$x8_version/x86_64-linux-x8.gz > /dev/null 2>&1
 	gzip -d x86_64-linux-x8.gz 2>/dev/null
 	mv x86_64-linux-x8 x8 && mv x8 /usr/local/bin/ 2>/dev/null
@@ -681,7 +689,7 @@ function gitTools(){
 	## LaZagne.exe
 	info "Descargando LaZagne.exe"
 	cd $WINDOWS_PATH && mkdir LaZagne 2>/dev/null
-	lazagne_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/AlessandroZ/LaZagne/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	lazagne_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/AlessandroZ/LaZagne/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/AlessandroZ/LaZagne/releases/download/v$lazagne_version/LaZagne.exe -O $WINDOWS_PATH/LaZagne/LaZagne.exe > /dev/null 2>&1
 	check "Agregando LaZagne.exe v$lazagne_version"
 	## Pretender
@@ -693,13 +701,13 @@ function gitTools(){
 	## Snaffler
 	info "Descargando Snaffler"
 	cd $AD_PATH && mkdir Snaffler 2>/dev/null
-	snaffler_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/SnaffCon/Snaffler/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	snaffler_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/SnaffCon/Snaffler/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/SnaffCon/Snaffler/releases/download/$snaffler_version/Snaffler.exe -O $AD_PATH/Snaffler/Snaffler.exe > /dev/null 2>&1
 	check "Agregando Snaffler v$snaffler_version"
 	## Kerbrute.exe
 	info "Descargando Kerbrute.exe"
 	cd $AD_PATH && mkdir Kerbrute 2>/dev/null
-	kerbrute_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/ropnop/kerbrute/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	kerbrute_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/ropnop/kerbrute/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/ropnop/kerbrute/releases/download/v$kerbrute_version/kerbrute_windows_386.exe -O $AD_PATH/Kerbrute/kerbrute_windows_386.exe > /dev/null 2>&1
 	check "Agregando kerbrute_windows_386.exe v$kerbrute_version"
 	wget https://github.com/ropnop/kerbrute/releases/download/v$kerbrute_version/kerbrute_windows_amd64.exe -O $AD_PATH/Kerbrute/kerbrute_windows_amd64.exe > /dev/null 2>&1
@@ -720,13 +728,13 @@ function gitTools(){
 	## Group3r.exe
 	info "Descargando Group3r.exe"
 	cd $AD_PATH && mkdir Group3r 2>/dev/null
-	group3r_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/Group3r/Group3r/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	group3r_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/Group3r/Group3r/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/Group3r/Group3r/releases/download/$group3r_version/Group3r.exe -O $AD_PATH/Group3r/Group3r.exe > /dev/null 2>&1
 	check "Agregando Group3r.exe v$group3r_version"
 	## PingCastle.exe
 	info "Descargando PingCastle.exe"
 	cd $AD_PATH && mkdir PingCastle 2>/dev/null
-	pingcastle_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/netwrix/pingcastle/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	pingcastle_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/netwrix/pingcastle/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/netwrix/pingcastle/releases/download/v$pingcastle_version/PingCastle_$pingcastle_version.zip -O $AD_PATH/PingCastle/PingCastle_$pingcastle_version.zip > /dev/null 2>&1
 	cd PingCastle && unzip PingCastle_$pingcastle_version.zip > /dev/null 2>&1
 	rm -rf PingCastle_$pingcastle_version.zip > /dev/null 2>&1
@@ -750,13 +758,13 @@ function gitTools(){
 	## SharpChisel.exe
 	info "Descargando SharpChisel.exe"
 	cd $AD_PATH && mkdir SharpChisel 2>/dev/null
-	sharpchisel_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/shantanu561993/SharpChisel/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	sharpchisel_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/shantanu561993/SharpChisel/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/shantanu561993/SharpChisel/releases/download/v$sharpchisel_version/SharpChisel.exe -O $AD_PATH/SharpChisel/SharpChisel.exe > /dev/null 2>&1
 	check "Agregando SharpChisel.exe v$sharpchisel_version"
 	## beRoot.exe
 	info "Descargando beRoot.exe"
 	cd $PRIVESCWIN_PATH && mkdir beRoot 2>/dev/null
-	beRoot_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/AlessandroZ/BeRoot/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	beRoot_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/AlessandroZ/BeRoot/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/AlessandroZ/BeRoot/releases/download/$beRoot_version/beRoot.zip -O $PRIVESCWIN_PATH/beRoot/beRoot.zip > /dev/null 2>&1
 	cd beRoot && unzip beRoot.zip > /dev/null 2>&1
 	rm -rf beRoot.zip > /dev/null 2>&1
@@ -764,7 +772,7 @@ function gitTools(){
 	## Ligolo-ng
 	info "Descargando ligolo-ng-agent"
 	cd $PIVOTING_PATH && mkdir ligolo-ng && cd ligolo-ng 2>/dev/null
-	ligolo_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/nicocha30/ligolo-ng/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	ligolo_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/nicocha30/ligolo-ng/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/nicocha30/ligolo-ng/releases/download/v"$ligolo_version"/ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz -O $PIVOTING_PATH/ligolo-ng/ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz >/dev/null 2>&1
 	tar -xzf ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz >/dev/null 2>&1
 	rm -rf LICENSE README.md ligolo-ng_agent_"$ligolo_version"_linux_amd64.tar.gz 2>/dev/null
@@ -798,14 +806,14 @@ function gitTools(){
 	check "Agregando InvokeADCheck"
 	## Caido
 	info "Descargando Caido"
-	caido_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/caido/caido/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	caido_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/caido/caido/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://caido.download/releases/v"$caido_version"/caido-desktop-v"$caido_version"-linux-x86_64.deb -O /tmp/caido-desktop-v"$caido_version"-linux-x86_64.deb >/dev/null 2>&1
 	dpkg -i /tmp/caido-desktop-v"$caido_version"-linux-x86_64.deb > /dev/null 2>&1
 	check "Agregando Caido v$caido_version"
 	## Frida Server
 	info "Descargando Frida Server"
 	cd $MOBILE_PATH && mkdir frida-server-binaries 2>/dev/null
-	frida_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/frida/frida/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	frida_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/frida/frida/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/frida/frida/releases/download/$frida_version/frida-server-"$frida_version"-android-x86.xz -O $MOBILE_PATH/frida-server-binaries/frida-server-"$frida_version"-android-x86.xz >/dev/null 2>&1
 	cd frida-server-binaries && xz -d frida-server-"$frida_version"-android-x86.xz > /dev/null 2>&1
 	check "Agregando frida-server-androidx86-v$frida_version"
@@ -814,20 +822,20 @@ function gitTools(){
 	check "Agregando frida-server-androidx86_64-v$frida_version"
 	## goSecretsDump
 	info "Descargando goSecretsDump"
-	gosecretsdump_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/C-Sto/gosecretsdump/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	gosecretsdump_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/C-Sto/gosecretsdump/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/C-Sto/gosecretsdump/releases/download/v"$gosecretsdump_version"/gosecretsdump_linux_v"$gosecretsdump_version" -O /tmp/gosecretsdump_linux_v"$gosecretsdump_version" >/dev/null 2>&1
 	chmod +x /tmp/gosecretsdump_linux_v"$gosecretsdump_version" && mv /tmp/gosecretsdump_linux_v"$gosecretsdump_version" /usr/local/bin/gosecretsdump 2>/dev/null
 	check "Agregando gosecretsdump v$gosecretsdump_version"
 	## windapSearch
 	info "Descargando windapSearch"
-	windapsearch_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/ropnop/go-windapsearch/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	windapsearch_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/ropnop/go-windapsearch/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/ropnop/go-windapsearch/releases/download/v"$windapsearch_version"/windapsearch-linux-amd64 -O /tmp/windapsearch-linux-amd64 >/dev/null 2>&1
 	chmod +x /tmp/windapsearch-linux-amd64 && mv /tmp/windapsearch-linux-amd64 /usr/local/bin/windapsearch 2>/dev/null
 	check "Agregando windapSearch v$windapsearch_version"
 	## GodPotato
 	info "Descargando GodPotato.exe"
 	cd $PRIVESCWIN_PATH && mkdir GodPotato 2>/dev/null
-	godpotato_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/BeichenDream/GodPotato/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	godpotato_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/BeichenDream/GodPotato/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/BeichenDream/GodPotato/releases/download/"$godpotato_version"/GodPotato-NET2.exe -O $PRIVESCWIN_PATH/GodPotato/GodPotato-NET2.exe >/dev/null 2>&1
 	check "Agregando GodPotato-NET2.exe $godpotato_version"
 	wget https://github.com/BeichenDream/GodPotato/releases/download/"$godpotato_version"/GodPotato-NET35.exe -O $PRIVESCWIN_PATH/GodPotato/GodPotato-NET35.exe >/dev/null 2>&1
@@ -836,7 +844,7 @@ function gitTools(){
 	check "Agregando GodPotato-NET4.exe $godpotato_version"
 	## CloudFlared
 	info "Descargando CloudFlared"
-	cloudflared_version=$(curl -IkLs -o /dev/null -w %{url_effective}  https://github.com/cloudflare/cloudflared/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	cloudflared_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/cloudflare/cloudflared/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
 	wget https://github.com/cloudflare/cloudflared/releases/download/"$cloudflared_version"/cloudflared-linux-amd64 -O /tmp/cloudflared-linux-amd64 >/dev/null 2>&1
 	chmod +x /tmp/cloudflared-linux-amd64 && mv /tmp/cloudflared-linux-amd64 /usr/local/bin/cloudflared 2>/dev/null
 	check "Agregando cloudflared v$cloudflared_version"
@@ -850,6 +858,34 @@ function gitTools(){
 	cd $AD_PATH && mkdir ADSearch 2>/dev/null
 	wget https://github.com/Flangvik/SharpCollection/raw/refs/heads/master/NetFramework_4.7_x64/ADSearch.exe -O $AD_PATH/ADSearch/ADSearch.exe >/dev/null 2>&1
 	check "Agregando ADSearch.exe"
+	## gitjacker
+	info "Descargando gitjacker"
+	gitjacker_version=$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/liamg/gitjacker/releases/latest|grep -o "[^/]*$"| sed "s/v//g")
+	wget https://github.com/liamg/gitjacker/releases/download/v$gitjacker_version/gitjacker-linux-amd64 -O /tmp/gitjacker >/dev/null 2>&1
+	chmod +x /tmp/gitjacker && mv /tmp/gitjacker /usr/local/bin/gitjacker 2>/dev/null
+	check "Agregando gitjacker v$gitjacker_version"
+	## grace
+	info "Descargando grace"
+	wget https://github.com/liamg/grace/releases/download/v0.0.1/grace-linux-amd64 -O /tmp/grace >/dev/null 2>&1
+	chmod +x /tmp/grace && mv /tmp/grace /usr/local/bin/grace 2>/dev/null
+	check "Agregando grace"
+	## PsExec63.exe
+	info "Descargando PsExec64.exe"
+	wget https://github.com/kraloveckey/ghostpack-binaries/raw/refs/heads/main/PsExec64/PsExec64-v2.2.exe -O /usr/share/windows-resources/binaries/PsExec64.exe >/dev/null 2>&1
+	chmod +x /usr/share/windows-resources/binaries/PsExec64.exe 2>/dev/null
+	check "Agregando PsExec64.exe en usr/share/windows-resources"
+	## SharpWSUS.exe
+	info "Descargando SharpWSUS.exe"
+	cd $PRIVESCWIN_PATH && mkdir SharpWSUS 2>/dev/null
+	wget https://github.com/kraloveckey/ghostpack-binaries/raw/refs/heads/main/SharpWSUS/SharpWSUS.exe -O $PRIVESCWIN_PATH/SharpWSUS/SharpWSUS.exe > /dev/null 2>&1
+	check "Agregando SharpWSUS.exe"
+	## ADReaper
+	cd $AD_PATH && mkdir ADReaper 2>/dev/null
+	wget https://github.com/m0n1x90/ADReaper/releases/download/ADReaperv1.1/ADReaper -O $AD_PATH/ADReaper/ADReaper > /dev/null 2>&1
+	chmod +x $AD_PATH/ADReaper/ADReaper 2>/dev/null
+	check "Agregando ADReaper v1.1 para Linux"
+	wget https://github.com/m0n1x90/ADReaper/releases/download/ADReaperv1.1/ADReaper.exe -O $AD_PATH/ADReaper/ADReaper.exe > /dev/null 2>&1
+	check "Agregando ADReaper v1.1 para Windows"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
