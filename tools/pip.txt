@@ -43,3 +43,6 @@ pip3:webtech
 pip3:apkscan
 pip3:prowler
 pip3:xsrfprobe
+pip3:defaultcreds-cheat-sheet
+pip3:cloudsplaining
+pip3:git-dumper
