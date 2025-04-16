@@ -886,6 +886,14 @@ function gitTools(){
 	check "Agregando ADReaper v1.1 para Linux"
 	wget https://github.com/m0n1x90/ADReaper/releases/download/ADReaperv1.1/ADReaper.exe -O $AD_PATH/ADReaper/ADReaper.exe > /dev/null 2>&1
 	check "Agregando ADReaper v1.1 para Windows"
+	## ConPtyShell.ps1
+	cd $WINDOWS_PATH && mkdir ConPtyShell 2>/dev/null
+	wget https://raw.githubusercontent.com/antonioCoco/ConPtyShell/refs/heads/master/Invoke-ConPtyShell.ps1 -O $WINDOWS_PATH/ConPtyShell/Invoke-ConPtyShell.ps1 > /dev/null 2>&1
+	check "Agregando Invoke-ConPtyShell.ps1"
+	wget https://github.com/antonioCoco/ConPtyShell/releases/download/1.5/ConPtyShell.zip -O $WINDOWS_PATH/ConPtyShell/ConPtyShell.zip > /dev/null 2>&1
+	cd ConPtyShell && unzip ConPtyShell.zip > /dev/null 2>&1
+	rm -rf ConPtyShell.zip > /dev/null 2>&1
+	check "Agregando ConPtyShell.exe"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
