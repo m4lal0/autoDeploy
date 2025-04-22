@@ -514,7 +514,11 @@ function gennames(){
 }
 
 function locate-bin () {
-        find / -iname "$1*" -type f 2> /dev/null
+		if [[ -n $1 && $# -eq 1 ]]; then
+        	find / -iname "*$1*" -type f -exec ls -lah {} \; 2> /dev/null
+		else
+			echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: locate-bin \"<NAME>\"\033[0m"
+		fi	
 }
 
 bindkey "^[[1;3C" forward-word
