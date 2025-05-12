@@ -32,6 +32,7 @@ AD|https://github.com/SecuraBV/Timeroast
 AD|https://github.com/Leo4j/Invoke-ADEnum
 AD|https://github.com/CroweCybersecurity/ad-ldap-enum
 AD|https://github.com/fox-it/aclpwn.py
+AD|https://github.com/GhnimiWael/LDAPHunter
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 OSINT|https://github.com/m4lal0/userSearch
 OSINT|https://github.com/pixelbubble/ProtOSINT
@@ -66,9 +67,11 @@ Utilities/Windows|https://github.com/trustedsec/unicorn
 Utilities/Windows|https://github.com/ly4k/SMBGhost
 Utilities/Windows|https://github.com/The-Viper-One/PsMapExec
 Utilities/Windows|https://github.com/danielbohannon/Invoke-Obfuscation
+Utilities/Windows|https://github.com/danielbohannon/Invoke-DOSfuscation
 Utilities/Windows|https://github.com/tekshteint/Pmap
 Utilities/Windows|https://github.com/JoelGMSec/PSAsyncShell
 Utilities/Windows|https://github.com/JoelGMSec/Invoke-Stealth
+Utilities/Windows|https://github.com/secure-77/powershell-http-server
 Pivoting|https://github.com/lukebaggett/dnscat2-powershell
 Cloud|https://github.com/carlospolop/cloudpeass
 Web|https://github.com/InfosecMatter/default-http-login-hunter
