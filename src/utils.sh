@@ -652,8 +652,8 @@ function gitTools(){
 	check "Agregando IPAtool v$ipatool_version"
 	## Govenom
 	info "Descargando Govenom"
-	wget https://github.com/arch3rPro/Govenom/releases/latest/download/darwin_amd64.tar.gz -O /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
-	cd /tmp && tar -xzf /tmp/darwin_amd64.tar.gz > /dev/null 2>&1
+	wget https://github.com/arch3rPro/Govenom/releases/download/pre/linux_amd64.tar.gz -O /tmp/linux_amd64.tar.gz > /dev/null 2>&1
+	cd /tmp && tar -xzf /tmp/linux_amd64.tar.gz > /dev/null 2>&1
 	mv /tmp/Govenom /usr/local/bin
 	check "Instalando Govenom"
 	## NetExec
@@ -880,6 +880,7 @@ function gitTools(){
 	wget https://github.com/kraloveckey/ghostpack-binaries/raw/refs/heads/main/SharpWSUS/SharpWSUS.exe -O $PRIVESCWIN_PATH/SharpWSUS/SharpWSUS.exe > /dev/null 2>&1
 	check "Agregando SharpWSUS.exe"
 	## ADReaper
+	info "Descargando ADReaper & ADReaper.exe"
 	cd $AD_PATH && mkdir ADReaper 2>/dev/null
 	wget https://github.com/m0n1x90/ADReaper/releases/download/ADReaperv1.1/ADReaper -O $AD_PATH/ADReaper/ADReaper > /dev/null 2>&1
 	chmod +x $AD_PATH/ADReaper/ADReaper 2>/dev/null
@@ -887,6 +888,7 @@ function gitTools(){
 	wget https://github.com/m0n1x90/ADReaper/releases/download/ADReaperv1.1/ADReaper.exe -O $AD_PATH/ADReaper/ADReaper.exe > /dev/null 2>&1
 	check "Agregando ADReaper v1.1 para Windows"
 	## ConPtyShell.ps1
+	info "Descargando ConPtyShell"
 	cd $WINDOWS_PATH && mkdir ConPtyShell 2>/dev/null
 	wget https://raw.githubusercontent.com/antonioCoco/ConPtyShell/refs/heads/master/Invoke-ConPtyShell.ps1 -O $WINDOWS_PATH/ConPtyShell/Invoke-ConPtyShell.ps1 > /dev/null 2>&1
 	check "Agregando Invoke-ConPtyShell.ps1"
@@ -894,6 +896,11 @@ function gitTools(){
 	cd ConPtyShell && unzip ConPtyShell.zip > /dev/null 2>&1
 	rm -rf ConPtyShell.zip > /dev/null 2>&1
 	check "Agregando ConPtyShell.exe"
+	## DirDar
+	info "Descargando DirDar"
+	cd /tmp && wget https://github.com/M4DM0e/DirDar/releases/download/v1.0.0/DirDarV1.0-linux64.zip > /dev/null 2>&1
+	unzip DirDarV1.0-linux64.zip && mv /tmp/release/dirdar /usr/local/bin/dirdar > /dev/null 2>&1
+	check "Agregando DirDar"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
