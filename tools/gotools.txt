@@ -35,3 +35,5 @@ cloudfox:github.com/BishopFox/cloudfox@latest
 gbounty:github.com/BountySecurity/gbounty/cmd/gbounty@main
 subjack:github.com/haccer/subjack@latest
 traitor:github.com/liamg/traitor/cmd/traitor@latest
+sharefinder:github.com/vflame6/sharefinder@latest
+aws-enumerator:github.com/shabarkin/aws-enumerator@latest
