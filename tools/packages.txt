@@ -247,4 +247,5 @@ tinja
 peass
 golang-github-binject-go-donut
 hoaxshell
+cloud-enum
 seclists
