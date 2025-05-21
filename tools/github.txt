@@ -74,6 +74,7 @@ Utilities/Windows|https://github.com/JoelGMSec/Invoke-Stealth
 Utilities/Windows|https://github.com/secure-77/powershell-http-server
 Pivoting|https://github.com/lukebaggett/dnscat2-powershell
 Cloud|https://github.com/carlospolop/cloudpeass
+Cliud|https://github.com/dievus/AWeSomeUserFinder
 Web|https://github.com/InfosecMatter/default-http-login-hunter
 Web|https://github.com/TheRook/subbrute
 Web|https://github.com/Dhayalanb/windows-php-reverse-shell
