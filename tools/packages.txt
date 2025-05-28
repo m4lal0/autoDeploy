@@ -248,4 +248,5 @@ peass
 golang-github-binject-go-donut
 hoaxshell
 cloud-enum
+ridenum
 seclists
