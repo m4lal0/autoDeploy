@@ -37,3 +37,4 @@ subjack:github.com/haccer/subjack@latest
 traitor:github.com/liamg/traitor/cmd/traitor@latest
 sharefinder:github.com/vflame6/sharefinder@latest
 aws-enumerator:github.com/shabarkin/aws-enumerator@latest
+uff:github.com/sw33tLie/uff/v2@latest
