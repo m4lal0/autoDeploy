@@ -249,4 +249,13 @@ golang-github-binject-go-donut
 hoaxshell
 cloud-enum
 ridenum
+donut
+bloodhound-ce-python
+web-cache-vulnerability-scanner
+sqlsus
+sqlninja
+jboss-autopwn
+apache-users
+zipalign
+netcat-traditional
 seclists
