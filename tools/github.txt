@@ -72,6 +72,7 @@ Utilities/Windows|https://github.com/tekshteint/Pmap
 Utilities/Windows|https://github.com/JoelGMSec/PSAsyncShell
 Utilities/Windows|https://github.com/JoelGMSec/Invoke-Stealth
 Utilities/Windows|https://github.com/secure-77/powershell-http-server
+Utilities/Windows|https://github.com/p0dalirius/RDWAtool
 Pivoting|https://github.com/lukebaggett/dnscat2-powershell
 Cloud|https://github.com/carlospolop/cloudpeass
 Cliud|https://github.com/dievus/AWeSomeUserFinder
@@ -129,6 +130,7 @@ Web|https://github.com/tarunkant/Gopherus
 Web|https://github.com/ShutdownRepo/httpmethods
 Web|https://github.com/synacktiv/php_filter_chain_generator
 Web|https://github.com/p0dalirius/robotstester
+Web|https://github.com/c0dejump/wcDetect
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
