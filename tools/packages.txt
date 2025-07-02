@@ -181,7 +181,6 @@ davtest
 ltrace
 strace
 plocate
-ntpdate
 bloodhound.py
 libpoppler-cpp-dev
 keepassxc
