@@ -46,3 +46,4 @@ pip3:xsrfprobe
 pip3:defaultcreds-cheat-sheet
 pip3:cloudsplaining
 pip3:git-dumper
+pip3:certsync
