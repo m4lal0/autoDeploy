@@ -38,3 +38,5 @@ traitor:github.com/liamg/traitor/cmd/traitor@latest
 sharefinder:github.com/vflame6/sharefinder@latest
 aws-enumerator:github.com/shabarkin/aws-enumerator@latest
 uff:github.com/sw33tLie/uff/v2@latest
+headerpwn:github.com/devanshbatham/headerpwn@v0.0.3
+nomore403:github.com/devploit/nomore403@latest
