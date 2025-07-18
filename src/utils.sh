@@ -24,19 +24,9 @@ function installPackages(){
 }
 
 ### Instalación de otras aplicaciones
-function installApps(){
+function installWebTools(){
 	section "COMENZANDO INSTALACIÓN DE UTILIDADES"
 	checkInternet
-
-	## Instalación de Firefox
-	#info "Instalar Firefox"
-	#wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/99.0/linux-x86_64/en-US/firefox-99.0.tar.bz2 -O /opt/firefox-99.0.tar.bz2 > /dev/null 2>&1
-	#check "Descargando Firefox"
-	#cd /opt && tar -xf firefox-99.0.tar.bz2 > /dev/null 2>&1
-	#rm -rf firefox-99.0.tar.bz2 2>/dev/null
-	#check "Descomprimiendo archivo de Firefox"
-	#cd /bin && mv firefox firefox2 && ln -sf /opt/firefox/firefox firefox 2>/dev/null
-	#check "Instalando Firefox"
 
 	## Instalacion de Extensiones en Firefox
 	info "Instalar extensiones en Firefox"
@@ -64,8 +54,8 @@ function installApps(){
 	#Instalando extensión: Wappalyzer
 	mkdir /tmp/extensions && cd /tmp/extensions 2>/dev/null
 	mkdir wappalyzer && cd wappalyzer 2>/dev/null
-	wget https://addons.mozilla.org/firefox/downloads/file/4239079/wappalyzer-6.10.68.xpi > /dev/null 2>&1
-	cp wappalyzer-6.10.68.xpi wappalyzer@crunchlabz.com.xpi 2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4498612/wappalyzer-6.10.83.xpi > /dev/null 2>&1
+	cp wappalyzer-6.10.83.xpi wappalyzer@crunchlabz.com.xpi 2>/dev/null
 	chown $USERNAME:$USERNAME wappalyzer@crunchlabz.com.xpi 2>/dev/null
 	mv wappalyzer@crunchlabz.com.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
 	check "Instalando extensión Wappalyzer"
@@ -183,15 +173,9 @@ function installApps(){
 		apt-get install brave-browser -y > /dev/null 2>&1
 	fi
 	check "Instalando Brave"
+}
 
-	info "Instalar Gotop"
-	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
-	check "Clonando el repositorio de Gotop"
-	/tmp/gotop/scripts/download.sh > /dev/null 2>&1
-	check "Instalando Gotop"
-	mv gotop /usr/local/bin 2>/dev/null
-	check "Mover el binario de gotop a /usr/local/bin"
-
+function installPipTools(){
 	## Instalación de paquetes con pip & pip3
 	for ap in $(cat $PIP_TOOLS_LIST); do
 		info "Instalando $(echo $ap | cut -d ':' -f 2)"
@@ -200,7 +184,9 @@ function installApps(){
 		sudo -u $USERNAME $(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) --break-system-packages > /dev/null 2>&1
 		check "Instalando $(echo $ap | cut -d ':' -f 2) ($USERNAME)"
 	done
+}
 
+function installGoTools(){
 	## Instalación de paquetes con go
 	for ap in $(cat $GO_TOOLS_LIST); do
 		info "Instalando $(echo $ap | cut -d ':' -f 1)"
@@ -210,9 +196,16 @@ function installApps(){
 }
 
 ### Instalacion de aplicaciones terceras en /opt/
-function gitTools(){
+function installGitTools(){
 	section "COMENZANDO INSTALACIÓN DE APLICACIONES DE TERCEROS"
 	checkInternet
+	info "Instalar Gotop"
+	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
+	check "Clonando el repositorio de Gotop"
+	/tmp/gotop/scripts/download.sh > /dev/null 2>&1
+	check "Instalando Gotop"
+	mv gotop /usr/local/bin 2>/dev/null
+	check "Mover el binario de gotop a /usr/local/bin"
 	info "Configurando netcat 64bits"
 	wget https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip -O /tmp/netcat.zip > /dev/null 2>&1
 	check "Descargando netcat"
@@ -890,7 +883,7 @@ function gitTools(){
 	## ConPtyShell.ps1
 	info "Descargando ConPtyShell"
 	cd $WINDOWS_PATH && mkdir ConPtyShell 2>/dev/null
-	wget https://raw.githubusercontent.com/antonioCoco/ConPtyShell/refs/heads/master/Invoke-ConPtyShell.ps1 -O $WINDOWS_PATH/ConPtyShell/Invoke-ConPtyShell.ps1 > /dev/null 2>&1
+	wget https://raw.githubusercontent.com/antonioCoco/ConPtyShell/master/Invoke-ConPtyShell.ps1 -O $WINDOWS_PATH/ConPtyShell/Invoke-ConPtyShell.ps1 > /dev/null 2>&1
 	check "Agregando Invoke-ConPtyShell.ps1"
 	wget https://github.com/antonioCoco/ConPtyShell/releases/download/1.5/ConPtyShell.zip -O $WINDOWS_PATH/ConPtyShell/ConPtyShell.zip > /dev/null 2>&1
 	cd ConPtyShell && unzip ConPtyShell.zip > /dev/null 2>&1
@@ -899,8 +892,32 @@ function gitTools(){
 	## DirDar
 	info "Descargando DirDar"
 	cd /tmp && wget https://github.com/M4DM0e/DirDar/releases/download/v1.0.0/DirDarV1.0-linux64.zip > /dev/null 2>&1
-	unzip DirDarV1.0-linux64.zip && mv /tmp/release/dirdar /usr/local/bin/dirdar > /dev/null 2>&1
+	unzip DirDarV1.0-linux64.zip > /dev/null 2>&1
+	mv /tmp/releases/dirdar /usr/local/bin/dirdar 2> /dev/null
 	check "Agregando DirDar"
+	## checkDMARC
+	info "Descargando checkDMARC"
+	wget https://raw.githubusercontent.com/m4lal0/checkDMARC/refs/heads/main/checkDMARC.sh -O /tmp/checkDMARC.sh > /dev/null 2>&1
+	chmod +x /tmp/checkDMARC.sh && mv /tmp/checkDMARC.sh /usr/local/bin/checkDMARC > /dev/null 2>&1
+	check "Agregando checkDMARC"
+	## evil-winrm-py
+	info "Descargando evil-winrm-py"
+	apt remove python3-tqdm -y > /dev/null 2>&1
+	pip3 install evil-winrm-py[kerberos] --break-system-packages > /dev/null 2>&1
+	check "Agregando evil-winrm-py"
+	## apk2url
+	info "Descargando APK2URL"
+	wget https://raw.githubusercontent.com/n0mi1k/apk2url/refs/heads/main/apk2url.sh -O /tmp/apk2url > /dev/null 2>&1
+	chmod +x /tmp/apk2url && mv /tmp/apk2url /usr/local/bin/apk2url > /dev/null 2>&1
+	check "Agregando apk2url"
+	## BurpSuitePro
+	info "Descargando BurpSuitePro"
+	cd $WEB_PATH && mkdir BurpSuitePro 2> /dev/null
+	wget "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -O $WEB_PATH/BurpSuitePro/burpsuite_pro_v2025.4.5.jar > /dev/null 2>&1
+	wget https://github.com/xiv3r/Burpsuite-Professional/raw/refs/heads/main/loader.jar -O $WEB_PATH/BurpSuitePro/loader.jar > /dev/null 2>&1
+	cd $WEB_PATH/BurpSuitePro && echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v2025.4.5.jar >/dev/null 2>&1 &" > burpsuitepro 2>/dev/null
+	chmod +x burpsuitepro && cp burpsuitepro /usr/local/bin > /dev/null 2>&1
+	check "Agregando BurpSuitePro"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
@@ -951,7 +968,9 @@ function gitTools(){
 	check "Agregando Vulscan NSE"
 	nmap --script-updatedb > /dev/null 2>&1
 	check "Actualizando NSE scripts adicionales"
+}
 
+function installGithubTools(){
 ## Descarga de otras herramientas de GitHub sin instalación
 	for gitap in $(cat $GIT_TOOLS_LIST); do
 		url=$(echo $gitap | cut -d '|' -f2)
