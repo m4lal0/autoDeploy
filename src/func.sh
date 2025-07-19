@@ -122,7 +122,8 @@ function banner(){
 ### Funciones informativos
 function info(){
 	#echo -e "${Cyan}[${BYellow}!${Cyan}] ${BWhite}$1${Color_Off}"
-	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${BYellow}$1${Color_Off}"
+	#echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${BYellow}$1${Color_Off}"
+	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${On_Blue}${BWhite}   INFO  ${Color_Off} ${BCyan}$1${Color_Off}"
 }
 
 function question(){
@@ -148,14 +149,16 @@ function yes_or_no(){
 
 function error(){
 	#echo -e "${IBlue}[$(date +'%Y-%m-%d %T')]${Color_Off} ${Cyan}[${BRed}✖${Cyan}] ${BRed}Error - $1${Color_Off}"
-	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${On_Red}${BWhite}ERROR${Color_Off}${Cyan}] ${White}$1${Color_Off}"
+	#echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${On_Red}${BWhite}ERROR${Color_Off}${Cyan}] ${White}$1${Color_Off}"
+	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${On_Red}${BWhite}  ERROR  ${Color_Off} ${IRed}$1${Color_Off}"
 	#echo -e "${Cyan}[${BRed}✖${Cyan}] ${BRed}Error - $1${Color_Off}"
 	echo -e "[$(date +'%Y-%m-%d %T')] $1" 2>/dev/null >> $SCRIPT_PATH/error.log
 }
 
 function good(){
 	#echo -e "${IBlue}[$(date +'%Y-%m-%d %T')]${Color_Off} ${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Exitoso - $1${Color_Off}"
-	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${BGreen}SUCCESS${Color_Off}${Cyan}] ${White}$1${Color_Off}"
+	#echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${BGreen}SUCCESS${Color_Off}${Cyan}] ${White}$1${Color_Off}"
+	echo -e "${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${On_Green}${BWhite} SUCCESS ${Color_Off} ${IGreen}$1${Color_Off}"
 	#echo -e "${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Exitoso - $1${Color_Off}"
 }
 
@@ -168,7 +171,8 @@ function check(){
 }
 
 function section(){
-	echo -e "\n${Cyan}[${BBlue}+${Cyan}] ${BBlue}$1${Color_Off}"
+	echo -e "\n${Cyan}[${BBlue}+${Cyan}] ${BYellow}$1${Color_Off}"
+	#echo -e "\n${Cyan}[${BBlue}+${Cyan}] ${BBlue}$1${Color_Off}"
 	#echo -e "\n${Cyan}[${IBlue}$(date +'%Y-%m-%d %T')${Cyan}]${Color_Off} ${Cyan}[${BBlue}$1${Cyan}]${Color_Off}"
 }
 
@@ -212,11 +216,13 @@ function validations(){
 	fi
 
 ### Datos del equipo
+	HOSTNAME=$(hostname)
+	USERNAME=$(ls /home | xargs | tr ' ' '|')
 	tput cnorm
-    question "Nombre del Hostname ($(hostname))"
-	HOSTNAME=$input
-	question "Nombre de usuario ($(ls /home | xargs | tr ' ' '|'))"
-	USERNAME=$input
+    question "Nombre del Hostname ($HOSTNAME)"
+	HOSTNAME=${input:-$HOSTNAME}
+	question "Nombre de usuario ($USERNAME)"
+	USERNAME=${input:-$USERNAME}
 	HOME_PATH="/home/$USERNAME"
 	tput civis
 	if [ ! -d "$HOME_PATH" ]; then
@@ -230,9 +236,12 @@ function install(){
 	echo -e "\n ${BYellow}⚠ Instalación Completa.${Color_Off}\n"
 	validations
 	installPackages
-	installApps
+	installWebTools
+	installPipTools
+	installGoTools
 	customTerminal
-	gitTools
+	installGitTools
+	installGithubTools
 	endInstall
 }
 
@@ -248,8 +257,11 @@ function installTerceros(){
 	echo -e "\n ${BYellow}⚠ Instalación de Aplicativos de terceros.${Color_Off}\n"
 	validations
 	installPackages
-	installApps
-	gitTools
+	installWebTools
+	installPipTools
+	installGoTools
+	installGitTools
+	installGithubTools
 	endInstall
 }
 
