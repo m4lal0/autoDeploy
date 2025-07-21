@@ -62,9 +62,9 @@ done
 if [ $parameter_counter -eq 0 ]; then
 	helpPanel
 else
-	if [ "$(echo $install)" == "terminal" ]; then
+	if [ "$(echo $install | tr '[:upper:]' '[:lower:]')" == "terminal" ]; then
 		installTerminal
-	elif [ "$(echo $install)" == "apps" ]; then
+	elif [ "$(echo $install | tr '[:upper:]' '[:lower:]')" == "apps" ]; then
 		installTerceros
 	else
 		helpPanel
