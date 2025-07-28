@@ -21,7 +21,7 @@ WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # Manual PATH configuration
 GOPATH=/root/go
-PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/games:/usr/games:/snap/bin:/usr/lib/go:$GOPATH/bin
+PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/games:/usr/games:/snap/bin:/usr/lib/go:$GOPATH/bin:/root/.local/bin
 
 # hide EOL sign ('%')
 export PROMPT_EOL_MARK=""
