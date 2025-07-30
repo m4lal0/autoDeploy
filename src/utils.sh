@@ -161,6 +161,15 @@ function installWebTools(){
 	mv CanvasBlocker@kkapsner.de.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
 	check "Instalando extensión CanvasBlocker"
 
+	#Instalando extensión: SingleFile
+	cd /tmp/extensions  2>/dev/null
+	mkdir singlefile && cd singlefile  2>/dev/null
+	wget https://addons.mozilla.org/firefox/downloads/file/4465739/single_file-1.22.81.xpi > /dev/null 2>&1
+	cp single_file-1.22.81.xpi {531906d3-e22f-4a6c-a102-8057b88a1a63}.xpi 2>/dev/null
+	chown $USERNAME:$USERNAME \{531906d3-e22f-4a6c-a102-8057b88a1a63\}.xpi 2>/dev/null
+	mv \{531906d3-e22f-4a6c-a102-8057b88a1a63\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
+	check "Instalando extensión SingleFile"
+
 	## Instalacion Brave
 	info "Instalar Brave"
 	curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg 2>/dev/null
@@ -918,6 +927,10 @@ function installGitTools(){
 	cd $WEB_PATH/BurpSuitePro && echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v2025.4.5.jar >/dev/null 2>&1 &" > burpsuitepro 2>/dev/null
 	chmod +x burpsuitepro && cp burpsuitepro /usr/local/bin > /dev/null 2>&1
 	check "Agregando BurpSuitePro"
+	## Prowler
+	info "Descargando Prowler"
+	pipx install prowler > /dev/null 2>&1
+	check "Agregando Prowler"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
