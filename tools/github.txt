@@ -132,6 +132,7 @@ Web|https://github.com/synacktiv/php_filter_chain_generator
 Web|https://github.com/p0dalirius/robotstester
 Web|https://github.com/c0dejump/wcDetect
 Web|https://github.com/c0dejump/HExHTTP
+Web|https://github.com/WebFuzzForge/wenum
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
