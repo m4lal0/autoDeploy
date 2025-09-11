@@ -41,3 +41,4 @@ uff:github.com/sw33tLie/uff/v2@latest
 headerpwn:github.com/devanshbatham/headerpwn@v0.0.3
 nomore403:github.com/devploit/nomore403@latest
 sourcemapper:github.com/denandz/sourcemapper@latest
+jsluice:github.com/BishopFox/jsluice/cmd/jsluice@latest
