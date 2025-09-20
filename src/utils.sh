@@ -270,6 +270,10 @@ function installGitTools(){
 	git clone https://github.com/carlospolop/Auto_Wordlists > /dev/null 2>&1
 	ln -s `pwd`/Auto_Wordlist /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlists/Auto_Wordlists"
+	## JWT Secrets
+	info "Descargando wordlist jwt_secrets"
+	wget https://raw.githubusercontent.com/wallarm/jwt-secrets/refs/heads/master/jwt.secrets.list -O /usr/share/wordlists/jwt.secrets.list > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlists/jwt.secrets.list"
 	## Others Wordlists
 	info "Descargando otras wordlists"
 	cd /usr/share 2>/dev/null
