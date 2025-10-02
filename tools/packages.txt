@@ -257,4 +257,6 @@ jboss-autopwn
 apache-users
 zipalign
 netcat-traditional
+ligolo-mp
+krbrelayx
 seclists
