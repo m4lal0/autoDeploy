@@ -279,6 +279,8 @@ function installGitTools(){
 	cd /usr/share 2>/dev/null
 	mkdir trickest; cd trickest; git clone https://github.com/trickest/wordlists > /dev/null 2>&1
 	cd wordlists; mv inventory robots technologies cloud technology-repositories.json ../ && rm -rf wordlists 2>&1
+	git clone https://github.com/trickest/resolvers > /dev/null 2>&1
+	rm -f LICENSE README.md banner.png resolvers.png 2>/dev/null
 	ln -s /usr/share/trickest /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlist/trickest"
 	## WordPress Exploit Framework
@@ -935,6 +937,10 @@ function installGitTools(){
 	info "Descargando Prowler"
 	pipx install prowler > /dev/null 2>&1
 	check "Agregando Prowler"
+	## rusthound-ce
+	info "Descargando rusthound-ce"
+	cargo install rusthound-ce > /dev/null 2>&1
+	check "Agregando rusthound-ce"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
