@@ -42,3 +42,7 @@ headerpwn:github.com/devanshbatham/headerpwn@v0.0.3
 nomore403:github.com/devploit/nomore403@latest
 sourcemapper:github.com/denandz/sourcemapper@latest
 jsluice:github.com/BishopFox/jsluice/cmd/jsluice@latest
+shuffledns:github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
+alterx:github.com/projectdiscovery/alterx/cmd/alterx@latest
+aix:github.com/projectdiscovery/aix/cmd/aix@latest
+curlie:github.com/rs/curlie@latest
