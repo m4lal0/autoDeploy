@@ -50,3 +50,4 @@ pip3:certsync
 pip3:uploadserver
 pip3:jsbeautifier
 pip3:waymore
+pip3:LnkParse3
