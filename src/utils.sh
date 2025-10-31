@@ -941,6 +941,11 @@ function installGitTools(){
 	info "Descargando rusthound-ce"
 	cargo install rusthound-ce > /dev/null 2>&1
 	check "Agregando rusthound-ce"
+	## penelope
+	info "Descargando penelope"
+	cd /tmp && wget https://raw.githubusercontent.com/brightio/penelope/refs/heads/main/penelope.py > /dev/null 2>&1
+	chmod +x /tmp/penelope.py && mv /tmp/penelope.py /usr/local/bin/penelope 2> /dev/null
+	check "Agregando penelope"
 	## NSE Scripts
 	info "Descargando NSE Scripts adicionales"
 	wget https://raw.githubusercontent.com/mmpx12/NSE-web-techno/master/web_techno.nse -O /usr/share/nmap/scripts/web_techno.nse > /dev/null 2>&1
