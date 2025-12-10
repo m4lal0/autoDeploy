@@ -136,6 +136,7 @@ Web|https://github.com/WebFuzzForge/wenum
 Web|https://github.com/PandaSt0rm/webfuzz_api
 Web|https://github.com/GerbenJavado/LinkFinder
 Web|https://github.com/jonaslejon/malicious-pdf
+Web|https://github.com/ticarpi/jwt_tool
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
