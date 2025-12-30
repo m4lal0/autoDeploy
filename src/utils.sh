@@ -941,6 +941,10 @@ function installGitTools(){
 	info "Descargando rusthound-ce"
 	cargo install rusthound-ce > /dev/null 2>&1
 	check "Agregando rusthound-ce"
+	## jwt-hack
+	info "Descargando jwt-hack"
+	cargo install jwt-hack > /dev/null. 2>&1
+	check "Agregando jwt-hack"
 	## penelope
 	info "Descargando penelope"
 	cd /tmp && wget https://raw.githubusercontent.com/brightio/penelope/refs/heads/main/penelope.py > /dev/null 2>&1
