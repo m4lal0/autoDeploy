@@ -141,6 +141,7 @@ Web|https://github.com/dolevf/graphw00f
 Web|https://github.com/dolevf/graphql-cop
 Web|https://github.com/doosec101/swagger_scanner
 Web|https://github.com/Ekultek/WhatWaf
+Web|https://github.com/haqqibrahim/Project-Forgery
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
