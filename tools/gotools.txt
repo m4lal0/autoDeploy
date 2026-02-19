@@ -47,3 +47,4 @@ alterx:github.com/projectdiscovery/alterx/cmd/alterx@latest
 aix:github.com/projectdiscovery/aix/cmd/aix@latest
 curlie:github.com/rs/curlie@latest
 bxss:github.com/ethicalhackingplayground/bxss/v2/cmd/bxss@latest
+mubeng:github.com/mubeng/mubeng@latest
