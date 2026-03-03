@@ -227,6 +227,19 @@ alias transfer="curl --upload-file $1 https://transfer.sh/$1"
 
 # Functions
 
+# IP Rotate with Mubeng
+function ip-rotate-on(){
+        if [[ -n $1 && $# -eq 1 ]]; then
+                ((mubeng -f $1 -a localhost:8089 -r 3 -m random >/dev/null 2>&1) &)
+        else
+                echo -e "\n\t\033[0;36m[\033[0;33m!\033[0;36m] \033[0;37mUse: $0 \033[3;37m<Path-File-List-Pool-Proxy>\033[0m"
+        fi
+}
+
+function ip-rotate-off(){
+        pkill mubeng
+}
+
 # Encrypt file
 function encryptFile(){
 	echo "${green}${bold}"
