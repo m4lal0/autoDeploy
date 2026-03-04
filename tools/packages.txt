@@ -259,4 +259,5 @@ zipalign
 netcat-traditional
 ligolo-mp
 krbrelayx
+wpprobe
 seclists
