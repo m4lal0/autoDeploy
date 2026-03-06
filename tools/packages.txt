@@ -260,4 +260,5 @@ netcat-traditional
 ligolo-mp
 krbrelayx
 wpprobe
+sstimap
 seclists
