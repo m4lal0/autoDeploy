@@ -261,4 +261,5 @@ ligolo-mp
 krbrelayx
 wpprobe
 sstimap
+xsstrike
 seclists
