@@ -262,4 +262,5 @@ krbrelayx
 wpprobe
 sstimap
 xsstrike
+fluxion
 seclists
