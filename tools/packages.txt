@@ -263,4 +263,5 @@ wpprobe
 sstimap
 xsstrike
 fluxion
+remmina
 seclists
