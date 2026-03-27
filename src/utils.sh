@@ -283,6 +283,11 @@ function installGitTools(){
 	rm -f LICENSE README.md banner.png resolvers.png 2>/dev/null
 	ln -s /usr/share/trickest /usr/share/wordlists > /dev/null 2>&1
 	check "Agregando wordlist en /usr/share/wordlist/trickest"
+	cd /usr/share 2>/dev/null
+	git clone https://github.com/gh0stkey/Web-Fuzzing-Box > /dev/null 2>&1
+	cd /usr/share/Web-Fuzzing-Box && rm -f .gitignore README.md README_CN.md 2>/dev/null
+	ln -s /usr/share/Web-Fuzzing-Box /usr/share/wordlists > /dev/null 2>&1
+	check "Agregando wordlist en /usr/share/wordlist/Web-Fuzzing-Box"
 	## WordPress Exploit Framework
 	info "Instalando WordPress Exploit Framework"
 	cd /
