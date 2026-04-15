@@ -14,7 +14,7 @@ function customTerminal(){
 	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
 	unzip Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
-	rm Hack.zip 2>/dev/null
+	rm -rf Hack.zip 2>/dev/null
 
 	#info "Descargando fuente (Fira Code Nerd)"
 	#cd /usr/local/share/fonts/ 2>/dev/null
@@ -184,6 +184,12 @@ function customTerminal(){
 	check "Copiando archivo de configuración de qterminal de root"
 	perl -pi -e "s[USER-PATH][/root/.config/]g" /root/.config/qterminal.org/qterminal.ini 2>/dev/null
 	check "Configurando archivo de qterminal de root"
+
+	info "Configurando color schema de qterminal"
+	cp -f $FILES_PATH/PentesterBlack.colorscheme /usr/share/qtermwidget6/color-schemes/PentesterBlack.colorscheme 2>/dev/null
+	check "Copiando archivo de color PentesterBlack scheme de qterminal"
+	cp -f $FILES_PATH/PentesterGray.colorscheme /usr/share/qtermwidget6/color-schemes/PentesterGray.colorscheme 2>/dev/null
+	check "Copiando archivo de color PentesterGray scheme de qterminal"
 
 	info "Configurando escritorio"
 	wget "https://gitlab.com/kalilinux/packages/kali-wallpapers/-/raw/kali/master/2020.4/backgrounds/kali/kali-geometric-16x9.png?inline=false" -O /usr/share/backgrounds/kali/kali-geometric-16x9.png > /dev/null 2>&1
