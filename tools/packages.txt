@@ -264,4 +264,6 @@ sstimap
 xsstrike
 fluxion
 remmina
+zoxide
+ripgrep
 seclists
