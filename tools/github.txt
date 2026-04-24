@@ -34,6 +34,7 @@ AD|https://github.com/CroweCybersecurity/ad-ldap-enum
 AD|https://github.com/fox-it/aclpwn.py
 AD|https://github.com/GhnimiWael/LDAPHunter
 AD|https://github.com/DotNetRussell/BloodBash
+AD|https://github.com/dazzyddos/PrivHound
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 OSINT|https://github.com/m4lal0/userSearch
 OSINT|https://github.com/pixelbubble/ProtOSINT
