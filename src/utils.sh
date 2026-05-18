@@ -19,6 +19,7 @@ function installPackages(){
 	check "Actualizando paquetes"
 	## Descartar paquetes obsoletos
 	info "Eliminar paquetes sin usar (apt autoremove)"
+	apt remove bloodhound --purge -y > /dev/null 2>&1
 	apt autoremove -y > /dev/null 2>&1
 	check "Eliminando paquetes sin uso"
 }
@@ -552,13 +553,14 @@ function installGitTools(){
 	fi
 	check "Agregando rustcat v$rustcat_version"
 	## BloodHound
-	info "Descargando BloodHound"
-	cd $AD_PATH 2>/dev/null
-	wget https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-linux-x64.zip > /dev/null 2>&1
+	info "Descargando BloodHound v.4.3.1"
+	cd $AD_PATH && mkdir BloodHound-legacy 2>/dev/null
+	cd BloodHound-legacy 2>/dev/null
+	wget https://github.com/BloodHoundAD/BloodHound/releases/download/v4.3.1/BloodHound-linux-x64.zip > /dev/null 2>&1
 	unzip BloodHound-linux-x64.zip > /dev/null 2>&1
-	rm BloodHound-linux-x64.zip > /dev/null 2>&1
-	mv BloodHound-linux-x64 BloodHound 2>/dev/null
-	check "Agregando BloodHound v4.0.3"
+	rm -rf BloodHound-linux-x64.zip > /dev/null 2>&1
+	ln -s $AD_PATH/BloodHound-legacy/BloodHound-linux-x64/BloodHound /usr/local/bin/bloodhound 2>/dev/null
+	check "Agregando BloodHound v4.3.1"
 	## Kill-Port
 	info "Descargando KillPort"
 	cd /tmp && wget https://github.com/jkfran/killport/releases/latest/download/killport-x86_64-linux-gnu.tar.gz > /dev/null 2>&1
