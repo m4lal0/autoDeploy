@@ -363,6 +363,12 @@ function customTerminal(){
 	perl -pi -e "s[mibs :][#mibs :]" /etc/snmp/snmp.conf
 	check "Actualizando SNMP.conf"
 
+	info "Configurando apagado de pantalla"
+	xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/blank-on-ac -n -t int -s 0 2> /dev/null
+	xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/dpms-on-ac-off -n -t int -s 0 2> /dev/null
+	xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/dpms-on-ac-sleep -n -t int -s 0 2> /dev/null
+	check "Actualizando Power Manager"
+
 	#info "Actualizacion de MSF"
 	#gem update --system > /dev/null 2>&1
 	#check "Actualizando gem"
