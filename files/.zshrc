@@ -722,3 +722,6 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+xset s off      # Desactiva el protector de pantalla de Xorg
+xset -dpms      # Desactiva los modos de ahorro de energía de la pantalla
