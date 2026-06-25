@@ -77,7 +77,8 @@ Utilities/Windows|https://github.com/secure-77/powershell-http-server
 Utilities/Windows|https://github.com/p0dalirius/RDWAtool
 Pivoting|https://github.com/lukebaggett/dnscat2-powershell
 Cloud|https://github.com/carlospolop/cloudpeass
-Cliud|https://github.com/dievus/AWeSomeUserFinder
+Cloud|https://github.com/dievus/AWeSomeUserFinder
+IA|https://github.com/gadievron/raptor
 Web|https://github.com/InfosecMatter/default-http-login-hunter
 Web|https://github.com/TheRook/subbrute
 Web|https://github.com/Dhayalanb/windows-php-reverse-shell
