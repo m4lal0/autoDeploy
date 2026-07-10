@@ -266,4 +266,5 @@ fluxion
 remmina
 zoxide
 ripgrep
+hexstrike-ai
 seclists
