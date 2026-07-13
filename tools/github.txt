@@ -7,6 +7,7 @@ PrivEsc-Lin|https://github.com/whotwagner/logrotten
 PrivEsc-Lin|https://github.com/CISOfy/lynis
 PrivEsc-Lin|https://github.com/AlessandroZ/BeRoot
 PrivEsc-Lin|https://github.com/stealthcopter/deepce
+PrivEsc-Lin|https://github.com/N1x-afl/neuroaudit
 PrivEsc-Win|https://github.com/itm4n/PrivescCheck
 PrivEsc-Win|https://github.com/S3cur3Th1sSh1t/WinPwn
 PrivEsc-Win|https://github.com/bitsadmin/wesng
