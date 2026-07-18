@@ -62,6 +62,7 @@ Utilities/Linux|https://github.com/t3l3machus/BabelStrike
 Utilities/Linux|https://github.com/sameera-madushan/Print-My-Shell
 Utilities/Linux|https://github.com/p0dalirius/smbclient-ng
 Utilities/Linux|https://github.com/jtesta/ssh-audit
+Utilities/Linux|https://github.com/s0md3v/Hash-Buster
 Utilities/Windows|https://github.com/urbanadventurer/username-anarchy
 Utilities/Windows|https://github.com/OmerYa/Invisi-Shell
 Utilities/Windows|https://github.com/vivami/SauronEye
@@ -144,6 +145,7 @@ Web|https://github.com/dolevf/graphql-cop
 Web|https://github.com/doosec101/swagger_scanner
 Web|https://github.com/Ekultek/WhatWaf
 Web|https://github.com/haqqibrahim/Project-Forgery
+Web|https://github.com/s0md3v/Corsy
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
