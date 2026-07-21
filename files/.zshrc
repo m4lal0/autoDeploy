@@ -206,19 +206,21 @@ alias ps='grc ps'
 alias traceroute='grc traceroute'
 alias netstat='grc netstat'
 alias nmap='grc nmap'
-alias abe='java -jar /opt/Mobile/Android-Backup-Extractor/abe.jar'
 alias dud='grc du -d 1 -h'
-alias cheat='tldr'
-#alias whatweb='/opt/Web/WhatWeb/whatweb'
-alias bloodhound="bloodhound --no-sandbox --disable-gpu"
-
 alias cat='/usr/bin/bat --paging=never --style=plain'
 alias catn='/usr/bin/cat'
 alias catl='/usr/bin/bat'
-
 alias rm='trash-put'
 alias rm-restore='trash-restore'
 alias rm-list='trash-list'
+
+alias cheat='tldr'
+alias abe='java -jar /opt/Mobile/Android-Backup-Extractor/abe.jar'
+#alias whatweb='/opt/resources/Web/WhatWeb/whatweb'
+alias bloodhound="bloodhound --no-sandbox --disable-gpu"
+alias plumhound="python3 /opt/resources/AD/PlumHound/PlumHound.py"
+alias hash-buster="python3 /opt/resources/Utilities/Linux/Hash-Buster/hash.py"
+alias corsy="python3 /opt/resources/Web/Corsy/corsy.py"
 
 alias zshrc='vi $HOME/.zshrc'
 alias reload='source $HOME/.zshrc'
