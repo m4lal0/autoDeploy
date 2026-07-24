@@ -151,3 +151,4 @@ Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
 Mobile|https://github.com/ari5ti/Janus-Exploit
 Mobile|https://github.com/adarshshetty18/fcm_server_key
+Mobile|https://github.com/f3rb123/kill_flutter
