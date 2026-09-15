@@ -7,6 +7,7 @@ PrivEsc-Lin|https://github.com/whotwagner/logrotten
 PrivEsc-Lin|https://github.com/CISOfy/lynis
 PrivEsc-Lin|https://github.com/AlessandroZ/BeRoot
 PrivEsc-Lin|https://github.com/stealthcopter/deepce
+PrivEsc-Lin|https://github.com/N1x-afl/neuroaudit
 PrivEsc-Win|https://github.com/itm4n/PrivescCheck
 PrivEsc-Win|https://github.com/S3cur3Th1sSh1t/WinPwn
 PrivEsc-Win|https://github.com/bitsadmin/wesng
@@ -34,6 +35,7 @@ AD|https://github.com/CroweCybersecurity/ad-ldap-enum
 AD|https://github.com/fox-it/aclpwn.py
 AD|https://github.com/GhnimiWael/LDAPHunter
 AD|https://github.com/DotNetRussell/BloodBash
+AD|https://github.com/dazzyddos/PrivHound
 OSINT|https://github.com/thewhiteh4t/pwnedOrNot
 OSINT|https://github.com/m4lal0/userSearch
 OSINT|https://github.com/pixelbubble/ProtOSINT
@@ -60,6 +62,7 @@ Utilities/Linux|https://github.com/t3l3machus/BabelStrike
 Utilities/Linux|https://github.com/sameera-madushan/Print-My-Shell
 Utilities/Linux|https://github.com/p0dalirius/smbclient-ng
 Utilities/Linux|https://github.com/jtesta/ssh-audit
+Utilities/Linux|https://github.com/s0md3v/Hash-Buster
 Utilities/Windows|https://github.com/urbanadventurer/username-anarchy
 Utilities/Windows|https://github.com/OmerYa/Invisi-Shell
 Utilities/Windows|https://github.com/vivami/SauronEye
@@ -76,7 +79,8 @@ Utilities/Windows|https://github.com/secure-77/powershell-http-server
 Utilities/Windows|https://github.com/p0dalirius/RDWAtool
 Pivoting|https://github.com/lukebaggett/dnscat2-powershell
 Cloud|https://github.com/carlospolop/cloudpeass
-Cliud|https://github.com/dievus/AWeSomeUserFinder
+Cloud|https://github.com/dievus/AWeSomeUserFinder
+IA|https://github.com/gadievron/raptor
 Web|https://github.com/InfosecMatter/default-http-login-hunter
 Web|https://github.com/TheRook/subbrute
 Web|https://github.com/Dhayalanb/windows-php-reverse-shell
@@ -141,8 +145,10 @@ Web|https://github.com/dolevf/graphql-cop
 Web|https://github.com/doosec101/swagger_scanner
 Web|https://github.com/Ekultek/WhatWaf
 Web|https://github.com/haqqibrahim/Project-Forgery
+Web|https://github.com/s0md3v/Corsy
 Web/Wordpress|https://github.com/n00py/WPForce
 Mobile|https://github.com/Cyber-Buddy/APKHunt
 Mobile|https://github.com/vincentcox/StaCoAn
 Mobile|https://github.com/ari5ti/Janus-Exploit
 Mobile|https://github.com/adarshshetty18/fcm_server_key
+Mobile|https://github.com/f3rb123/kill_flutter
